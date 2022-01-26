@@ -7,6 +7,7 @@ const CATI_USERNAME = process.env.CATI_USERNAME;
 const CATI_PASSWORD = process.env.CATI_PASSWORD || CATI_USERNAME;
 const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
+const REST_API_CLIENT_ID = process.env.REST_API_CLIENT_ID || undefined;
 const INSTRUMENT_NAME = process.env.TEST_INSTRUMENT;
 
 test.describe("Without data", () => {
@@ -59,7 +60,7 @@ test.describe("With data", () => {
 });
 
 async function setupInstrument() {
-  const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
+  const blaiseApiClient = new BlaiseApiClient(REST_API_URL, {blaiseApiClientId: REST_API_CLIENT_ID});
   const serverpark = "gusty";
   const today = new Date();
   const tomorrow = new Date();
