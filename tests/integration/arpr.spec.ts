@@ -32,7 +32,7 @@ test.describe("With data", () => {
     await setupAppointment(page);
   });
 
-  test.afterEach(async ({page}) => {
+  test.afterEach(async ({ page }) => {
     const serverpark = "gusty";
     const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
     await clearCATIData(page);
@@ -60,7 +60,7 @@ test.describe("With data", () => {
 });
 
 async function setupInstrument() {
-  const blaiseApiClient = new BlaiseApiClient(REST_API_URL, {blaiseApiClientId: REST_API_CLIENT_ID});
+  const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
   const serverpark = "gusty";
   const today = new Date();
   const tomorrow = new Date();
@@ -75,7 +75,7 @@ async function setupInstrument() {
 async function loginCATI(page: Page) {
   await page.goto(`${CATI_URL}/blaise`);
   const loginHeader = page.locator("h1:has-text('Login')");
-  if (await loginHeader.isVisible({timeout: 100})) {
+  if (await loginHeader.isVisible({ timeout: 100 })) {
     await page.locator("#Username").type(`${CATI_USERNAME}`);
     await page.locator("#Password").type(`${CATI_PASSWORD}`);
     await page.click("button[type=submit]");
@@ -83,11 +83,11 @@ async function loginCATI(page: Page) {
 }
 
 async function filterCATIInstrument(page: Page) {
-  await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", {state: "hidden"});
+  await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", { state: "hidden" });
   await page.click(".filter-state:has-text('Filters')");
   await page.check(`text=${INSTRUMENT_NAME}`);
   await page.click("button:has-text('Apply')");
-  await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", {state: "hidden"});
+  await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", { state: "hidden" });
 }
 
 async function setupAppointment(page: Page) {
@@ -102,7 +102,7 @@ async function setupAppointment(page: Page) {
   await casePage.check("input:left-of(.CategoryButtonComponent:has-text('Appointment agreed'))");
   await casePage.click(".ButtonComponent:has-text('Save and continue')");
   await casePage.locator("table.e-schedule-table").locator("tbody")
-      .locator(`//tr/td[@data-date=${tomorrow10am()}]`).click();
+    .locator(`//tr/td[@data-date=${tomorrow10am()}]`).click();
   await casePage.click("button:has-text('Confirm')");
   await casePage.click(".ButtonComponent:has-text('Save and continue')");
   await casePage.type(".StringTextBoxComponent", `${CATI_USERNAME}`);
@@ -124,13 +124,13 @@ async function clearCATIData(page: Page) {
   await page.uncheck("#BackupDialHistory");
   await page.uncheck("#BackupEvents");
   await page.click("#chkClearAll");
-  await page.click("input[type=submit]:has-text('Execute')", {timeout: 200});
+  await page.click("input[type=submit]:has-text('Execute')", { timeout: 5000 });
 }
 
 function tomorrow10am(): number {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  return tomorrow.setHours(10, 0, 0 ,0);
+  return tomorrow.setHours(10, 0, 0, 0);
 }
 
 function reportTomorrow(): string {
@@ -143,18 +143,18 @@ async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
   try {
     await blaiseApiClient.getDiagnostics();
   } catch (error) {
-    if (error.code==="ECONNREFUSED") {
+    if (error.code === "ECONNREFUSED") {
       console.error("Failed to connect to the rest-api.  Please ensure iap tunnel to the rest-api is connected");
-      throw(error);
+      throw (error);
     }
     console.error(`Failed to connect to the rest-api: ${error}`);
-    throw(error);
+    throw (error);
   }
 }
 
 async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: string) {
   try {
-    await blaiseApiClient.installInstrument(serverpark, {instrumentFile: `${INSTRUMENT_NAME}.bpkg`});
+    await blaiseApiClient.installInstrument(serverpark, { instrumentFile: `${INSTRUMENT_NAME}.bpkg` });
     for (let attempts = 0; attempts <= 12; attempts++) {
       const instrumentDetails = await blaiseApiClient.getInstrument(serverpark, `${INSTRUMENT_NAME}`);
       if (instrumentDetails.status == "Active") {
@@ -177,7 +177,7 @@ async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: s
     }
   } catch (error) {
     console.error(`Failed to install instrument: ${error}`);
-    throw(error);
+    throw (error);
   }
 }
 
@@ -186,16 +186,16 @@ async function addSurveyDays(blaiseApiClient: BlaiseApiClient, serverpark: strin
     await blaiseApiClient.addSurveyDays(serverpark, `${INSTRUMENT_NAME}`, [today.toISOString(), tomorrow.toISOString()]);
   } catch (error) {
     console.error(`Failed to add survey days: ${error}`);
-    throw(error);
+    throw (error);
   }
 
 }
 
 async function addDaybatch(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date) {
   try {
-    await blaiseApiClient.addDaybatch(serverpark, `${INSTRUMENT_NAME}`, {dayBatchDate: today.toISOString(), checkForTreatedCases: false});
+    await blaiseApiClient.addDaybatch(serverpark, `${INSTRUMENT_NAME}`, { dayBatchDate: today.toISOString(), checkForTreatedCases: false });
   } catch (error) {
     console.error(`Failed to add daybatch: ${error}`);
-    throw(error);
+    throw (error);
   }
 }
