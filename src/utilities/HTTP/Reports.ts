@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { authHeader } from "../../client/token";
+import { AuthManager } from "../../client/token";
 import { AppointmentResourcePlanningReportData, AppointmentResourcePlanningSummaryReportData, CallHistoryStatus, InterviewerCallHistoryReport, InterviewerCallPatternReport } from "../../interfaces";
 
 function axiosConfig(): AxiosRequestConfig {
+    const authManager = new AuthManager();
     return {
-        headers: authHeader()
+        headers: authManager.authHeader()
     };
 }
 

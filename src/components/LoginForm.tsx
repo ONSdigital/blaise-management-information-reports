@@ -2,10 +2,12 @@ import React, { ReactElement } from "react";
 import { ONSPanel, StyledForm } from "blaise-design-system-react-components";
 import { Component } from "react";
 import { validatePassword, validateUserPermissions } from "../client/user";
+import { AuthManager } from "../client/token";
 
 
 type LoginFormProps = {
-  setToken: (token: any) => void
+  authManager: AuthManager
+  setLoggedIn: (loggedIn: boolean) => void
 }
 
 type LoginFormState = {
@@ -54,7 +56,8 @@ export default class LoginForm extends Component<LoginFormProps, LoginFormState>
       setSubmitting(false);
       return;
     }
-    this.props.setToken(token);
+    this.props.authManager.setToken(token);
+    this.props.setLoggedIn(authorised);
   }
 
   error(): ReactElement | undefined {

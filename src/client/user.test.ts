@@ -39,7 +39,7 @@ describe("Validate user permissions", () => {
 
     const [validated, token] = await validateUserPermissions("bob");
     expect(validated).toBeFalsy();
-    expect(token).toBeUndefined();
+    expect(token).toBeNull();
   });
 });
 

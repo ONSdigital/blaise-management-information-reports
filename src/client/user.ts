@@ -16,7 +16,7 @@ export async function validatePassword(username: string, password: string): Prom
   return response.data;
 }
 
-export async function validateUserPermissions(username: string): Promise<[boolean, User | undefined]> {
+export async function validateUserPermissions(username: string): Promise<[boolean, string | null]> {
   try {
     const response = await axios.get(`/api/login/users/${username}/authorised`);
 
@@ -24,9 +24,9 @@ export async function validateUserPermissions(username: string): Promise<[boolea
       return [true, response.data.token];
     }
   } catch {
-    return [false, undefined];
+    return [false, null];
   }
-  return [false, undefined];
+  return [false, null];
 }
 
 export async function validateToken(token: string | null): Promise<boolean> {

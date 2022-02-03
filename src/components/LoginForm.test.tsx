@@ -11,20 +11,23 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import flushPromises from "../tests/utilities";
 import jwt from "jsonwebtoken";
+import { AuthManager } from "../client/token";
 
 const mockAdapter = new MockAdapter(axios);
 
-let token: any = null;
+let loggedIn = false;
 
-function setToken(newToken: any) {
-  token = newToken;
+function setLoggedIn(isLoggedIn: boolean) {
+  loggedIn = isLoggedIn;
 }
 
 describe("Login form", () => {
+  const authManager = new AuthManager();
+
   afterEach(() => {
     jest.clearAllMocks();
     cleanup();
-    setToken(null);
+    setLoggedIn(false);
     mockAdapter.reset();
   });
 
@@ -32,7 +35,7 @@ describe("Login form", () => {
     const history = createMemoryHistory();
     const wrapper = render(
       <Router history={history}>
-        <LoginForm setToken={setToken} />
+        <LoginForm authManager={authManager} setLoggedIn={setLoggedIn} />
       </Router>
     );
 
@@ -45,7 +48,7 @@ describe("Login form", () => {
     const history = createMemoryHistory();
     render(
       <Router history={history}>
-        <LoginForm setToken={setToken} />
+        <LoginForm authManager={authManager} setLoggedIn={setLoggedIn} />
       </Router>
     );
 
@@ -63,7 +66,7 @@ describe("Login form", () => {
       const history = createMemoryHistory();
       render(
         <Router history={history}>
-          <LoginForm setToken={setToken} />
+          <LoginForm authManager={authManager} setLoggedIn={setLoggedIn} />
         </Router>
       );
 
@@ -76,7 +79,7 @@ describe("Login form", () => {
         expect(screen.queryByText("Incorrect username or password")).toBeVisible();
       });
 
-      expect(token).toBeNull();
+      expect(loggedIn).toBeFalsy();
     });
   });
 
@@ -89,7 +92,7 @@ describe("Login form", () => {
       const history = createMemoryHistory();
       render(
         <Router history={history}>
-          <LoginForm setToken={setToken} />
+          <LoginForm authManager={authManager} setLoggedIn={setLoggedIn} />
         </Router>
       );
 
@@ -102,7 +105,7 @@ describe("Login form", () => {
         expect(screen.queryByText("You do not have the correct permissions")).toBeVisible();
       });
 
-      expect(token).toBeNull();
+      expect(loggedIn).toBeFalsy();
     });
   });
 
@@ -114,7 +117,7 @@ describe("Login form", () => {
       const history = createMemoryHistory();
       render(
         <Router history={history}>
-          <LoginForm setToken={setToken} />
+          <LoginForm authManager={authManager} setLoggedIn={setLoggedIn} />
         </Router>
       );
 
@@ -127,12 +130,7 @@ describe("Login form", () => {
         await flushPromises();
       });
 
-      const myJwt = jwt.decode(token);
-      if (myJwt == null || typeof (myJwt) === "string") {
-        expect(myJwt).toEqual({ "role": "test" });
-      } else {
-        expect(myJwt["data"]).toEqual({ "role": "test" });
-      }
+      expect(loggedIn).toBeTruthy();
     });
   });
 });

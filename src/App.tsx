@@ -1,48 +1,52 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Link, Route, Switch, useLocation } from "react-router-dom";
-import { BetaBanner, DefaultErrorBoundary, Footer, Header } from "blaise-design-system-react-components";
+import { BetaBanner, DefaultErrorBoundary, Footer, Header, ONSLoadingPanel } from "blaise-design-system-react-components";
 import InterviewerCallHistory from "./reports/InterviewerCallHistory";
 import InterviewerCallPattern from "./reports/InterviewerCallPattern";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
 import "./style.css";
 import LoginForm from "./components/LoginForm";
-import { useToken, clearToken } from "./client/token";
-import { validateToken } from "./client/user";
+import { AuthManager } from "./client/token";
 
 const divStyle = {
     minHeight: "calc(72vh)"
 };
 
 function App(): ReactElement {
+    const authManager = new AuthManager();
     const location = useLocation();
-    const { token, setToken } = useToken();
+    const [loaded, setLoaded] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
 
     useEffect(() => {
         console.log(location);
-        validateToken(token).then((validated: boolean) => {
-            setLoggedIn(validated);
-        }).catch((error: unknown) => {
-            console.log(`Error checking logged in state: ${error}`);
-            setLoggedIn(false);
+        authManager.loggedIn().then(async (isLoggedIn: boolean) => {
+            setLoggedIn(isLoggedIn);
+            setLoaded(true);
         });
     });
 
     function loginPage(): ReactElement {
-        if (loggedIn) {
+        if (loaded && loggedIn) {
             return <></>;
         }
-        return <LoginForm setToken={setToken} />;
+        return <LoginForm authManager={authManager} setLoggedIn={setLoggedIn} />;
     }
 
     function signOut(): void {
-        clearToken();
-        setToken(null);
+        authManager.clearToken();
         setLoggedIn(false);
     }
 
+    function loading(): ReactElement {
+        if (loaded) {
+            return <></>;
+        }
+        return <ONSLoadingPanel />;
+    }
+
     function app(): ReactElement | undefined {
-        if (loggedIn) {
+        if (loaded && loggedIn) {
             return (<DefaultErrorBoundary>
                 <Switch>
                     <Route path="/interviewer-call-history">
@@ -110,8 +114,9 @@ function App(): ReactElement {
         <>
             <a className="skip__link" href="#main-content">Skip to main content</a>
             <BetaBanner />
-            <Header title={"Management Information Reports"} signOutButton={true} noSave={true} signOutFunction={signOut} />
+            <Header title={"Management Information Reports"} signOutButton={loggedIn} noSave={true} signOutFunction={signOut} />
             <div style={divStyle} className="page__container container">
+                {loading()}
                 {loginPage()}
                 {app()}
             </div>
