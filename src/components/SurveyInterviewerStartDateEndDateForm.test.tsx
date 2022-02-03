@@ -1,11 +1,15 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import "@testing-library/jest-dom";
 import flushPromises from "../tests/utilities";
-import {createMemoryHistory} from "history";
-import {cleanup, render, waitFor} from "@testing-library/react";
-import {Router} from "react-router";
+import { createMemoryHistory } from "history";
+import { cleanup, render, waitFor } from "@testing-library/react";
+import { Router } from "react-router";
 import SurveyInterviewerStartDateEndDateForm from "./SurveyInterviewerStartDateEndDateForm";
-import {act} from "react-dom/test-utils";
-import {screen} from "@testing-library/dom";
+import { act } from "react-dom/test-utils";
+import { screen } from "@testing-library/dom";
 import React from "react";
 import MockDate from "mockdate";
 
@@ -24,7 +28,7 @@ describe("form - survey, interviewer, start date, end date", () => {
         const history = createMemoryHistory();
         const wrapper = render(
             <Router history={history}>
-                <SurveyInterviewerStartDateEndDateForm onSubmitFunction=""/>
+                <SurveyInterviewerStartDateEndDateForm onSubmitFunction="" />
             </Router>
         );
 
@@ -42,7 +46,7 @@ describe("form - survey, interviewer, start date, end date", () => {
         await act(async () => {
             render(
                 <Router history={history}>
-                    <SurveyInterviewerStartDateEndDateForm onSubmitFunction=""/>
+                    <SurveyInterviewerStartDateEndDateForm onSubmitFunction="" />
                 </Router>
             );
         });

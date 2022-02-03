@@ -5,8 +5,7 @@ import InterviewerCallHistory from "./reports/InterviewerCallHistory";
 import InterviewerCallPattern from "./reports/InterviewerCallPattern";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
 import "./style.css";
-import LoginForm from "./components/LoginForm";
-import { AuthManager } from "./client/token";
+import { LoginForm, AuthManager } from "blaise-login-react-client";
 
 const divStyle = {
     minHeight: "calc(72vh)"

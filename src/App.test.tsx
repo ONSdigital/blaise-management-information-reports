@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
 import { render, waitFor } from "@testing-library/react";
 import App from "./App";
@@ -6,13 +10,12 @@ import flushPromises from "./tests/utilities";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router";
+import { AuthManager } from "blaise-login-react-client";
 
-jest.mock("./client/user", () => ({
-    validateToken: jest.fn().mockImplementation(async () => {
-        return Promise.resolve(true);
-    })
-}));
-
+jest.mock("blaise-login-react-client");
+AuthManager.prototype.loggedIn = jest.fn().mockImplementation(() => {
+    return Promise.resolve(true);
+});
 
 describe("management information reports homepage", () => {
     it("matches snapshot", async () => {

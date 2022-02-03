@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { createMemoryHistory } from "history";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
@@ -8,17 +12,17 @@ import { fireEvent } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
 import flushPromises from "../../tests/utilities";
 import { AppointmentResourcePlanningReportData } from "../../interfaces";
+import { AuthManager } from "blaise-login-react-client";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 
 const mockAdapter = new MockAdapter(axios);
 
+jest.mock("blaise-login-react-client");
+AuthManager.prototype.loggedIn = jest.fn().mockImplementation(() => {
+    return Promise.resolve(true);
+});
 
-jest.mock("../../client/user", () => ({
-    validateToken: jest.fn().mockImplementation(async () => {
-        return Promise.resolve(true);
-    })
-}));
 
 const feature = loadFeature(
     "./src/features/run_and_view_appointment_resource_planning_report.feature",

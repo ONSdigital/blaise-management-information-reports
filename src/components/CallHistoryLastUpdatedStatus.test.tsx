@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import "@testing-library/jest-dom";
 import flushPromises from "../tests/utilities";
 import { createMemoryHistory } from "history";

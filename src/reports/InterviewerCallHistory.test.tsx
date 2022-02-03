@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { InterviewerCallHistoryReport } from "../interfaces";
 import "@testing-library/jest-dom";
 import flushPromises from "../tests/utilities";

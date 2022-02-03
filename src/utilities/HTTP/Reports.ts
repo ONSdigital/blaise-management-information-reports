@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { AuthManager } from "../../client/token";
+import { AuthManager } from "blaise-login-react-client";
 import { AppointmentResourcePlanningReportData, AppointmentResourcePlanningSummaryReportData, CallHistoryStatus, InterviewerCallHistoryReport, InterviewerCallPatternReport } from "../../interfaces";
 
 function axiosConfig(): AxiosRequestConfig {

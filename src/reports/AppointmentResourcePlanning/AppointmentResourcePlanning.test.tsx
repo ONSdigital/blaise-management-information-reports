@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { AppointmentResourcePlanningReportData } from "../../interfaces";
 import "@testing-library/jest-dom";
 import flushPromises from "../../tests/utilities";

@@ -1,13 +1,11 @@
 import crypto from "crypto";
+import { AuthConfig } from "blaise-login-react-server";
 
-export interface Config {
+export interface Config extends AuthConfig {
     ProjectID: string
     BertUrl: string
     BertClientId: string
     BlaiseApiUrl: string
-    Roles: string[]
-    SessionTimeout: string
-    SessionSecret: string
 }
 
 export function loadConfigFromEnv(): Config {

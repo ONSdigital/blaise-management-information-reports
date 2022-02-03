@@ -33,6 +33,8 @@
     "axios": "^0.21.0",
     "blaise-design-system-react-components": "git+https://github.com/ONSdigital/blaise-design-system-react-components",
     "blaise-iap-node-provider": "https://github.com/ONSdigital/blaise-iap-node-provider",
+    "blaise-login-react-client": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-client?1bc811bb8993db7a8e75409cdd004500ebaba3d5",
+    "blaise-login-react-server": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-server?74e88ad500a734ce797df3ed3e2a85bdacb71980",
     "dayjs": "^1.10.6",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",

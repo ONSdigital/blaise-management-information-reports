@@ -7,9 +7,9 @@ import multer from "multer";
 import dateFormatter from "dayjs";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
-import newLoginHandler from "./handlers/loginHandler";
+import { newLoginHandler } from "blaise-login-react-server";
 import { Config } from "./Config";
-import { Auth } from "./auth/auth";
+import { Auth } from "blaise-login-react-server";
 import PinoHttp from "pino-http";
 
 class RequestLogger {
