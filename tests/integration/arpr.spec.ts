@@ -31,8 +31,8 @@ test.describe("With data", () => {
   test.beforeEach(async ({ page }, testInfo) => {
     testInfo.setTimeout(120000);
     console.log(`Running ${testInfo.title}`);
-    userCredentials = await setupTestUser();
     await setupInstrument();
+    userCredentials = await setupTestUser();
     // CATI seems to be a bit slow on the uptake sometimes...
     await new Promise(f => setTimeout(f, 10000));
     await setupAppointment(page, userCredentials.user_name, userCredentials.password);
@@ -42,7 +42,8 @@ test.describe("With data", () => {
     const serverpark = "gusty";
     const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
     await clearCATIData(page, userCredentials.user_name, userCredentials.password);
-    blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
+    await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
+    await blaiseApiClient.deleteUser(userCredentials.user_name);
   });
 
   test("I can get to, and run an ARPR for a day with data", async ({ page }) => {
