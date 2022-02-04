@@ -1,13 +1,17 @@
+import { v4 as uuidv4 } from "uuid";
 import { test, expect, Page } from "@playwright/test";
-import BlaiseApiClient from "blaise-api-node-client";
+import BlaiseApiClient, { CreateUser } from "blaise-api-node-client";
 import moment from "moment";
 
 const CATI_URL = process.env.CATI_URL;
-const CATI_USERNAME = process.env.CATI_USERNAME;
-const CATI_PASSWORD = process.env.CATI_PASSWORD || CATI_USERNAME;
 const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
 const INSTRUMENT_NAME = process.env.TEST_INSTRUMENT;
+
+type UserCredentials = {
+  user_name: string
+  password: string
+}
 
 test.describe("Without data", () => {
   test("I can get to, and run an ARPR for a day with no data", async ({ page }) => {
@@ -22,19 +26,22 @@ test.describe("Without data", () => {
 });
 
 test.describe("With data", () => {
+  let userCredentials: UserCredentials;
+
   test.beforeEach(async ({ page }, testInfo) => {
     testInfo.setTimeout(120000);
     console.log(`Running ${testInfo.title}`);
+    userCredentials = await setupTestUser();
     await setupInstrument();
     // CATI seems to be a bit slow on the uptake sometimes...
     await new Promise(f => setTimeout(f, 10000));
-    await setupAppointment(page);
+    await setupAppointment(page, userCredentials.user_name, userCredentials.password);
   });
 
   test.afterEach(async ({page}) => {
     const serverpark = "gusty";
     const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
-    await clearCATIData(page);
+    await clearCATIData(page, userCredentials.user_name, userCredentials.password);
     blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
   });
 
@@ -58,6 +65,34 @@ test.describe("With data", () => {
   });
 });
 
+async function setupTestUser(): Promise<UserCredentials> {
+  const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
+  const password = uuidv4();
+  const userName = uuidv4();
+  const user = {
+    password: password,
+    name: userName,
+    role: "DST",
+    serverParks: [
+        "gusty"
+    ],
+    defaultServerPark: "gusty"
+  };
+
+  try {
+    console.log("Attempting to create user...");
+    await blaiseApiClient.createUser(user);
+  } catch (error) {
+    console.error(`Failed to create user: ${error}`);
+    throw(error);
+  }
+
+  return {
+    user_name: userName,
+    password: password
+  };
+}
+
 async function setupInstrument() {
   const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
   const serverpark = "gusty";
@@ -71,12 +106,12 @@ async function setupInstrument() {
   await addDaybatch(blaiseApiClient, serverpark, today);
 }
 
-async function loginCATI(page: Page) {
+async function loginCATI(page: Page, userName: string, password: string) {
   await page.goto(`${CATI_URL}/blaise`);
   const loginHeader = page.locator("h1:has-text('Login')");
   if (await loginHeader.isVisible({timeout: 100})) {
-    await page.locator("#Username").type(`${CATI_USERNAME}`);
-    await page.locator("#Password").type(`${CATI_PASSWORD}`);
+    await page.locator("#Username").type(`${userName}`);
+    await page.locator("#Password").type(`${password}`);
     await page.click("button[type=submit]");
   }
 }
@@ -89,8 +124,8 @@ async function filterCATIInstrument(page: Page) {
   await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", {state: "hidden"});
 }
 
-async function setupAppointment(page: Page) {
-  await loginCATI(page);
+async function setupAppointment(page: Page, userName: string, password: string) {
+  await loginCATI(page, userName, password);
   await page.click(".nav li:has-text('Case Info')");
   await filterCATIInstrument(page);
 
@@ -104,7 +139,7 @@ async function setupAppointment(page: Page) {
       .locator(`//tr/td[@data-date=${tomorrow10am()}]`).click();
   await casePage.click("button:has-text('Confirm')");
   await casePage.click(".ButtonComponent:has-text('Save and continue')");
-  await casePage.type(".StringTextBoxComponent", `${CATI_USERNAME}`);
+  await casePage.type(".StringTextBoxComponent", `${userName}`);
   await casePage.click(".ButtonComponent:has-text('Save and continue')");
   await casePage.click(".CategoryButtonComponent >> nth=0");
   await casePage.click(".ButtonComponent:has-text('Save and continue')");
@@ -112,8 +147,8 @@ async function setupAppointment(page: Page) {
   await casePage.click(".ButtonComponent:has-text('Save and continue')");
 }
 
-async function clearCATIData(page: Page) {
-  await loginCATI(page);
+async function clearCATIData(page: Page, userName: string, password: string) {
+  await loginCATI(page, userName, password);
   await page.click(".nav li:has-text('Surveys')");
   await filterCATIInstrument(page);
   await page.click(".glyphicon-save");
@@ -140,6 +175,7 @@ function reportTomorrow(): string {
 
 async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
   try {
+    console.log("Attempting to connect to the Rest Api...");
     await blaiseApiClient.getDiagnostics();
   } catch (error) {
     if (error.code==="ECONNREFUSED") {
@@ -153,6 +189,7 @@ async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
 
 async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: string) {
   try {
+    console.log("Attempting to install Instrument...");
     await blaiseApiClient.installInstrument(serverpark, {instrumentFile: `${INSTRUMENT_NAME}.bpkg`});
     for (let attempts = 0; attempts <= 12; attempts++) {
       const instrumentDetails = await blaiseApiClient.getInstrument(serverpark, `${INSTRUMENT_NAME}`);
@@ -182,6 +219,7 @@ async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: s
 
 async function addSurveyDays(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date, tomorrow: Date) {
   try {
+    console.log("Attempting to add Survey Days...");
     await blaiseApiClient.addSurveyDays(serverpark, `${INSTRUMENT_NAME}`, [today.toISOString(), tomorrow.toISOString()]);
   } catch (error) {
     console.error(`Failed to add survey days: ${error}`);
@@ -192,6 +230,7 @@ async function addSurveyDays(blaiseApiClient: BlaiseApiClient, serverpark: strin
 
 async function addDaybatch(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date) {
   try {
+    console.log("Attempting to add Daybatch...");
     await blaiseApiClient.addDaybatch(serverpark, `${INSTRUMENT_NAME}`, {dayBatchDate: today.toISOString(), checkForTreatedCases: false});
   } catch (error) {
     console.error(`Failed to add daybatch: ${error}`);
