@@ -20,6 +20,8 @@ test.describe("Without data", () => {
     test.beforeEach(async ({page}, testInfo) => {
         testInfo.setTimeout(120000);
         console.log(`Running ${testInfo.title}`);
+        const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
+        await connectToRestApi(blaiseApiClient);
         userCredentials = await setupTestUser();
     });
 
@@ -173,6 +175,8 @@ function reportTomorrow(): string {
 
 async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
     try {
+        console.debug("Attempting to connect to the Rest Api...");
+        console.debug(`REST_API_CLIENT_ID: ${REST_API_CLIENT_ID}`);
         await blaiseApiClient.getDiagnostics();
     } catch (error) {
         if (error.code === "ECONNREFUSED") {
@@ -185,6 +189,7 @@ async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
 }
 
 async function setupTestUser(): Promise<UserCredentials> {
+    console.debug("Attempting to create test user...");
     const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
     const password = uuidv4();
     const userName = `dst-test-user-${uuidv4()}`;
@@ -204,6 +209,7 @@ async function setupTestUser(): Promise<UserCredentials> {
         console.error(`Failed to create user: ${error}`);
         throw(error);
     }
+    console.debug(`User: ${userName}`);
     return {
         user_name: userName,
         password: password
@@ -212,6 +218,8 @@ async function setupTestUser(): Promise<UserCredentials> {
 
 async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: string) {
     try {
+        console.debug("Attempting to install Instrument...");
+
         await blaiseApiClient.installInstrument(serverpark, {instrumentFile: `${INSTRUMENT_NAME}.bpkg`});
         for (let attempts = 0; attempts <= 12; attempts++) {
             const instrumentDetails = await blaiseApiClient.getInstrument(serverpark, `${INSTRUMENT_NAME}`);
@@ -241,6 +249,8 @@ async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: s
 
 async function addSurveyDays(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date, tomorrow: Date) {
     try {
+        console.debug("Attempting to add Survey Days...");
+
         await blaiseApiClient.addSurveyDays(serverpark, `${INSTRUMENT_NAME}`, [today.toISOString(), tomorrow.toISOString()]);
     } catch (error) {
         console.error(`Failed to add survey days: ${error}`);
@@ -250,6 +260,8 @@ async function addSurveyDays(blaiseApiClient: BlaiseApiClient, serverpark: strin
 
 async function addDaybatch(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date) {
     try {
+        console.debug("Attempting to create Daybatch...");
+
         await blaiseApiClient.addDaybatch(serverpark, `${INSTRUMENT_NAME}`, {
             dayBatchDate: today.toISOString(),
             checkForTreatedCases: false
