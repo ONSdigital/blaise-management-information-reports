@@ -1,18 +1,14 @@
 import BlaiseApiClient from "blaise-api-node-client";
 import {v4 as uuidv4} from "uuid";
 
-const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
-const REST_API_CLIENT_ID = process.env.REST_API_CLIENT_ID || undefined;
-const INSTRUMENT_NAME = process.env.TEST_INSTRUMENT;
-
 export type UserCredentials = {
     user_name: string
     password: string
 }
 
-export async function setupTestUser(): Promise<UserCredentials> {
-    const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
-    await connectToRestApi(blaiseApiClient);
+export async function setupTestUser(rest_api_url: string, rest_api_client_id: string | undefined): Promise<UserCredentials> {
+    const blaiseApiClient = new BlaiseApiClient(rest_api_url, { blaiseApiClientId: rest_api_client_id });
+    await connectToRestApi(blaiseApiClient, rest_api_client_id);
     console.debug("Attempting to create test user...");
     const password = uuidv4();
     const userName = `dst-test-user-${uuidv4()}`;
@@ -39,23 +35,23 @@ export async function setupTestUser(): Promise<UserCredentials> {
     };
 }
 
-export async function setupInstrument() {
-    const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
+export async function setupInstrument(rest_api_url: string, rest_api_client_id: string | undefined, instrument_name: string | undefined) {
+    const blaiseApiClient = new BlaiseApiClient(rest_api_url, { blaiseApiClientId: rest_api_client_id });
     const serverpark = "gusty";
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
 
-    await connectToRestApi(blaiseApiClient);
-    await installInstrument(blaiseApiClient, serverpark);
-    await addSurveyDays(blaiseApiClient, serverpark, today, tomorrow);
-    await addDaybatch(blaiseApiClient, serverpark, today);
+    await connectToRestApi(blaiseApiClient, rest_api_client_id);
+    await installInstrument(blaiseApiClient, serverpark, instrument_name);
+    await addSurveyDays(blaiseApiClient, serverpark, today, tomorrow, instrument_name);
+    await addDaybatch(blaiseApiClient, serverpark, today, instrument_name);
 }
 
-async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
+async function connectToRestApi(blaiseApiClient: BlaiseApiClient, rest_api_client_id: string | undefined) {
     try {
         console.debug("Attempting to connect to the Rest Api...");
-        console.debug(`REST_API_CLIENT_ID: ${REST_API_CLIENT_ID}`);
+        console.debug(`REST_API_CLIENT_ID: ${rest_api_client_id}`);
         await blaiseApiClient.getDiagnostics();
     } catch (error) {
         if (error.code === "ECONNREFUSED") {
@@ -67,17 +63,17 @@ async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
     }
 }
 
-async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: string) {
+async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: string, instrument_name: string | undefined) {
     try {
         console.debug("Attempting to install Instrument...");
 
-        await blaiseApiClient.installInstrument(serverpark, {instrumentFile: `${INSTRUMENT_NAME}.bpkg`});
+        await blaiseApiClient.installInstrument(serverpark, {instrumentFile: `${instrument_name}.bpkg`});
         for (let attempts = 0; attempts <= 12; attempts++) {
-            const instrumentDetails = await blaiseApiClient.getInstrument(serverpark, `${INSTRUMENT_NAME}`);
+            const instrumentDetails = await blaiseApiClient.getInstrument(serverpark, `${instrument_name}`);
             if (instrumentDetails.status == "Active") {
                 break;
             } else {
-                console.log(`Instrument ${INSTRUMENT_NAME} is not active, waiting to add cases`);
+                console.log(`Instrument ${instrument_name} is not active, waiting to add cases`);
                 await new Promise(f => setTimeout(f, 10000));
             }
         }
@@ -90,7 +86,7 @@ async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: s
                 "qdatabag.sampsname": "sname",
                 "qdatabag.name": "name"
             };
-            await blaiseApiClient.addCase(serverpark, `${INSTRUMENT_NAME}`, caseID.toString(), caseFields);
+            await blaiseApiClient.addCase(serverpark, `${instrument_name}`, caseID.toString(), caseFields);
         }
     } catch (error) {
         console.error(`Failed to install instrument: ${error}`);
@@ -98,22 +94,22 @@ async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: s
     }
 }
 
-async function addSurveyDays(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date, tomorrow: Date) {
+async function addSurveyDays(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date, tomorrow: Date, instrument_name: string | undefined) {
     try {
         console.debug("Attempting to add Survey Days...");
 
-        await blaiseApiClient.addSurveyDays(serverpark, `${INSTRUMENT_NAME}`, [today.toISOString(), tomorrow.toISOString()]);
+        await blaiseApiClient.addSurveyDays(serverpark, `${instrument_name}`, [today.toISOString(), tomorrow.toISOString()]);
     } catch (error) {
         console.error(`Failed to add survey days: ${error}`);
         throw(error);
     }
 }
 
-async function addDaybatch(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date) {
+async function addDaybatch(blaiseApiClient: BlaiseApiClient, serverpark: string, today: Date, instrument_name: string | undefined) {
     try {
         console.debug("Attempting to create Daybatch...");
 
-        await blaiseApiClient.addDaybatch(serverpark, `${INSTRUMENT_NAME}`, {
+        await blaiseApiClient.addDaybatch(serverpark, `${instrument_name}`, {
             dayBatchDate: today.toISOString(),
             checkForTreatedCases: false
         });

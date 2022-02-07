@@ -8,6 +8,7 @@ const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
 const REST_API_CLIENT_ID = process.env.REST_API_CLIENT_ID || undefined;
 const INSTRUMENT_NAME = process.env.TEST_INSTRUMENT;
+const CATI_URL = process.env.CATI_URL;
 
 test.describe("Without data", () => {
     let userCredentials: UserCredentials;
@@ -16,7 +17,7 @@ test.describe("Without data", () => {
         testInfo.setTimeout(120000);
         console.log(`Running ${testInfo.title}`);
         const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
-        userCredentials = await setupTestUser();
+        userCredentials = await setupTestUser(REST_API_URL, REST_API_CLIENT_ID);
     });
 
     test.afterEach(async ({page}) => {
@@ -42,17 +43,17 @@ test.describe("With data", () => {
     test.beforeEach(async ({page}, testInfo) => {
         testInfo.setTimeout(120000);
         console.log(`Running ${testInfo.title}`);
-        await setupInstrument();
-        userCredentials = await setupTestUser();
+        await setupInstrument(REST_API_URL, REST_API_CLIENT_ID, INSTRUMENT_NAME);
+        userCredentials = await setupTestUser(REST_API_URL, REST_API_CLIENT_ID);
         // CATI seems to be a bit slow on the uptake sometimes...
         await new Promise(f => setTimeout(f, 10000));
-        await setupAppointment(page, userCredentials.user_name, userCredentials.password);
+        await setupAppointment(CATI_URL, INSTRUMENT_NAME, page, userCredentials.user_name, userCredentials.password);
     });
 
     test.afterEach(async ({page}) => {
         const serverpark = "gusty";
         const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
-        await clearCATIData(page, userCredentials.user_name, userCredentials.password);
+        await clearCATIData(CATI_URL, INSTRUMENT_NAME, page, userCredentials.user_name, userCredentials.password);
         await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });

@@ -1,13 +1,9 @@
 import {Page} from "@playwright/test";
 
-const CATI_URL = process.env.CATI_URL;
-const INSTRUMENT_NAME = process.env.TEST_INSTRUMENT;
-
-
-export async function setupAppointment(page: Page, userName: string, password: string) {
-    await loginCATI(page, userName, password);
+export async function setupAppointment(cati_url: string | undefined, instrument_name: string | undefined, page: Page, userName: string, password: string) {
+    await loginCATI(cati_url, page, userName, password);
     await page.click(".nav li:has-text('Case Info')");
-    await filterCATIInstrument(page);
+    await filterCATIInstrument(instrument_name, page);
 
     const [casePage] = await Promise.all([
         page.waitForEvent("popup"),
@@ -27,10 +23,10 @@ export async function setupAppointment(page: Page, userName: string, password: s
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
 }
 
-export async function clearCATIData(page: Page, userName: string, password: string) {
-    await loginCATI(page, userName, password);
+export async function clearCATIData(cati_url: string | undefined, instrument_name: string | undefined, page: Page, userName: string, password: string) {
+    await loginCATI(cati_url, page, userName, password);
     await page.click(".nav li:has-text('Surveys')");
-    await filterCATIInstrument(page);
+    await filterCATIInstrument(instrument_name, page);
     await page.click(".glyphicon-save");
     await page.uncheck("#chkBackupAll");
     await page.uncheck("#BackupDaybatch");
@@ -41,8 +37,8 @@ export async function clearCATIData(page: Page, userName: string, password: stri
     await page.click("input[type=submit]:has-text('Execute')", {timeout: 200});
 }
 
-async function loginCATI(page: Page, userName: string, password: string) {
-    await page.goto(`${CATI_URL}/blaise`);
+async function loginCATI(cati_url: string | undefined, page: Page, userName: string, password: string) {
+    await page.goto(`${cati_url}/blaise`);
     const loginHeader = page.locator("h1:has-text('Login')");
     if (await loginHeader.isVisible({timeout: 100})) {
         await page.locator("#Username").type(`${userName}`);
@@ -51,10 +47,10 @@ async function loginCATI(page: Page, userName: string, password: string) {
     }
 }
 
-async function filterCATIInstrument(page: Page) {
+async function filterCATIInstrument(instrument_name: string | undefined, page: Page) {
     await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", { state: "hidden" });
     await page.click(".filter-state:has-text('Filters')");
-    await page.check(`text=${INSTRUMENT_NAME}`);
+    await page.check(`text=${instrument_name}`);
     await page.click("button:has-text('Apply')");
     await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", { state: "hidden" });
 }
