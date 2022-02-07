@@ -6,8 +6,7 @@ export type UserCredentials = {
     password: string
 }
 
-export async function setupTestUser(rest_api_url: string, rest_api_client_id: string | undefined): Promise<UserCredentials> {
-    const blaiseApiClient = new BlaiseApiClient(rest_api_url, { blaiseApiClientId: rest_api_client_id });
+export async function setupTestUser(blaiseApiClient: BlaiseApiClient, rest_api_client_id: string | undefined): Promise<UserCredentials> {
     await connectToRestApi(blaiseApiClient, rest_api_client_id);
     console.debug("Attempting to create test user...");
     const password = uuidv4();
@@ -35,8 +34,7 @@ export async function setupTestUser(rest_api_url: string, rest_api_client_id: st
     };
 }
 
-export async function setupInstrument(rest_api_url: string, rest_api_client_id: string | undefined, instrument_name: string | undefined) {
-    const blaiseApiClient = new BlaiseApiClient(rest_api_url, { blaiseApiClientId: rest_api_client_id });
+export async function setupInstrument(blaiseApiClient: BlaiseApiClient, rest_api_client_id: string | undefined, instrument_name: string | undefined) {
     const serverpark = "gusty";
     const today = new Date();
     const tomorrow = new Date();

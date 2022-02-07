@@ -12,16 +12,17 @@ const CATI_URL = process.env.CATI_URL;
 
 test.describe("Without data", () => {
     let userCredentials: UserCredentials;
+    let blaiseApiClient: BlaiseApiClient;
 
     test.beforeEach(async ({page}, testInfo) => {
         testInfo.setTimeout(120000);
         console.log(`Running ${testInfo.title}`);
-        const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
-        userCredentials = await setupTestUser(REST_API_URL, REST_API_CLIENT_ID);
+        blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
+
+        userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
     });
 
     test.afterEach(async ({page}) => {
-        const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
@@ -39,12 +40,15 @@ test.describe("Without data", () => {
 
 test.describe("With data", () => {
     let userCredentials: UserCredentials;
+    let blaiseApiClient: BlaiseApiClient;
 
     test.beforeEach(async ({page}, testInfo) => {
         testInfo.setTimeout(120000);
         console.log(`Running ${testInfo.title}`);
-        await setupInstrument(REST_API_URL, REST_API_CLIENT_ID, INSTRUMENT_NAME);
-        userCredentials = await setupTestUser(REST_API_URL, REST_API_CLIENT_ID);
+        blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
+
+        await setupInstrument(blaiseApiClient, REST_API_CLIENT_ID, INSTRUMENT_NAME);
+        userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
         // CATI seems to be a bit slow on the uptake sometimes...
         await new Promise(f => setTimeout(f, 10000));
         await setupAppointment(CATI_URL, INSTRUMENT_NAME, page, userCredentials.user_name, userCredentials.password);
