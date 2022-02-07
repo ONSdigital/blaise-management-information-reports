@@ -6,6 +6,7 @@ import moment from "moment";
 const CATI_URL = process.env.CATI_URL;
 const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
+const REST_API_CLIENT_ID = process.env.REST_API_CLIENT_ID || undefined;
 const INSTRUMENT_NAME = process.env.TEST_INSTRUMENT;
 
 type UserCredentials = {
@@ -82,7 +83,7 @@ test.describe("With data", () => {
 });
 
 async function setupInstrument() {
-    const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
+    const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
     const serverpark = "gusty";
     const today = new Date();
     const tomorrow = new Date();
@@ -114,11 +115,11 @@ async function loginMIR(page: Page, userName: string, password: string) {
 }
 
 async function filterCATIInstrument(page: Page) {
-    await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", {state: "hidden"});
+    await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", { state: "hidden" });
     await page.click(".filter-state:has-text('Filters')");
     await page.check(`text=${INSTRUMENT_NAME}`);
     await page.click("button:has-text('Apply')");
-    await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", {state: "hidden"});
+    await page.waitForSelector("#MVCGrid_Loading_CaseInfoGrid", { state: "hidden" });
 }
 
 async function setupAppointment(page: Page, userName: string, password: string) {
