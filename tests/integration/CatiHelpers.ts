@@ -1,6 +1,8 @@
 import {Page} from "@playwright/test";
 
 export async function setupAppointment(cati_url: string | undefined, instrument_name: string | undefined, page: Page, userName: string, password: string) {
+    // CATI seems to be a bit slow on the uptake sometimes...
+    await new Promise(f => setTimeout(f, 10000));
     await loginCATI(cati_url, page, userName, password);
     await page.click(".nav li:has-text('Case Info')");
     await filterCATIInstrument(instrument_name, page);

@@ -18,7 +18,6 @@ test.describe("Without data", () => {
         testInfo.setTimeout(120000);
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
-
         userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
     });
 
@@ -27,8 +26,7 @@ test.describe("Without data", () => {
     });
 
     test("I can get to, and run an ARPR for a day with no data", async ({page}) => {
-        await page.goto(`${REPORTS_URL}/`);
-        await loginMIR(page, userCredentials.user_name, userCredentials.password);
+        await loginMIR(page, REPORTS_URL, userCredentials.user_name, userCredentials.password);
         await page.click("#appointment-resource-planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
@@ -49,23 +47,21 @@ test.describe("With data", () => {
 
         await setupInstrument(blaiseApiClient, REST_API_CLIENT_ID, INSTRUMENT_NAME);
         userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
-        // CATI seems to be a bit slow on the uptake sometimes...
-        await new Promise(f => setTimeout(f, 10000));
         await setupAppointment(CATI_URL, INSTRUMENT_NAME, page, userCredentials.user_name, userCredentials.password);
     });
 
     test.afterEach(async ({page}) => {
         const serverpark = "gusty";
         const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
+
         await clearCATIData(CATI_URL, INSTRUMENT_NAME, page, userCredentials.user_name, userCredentials.password);
         await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
     test("I can get to, and run an ARPR for a day with data", async ({page}) => {
-        await page.goto(`${REPORTS_URL}/`);
         await new Promise(f => setTimeout(f, 10000));
-        await loginMIR(page, userCredentials.user_name, userCredentials.password);
+        await loginMIR(page, REPORTS_URL, userCredentials.user_name, userCredentials.password);
         await page.click("#appointment-resource-planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
