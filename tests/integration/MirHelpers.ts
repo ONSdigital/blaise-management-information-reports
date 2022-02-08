@@ -13,9 +13,18 @@ export async function loginMIR(page: Page, reports_url: string | undefined, user
     }
 }
 
+export async function logoutMIR(page: Page, reports_url: string | undefined) {
+    console.debug("Attempting to log out of MIR...");
+
+    await page.goto(`${reports_url}/`);
+    const logoutButton = page.locator(".btn__inner:has-text('Sign out')");
+    if (await logoutButton.isVisible({timeout: 100})) {
+        await page.click(".btn__inner:has-text('Sign out')");
+    }
+}
+
 export function mirTomorrow(): string {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return moment(tomorrow).format("DD/MM/YYYY");
 }
-

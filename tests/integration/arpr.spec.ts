@@ -2,7 +2,7 @@ import {expect, Page, test} from "@playwright/test";
 import BlaiseApiClient from "blaise-api-node-client";
 import {setupInstrument, setupTestUser, UserCredentials} from "./BlaiseHelpers";
 import {setupAppointment, clearCATIData} from "./CatiHelpers";
-import {loginMIR, mirTomorrow} from "./MirHelpers";
+import {loginMIR, logoutMIR, mirTomorrow} from "./MirHelpers";
 
 const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
@@ -22,6 +22,7 @@ test.describe("Without data", () => {
     });
 
     test.afterEach(async ({page}) => {
+        await logoutMIR(page, REPORTS_URL);
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
@@ -54,6 +55,7 @@ test.describe("With data", () => {
         const serverpark = "gusty";
         const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
 
+        await logoutMIR(page, REPORTS_URL);
         await clearCATIData(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
         console.debug("Attempting to delete Instrument...");
         await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
