@@ -1,6 +1,8 @@
 import {Page} from "@playwright/test";
 
 export async function setupAppointment(page: Page, cati_url: string | undefined, instrument_name: string | undefined, userName: string, password: string) {
+    console.debug("Attempting to setup Appointment...");
+
     // CATI seems to be a bit slow on the uptake sometimes...
     await new Promise(f => setTimeout(f, 10000));
 
@@ -27,6 +29,8 @@ export async function setupAppointment(page: Page, cati_url: string | undefined,
 }
 
 export async function clearCATIData(page: Page, cati_url: string | undefined, instrument_name: string | undefined, userName: string, password: string) {
+    console.debug("Attempting to clear CATI data...");
+
     await loginCATI(page, cati_url, userName, password);
     await page.click(".nav li:has-text('Surveys')");
     await filterCATIInstrument(page, instrument_name);

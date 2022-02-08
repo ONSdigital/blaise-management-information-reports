@@ -15,7 +15,7 @@ test.describe("Without data", () => {
     let blaiseApiClient: BlaiseApiClient;
 
     test.beforeEach(async ({page}, testInfo) => {
-        testInfo.setTimeout(120000);
+        testInfo.setTimeout(140000);
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
         userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
@@ -41,7 +41,7 @@ test.describe("With data", () => {
     let blaiseApiClient: BlaiseApiClient;
 
     test.beforeEach(async ({page}, testInfo) => {
-        testInfo.setTimeout(120000);
+        testInfo.setTimeout(140000);
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
 
@@ -55,13 +55,17 @@ test.describe("With data", () => {
         const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
 
         await clearCATIData(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
+        console.debug("Attempting to delete Instrument...");
         await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
+        console.debug("Attempting to delete test user...");
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
     test("I can get to, and run an ARPR for a day with data", async ({page}) => {
         await new Promise(f => setTimeout(f, 10000));
         await loginMIR(page, REPORTS_URL, userCredentials.user_name, userCredentials.password);
+        console.debug("Testing ARPR...");
+
         await page.click("#appointment-resource-planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");

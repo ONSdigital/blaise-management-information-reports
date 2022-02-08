@@ -2,6 +2,8 @@ import {Page} from "@playwright/test";
 import moment from "moment";
 
 export async function loginMIR(page: Page, reports_url: string | undefined, userName: string, password: string) {
+    console.debug("Attempting to log in to MIR...");
+
     await page.goto(`${reports_url}/`);
     const loginHeader = page.locator("h1:has-text('Sign in')");
     if (await loginHeader.isVisible({timeout: 100})) {
