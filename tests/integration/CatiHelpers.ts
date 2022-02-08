@@ -32,7 +32,7 @@ export async function clearCATIData(page: Page, cati_url: string | undefined, in
     console.debug("Attempting to clear CATI data...");
 
     // CATI seems to be a bit slow on the uptake sometimes...
-    await new Promise(f => setTimeout(f, 10000));
+    await new Promise(f => setTimeout(f, 12000));
 
     await loginCATI(page, cati_url, userName, password);
     await page.click(".nav li:has-text('Surveys')");
