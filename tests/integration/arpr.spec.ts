@@ -51,17 +51,17 @@ test.describe("With data", () => {
         await setupAppointment(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
     });
 
-    test.afterEach(async ({page}) => {
-        const serverpark = "gusty";
-        const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
-
-        await logoutMIR(page, REPORTS_URL);
-        await clearCATIData(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
-        console.debug("Attempting to delete Instrument...");
-        await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
-        console.debug("Attempting to delete test user...");
-        await blaiseApiClient.deleteUser(userCredentials.user_name);
-    });
+    // test.afterEach(async ({page}) => {
+    //     const serverpark = "gusty";
+    //     const blaiseApiClient = new BlaiseApiClient(REST_API_URL);
+    //
+    //     await logoutMIR(page, REPORTS_URL);
+    //     await clearCATIData(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
+    //     console.debug("Attempting to delete Instrument...");
+    //     await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
+    //     console.debug("Attempting to delete test user...");
+    //     await blaiseApiClient.deleteUser(userCredentials.user_name);
+    // });
 
     test("I can get to, and run an ARPR for a day with data", async ({page}) => {
         await new Promise(f => setTimeout(f, 10000));
