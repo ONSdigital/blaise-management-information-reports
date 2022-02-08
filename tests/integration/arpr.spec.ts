@@ -2,7 +2,7 @@ import {expect, Page, test} from "@playwright/test";
 import BlaiseApiClient from "blaise-api-node-client";
 import {setupInstrument, setupTestUser, UserCredentials} from "./BlaiseHelpers";
 import {setupAppointment, clearCATIData} from "./CatiHelpers";
-import {loginMIR, reportTomorrow} from "./MirHelpers";
+import {loginMIR, mirTomorrow} from "./MirHelpers";
 
 const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
@@ -47,7 +47,7 @@ test.describe("With data", () => {
 
         await setupInstrument(blaiseApiClient, REST_API_CLIENT_ID, INSTRUMENT_NAME);
         userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
-        await setupAppointment(CATI_URL, INSTRUMENT_NAME, page, userCredentials.user_name, userCredentials.password);
+        await setupAppointment(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
     });
 
     test.afterEach(async ({page}) => {
@@ -65,7 +65,7 @@ test.describe("With data", () => {
         await page.click("#appointment-resource-planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
-        await page.locator("#date").type(`${reportTomorrow()}`);
+        await page.locator("#date").type(`${mirTomorrow()}`);
         await page.click("button[type=submit]");
 
         // Summary items
@@ -78,4 +78,3 @@ test.describe("With data", () => {
         await expect(page.locator(".table__row:has-text('DST2111Z') >> nth=0 >> td >> nth=3")).toHaveText("1");
     });
 });
-

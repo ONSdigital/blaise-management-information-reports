@@ -11,7 +11,7 @@ export async function loginMIR(page: Page, reports_url: string | undefined, user
     }
 }
 
-export function reportTomorrow(): string {
+export function mirTomorrow(): string {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return moment(tomorrow).format("DD/MM/YYYY");
