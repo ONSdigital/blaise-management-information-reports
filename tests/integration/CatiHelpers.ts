@@ -44,7 +44,7 @@ export async function clearCATIData(page: Page, cati_url: string | undefined, in
     await page.uncheck("#BackupDialHistory");
     await page.uncheck("#BackupEvents");
     await page.click("#chkClearAll");
-    await page.click("input[type=submit]:has-text('Execute')", {timeout: 800});
+    await page.click("input[type=submit]:has-text('Execute')", {timeout: 1600});
 }
 
 async function loginCATI(page: Page, cati_url: string | undefined, userName: string, password: string) {
