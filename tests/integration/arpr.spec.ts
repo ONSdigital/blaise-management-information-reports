@@ -42,7 +42,7 @@ test.describe("With data", () => {
     let blaiseApiClient: BlaiseApiClient;
 
     test.beforeEach(async ({page}, testInfo) => {
-        testInfo.setTimeout(140000);
+        testInfo.setTimeout(180000);
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
 
