@@ -2,7 +2,7 @@ import { expect, Page, test } from "@playwright/test";
 import BlaiseApiClient from "blaise-api-node-client";
 import { setupInstrument, setupTestUser, UserCredentials } from "./BlaiseHelpers";
 import { setupAppointment, clearCATIData } from "./CatiHelpers";
-import { loginMIR, logoutMIR, mirTomorrow } from "./MirHelpers";
+import { loginMIR, mirTomorrow } from "./MirHelpers";
 
 const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
@@ -18,11 +18,10 @@ test.describe("Without data", () => {
         testInfo.setTimeout(180000);
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
-        userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
+        userCredentials = await setupTestUser(blaiseApiClient);
     });
 
     test.afterEach(async ({ page }) => {
-        await logoutMIR(page, REPORTS_URL);
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
@@ -47,7 +46,7 @@ test.describe("With data", () => {
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
 
         await setupInstrument(blaiseApiClient, REST_API_CLIENT_ID, INSTRUMENT_NAME);
-        userCredentials = await setupTestUser(blaiseApiClient, REST_API_CLIENT_ID);
+        userCredentials = await setupTestUser(blaiseApiClient);
         await setupAppointment(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
     });
 
@@ -55,18 +54,14 @@ test.describe("With data", () => {
         const serverpark = "gusty";
         const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
 
-        await logoutMIR(page, REPORTS_URL);
         await clearCATIData(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
-        console.debug("Attempting to delete Instrument...");
         await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
-        console.debug("Attempting to delete test user...");
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
     test("I can get to, and run an ARPR for a day with data", async ({ page }) => {
         await new Promise(f => setTimeout(f, 10000));
         await loginMIR(page, REPORTS_URL, userCredentials.user_name, userCredentials.password);
-        console.debug("Testing ARPR...");
 
         await page.click("#appointment-resource-planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");

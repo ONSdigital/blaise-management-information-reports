@@ -2,8 +2,6 @@ import {Page} from "@playwright/test";
 import moment from "moment";
 
 export async function loginMIR(page: Page, reports_url: string | undefined, userName: string, password: string) {
-    console.debug("Attempting to log in to MIR...");
-
     await page.goto(`${reports_url}/`);
     const loginHeader = page.locator("h1:has-text('Sign in')");
     if (await loginHeader.isVisible({timeout: 100})) {
@@ -13,15 +11,13 @@ export async function loginMIR(page: Page, reports_url: string | undefined, user
     }
 }
 
-export async function logoutMIR(page: Page, reports_url: string | undefined) {
-    console.debug("Attempting to log out of MIR...");
-
-    await page.goto(`${reports_url}/`);
-    const logoutButton = page.locator(".btn__inner:has-text('Sign out')");
-    if (await logoutButton.isVisible({timeout: 100})) {
-        await page.click(".btn__inner:has-text('Sign out')");
-    }
-}
+// export async function logoutMIR(page: Page, reports_url: string | undefined) {
+//     await page.goto(`${reports_url}/`);
+//     const logoutButton = page.locator(".btn__inner:has-text('Sign out')");
+//     if (await logoutButton.isVisible({timeout: 100})) {
+//         await page.click(".btn__inner:has-text('Sign out')");
+//     }
+// }
 
 export function mirTomorrow(): string {
     const tomorrow = new Date();
