@@ -4,11 +4,9 @@ import { setupInstrument, setupTestUser, UserCredentials } from "./BlaiseHelpers
 import { setupAppointment, clearCATIData } from "./CatiHelpers";
 import { loginMIR, mirTomorrow } from "./MirHelpers";
 
-const REPORTS_URL = process.env.REPORTS_URL;
 const REST_API_URL = process.env.REST_API_URL || "http://localhost:8000";
 const REST_API_CLIENT_ID = process.env.REST_API_CLIENT_ID || undefined;
 const INSTRUMENT_NAME = process.env.TEST_INSTRUMENT;
-const CATI_URL = process.env.CATI_URL;
 
 test.describe("Without data", () => {
     let userCredentials: UserCredentials;
@@ -26,7 +24,7 @@ test.describe("Without data", () => {
     });
 
     test("I can get to, and run an ARPR for a day with no data", async ({ page }) => {
-        await loginMIR(page, REPORTS_URL, userCredentials.user_name, userCredentials.password);
+        await loginMIR(page, userCredentials.user_name, userCredentials.password);
         await page.click("#appointment-resource-planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
@@ -45,23 +43,23 @@ test.describe("With data", () => {
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
 
-        await setupInstrument(blaiseApiClient, REST_API_CLIENT_ID, INSTRUMENT_NAME);
+        await setupInstrument(blaiseApiClient, INSTRUMENT_NAME);
         userCredentials = await setupTestUser(blaiseApiClient);
-        await setupAppointment(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
+        await setupAppointment(page, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
     });
 
     test.afterEach(async ({ page }) => {
         const serverpark = "gusty";
         const blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
 
-        await clearCATIData(page, CATI_URL, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
+        await clearCATIData(page, INSTRUMENT_NAME, userCredentials.user_name, userCredentials.password);
         await blaiseApiClient.deleteInstrument(serverpark, `${INSTRUMENT_NAME}`);
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
     test("I can get to, and run an ARPR for a day with data", async ({ page }) => {
         await new Promise(f => setTimeout(f, 10000));
-        await loginMIR(page, REPORTS_URL, userCredentials.user_name, userCredentials.password);
+        await loginMIR(page, userCredentials.user_name, userCredentials.password);
 
         await page.click("#appointment-resource-planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");

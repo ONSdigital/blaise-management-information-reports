@@ -1,10 +1,11 @@
 import {Page} from "@playwright/test";
 
-export async function setupAppointment(page: Page, cati_url: string | undefined, instrument_name: string | undefined, userName: string, password: string) {
-    // CATI seems to be a bit slow on the uptake sometimes...
+const CATI_URL = process.env.CATI_URL;
+
+export async function setupAppointment(page: Page, instrument_name: string | undefined, userName: string, password: string) {
     await new Promise(f => setTimeout(f, 10000));
 
-    await loginCATI(page, cati_url, userName, password);
+    await loginCATI(page, userName, password);
     await page.click(".nav li:has-text('Case Info')");
     await filterCATIInstrument(page, instrument_name);
 
@@ -26,11 +27,10 @@ export async function setupAppointment(page: Page, cati_url: string | undefined,
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
 }
 
-export async function clearCATIData(page: Page, cati_url: string | undefined, instrument_name: string | undefined, userName: string, password: string) {
-    // CATI seems to be a bit slow on the uptake sometimes...
+export async function clearCATIData(page: Page, instrument_name: string | undefined, userName: string, password: string) {
     await new Promise(f => setTimeout(f, 12000));
 
-    await loginCATI(page, cati_url, userName, password);
+    await loginCATI(page, userName, password);
     await page.click(".nav li:has-text('Surveys')");
     await filterCATIInstrument(page, instrument_name);
     await page.click(".glyphicon-save");
@@ -43,8 +43,8 @@ export async function clearCATIData(page: Page, cati_url: string | undefined, in
     await page.click("input[type=submit]:has-text('Execute')", {timeout: 1600});
 }
 
-async function loginCATI(page: Page, cati_url: string | undefined, userName: string, password: string) {
-    await page.goto(`${cati_url}/blaise`);
+async function loginCATI(page: Page, userName: string, password: string) {
+    await page.goto(`${CATI_URL}/blaise`);
     const loginHeader = page.locator("h1:has-text('Login')");
     if (await loginHeader.isVisible({timeout: 100})) {
         await page.locator("#Username").type(`${userName}`);

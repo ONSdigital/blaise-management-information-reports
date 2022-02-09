@@ -32,7 +32,7 @@ export async function setupTestUser(blaiseApiClient: BlaiseApiClient): Promise<U
     };
 }
 
-export async function setupInstrument(blaiseApiClient: BlaiseApiClient, rest_api_client_id: string | undefined, instrument_name: string | undefined) {
+export async function setupInstrument(blaiseApiClient: BlaiseApiClient, instrument_name: string | undefined) {
     const serverpark = "gusty";
     const today = new Date();
     const tomorrow = new Date();
