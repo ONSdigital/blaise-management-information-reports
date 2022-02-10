@@ -3185,7 +3185,7 @@ bindings@^1.5.0:
 
 "blaise-design-system-react-components@git+https://github.com/ONSdigital/blaise-design-system-react-components":
   version "1.0.0"
-  resolved "git+https://github.com/ONSdigital/blaise-design-system-react-components#8a8a4a65089d41392ff2cec1db27ace5ae1a225d"
+  resolved "git+https://github.com/ONSdigital/blaise-design-system-react-components#3d0bbcd49fbacb8d7eea521c9001510d0b593005"
   dependencies:
     formik "^2.2.9"
     react "^17.0.1"
@@ -3194,7 +3194,6 @@ bindings@^1.5.0:
 
 "blaise-iap-node-provider@https://github.com/ONSdigital/blaise-iap-node-provider":
   version "1.0.0"
-  uid "16c9937771369c6cf51dd23af24f0e8755e58e26"
   resolved "https://github.com/ONSdigital/blaise-iap-node-provider#16c9937771369c6cf51dd23af24f0e8755e58e26"
   dependencies:
     "@babel/preset-env" "^7.14.7"
