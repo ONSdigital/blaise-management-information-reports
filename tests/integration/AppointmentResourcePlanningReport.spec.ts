@@ -31,10 +31,13 @@ test.describe("Without data", () => {
     test("I can get to, and run an ARPR for a day with no data", async ({ page }) => {
         await loginMIR(page, userCredentials);
         await page.click("#appointment-resource-planning");
+
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
+
         await page.locator("#date").type("30-06-1990");
         await page.click("button[type=submit]");
+
         await expect(page.locator(".panel--info >> nth=1")).toHaveText("No data found for parameters given.");
     });
 });
