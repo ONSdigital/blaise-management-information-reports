@@ -3197,6 +3197,15 @@ blaise-api-node-client@ONSDigital/blaise-api-node-client:
     blaise-iap-node-provider "https://github.com/ONSdigital/blaise-iap-node-provider.git"
     typescript "~4.2.2"
 
+blaise-design-system-react-components@ONSDigital/blaise-design-system-react-components:
+  version "1.0.0"
+  uid "71883e9973f84bb3d42d2280ee0817a6fd792b8e"
+  resolved "https://codeload.github.com/ONSDigital/blaise-design-system-react-components/tar.gz/71883e9973f84bb3d42d2280ee0817a6fd792b8e"
+  dependencies:
+    formik "^2.2.9"
+    react "^17.0.1"
+    react-dom "^17.0.0"
+    react-loader-spinner "^4.0.0"
 
 "blaise-design-system-react-components@https://github.com/ONSdigital/blaise-design-system-react-components":
   version "1.0.0"
@@ -5424,7 +5433,7 @@ expect@^26.6.0, expect@^26.6.2:
     jest-message-util "^26.6.2"
     jest-regex-util "^26.0.0"
 
-express@^4.17.1:
+express@^4.17.1, express@^4.17.2:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.2.tgz#c18369f265297319beed4e5558753cc8c1364cb3"
   integrity sha512-oxlxJxcQlYwqPWKVJJtvQiwHgosH/LrLSPA+H4UxpyvSS6jC5aH+5MoHFM+KABgTOt0APue4w66Ha8jCUo9QGg==
