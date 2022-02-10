@@ -76,7 +76,7 @@ yarn test -u
 
 ### Playwright tests 
 
-To set up Playwright tests your .env file will need the following variables:
+To set up Playwright tests <i>locally</i> your .env file will need the following variables:
 
 | Variable | Description | Example |
 | --- | --- | --- |
@@ -87,7 +87,7 @@ To set up Playwright tests your .env file will need the following variables:
 | REST_API_URL | The URL to swagger | http://localhost:8000 |
 | TEST_INSTRUMENT | The name of the test instrument in the DQS bucket (this instrument needs to be configured for appointments) | DST2111Z |
 
-You may also need to run the following command to export the environment variables:
+You <i>may</i> also need to run the following command to export the environment variables:
 
 ```shell script
 export $(cat .env | xargs)
@@ -98,7 +98,7 @@ Open the tunnel the to rest api:
 gcloud compute start-iap-tunnel restapi-1 80 --local-host-port=localhost:8000
 ```
 
-Playwright tests can be run via:
+(In a different terminal) Playwright tests can be run via:
 
 ```shell script
 yarn run playwright test tests
