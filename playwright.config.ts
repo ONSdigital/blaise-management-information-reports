@@ -5,6 +5,7 @@ const config: PlaywrightTestConfig = {
   retries: Number(process.env.RETRIES) || 0,
   use: {
     trace: process.env.TRACE ? "on" : "on-first-retry",
+    locale: "en-GB"
   },
   projects: [
     {
