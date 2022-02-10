@@ -48,10 +48,6 @@ async function connectToRestApi(blaiseApiClient: BlaiseApiClient) {
     try {
         await blaiseApiClient.getDiagnostics();
     } catch (error) {
-        if (error.code === "ECONNREFUSED") {
-            console.error("Failed to connect to the rest-api.  Please ensure iap tunnel to the rest-api is connected");
-            throw(error);
-        }
         console.error(`Failed to connect to the rest-api: ${error}`);
         throw(error);
     }

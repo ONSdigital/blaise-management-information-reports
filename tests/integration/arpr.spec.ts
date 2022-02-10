@@ -13,13 +13,13 @@ test.describe("Without data", () => {
     let blaiseApiClient: BlaiseApiClient;
 
     test.beforeEach(async ({ page }, testInfo) => {
-        testInfo.setTimeout(180000);
+        testInfo.setTimeout(170000);
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
         userCredentials = await setupTestUser(blaiseApiClient);
     });
 
-    test.afterEach(async ({ page }) => {
+    test.afterEach(async () => {
         await blaiseApiClient.deleteUser(userCredentials.user_name);
     });
 
@@ -39,7 +39,7 @@ test.describe("With data", () => {
     let blaiseApiClient: BlaiseApiClient;
 
     test.beforeEach(async ({ page }, testInfo) => {
-        testInfo.setTimeout(180000);
+        testInfo.setTimeout(170000);
         console.log(`Running ${testInfo.title}`);
         blaiseApiClient = new BlaiseApiClient(REST_API_URL, { blaiseApiClientId: REST_API_CLIENT_ID });
 
