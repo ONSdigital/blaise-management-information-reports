@@ -3183,9 +3183,9 @@ bindings@^1.5.0:
     blaise-iap-node-provider "https://github.com/ONSdigital/blaise-iap-node-provider.git"
     typescript "~4.2.2"
 
-"blaise-design-system-react-components@git+https://github.com/ONSdigital/blaise-design-system-react-components":
+"blaise-design-system-react-components@https://github.com/ONSdigital/blaise-design-system-react-components":
   version "1.0.0"
-  resolved "git+https://github.com/ONSdigital/blaise-design-system-react-components#3d0bbcd49fbacb8d7eea521c9001510d0b593005"
+  resolved "https://github.com/ONSdigital/blaise-design-system-react-components#71883e9973f84bb3d42d2280ee0817a6fd792b8e"
   dependencies:
     formik "^2.2.9"
     react "^17.0.1"
