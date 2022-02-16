@@ -68,6 +68,10 @@ async function installInstrument(blaiseApiClient: BlaiseApiClient, serverpark: s
             await blaiseApiClient.addCase(serverpark, `${instrumentName}`, caseID.toString(), caseFields);
         }
     } catch (error) {
+        if (error.response.status === 500) {
+            console.error(`${error} - the instrument might be in an erroneous state`);
+            throw(error);
+        }
         console.error(`Failed to install instrument: ${error}`);
         throw(error);
     }
