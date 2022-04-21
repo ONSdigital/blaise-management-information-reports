@@ -11,7 +11,7 @@ interface InterviewerFilterPageProps {
     setEndDate: (string: string) => void
     surveyTla: string | undefined
     setSurveyTla: (string: string) => void
-    submitFunction: (values: any, setSubmitting: (isSubmitting: boolean) => void) => void;
+    submitFunction: () => void;
 }
 
 function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
@@ -33,7 +33,8 @@ function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
         setStartDate(formValues.startDate);
         setEndDate(formValues.endDate);
         setSurveyTla(formValues.surveyTla);
-        //submitFunction(formValues, true);
+        setSubmitting(true);
+        submitFunction();
     }
 
     const validateInterviewer = (value: string) => {
