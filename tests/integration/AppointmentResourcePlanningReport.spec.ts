@@ -50,7 +50,7 @@ test.describe("Without data", () => {
             await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
             await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
     
-            await page.locator("#date").type("30-06-1990");
+            await page.locator("#Date").type("30-06-1990");
             await page.click("button[type=submit]");
     
             await expect(page.locator(".panel--info >> nth=1")).toHaveText("No data found for parameters given.");
@@ -97,7 +97,7 @@ test.describe("With data", () => {
             await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
             await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
 
-            await page.locator("#date").type(`${mirTomorrow()}`);
+            await page.locator("#Date").type(`${mirTomorrow()}`);
             await page.click("button[type=submit]");
 
             // Report items
