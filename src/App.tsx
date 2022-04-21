@@ -6,6 +6,7 @@ import InterviewerCallPattern from "./reports/InterviewerCallPattern";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
 import "./style.css";
 import { LoginForm, AuthManager } from "blaise-login-react-client";
+import InterviewerCallHistoryReport from "./reports/InterviewerCallHistorySteps";
 
 const divStyle = {
     minHeight: "calc(72vh)"
@@ -49,7 +50,7 @@ function App(): ReactElement {
             return (<DefaultErrorBoundary>
                 <Switch>
                     <Route path="/interviewer-call-history">
-                        <InterviewerCallHistory />
+                        <InterviewerCallHistoryReport />
                     </Route>
                     <Route path="/interviewer-call-pattern">
                         <InterviewerCallPattern />
