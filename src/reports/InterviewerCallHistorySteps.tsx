@@ -1,6 +1,4 @@
 import React, {ReactElement, useState} from "react";
-import {ONSButton} from "blaise-design-system-react-components";
-import {Formik, Form} from "formik";
 import InterviewerFilter from "./filters/InterviewerFilter";
 import InstrumentFilter from "./filters/InstrumentFilter";
 
@@ -13,8 +11,8 @@ enum Step {
 function InterviewerCallHistoryReport(): ReactElement {
     const [activeStep, setActiveStep] = useState<Step>(Step.InterviewerFilter);
     const [interviewer, setInterviewer] = useState<string>("");
-    const [startDate, setStartDate] = useState<string>("");
-    const [endDate, setEndDate] = useState<string>("");
+    const [startDate, setStartDate] = useState<Date>(new Date());
+    const [endDate, setEndDate] = useState<Date>(new Date());
     const [surveyTla, setSurveyTla] = useState<string>("");
     const [instruments, setInstruments] = useState<string[]>([""]);
 
@@ -32,7 +30,8 @@ function InterviewerCallHistoryReport(): ReactElement {
                                           endDate={endDate}
                                           surveyTla={surveyTla}
                     //instruments={instruments} setInstruments={setInstruments}/>);
-                                          submitFunction={_handleSubmit}/>);
+                                          submitFunction={_handleSubmit}
+                                          backFunction={_navigateBack}/>);
         }
     }
 
@@ -49,11 +48,19 @@ function InterviewerCallHistoryReport(): ReactElement {
         }
     }
 
+    function _navigateBack() {       
+        setActiveStep(activeStep -1);
+    }
+
     return (
-        <div className="u-mt-m">
-            {_renderStepContent(activeStep)}
+        <div>
+            <div className="u-mt-m">
+                {_renderStepContent(activeStep)}
+            </div>
         </div>
+
     );
 }
 
 export default InterviewerCallHistoryReport;
+

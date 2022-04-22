@@ -1,14 +1,15 @@
 import {StyledForm} from "blaise-design-system-react-components";
 import React, {ReactElement} from "react";
 import dateFormatter from "dayjs";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 interface InterviewerFilterPageProps {
     interviewer: string | undefined
     setInterviewer: (string: string) => void
-    startDate: string | undefined
-    setStartDate: (string: string) => void
-    endDate: string | undefined
-    setEndDate: (string: string) => void
+    startDate: Date
+    setStartDate: (Date: Date) => void
+    endDate: Date
+    setEndDate: (Date: Date) => void
     surveyTla: string | undefined
     setSurveyTla: (string: string) => void
     submitFunction: () => void;
@@ -28,11 +29,10 @@ function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
     } = props;
 
     async function submitInterviewerFilters(formValues: Record<string, any>, setSubmitting: (isSubmitting: boolean) => void): Promise<void> {
-        console.log("submit interviewer filters");
-        setInterviewer(formValues.interviewer);
-        setStartDate(formValues.startDate);
-        setEndDate(formValues.endDate);
-        setSurveyTla(formValues.surveyTla);
+        setInterviewer(formValues["Interviewer ID"]);
+        setStartDate(formValues["Start date"]);
+        setEndDate(formValues["End date"]);
+        setSurveyTla(formValues["Survey TLA"]);
         setSubmitting(true);
         submitFunction();
     }
@@ -63,9 +63,9 @@ function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
             name: "Survey TLA",
             description: "Select survey",
             type: "radio",
-            initial_value: "undefined",
+            initial_value: surveyTla,
             radioOptions: [
-                {id: "all", value: "undefined", label: "Show all surveys"},
+                {id: "all", value: "", label: "Show all surveys"},
                 {id: "lms", value: "lms", label: "LMS", description: "Labour Market Survey"},
                 {id: "opn", value: "opn", label: "OPN", description: "Opinions and Lifestyle Survey"}
             ]
@@ -73,25 +73,30 @@ function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
         {
             name: "Interviewer ID",
             type: "text",
+            initial_value: interviewer,
             validate: validateInterviewer
         },
         {
             name: "Start date",
             type: "date",
-            initial_value: dateFormatter(new Date()).format("YYYY-MM-DD"),
+            initial_value: dateFormatter(startDate).format("YYYY-MM-DD"),
             validate: validateDate
         },
         {
             name: "End date",
             type: "date",
-            initial_value: dateFormatter(new Date()).format("YYYY-MM-DD"),
+            initial_value: dateFormatter(endDate).format("YYYY-MM-DD"),
             validate: validateDate
         }
     ];
 
     return (
         <>
+        <div>
+            <Breadcrumbs BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", title: "Interviewer details"}]}/>
             <StyledForm fields={fields} onSubmitFunction={submitInterviewerFilters} submitLabel={"Next"}/>
+        </div>
+           
         </>
     );
 }

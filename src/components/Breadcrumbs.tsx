@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 export interface BreadcrumbItem {
     link: string
     title: string
+    onClickFunction?: () => void;
 }
 
 interface Props {
@@ -16,10 +17,10 @@ function Breadcrumbs({BreadcrumbList}: Props): ReactElement {
         <nav className="breadcrumb" aria-label="Breadcrumb">
             <ol className="breadcrumb__items u-fs-s">
                 {
-                    BreadcrumbList.map(({link, title}: BreadcrumbItem, index) => {
+                    BreadcrumbList.map(({link, title, onClickFunction}: BreadcrumbItem, index) => {
                         return (
                             <li className="breadcrumb__item" id={`breadcrumb-${index}`} key={title}>
-                                <Link className="breadcrumb__link" to={link}>{title}</Link>
+                                <Link className="breadcrumb__link" to={link} onClick={onClickFunction}>{title}</Link>
                                 <svg className="svg-icon" viewBox="0 0 8 13" xmlns="http://www.w3.org/2000/svg"
                                      focusable="false">
                                     <path
