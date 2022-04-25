@@ -29,9 +29,10 @@ function InterviewerCallHistoryReport(): ReactElement {
                                           startDate={startDate}
                                           endDate={endDate}
                                           surveyTla={surveyTla}
-                    //instruments={instruments} setInstruments={setInstruments}/>);
+                                          instruments={instruments} setInstruments={setInstruments}
                                           submitFunction={_handleSubmit}
-                                          backFunction={_navigateBack}/>);
+                                          backFunction={_navigateBack}
+                />);
         }
     }
 
@@ -48,8 +49,8 @@ function InterviewerCallHistoryReport(): ReactElement {
         }
     }
 
-    function _navigateBack() {       
-        setActiveStep(activeStep -1);
+    function _navigateBack() {
+        setActiveStep(activeStep - 1);
     }
 
     return (

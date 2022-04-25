@@ -92,11 +92,12 @@ function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
 
     return (
         <>
-        <div>
-            <Breadcrumbs BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", title: "Interviewer details"}]}/>
-            <StyledForm fields={fields} onSubmitFunction={submitInterviewerFilters} submitLabel={"Next"}/>
-        </div>
-           
+            <div>
+                <Breadcrumbs
+                    BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", title: "Interviewer details"}]}/>
+                <StyledForm fields={fields} onSubmitFunction={submitInterviewerFilters} submitLabel={"Next"}/>
+            </div>
+
         </>
     );
 }

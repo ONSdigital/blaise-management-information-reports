@@ -1,15 +1,15 @@
-import express, { NextFunction, Request, Response, Express } from "express";
+import express, {NextFunction, Request, Response, Express} from "express";
 import path from "path";
 import ejs from "ejs";
 import createLogger from "./pino";
-import { SendAPIRequest } from "./SendRequest";
+import {SendAPIRequest} from "./SendRequest";
 import multer from "multer";
 import dateFormatter from "dayjs";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
-import { newLoginHandler } from "blaise-login-react-server";
-import { Config } from "./Config";
-import { Auth } from "blaise-login-react-server";
+import {newLoginHandler} from "blaise-login-react-server";
+import {Config} from "./Config";
+import {Auth} from "blaise-login-react-server";
 import PinoHttp from "pino-http";
 
 class RequestLogger {
@@ -23,7 +23,7 @@ class RequestLogger {
     async logRequest(request: Request, response: Response, next: NextFunction): Promise<void> {
         this.logger(request, response);
         if (request.method === "POST") {
-            const requestBody = { ...request.body };
+            const requestBody = {...request.body};
             if (requestBody?.password) {
                 requestBody.password = "********";
             }
@@ -56,7 +56,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, b
     // health_check endpoint
     server.get("/mir-ui/:version/health", async function (req: Request, res: Response) {
         console.log("health_check endpoint called");
-        res.status(200).json({ healthy: true });
+        res.status(200).json({healthy: true});
     });
 
     // call-history-status endpoint
@@ -72,10 +72,23 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, b
     server.post("/api/reports/interviewer-call-history", auth.Middleware, async function (req: Request, res: Response) {
         console.log("interviewer-call-history endpoint called");
         const authHeader = await authProvider.getAuthHeader();
-        const { interviewer, start_date, end_date, survey_tla } = req.body;
+        const {interviewer, start_date, end_date, survey_tla} = req.body;
         const startDateFormatted = dateFormatter(start_date).format("YYYY-MM-DD");
         const endDateFormatted = dateFormatter(end_date).format("YYYY-MM-DD");
         const url = `${config.BertUrl}/api/reports/call-history/${interviewer}?start-date=${startDateFormatted}&end-date=${endDateFormatted}&survey-tla=${survey_tla}`;
+        console.log(url);
+        const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
+        res.status(status).json(result);
+    });
+
+    // interviewer-call-history instrument endpoint
+    server.post("/api/reports/interviewer-call-history/instruments", auth.Middleware, async function (req: Request, res: Response) {
+        console.log("interviewer-call-history instrument endpoint called");
+        const authHeader = await authProvider.getAuthHeader();
+        const {interviewer, start_date, end_date, survey_tla} = req.body;
+        const startDateFormatted = dateFormatter(start_date).format("YYYY-MM-DD");
+        const endDateFormatted = dateFormatter(end_date).format("YYYY-MM-DD");
+        const url = `${config.BertUrl}/api/${interviewer}/questionnaires?start-date=${startDateFormatted}&end-date=${endDateFormatted}&survey-tla=${survey_tla}`;
         console.log(url);
         const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
         res.status(status).json(result);
@@ -85,7 +98,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, b
     server.post("/api/reports/interviewer-call-pattern", auth.Middleware, async function (req: Request, res: Response) {
         console.log("interviewer-call-pattern endpoint called");
         const authHeader = await authProvider.getAuthHeader();
-        const { interviewer, start_date, end_date, survey_tla } = req.body;
+        const {interviewer, start_date, end_date, survey_tla} = req.body;
         const startDateFormatted = dateFormatter(start_date).format("YYYY-MM-DD");
         const endDateFormatted = dateFormatter(end_date).format("YYYY-MM-DD");
         const url = `${config.BertUrl}/api/reports/call-pattern/${interviewer}?start-date=${startDateFormatted}&end-date=${endDateFormatted}&survey-tla=${survey_tla}`;
@@ -98,7 +111,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, b
     server.post("/api/reports/appointment-resource-planning", auth.Middleware, async function (req: Request, res: Response) {
         console.log("appointment-resource-planning endpoint called");
         const authHeader = await authProvider.getAuthHeader();
-        const { date, survey_tla } = req.body;
+        const {date, survey_tla} = req.body;
         const dateFormatted = dateFormatter(date).format("YYYY-MM-DD");
         const url = `${config.BertUrl}/api/reports/appointment-resource-planning/${dateFormatted}?survey-tla=${survey_tla}`;
         console.log(url);
@@ -110,7 +123,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, b
     server.post("/api/reports/appointment-resource-planning-summary", auth.Middleware, async function (req: Request, res: Response) {
         console.log("appointment-resource-planning-summary endpoint called");
         const authHeader = await authProvider.getAuthHeader();
-        const { date, survey_tla } = req.body;
+        const {date, survey_tla} = req.body;
         const dateFormatted = dateFormatter(date).format("YYYY-MM-DD");
         const url = `${config.BertUrl}/api/reports/appointment-resource-planning-summary/${dateFormatted}?survey-tla=${survey_tla}`;
         console.log(url);
