@@ -2,6 +2,7 @@ import {StyledForm} from "blaise-design-system-react-components";
 import React, {ReactElement} from "react";
 import dateFormatter from "dayjs";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
 
 interface InterviewerFilterPageProps {
     interviewer: string | undefined
@@ -94,12 +95,18 @@ function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
         <>
             <div>
                 <Breadcrumbs
-                    BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", title: "Interviewer details"}]}/>
-                <StyledForm fields={fields} onSubmitFunction={submitInterviewerFilters} submitLabel={"Next"}/>
+                    BreadcrumbList={[{link: "/", title: "Reports"}]}/>
+                <main id="main-content" className="page__main u-mt-s">
+                    <h1 className="u-mb-m">Run interviewer call history report</h1>
+                    <CallHistoryLastUpdatedStatus/>
+                    <StyledForm fields={fields} onSubmitFunction={submitInterviewerFilters} submitLabel={"Next"}/>
+                </main>
             </div>
-
         </>
-    );
+    )
+        ;
 }
 
 export default InterviewerFilter;
+
+

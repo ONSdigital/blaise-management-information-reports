@@ -31,6 +31,7 @@ async function getInterviewerCallHistoryReport(form: Record<string, any>): Promi
     formData.append("interviewer", form.interviewer);
     formData.append("start_date", form.start_date);
     formData.append("end_date", form.end_date);
+    formData.append("instruments", form.instruments);
 
     return axios.post(url, formData, axiosConfig()).then((response: AxiosResponse) => {
         console.log(`Response: Status ${response.status}, data ${response.data}`);

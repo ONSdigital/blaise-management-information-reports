@@ -1,6 +1,7 @@
 import React, {ReactElement, useState} from "react";
 import InterviewerFilter from "./filters/InterviewerFilter";
 import InstrumentFilter from "./filters/InstrumentFilter";
+import RenderReport from "./InterviewerCallHistoryReport";
 
 enum Step {
     InterviewerFilter,
@@ -14,7 +15,7 @@ function InterviewerCallHistoryReport(): ReactElement {
     const [startDate, setStartDate] = useState<Date>(new Date());
     const [endDate, setEndDate] = useState<Date>(new Date());
     const [surveyTla, setSurveyTla] = useState<string>("");
-    const [instruments, setInstruments] = useState<string[]>([""]);
+    const [instruments, setInstruments] = useState<string[]>([]);
 
     function _renderStepContent(step: number) {
         switch (step) {
@@ -31,7 +32,14 @@ function InterviewerCallHistoryReport(): ReactElement {
                                           surveyTla={surveyTla}
                                           instruments={instruments} setInstruments={setInstruments}
                                           submitFunction={_handleSubmit}
-                                          backFunction={_navigateBack}
+                                          navigateBack={_navigateBack}
+                />);
+            case Step.RenderReport:
+                return (<RenderReport interviewer={interviewer}
+                                      startDate={startDate}
+                                      endDate={endDate}
+                                      surveyTla={surveyTla}
+                                      instruments={instruments}
                 />);
         }
     }
@@ -64,4 +72,3 @@ function InterviewerCallHistoryReport(): ReactElement {
 }
 
 export default InterviewerCallHistoryReport;
-
