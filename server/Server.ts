@@ -75,8 +75,8 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, b
         const {interviewer, start_date, end_date, survey_tla, instruments} = req.body;
         const startDateFormatted = dateFormatter(start_date).format("YYYY-MM-DD");
         const endDateFormatted = dateFormatter(end_date).format("YYYY-MM-DD");
-        console.log(instruments);
-        const instrumentsQuery = instruments.length > 0? `&questionnaires=${instruments.join(",")}` : "";
+        console.log(`instruments ${instruments}`);
+        const instrumentsQuery = instruments.length > 0? `&questionnaires=${instruments}` : "";
         const url = `${config.BertUrl}/api/reports/call-history/${interviewer}?start-date=${startDateFormatted}&end-date=${endDateFormatted}&survey-tla=${survey_tla}${instrumentsQuery}`;
         console.log(url);
         const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
