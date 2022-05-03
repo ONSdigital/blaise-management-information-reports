@@ -1,17 +1,16 @@
 // TODO:
 // Select all button
-// Make checkboxes look pretty i.e. closer together
-// Make checkboxes reflect the state i.e. buttons are selected when returning to this step
 // Display "No questionnaires found"
 // Spinny when getting the instruments
-// Actually make it work!!
+// Account for unknown i.e. deleted instruments
 
 import React, {ReactElement, useEffect, useState, Fragment} from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import dateFormatter from "dayjs";
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
 import {AuthManager} from "blaise-login-react-client";
-import {ONSButton} from "blaise-design-system-react-components";
+import {ONSButton, ONSPanel} from "blaise-design-system-react-components";
+import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
 
 interface InstrumentFilterPageProps {
     interviewer: string
@@ -32,7 +31,6 @@ function axiosConfig(): AxiosRequestConfig {
 }
 
 function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
-    const [instruments, setInstruments] = useState([] as string[]);
     const [selectInstruments, setSelectInstruments] = useState([] as string[]);
 
 
@@ -43,6 +41,8 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
         surveyTla,
         submitFunction,
         navigateBack,
+        instruments,
+        setInstruments,
     } = props;
 
 
@@ -72,7 +72,6 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
     }
 
     function callNextPage() {
-        console.log(selectInstruments);
         setInstruments(selectInstruments);
         submitFunction();
     }
@@ -92,36 +91,49 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
         <>
             <div>
                 <Breadcrumbs
-                    BreadcrumbList={[{link: "/", title: "Reports"}, {link: _navigateBack, title: "Interviewer details"}]}/>
+                    BreadcrumbList={[{link: "/", title: "Reports"}, {
+                        link: "#",
+                        onClickFunction: navigateBack,
+                        title: "Interviewer details"
+                    }]}/>
 
-                <div className="checkbox__items">
-                    {
-                        instruments.map((item: string) => {
-                            return (
-                                <Fragment key={item}>
-                                    <p className="checkbox__item ">
-                                        <span className="checkbox">
-                                            <input
-                                                type="checkbox"
-                                                id={`install-${item}`}
-                                                className="checkbox__input js-checkbox"
-                                                value={item}
-                                                name="select-survey"
-                                                aria-label="No"
-                                                onChange={updateCheckBox}
-                                            />
-                                            <label className="checkbox__label "
-                                                   htmlFor={`install-${item}`}>
-                                                {item}
-                                            </label>
-                                        </span>
-                                    </p>
-                                    <br/>
-                                </Fragment>
-                            );
-                        })
-                    }
-                </div>
+                <main id="main-content" className="page__main u-mt-s">
+                    <h1 className="u-mb-m">Select questionnaire(s) for <em className="highlight">{interviewer}</em>, between <em className="highlight">{startDate}</em> and <em className="highlight">{endDate}</em></h1>
+                    <CallHistoryLastUpdatedStatus/>
+
+
+
+                    <div className="input-items">
+                        <div className="checkboxes__items">
+                            {
+                                instruments.map((item: string) => {
+                                    return (
+                                        <Fragment key={item}>
+                                            <span className="checkboxes__item ">
+                                                <span className="checkbox">
+                                                    <input
+                                                        type="checkbox"
+                                                        id={`install-${item}`}
+                                                        className="checkbox__input js-checkbox"
+                                                        value={item}
+                                                        name="select-survey"
+                                                        aria-label="No"
+                                                        onChange={updateCheckBox}
+                                                    />
+                                                    <label className="checkbox__label "
+                                                           htmlFor={`install-${item}`}>
+                                                        {item}
+                                                    </label>
+                                                </span>
+                                            </span>
+                                            <br/>
+                                        </Fragment>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+                </main>
 
                 <ONSButton
                     label={"Run report"}
@@ -129,9 +141,11 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                     loading={false}
                     id="confirm-questionnaires"
                     onClick={() => callNextPage()}/>
+
             </div>
         </>
-    );
+    )
+        ;
 }
 
 export default InstrumentFilter;

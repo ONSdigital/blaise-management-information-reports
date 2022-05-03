@@ -1,4 +1,3 @@
-// Display interviewer details at top of page
 // Sort out breadcrumbs
 
 import React, {useEffect, useState} from "react";
@@ -9,6 +8,7 @@ import {InterviewerCallHistoryReport} from "../interfaces";
 import dateFormatter from "dayjs";
 import {convertSecondsToMinutesAndSeconds} from "../utilities/Converters";
 import {getInterviewerCallHistoryReport} from "../utilities/HTTP";
+import CallHistoryLastUpdatedStatus from "../components/CallHistoryLastUpdatedStatus";
 
 interface RenderReportPageProps {
     interviewer: string
@@ -23,6 +23,14 @@ function RenderReport(props: RenderReportPageProps) {
     const [interviewerID, setInterviewerID] = useState<string>("");
     const [messageNoData, setMessageNoData] = useState<string>("");
     const [message, setMessage] = useState<string>("");
+    const {
+        interviewer,
+        startDate,
+        endDate,
+        surveyTla,
+        instruments
+    } = props;
+
     const reportExportHeaders = [
         {label: "Interviewer", key: "interviewer"},
         {label: "Questionnaire", key: "questionnaire_name"},
@@ -74,8 +82,13 @@ function RenderReport(props: RenderReportPageProps) {
         <>
             <Breadcrumbs BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", title: "Interviewer details"}, {link: "#", title: "Instruments"}]}/>
             <main id="main-content" className="page__main u-mt-s">
+                <h1 className="u-mb-m">Displaying the call history report for <em className="highlight">{interviewer}</em>, for questionnaire(s) <em className="highlight">{instruments}</em> between <em className="highlight">{startDate}</em> and <em className="highlight">{endDate}</em></h1>
+                <CallHistoryLastUpdatedStatus/>
 
-                <ONSPanel status={"info"}>Displaying the call pattern report for INTERVIEWER, for the QUESTIONNAIRE questionnaire, for the period STARTDATE - ENDDATE</ONSPanel>
+                <div>
+
+                </div>
+
                 <br/>
                 <CSVLink hidden={reportData === null || reportData.length === 0}
                          data={reportData}
@@ -84,6 +97,7 @@ function RenderReport(props: RenderReportPageProps) {
                          filename={`interviewer-call-history-${interviewerID}.csv`}>
                     Export report as Comma-Separated Values (CSV) file
                 </CSVLink>
+
                 <ErrorBoundary errorMessageText={"Failed to load"}>
                     {
                         reportData && reportData.length > 0
