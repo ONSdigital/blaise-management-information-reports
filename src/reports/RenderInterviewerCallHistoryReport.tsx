@@ -10,7 +10,7 @@ import {convertSecondsToMinutesAndSeconds} from "../utilities/Converters";
 import {getInterviewerCallHistoryReport} from "../utilities/HTTP";
 import CallHistoryLastUpdatedStatus from "../components/CallHistoryLastUpdatedStatus";
 
-interface RenderReportPageProps {
+interface RenderInterviewerCallHistoryReportPageProps {
     interviewer: string
     startDate: Date
     endDate: Date
@@ -18,7 +18,7 @@ interface RenderReportPageProps {
     instruments: string[]
 }
 
-function RenderReport(props: RenderReportPageProps) {
+function RenderInterviewerCallHistoryReport(props: RenderInterviewerCallHistoryReportPageProps) {
     const [reportData, setReportData] = useState<InterviewerCallHistoryReport[]>([]);
     const [interviewerID, setInterviewerID] = useState<string>("");
     const [messageNoData, setMessageNoData] = useState<string>("");
@@ -159,4 +159,4 @@ function RenderReport(props: RenderReportPageProps) {
     );
 }
 
-export default RenderReport;
+export default RenderInterviewerCallHistoryReport;
