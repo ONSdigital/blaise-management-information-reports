@@ -57,8 +57,8 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
             console.log(`Response: Status ${response.status}, data ${response.data}`);
             if (response.data === 0) {
                 setMessageNoData("No data found for parameters given.");
-            return;
-        }
+                return;
+            }
             if (response.status === 200) {
                 return response.data;
             }
@@ -67,7 +67,6 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
             console.error(`Response: Error ${error}`);
             throw error;
         });
-
     }
 
     function callNextPage() {
@@ -96,7 +95,9 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                     }]}/>
 
                 <main id="main-content" className="page__main u-mt-s">
-                    <h1 className="u-mb-m">Select questionnaire(s) for <em className="highlight">{interviewer}</em>, between <em className="highlight">{startDate}</em> and <em className="highlight">{endDate}</em></h1>
+                    <h1 className="u-mb-m">Select questionnaire(s) for <em className="highlight">{interviewer}</em>,
+                        between <em className="highlight">{dateFormatter(startDate).format("YYYY-MM-DD")}</em> and <em className="highlight">{dateFormatter(endDate).format("YYYY-MM-DD")}</em>
+                    </h1>
                     <CallHistoryLastUpdatedStatus/>
 
                     <div className="input-items">
@@ -115,7 +116,7 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                                                         value={item}
                                                         name="select-survey"
                                                         aria-label="No"
-                                                        onChange={updateCheckBox}
+                                                        //onChange={updateCheckBox}
                                                     />
                                                     <label className="checkbox__label "
                                                            htmlFor={`install-${item}`}>
@@ -138,14 +139,14 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                     loading={false}
                     id="submit-button"
                     testid="submit-button"
-                    onClick={() => callNextPage()}/>
+                    //onClick={() => callNextPage()}
+                />
 
                 <ONSPanel hidden={messageNoData === "" && true}>{messageNoData}</ONSPanel>
 
             </div>
         </>
-    )
-        ;
+    );
 }
 
 export default InstrumentFilter;
