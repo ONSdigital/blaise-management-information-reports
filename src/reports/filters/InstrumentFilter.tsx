@@ -32,8 +32,7 @@ function axiosConfig(): AxiosRequestConfig {
 
 function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
     const [selectInstruments, setSelectInstruments] = useState([] as string[]);
-
-
+    const [messageNoData, setMessageNoData] = useState<string>("");
     const {
         interviewer,
         startDate,
@@ -54,6 +53,7 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
     async function getInstrumentList(): Promise<string[]> {
         const url = "/api/reports/interviewer-call-history/instruments";
         const formData = new FormData();
+        setMessageNoData("");
         formData.append("survey_tla", surveyTla);
         formData.append("interviewer", interviewer);
         formData.append("start_date", dateFormatter(startDate).format("YYYY-MM-DD"));
@@ -61,6 +61,10 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
 
         return axios.post(url, formData, axiosConfig()).then((response: AxiosResponse) => {
             console.log(`Response: Status ${response.status}, data ${response.data}`);
+            if (response.data === 0) {
+                setMessageNoData("No data found for parameters given.");
+            return;
+        }
             if (response.status === 200) {
                 return response.data;
             }
@@ -69,6 +73,7 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
             console.error(`Response: Error ${error}`);
             throw error;
         });
+
     }
 
     function callNextPage() {
@@ -86,7 +91,6 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
         setSelectInstruments(newSelectInstruments);
     }
 
-
     return (
         <>
             <div>
@@ -101,8 +105,6 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                     <h1 className="u-mb-m">Select questionnaire(s) for <em className="highlight">{interviewer}</em>, between <em className="highlight">{startDate}</em> and <em className="highlight">{endDate}</em></h1>
                     <CallHistoryLastUpdatedStatus/>
 
-
-
                     <div className="input-items">
                         <div className="checkboxes__items">
                             {
@@ -113,7 +115,8 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                                                 <span className="checkbox">
                                                     <input
                                                         type="checkbox"
-                                                        id={`install-${item}`}
+                                                        id={`${item}`}
+                                                        data-testid={`${item}`}
                                                         className="checkbox__input js-checkbox"
                                                         value={item}
                                                         name="select-survey"
@@ -139,8 +142,11 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                     label={"Run report"}
                     primary={true}
                     loading={false}
-                    id="confirm-questionnaires"
+                    id="submit-button"
+                    testid="submit-button"
                     onClick={() => callNextPage()}/>
+
+                <ONSPanel hidden={messageNoData === "" && true}>{messageNoData}</ONSPanel>
 
             </div>
         </>
