@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 
-import { InterviewerCallHistoryReport } from "../interfaces";
+import { InterviewerCallHistoryReport } from "../../interfaces";
 import "@testing-library/jest-dom";
-import flushPromises from "../tests/utilities";
+import flushPromises from "../../tests/utilities";
 import { createMemoryHistory } from "history";
 import { cleanup, render, waitFor } from "@testing-library/react";
 import { Router } from "react-router";

@@ -1,9 +1,3 @@
-// TODO:
-// Select all button
-// Display "No questionnaires found"
-// Spinny when getting the instruments
-// Account for unknown i.e. deleted instruments
-
 import React, {ReactElement, useEffect, useState, Fragment} from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import dateFormatter from "dayjs";

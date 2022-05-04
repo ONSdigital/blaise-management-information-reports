@@ -1,6 +1,6 @@
 import React, {ReactElement, useState} from "react";
-import InterviewerFilter from "./filters/InterviewerFilter";
-import InstrumentFilter from "./filters/InstrumentFilter";
+import InterviewerFilter from "../filters/InterviewerFilter";
+import InstrumentFilter from "../filters/InstrumentFilter";
 import RenderInterviewerCallHistoryReport from "./RenderInterviewerCallHistoryReport";
 
 enum Step {
@@ -58,10 +58,6 @@ function InterviewerCallHistory(): ReactElement {
 
     function _navigateBack() {
         setActiveStep(activeStep - 1);
-    }
-
-    function _navigateBackTwoSteps() {
-        setActiveStep(activeStep - 2);
     }
 
     return (
