@@ -116,7 +116,7 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                                                         value={item}
                                                         name="select-survey"
                                                         aria-label="No"
-                                                        //onChange={updateCheckBox}
+                                                        onChange={updateCheckBox}
                                                     />
                                                     <label className="checkbox__label "
                                                            htmlFor={`install-${item}`}>
@@ -139,7 +139,7 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                     loading={false}
                     id="submit-button"
                     testid="submit-button"
-                    //onClick={() => callNextPage()}
+                    onClick={() => callNextPage()}
                 />
 
                 <ONSPanel hidden={messageNoData === "" && true}>{messageNoData}</ONSPanel>
