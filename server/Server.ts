@@ -80,6 +80,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, b
         const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
         res.status(status).json(result);
     });
+
     // interviewer-call-pattern instrument endpoint
     server.post("/api/reports/interviewer-call-pattern/instruments", auth.Middleware, async function (req: Request, res: Response) {
         console.log("interviewer-call-pattern instrument endpoint called");
