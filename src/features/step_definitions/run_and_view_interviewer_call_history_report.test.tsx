@@ -54,7 +54,7 @@ defineFeature(feature, test => {
         cleanup();
         mockAdapter.reset();
 
-        mockAdapter.onPost("/api/reports/interviewer-call-history/instruments").reply(200, instrumentDataReturned);
+        mockAdapter.onPost("/api/instruments").reply(200, instrumentDataReturned);
         mockAdapter.onPost("/api/reports/interviewer-call-history").reply(200, reportDataReturned);
         mockAdapter.onGet("/api/reports/call-history-status").reply(200,
             {"last_updated": "Fri, 28 May 2021 10:00:00 GMT"});
@@ -94,7 +94,7 @@ defineFeature(feature, test => {
         });
 
         when("I select an instrument and click on run report", async () => {
-            userEvent.click(screen.getByTestId(/LMS2101_AA1/i));
+            userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
             userEvent.click(screen.getByTestId(/submit-button/i));
 
             await act(async () => {

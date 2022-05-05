@@ -24,7 +24,7 @@ describe("the interviewer details page renders correctly", () => {
     it("matches snapshot", async () => {
         const history = createMemoryHistory();
 
-        mockAdapter.onPost("/api/reports/interviewer-call-history/instruments").reply(200, instrumentDataReturned);
+        mockAdapter.onPost("/api/instruments").reply(200, instrumentDataReturned);
 
         const wrapper = render(
             <Router history={history}>

@@ -17,11 +17,22 @@ describe("the interviewer details page renders correctly", () => {
 
         const wrapper = render(
             <Router history={history}>
-                <InterviewerFilter interviewer={"James"} setInterviewer={() => {return;}}
-                                   startDate={new Date("2021-01-01")} setStartDate={() => {return;}}
-                                   endDate={new Date("2021-01-05")} setEndDate={() => {return;}}
-                                   surveyTla={"LMS"} setSurveyTla={() => {return;}}
-                                   submitFunction={() => {return true;}}/>
+                <InterviewerFilter title=""
+                                   interviewer={"James"} setInterviewer={() => {
+                    return;
+                }}
+                                   startDate={new Date("2021-01-01")} setStartDate={() => {
+                    return;
+                }}
+                                   endDate={new Date("2021-01-05")} setEndDate={() => {
+                    return;
+                }}
+                                   surveyTla={"LMS"} setSurveyTla={() => {
+                    return;
+                }}
+                                   submitFunction={() => {
+                                       return true;
+                                   }}/>
             </Router>
         );
 
@@ -37,7 +48,8 @@ describe("the interviewer details page renders correctly", () => {
         await act(async () => {
             render(
                 <Router history={history}>
-                    <InterviewerFilter interviewer={"James"} setInterviewer={() => {return;}}
+                    <InterviewerFilter title=""
+                                       interviewer={"James"} setInterviewer={() => {return;}}
                                        startDate={new Date("2021-01-01")} setStartDate={() => {return;}}
                                        endDate={new Date("2021-01-05")} setEndDate={() => {return;}}
                                        surveyTla={"LMS"} setSurveyTla={() => {return;}}
@@ -46,7 +58,7 @@ describe("the interviewer details page renders correctly", () => {
             );
         });
 
-        expect(screen.queryByText(/Run interviewer call history report/i)).toBeVisible();
+        expect(screen.queryByText(/Run interviewer/i)).toBeVisible();
         expect(screen.queryByText(/Data in this report was last updated:/i)).toBeVisible();
 
         expect(screen.queryByText(/Select survey/i)).toBeVisible();
