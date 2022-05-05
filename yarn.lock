@@ -3250,7 +3250,6 @@ blaise-api-node-client@ONSDigital/blaise-api-node-client:
 
 blaise-design-system-react-components@ONSDigital/blaise-design-system-react-components:
   version "1.0.0"
-  uid "71883e9973f84bb3d42d2280ee0817a6fd792b8e"
   resolved "https://codeload.github.com/ONSDigital/blaise-design-system-react-components/tar.gz/71883e9973f84bb3d42d2280ee0817a6fd792b8e"
   dependencies:
     formik "^2.2.9"
@@ -3258,9 +3257,9 @@ blaise-design-system-react-components@ONSDigital/blaise-design-system-react-comp
     react-dom "^17.0.0"
     react-loader-spinner "^4.0.0"
 
-"blaise-design-system-react-components@https://github.com/ONSdigital/blaise-design-system-react-components":
+"blaise-design-system-react-components@https://github.com/ONSdigital/blaise-design-system-react-components#BLAIS5-3098":
   version "1.0.0"
-  resolved "https://github.com/ONSdigital/blaise-design-system-react-components#71883e9973f84bb3d42d2280ee0817a6fd792b8e"
+  resolved "https://github.com/ONSdigital/blaise-design-system-react-components#2dcce1a2136746e6dea30875b64ce0f36f53e1e7"
   dependencies:
     formik "^2.2.9"
     react "^17.0.1"

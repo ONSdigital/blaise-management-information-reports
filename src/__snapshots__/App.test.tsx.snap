@@ -102,6 +102,8 @@ Object {
               >
                 <button
                   class="btn btn--ghost u-d-no@xxs@m btn--exit"
+                  data-test-id="signout-button"
+                  id="signout-button"
                 >
                   <span
                     class="btn__inner"
@@ -356,6 +358,8 @@ Object {
             >
               <button
                 class="btn btn--ghost u-d-no@xxs@m btn--exit"
+                data-test-id="signout-button"
+                id="signout-button"
               >
                 <span
                   class="btn__inner"
