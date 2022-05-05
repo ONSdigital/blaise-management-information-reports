@@ -45,7 +45,9 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
     );
 
     async function getInstrumentList(): Promise<string[]> {
-        const url = "/api/reports/interviewer-call-history/instruments";
+        //const url = "/api/reports/interviewer-call-history/instruments";
+        const url = "/api/instruments";
+
         const formData = new FormData();
         setMessageNoData("");
         formData.append("survey_tla", surveyTla);
