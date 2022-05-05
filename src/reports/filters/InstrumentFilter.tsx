@@ -3,7 +3,12 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import dateFormatter from "dayjs";
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
 import {AuthManager} from "blaise-login-react-client";
-import {ONSButton, ONSPanel} from "blaise-design-system-react-components";
+import {
+    FormFieldObject,
+    ONSLoadingPanel,
+    ONSPanel,
+    StyledForm
+} from "blaise-design-system-react-components";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
 
 interface InstrumentFilterPageProps {
@@ -25,8 +30,10 @@ function axiosConfig(): AxiosRequestConfig {
 }
 
 function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
-    const [selectInstruments, setSelectInstruments] = useState([] as string[]);
     const [messageNoData, setMessageNoData] = useState<string>("");
+    const [fields, setFields] = useState<FormFieldObject[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
     const {
         interviewer,
         startDate,
@@ -40,9 +47,25 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
 
 
     useEffect(() => {
-            getInstrumentList().then(setInstruments);
+            getInstrumentList().then(setupForm);
         }, []
     );
+
+    function setupForm(allInstruments: string[]) {
+        setFields([
+            {
+                name: "questionnaires",
+                type: "checkbox",
+                initial_value: instruments,
+                checkboxOptions: allInstruments.map(name => ({
+                    id: name,
+                    value: name,
+                    label: name,
+                })),
+            },
+        ]);
+        setIsLoading(false);
+    }
 
     async function getInstrumentList(): Promise<string[]> {
         const url = "/api/reports/interviewer-call-history/instruments";
@@ -69,19 +92,9 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
         });
     }
 
-    function callNextPage() {
-        setInstruments(selectInstruments);
+    function handleSubmit(values: any) {
+        setInstruments(values["questionnaires"]);
         submitFunction();
-    }
-
-    function updateCheckBox(event: React.ChangeEvent<HTMLInputElement>) {
-        let newSelectInstruments = [...selectInstruments];
-        if (event.target.checked) {
-            newSelectInstruments.push(event.target.value);
-        } else {
-            newSelectInstruments = newSelectInstruments.filter(item => item != event.target.value);
-        }
-        setSelectInstruments(newSelectInstruments);
     }
 
     return (
@@ -102,48 +115,15 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
 
                     <div className="input-items">
                         <div className="checkboxes__items">
-                            {
-                                instruments.map((item: string) => {
-                                    return (
-                                        <Fragment key={item}>
-                                            <span className="checkboxes__item ">
-                                                <span className="checkbox">
-                                                    <input
-                                                        type="checkbox"
-                                                        id={`${item}`}
-                                                        data-testid={`${item}`}
-                                                        className="checkbox__input js-checkbox"
-                                                        value={item}
-                                                        name="select-survey"
-                                                        aria-label="No"
-                                                        //onChange={updateCheckBox}
-                                                    />
-                                                    <label className="checkbox__label "
-                                                           htmlFor={`install-${item}`}>
-                                                        {item}
-                                                    </label>
-                                                </span>
-                                            </span>
-                                            <br/>
-                                        </Fragment>
-                                    );
-                                })
+                            { isLoading
+                                ? <ONSLoadingPanel/>
+                                : <StyledForm fields={ fields } submitLabel="Run report" onSubmitFunction={ handleSubmit }/>
                             }
                         </div>
                     </div>
                 </main>
 
-                <ONSButton
-                    label={"Run report"}
-                    primary={true}
-                    loading={false}
-                    id="submit-button"
-                    testid="submit-button"
-                    //onClick={() => callNextPage()}
-                />
-
                 <ONSPanel hidden={messageNoData === "" && true}>{messageNoData}</ONSPanel>
-
             </div>
         </>
     );
