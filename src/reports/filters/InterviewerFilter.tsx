@@ -5,6 +5,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
 
 interface InterviewerFilterPageProps {
+    title: string
     interviewer: string | undefined
     setInterviewer: (string: string) => void
     startDate: Date
@@ -18,6 +19,7 @@ interface InterviewerFilterPageProps {
 
 function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
     const {
+        title,
         interviewer,
         setInterviewer,
         startDate,
@@ -97,7 +99,7 @@ function InterviewerFilter(props: InterviewerFilterPageProps): ReactElement {
                 <Breadcrumbs
                     BreadcrumbList={[{link: "/", title: "Reports"}]}/>
                 <main id="main-content" className="page__main u-mt-s">
-                    <h1 className="u-mb-m">Run interviewer call history report</h1>
+                    <h1 className="u-mb-m">Run interviewer {title} report</h1>
                     <CallHistoryLastUpdatedStatus/>
                     <StyledForm fields={fields} onSubmitFunction={submitInterviewerFilters} submitLabel={"Next"}/>
                 </main>

@@ -1,7 +1,7 @@
 import React, {ReactElement, useEffect, useState} from "react";
 import {Link, Route, Switch, useLocation} from "react-router-dom";
 import {BetaBanner, DefaultErrorBoundary, Footer, Header, ONSLoadingPanel} from "blaise-design-system-react-components";
-import InterviewerCallPattern from "./reports/InterviewerCallPattern";
+import InterviewerCallPattern from "./reports/InterviewerCallPattern/InterviewerCallPattern";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
 import "./style.css";
 import {LoginForm, AuthManager} from "blaise-login-react-client";

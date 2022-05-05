@@ -1,7 +1,7 @@
 import React, {ReactElement, useState} from "react";
 import InterviewerFilter from "../filters/InterviewerFilter";
 import InstrumentFilter from "../filters/InstrumentFilter";
-import RenderInterviewerCallHistoryReport from "./RenderInterviewerCallHistoryReport";
+import RenderInterviewerCallHistoryReport from "../InterviewerCallHistory/RenderInterviewerCallHistoryReport";
 
 enum Step {
     InterviewerFilter,
@@ -9,7 +9,7 @@ enum Step {
     RenderReport,
 }
 
-function InterviewerCallHistory(): ReactElement {
+function InterviewerCallPattern(): ReactElement {
     const [activeStep, setActiveStep] = useState<Step>(Step.InterviewerFilter);
     const [interviewer, setInterviewer] = useState<string>("");
     const [startDate, setStartDate] = useState<Date>(new Date());
@@ -20,7 +20,7 @@ function InterviewerCallHistory(): ReactElement {
     function _renderStepContent(step: number) {
         switch (step) {
             case Step.InterviewerFilter:
-                return (<InterviewerFilter title="call history"
+                return (<InterviewerFilter title="call pattern"
                                            interviewer={interviewer} setInterviewer={setInterviewer}
                                            startDate={startDate} setStartDate={setStartDate}
                                            endDate={endDate} setEndDate={setEndDate}
@@ -70,4 +70,4 @@ function InterviewerCallHistory(): ReactElement {
     );
 }
 
-export default InterviewerCallHistory;
+export default InterviewerCallPattern;

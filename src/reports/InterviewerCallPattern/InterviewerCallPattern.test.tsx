@@ -4,7 +4,7 @@
 
 import "@testing-library/jest-dom";
 import React from "react";
-import flushPromises from "../tests/utilities";
+import flushPromises from "../../tests/utilities";
 import { createMemoryHistory } from "history";
 import { cleanup, render, waitFor } from "@testing-library/react";
 import { Router } from "react-router";
@@ -16,9 +16,9 @@ import InterviewerCallPattern, {
     callTimeSection,
     callStatusSection,
     noContactBreakdownSection, isAllInvalid, invalidFieldsGroup
-} from "./InterviewerCallPattern";
+} from "../InterviewerCallPattern";
 import MockDate from "mockdate";
-import { InterviewerCallPatternReport } from "../interfaces";
+import { InterviewerCallPatternReport } from "../../interfaces";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 
