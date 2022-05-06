@@ -1,0 +1,432 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`the interviewer details page renders correctly matches snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <nav
+          aria-label="Breadcrumb"
+          class="breadcrumb"
+        >
+          <ol
+            class="breadcrumb__items u-fs-s"
+          >
+            <li
+              class="breadcrumb__item"
+              id="breadcrumb-0"
+            >
+              <a
+                class="breadcrumb__link"
+                href="/"
+              >
+                Reports
+              </a>
+              <svg
+                class="svg-icon"
+                focusable="false"
+                viewBox="0 0 8 13"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z"
+                  transform="translate(-5.02 -1.59)"
+                />
+              </svg>
+            </li>
+            <li
+              class="breadcrumb__item"
+              id="breadcrumb-1"
+            >
+              <a
+                class="breadcrumb__link"
+                href="/"
+              >
+                Interviewer details
+              </a>
+              <svg
+                class="svg-icon"
+                focusable="false"
+                viewBox="0 0 8 13"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z"
+                  transform="translate(-5.02 -1.59)"
+                />
+              </svg>
+            </li>
+          </ol>
+        </nav>
+        <main
+          class="page__main u-mt-s"
+          id="main-content"
+        >
+          <h1
+            class="u-mb-m"
+          >
+            Select questionnaires for 
+            <em
+              class="highlight"
+            >
+              James
+            </em>
+            , between 
+            <em
+              class="highlight"
+            >
+              2022-01-01
+            </em>
+             and 
+            <em
+              class="highlight"
+            >
+              2022-01-05
+            </em>
+          </h1>
+          <p
+            aria-live="polite"
+            class="u-fs-s u-mt-s"
+          >
+            Data in this report was last updated: 
+            <b>
+              Unknown
+            </b>
+          </p>
+          <p
+            class="u-fs-s"
+          >
+            Data in this report only goes back to the last 12 months.
+          </p>
+          <div
+            class="input-items"
+          >
+            <div
+              class="checkboxes__items"
+            >
+              <form
+                action="#"
+              >
+                <fieldset
+                  class="fieldset"
+                >
+                  <legend
+                    class="fieldset__legend"
+                  />
+                  <button
+                    class="btn u-mb-s js-auto-selector btn--small btn--secondary"
+                    type="button"
+                  >
+                    <span
+                      class="btn__inner"
+                    >
+                      <span
+                        class="js-button-text"
+                      >
+                        Unselect All
+                      </span>
+                      <span
+                        class="u-vh"
+                      >
+                         following checkboxes
+                      </span>
+                    </span>
+                  </button>
+                  <div
+                    class="checkboxes__items"
+                    id="questionnaires"
+                  >
+                    <p
+                      class="checkboxes__item"
+                    >
+                      <span
+                        class="checkbox"
+                      >
+                        <input
+                          checked=""
+                          class="checkbox__input js-checkbox"
+                          id="LMS2101_AA1"
+                          initial_value="LMS2101_AA1"
+                          name="questionnaires"
+                          type="checkbox"
+                          value="LMS2101_AA1"
+                        />
+                        <label
+                          class="checkbox__label "
+                          for="LMS2101_AA1"
+                          id="LMS2101_AA1-label"
+                        >
+                          LMS2101_AA1
+                        </label>
+                      </span>
+                    </p>
+                    <br />
+                  </div>
+                </fieldset>
+                <br />
+                <button
+                  class="btn "
+                  data-testid="submit-button"
+                  type="submit"
+                >
+                  <span
+                    class="btn__inner"
+                  >
+                    Run report
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </main>
+        <div
+          class="panel panel--info panel--no-title  u-mt-m"
+          hidden=""
+        >
+          <div
+            class="panel__body "
+          />
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <nav
+        aria-label="Breadcrumb"
+        class="breadcrumb"
+      >
+        <ol
+          class="breadcrumb__items u-fs-s"
+        >
+          <li
+            class="breadcrumb__item"
+            id="breadcrumb-0"
+          >
+            <a
+              class="breadcrumb__link"
+              href="/"
+            >
+              Reports
+            </a>
+            <svg
+              class="svg-icon"
+              focusable="false"
+              viewBox="0 0 8 13"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z"
+                transform="translate(-5.02 -1.59)"
+              />
+            </svg>
+          </li>
+          <li
+            class="breadcrumb__item"
+            id="breadcrumb-1"
+          >
+            <a
+              class="breadcrumb__link"
+              href="/"
+            >
+              Interviewer details
+            </a>
+            <svg
+              class="svg-icon"
+              focusable="false"
+              viewBox="0 0 8 13"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z"
+                transform="translate(-5.02 -1.59)"
+              />
+            </svg>
+          </li>
+        </ol>
+      </nav>
+      <main
+        class="page__main u-mt-s"
+        id="main-content"
+      >
+        <h1
+          class="u-mb-m"
+        >
+          Select questionnaires for 
+          <em
+            class="highlight"
+          >
+            James
+          </em>
+          , between 
+          <em
+            class="highlight"
+          >
+            2022-01-01
+          </em>
+           and 
+          <em
+            class="highlight"
+          >
+            2022-01-05
+          </em>
+        </h1>
+        <p
+          aria-live="polite"
+          class="u-fs-s u-mt-s"
+        >
+          Data in this report was last updated: 
+          <b>
+            Unknown
+          </b>
+        </p>
+        <p
+          class="u-fs-s"
+        >
+          Data in this report only goes back to the last 12 months.
+        </p>
+        <div
+          class="input-items"
+        >
+          <div
+            class="checkboxes__items"
+          >
+            <form
+              action="#"
+            >
+              <fieldset
+                class="fieldset"
+              >
+                <legend
+                  class="fieldset__legend"
+                />
+                <button
+                  class="btn u-mb-s js-auto-selector btn--small btn--secondary"
+                  type="button"
+                >
+                  <span
+                    class="btn__inner"
+                  >
+                    <span
+                      class="js-button-text"
+                    >
+                      Unselect All
+                    </span>
+                    <span
+                      class="u-vh"
+                    >
+                       following checkboxes
+                    </span>
+                  </span>
+                </button>
+                <div
+                  class="checkboxes__items"
+                  id="questionnaires"
+                >
+                  <p
+                    class="checkboxes__item"
+                  >
+                    <span
+                      class="checkbox"
+                    >
+                      <input
+                        checked=""
+                        class="checkbox__input js-checkbox"
+                        id="LMS2101_AA1"
+                        initial_value="LMS2101_AA1"
+                        name="questionnaires"
+                        type="checkbox"
+                        value="LMS2101_AA1"
+                      />
+                      <label
+                        class="checkbox__label "
+                        for="LMS2101_AA1"
+                        id="LMS2101_AA1-label"
+                      >
+                        LMS2101_AA1
+                      </label>
+                    </span>
+                  </p>
+                  <br />
+                </div>
+              </fieldset>
+              <br />
+              <button
+                class="btn "
+                data-testid="submit-button"
+                type="submit"
+              >
+                <span
+                  class="btn__inner"
+                >
+                  Run report
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+      <div
+        class="panel panel--info panel--no-title  u-mt-m"
+        hidden=""
+      >
+        <div
+          class="panel__body "
+        />
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
