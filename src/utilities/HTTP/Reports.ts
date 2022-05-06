@@ -1,6 +1,12 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { AuthManager } from "blaise-login-react-client";
-import { AppointmentResourcePlanningReportData, AppointmentResourcePlanningSummaryReportData, CallHistoryStatus, InterviewerCallHistoryReport, InterviewerCallPatternReport } from "../../interfaces";
+import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
+import {AuthManager} from "blaise-login-react-client";
+import {
+    AppointmentResourcePlanningReportData,
+    AppointmentResourcePlanningSummaryReportData,
+    CallHistoryStatus,
+    InterviewerCallHistoryReport,
+    InterviewerCallPatternReport
+} from "../../interfaces";
 
 function axiosConfig(): AxiosRequestConfig {
     const authManager = new AuthManager();
@@ -52,6 +58,7 @@ async function getInterviewerCallPatternReport(form: Record<string, any>): Promi
     formData.append("interviewer", form.interviewer);
     formData.append("start_date", form.start_date);
     formData.append("end_date", form.end_date);
+    formData.append("instruments", form.instruments);
 
     return axios.post(url, formData, axiosConfig()).then((response: AxiosResponse) => {
         if (response.status === 200 && Object.keys(response.data).length) {
@@ -101,4 +108,10 @@ async function getAppointmentResourcePlanningSummaryReport(date: string, survey_
     });
 }
 
-export { getInterviewerCallHistoryStatus, getInterviewerCallHistoryReport, getInterviewerCallPatternReport, getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport };
+export {
+    getInterviewerCallHistoryStatus,
+    getInterviewerCallHistoryReport,
+    getInterviewerCallPatternReport,
+    getAppointmentResourcePlanningReport,
+    getAppointmentResourcePlanningSummaryReport
+};

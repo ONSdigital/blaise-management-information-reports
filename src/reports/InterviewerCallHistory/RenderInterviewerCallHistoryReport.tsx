@@ -20,6 +20,13 @@ interface RenderInterviewerCallHistoryReportPageProps {
     instruments: string[]
 }
 
+function formatList(listOfInstruments: string[]): string {
+    if (listOfInstruments.length === 1) return listOfInstruments[0];
+    const firsts = listOfInstruments.slice(0, listOfInstruments.length - 1);
+    const last = listOfInstruments[listOfInstruments.length - 1];
+    return firsts.join(", ") + " and " + last;
+}
+
 function RenderInterviewerCallHistoryReport(props: RenderInterviewerCallHistoryReportPageProps) {
     const [reportData, setReportData] = useState<InterviewerCallHistoryReport[]>([]);
     const [interviewerID, setInterviewerID] = useState<string>("");
@@ -84,7 +91,12 @@ function RenderInterviewerCallHistoryReport(props: RenderInterviewerCallHistoryR
         <>
             <Breadcrumbs BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", title: "Interviewer details"}, {link: "#", title: "Instruments"}]}/>
             <main id="main-content" className="page__main u-mt-s">
-                <h1 className="u-mb-m">Displaying the call history report for <em className="highlight">{interviewer}</em>, for questionnaire(s) <em className="highlight">{instruments}</em> between <em className="highlight">{startDate}</em> and <em className="highlight">{endDate}</em></h1>
+                <h1 className="u-mb-m">
+                    Displaying the call history report for <em className="highlight">{interviewer}</em>,
+                    for questionnaire{instruments.length > 1 ? ("s") : ""} <em className="highlight">{formatList(instruments)}</em>{" "}
+                    between <em className="highlight">{startDate}</em>{" "}
+                    and <em className="highlight">{endDate}</em>
+                </h1>
                 <CallHistoryLastUpdatedStatus/>
 
                 <div>

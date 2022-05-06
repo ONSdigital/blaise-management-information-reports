@@ -33,7 +33,7 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
     const [messageNoData, setMessageNoData] = useState<string>("");
     const [fields, setFields] = useState<FormFieldObject[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-
+    const [numberOfInstruments, setNumberOfInstruments] = useState(0);
     const {
         interviewer,
         startDate,
@@ -64,6 +64,7 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                 })),
             },
         ]);
+        setNumberOfInstruments(allInstruments.length);
         setIsLoading(false);
     }
 
@@ -98,6 +99,16 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
         submitFunction();
     }
 
+    function displayCheckboxes() {
+        if (isLoading) {
+            return <ONSLoadingPanel/>;
+        }
+        if (numberOfInstruments === 0) {
+            return <ONSPanel> No questionnaires found for given parameters.</ONSPanel>;
+        }
+        return <StyledForm fields={fields} submitLabel="Run report" onSubmitFunction={handleSubmit}/>;
+    }
+
     return (
         <>
             <div>
@@ -109,17 +120,15 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
                     }]}/>
 
                 <main id="main-content" className="page__main u-mt-s">
-                    <h1 className="u-mb-m">Select questionnaire(s) for <em className="highlight">{interviewer}</em>,
-                        between <em className="highlight">{dateFormatter(startDate).format("YYYY-MM-DD")}</em> and <em className="highlight">{dateFormatter(endDate).format("YYYY-MM-DD")}</em>
+                    <h1 className="u-mb-m">Select questionnaires for <em className="highlight">{interviewer}</em>,
+                        between <em className="highlight">{dateFormatter(startDate).format("YYYY-MM-DD")}</em> and <em
+                            className="highlight">{dateFormatter(endDate).format("YYYY-MM-DD")}</em>
                     </h1>
                     <CallHistoryLastUpdatedStatus/>
 
                     <div className="input-items">
                         <div className="checkboxes__items">
-                            { isLoading
-                                ? <ONSLoadingPanel/>
-                                : <StyledForm fields={ fields } submitLabel="Run report" onSubmitFunction={ handleSubmit }/>
-                            }
+                            {displayCheckboxes()}
                         </div>
                     </div>
                 </main>
