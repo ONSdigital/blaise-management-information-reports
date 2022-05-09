@@ -20,6 +20,8 @@ interface RenderInterviewerCallPatternReportPageProps {
     endDate: Date
     surveyTla: string
     instruments: string[]
+    navigateBack: () => void
+    navigateBackTwoSteps: () => void
 }
 
 function formatList(listOfInstruments: string[]): string {
@@ -112,7 +114,9 @@ function RenderInterviewerCallPatternReport(props: RenderInterviewerCallPatternR
         startDate,
         endDate,
         surveyTla,
-        instruments
+        instruments,
+        navigateBack,
+        navigateBackTwoSteps,
     } = props;
 
     function defaultState() {
@@ -197,7 +201,11 @@ function RenderInterviewerCallPatternReport(props: RenderInterviewerCallPatternR
 
     return (
         <>
-            <Breadcrumbs BreadcrumbList={[{link: "/", title: "Back"}]}/>
+            <Breadcrumbs BreadcrumbList={[{link: "/", title: "Reports"}, {
+                link: "#",
+                onClickFunction: navigateBackTwoSteps,
+                title: "Interviewer details"
+            }, {link: "#", onClickFunction: navigateBack, title: "Questionnaires"}]}/>
             <main id="main-content" className="page__main u-mt-s">
                 <h1 className="u-mb-m">
                     Displaying the call pattern report for <em className="highlight">{interviewer}</em>,

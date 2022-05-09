@@ -18,6 +18,8 @@ interface RenderInterviewerCallHistoryReportPageProps {
     endDate: Date
     surveyTla: string
     instruments: string[]
+    navigateBack: () => void
+    navigateBackTwoSteps: () => void
 }
 
 function formatList(listOfInstruments: string[]): string {
@@ -37,7 +39,9 @@ function RenderInterviewerCallHistoryReport(props: RenderInterviewerCallHistoryR
         startDate,
         endDate,
         surveyTla,
-        instruments
+        instruments,
+        navigateBack,
+        navigateBackTwoSteps,
     } = props;
 
     const reportExportHeaders = [
@@ -89,7 +93,7 @@ function RenderInterviewerCallHistoryReport(props: RenderInterviewerCallHistoryR
 
     return (
         <>
-            <Breadcrumbs BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", title: "Interviewer details"}, {link: "#", title: "Instruments"}]}/>
+            <Breadcrumbs BreadcrumbList={[{link: "/", title: "Reports"}, {link: "#", onClickFunction: navigateBackTwoSteps, title: "Interviewer details"}, {link: "#", onClickFunction: navigateBack, title: "Questionnaires"}]}/>
             <main id="main-content" className="page__main u-mt-s">
                 <h1 className="u-mb-m">
                     Displaying the call history report for <em className="highlight">{interviewer}</em>,

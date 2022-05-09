@@ -40,7 +40,9 @@ function InterviewerCallHistory(): ReactElement {
                                                             startDate={startDate}
                                                             endDate={endDate}
                                                             surveyTla={surveyTla}
-                                                            instruments={instruments}/>);
+                                                            instruments={instruments}
+                                                            navigateBack={_navigateBack}
+                                                            navigateBackTwoSteps={_navigateBackTwoSteps}/>);
         }
     }
 
@@ -59,6 +61,10 @@ function InterviewerCallHistory(): ReactElement {
 
     function _navigateBack() {
         setActiveStep(activeStep - 1);
+    }
+
+    function _navigateBackTwoSteps() {
+        setActiveStep(activeStep - 2);
     }
 
     return (
