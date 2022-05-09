@@ -94,8 +94,8 @@ function RenderInterviewerCallHistoryReport(props: RenderInterviewerCallHistoryR
                 <h1 className="u-mb-m">
                     Displaying the call history report for <em className="highlight">{interviewer}</em>,
                     for questionnaire{instruments.length > 1 ? ("s") : ""} <em className="highlight">{formatList(instruments)}</em>{" "}
-                    between <em className="highlight">{startDate}</em>{" "}
-                    and <em className="highlight">{endDate}</em>
+                    between <em className="highlight">{dateFormatter(startDate).format("DD-MM-YYYY")}</em>{" "}
+                    and <em className="highlight">{dateFormatter(endDate).format("DD-MM-YYYY")}</em>
                 </h1>
                 <CallHistoryLastUpdatedStatus/>
 

@@ -121,8 +121,8 @@ function InstrumentFilter(props: InstrumentFilterPageProps): ReactElement {
 
                 <main id="main-content" className="page__main u-mt-s">
                     <h1 className="u-mb-m">Select questionnaires for <em className="highlight">{interviewer}</em>,
-                        between <em className="highlight">{dateFormatter(startDate).format("YYYY-MM-DD")}</em> and <em
-                            className="highlight">{dateFormatter(endDate).format("YYYY-MM-DD")}</em>
+                        between <em className="highlight">{dateFormatter(startDate).format("DD-MM-YYYY")}</em> and <em
+                            className="highlight">{dateFormatter(endDate).format("DD-MM-YYYY")}</em>
                     </h1>
                     <CallHistoryLastUpdatedStatus/>
 
