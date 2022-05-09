@@ -203,8 +203,8 @@ function RenderInterviewerCallPatternReport(props: RenderInterviewerCallPatternR
                     Displaying the call pattern report for <em className="highlight">{interviewer}</em>,
                     for questionnaire{instruments.length > 1 ? ("s") : ""} <em
                     className="highlight">{formatList(instruments)}</em>{" "}
-                    between <em className="highlight">{dateFormatter(startDate).format("DD-MM-YYYY")}</em>{" "}
-                    and <em className="highlight">{dateFormatter(endDate).format("DD-MM-YYYY")}</em>
+                    between <em className="highlight">{dateFormatter(startDate).format("DD/MM/YYYY")}</em>{" "}
+                    and <em className="highlight">{dateFormatter(endDate).format("DD/MM/YYYY")}</em>
                 </h1>
                 <ReportErrorPanel error={reportFailed}/>
                 <CallHistoryLastUpdatedStatus/>
