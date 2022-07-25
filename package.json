@@ -10,7 +10,7 @@
     "build-react": "react-scripts build",
     "test": "jest --coverage --watchAll=false",
     "gcp-build": "react-scripts build && tsc --project tsconfig.server.json",
-    "lint": "eslint . --ext .ts --ext .tsx",
+    "lint": "node_modules/.bin/eslint .",
     "lint-fix": "eslint . --fix",
     "integration-test": "playwright test tests/integration",
     "dev": "concurrently --kill-others-on-fail \"yarn start-server\" \"yarn start-react\""
