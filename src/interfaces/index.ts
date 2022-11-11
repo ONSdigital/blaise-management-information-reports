@@ -2,7 +2,6 @@ export type AppointmentResourcePlanningReportData = {
     questionnaire_name: string
     appointment_time: string
     appointment_language: string
-    total: number
 };
 
 export type AppointmentResourcePlanningSummaryReportData = {

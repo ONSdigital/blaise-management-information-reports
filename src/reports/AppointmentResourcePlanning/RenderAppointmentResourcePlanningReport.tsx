@@ -43,7 +43,6 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
         { label: "Questionnaire", key: "questionnaire_name" },
         { label: "Appointment Time", key: "appointment_time" },
         { label: "Appointment Language", key: "appointment_language" },
-        { label: "Total", key: "total" },
     ];
 
     useEffect(() => {
