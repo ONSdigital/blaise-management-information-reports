@@ -13,7 +13,6 @@ Feature: Run and view appointment resource planning report
       * Questionnaire
       * Appointment Time
       * Appointment Language
-      * Total
     """
     And the information will be displayed in time intervals of quarter of an hour, e.g. 09:00, 09:15, 09:30, 09:45, 10:00, 10:15, etc.
 
