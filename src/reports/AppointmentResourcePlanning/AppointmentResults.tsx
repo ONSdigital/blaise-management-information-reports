@@ -28,9 +28,6 @@ export default function AppointmentResults({
                                     <th scope="col" className="table__header ">
                                         <span>Appointment Language</span>
                                     </th>
-                                    <th scope="col" className="table__header ">
-                                        <span>Total</span>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody className="table__body">
@@ -49,9 +46,6 @@ export default function AppointmentResults({
                                             </td>
                                             <td className="table__cell ">
                                                 {data.appointment_language}
-                                            </td>
-                                            <td className="table__cell ">
-                                                {data.total}
                                             </td>
                                         </tr>
                                     ))

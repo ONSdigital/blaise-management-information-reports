@@ -33,19 +33,16 @@ const reportDataReturned: AppointmentResourcePlanningReportData[] = [
         questionnaire_name: "LMS2101_AA1",
         appointment_time: "10:00",
         appointment_language: "English",
-        total: 42,
     },
     {
         questionnaire_name: "LMS2101_BB1",
         appointment_time: "12:30",
         appointment_language: "Welsh",
-        total: 1908,
     },
     {
         questionnaire_name: "LMS2101_CC1",
         appointment_time: "15:15",
         appointment_language: "Other",
-        total: 408,
     },
 ];
 
@@ -124,11 +121,10 @@ defineFeature(feature, (test) => {
                 expect(screen.getByText("Questionnaire")).toBeInTheDocument();
                 expect(screen.getByText("Appointment Time")).toBeInTheDocument();
                 expect(screen.getByText("Appointment Language")).toBeInTheDocument();
-                expect(screen.getByText("Total")).toBeInTheDocument();
 
                 const list = screen.queryAllByTestId(/report-table-row/i);
                 const listItemOne = list[0].textContent;
-                expect(listItemOne).toEqual("LMS2101_AA110:00English42");
+                expect(listItemOne).toEqual("LMS2101_AA110:00English");
             });
         });
 
