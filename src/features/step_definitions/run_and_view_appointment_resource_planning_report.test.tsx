@@ -35,7 +35,7 @@ const reportDataReturned: AppointmentResourcePlanningReportData[] = [
         appointment_language: "English",
         case_reference: "123456",
         telephone_number: "012345666666",
-        respondent_name: "Jake Peralta"
+        respondent_name: "Jake Peralta",
     },
     {
         questionnaire_name: "LMS2101_BB1",
@@ -43,7 +43,7 @@ const reportDataReturned: AppointmentResourcePlanningReportData[] = [
         appointment_language: "Welsh",
         case_reference: "123456",
         telephone_number: "012345777777",
-        respondent_name: "Harvey Norgenblum"
+        respondent_name: "Harvey Norgenblum",
     },
     {
         questionnaire_name: "LMS2101_CC1",
@@ -51,7 +51,7 @@ const reportDataReturned: AppointmentResourcePlanningReportData[] = [
         appointment_language: "Other",
         case_reference: "123456",
         telephone_number: "012345888888",
-        respondent_name: "Larry Sherbert"
+        respondent_name: "Larry Sherbert",
     },
 ];
 
@@ -133,7 +133,6 @@ defineFeature(feature, (test) => {
                 expect(screen.getByText("Case Reference")).toBeInTheDocument();
                 expect(screen.getByText("Telephone Number")).toBeInTheDocument();
                 expect(screen.getByText("Respondent Name")).toBeInTheDocument();
-                
                 const list = screen.queryAllByTestId(/report-table-row/i);
                 const listItemOne = list[0].textContent;
                 expect(listItemOne).toEqual("LMS2101_AA110:00English123456012345666666Jake Peralta");
