@@ -61,10 +61,10 @@ export default function AppointmentResults({
                                                 {data.case_reference}
                                             </td>
                                             <td className="table__cell ">
-                                                {data.telephone_number}
+                                                {data.telephone_number.replace(/'/g, "")}
                                             </td>
                                             <td className="table__cell ">
-                                                {data.respondent_name}
+                                                {data.respondent_name.replace(/'/g, "")}
                                             </td>
                                         </tr>
                                     ))
