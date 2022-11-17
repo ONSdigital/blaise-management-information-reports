@@ -114,6 +114,9 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
                 <ReportErrorPanel error={reportFailed} />
 
                 <AppointmentSummary data={summaryData} failed={summaryFailed} />
+                <h2 className="u-mb-m">
+                    Appointment details
+                </h2>
                 <div className=" u-mt-m">
                     <CSVLink
                         hidden={reportData === null || reportData.length === 0}
