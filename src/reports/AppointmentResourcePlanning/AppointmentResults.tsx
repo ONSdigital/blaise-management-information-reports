@@ -11,7 +11,6 @@ export default function AppointmentResults({
     messageNoData,
     reportData,
 }: Props): ReactElement {
-    console.log(`data in the report is:${reportData}`);
     return (
         <ErrorBoundary errorMessageText="Failed to load">
             {
