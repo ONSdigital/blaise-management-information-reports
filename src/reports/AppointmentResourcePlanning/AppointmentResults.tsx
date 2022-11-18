@@ -28,6 +28,15 @@ export default function AppointmentResults({
                                     <th scope="col" className="table__header ">
                                         <span>Appointment Language</span>
                                     </th>
+                                    <th scope="col" className="table__header ">
+                                        <span>Case Reference</span>
+                                    </th>
+                                    <th scope="col" className="table__header ">
+                                        <span>Telephone Number</span>
+                                    </th>
+                                    <th scope="col" className="table__header ">
+                                        <span>Respondent Name</span>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody className="table__body">
@@ -35,7 +44,7 @@ export default function AppointmentResults({
                                     reportData.map((data: AppointmentResourcePlanningReportData) => (
                                         <tr
                                             className="table__row"
-                                            key={`${data.questionnaire_name}-${data.appointment_time}-${data.appointment_language}`}
+                                            key={`${data.questionnaire_name}-${data.appointment_time}-${data.appointment_language}-${data.case_reference}`}
                                             data-testid="report-table-row"
                                         >
                                             <td className="table__cell ">
@@ -46,6 +55,15 @@ export default function AppointmentResults({
                                             </td>
                                             <td className="table__cell ">
                                                 {data.appointment_language}
+                                            </td>
+                                            <td className="table__cell ">
+                                                {data.case_reference}
+                                            </td>
+                                            <td className="table__cell ">
+                                                {data.telephone_number.replace(/'/g, "")}
+                                            </td>
+                                            <td className="table__cell ">
+                                                {data.respondent_name.replace(/'/g, "")}
                                             </td>
                                         </tr>
                                     ))
