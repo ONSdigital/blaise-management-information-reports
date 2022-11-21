@@ -143,4 +143,84 @@ defineFeature(feature, (test) => {
             expect(screen.getByText("10:00")).toBeInTheDocument();
         });
     });
+
+    test("Run and view appointment resource planning report where telephone numbers and respondent name is not pulled through", ({
+        given, when, then, and,
+    }) => {
+        given("A survey tla and date has been specified", async () => {
+            const history = createMemoryHistory();
+            render(
+                <Router history={history}>
+                    <App />
+                </Router>,
+            );
+
+            await act(async () => {
+                await flushPromises();
+            });
+
+            userEvent.click(screen.getByText("Appointment resource planning"));
+
+            await act(async () => {
+                await flushPromises();
+            });
+
+            userEvent.click(screen.getByText("LMS"));
+
+            await act(async () => {
+                await flushPromises();
+            });
+
+            fireEvent.input(screen.getByLabelText(/Date/i), {
+                target: {
+                    value: "2021-01-01",
+                },
+            });
+        });
+
+        and("there are no telephone numbers and respondent names pulled through", async () => {
+            reportDataReturned[0].telephone_number = null;
+            reportDataReturned[0].respondent_name = null;
+            mockAdapter.onPost("/api/reports/appointment-resource-planning/").reply(200, reportDataReturned);
+
+            await act(async () => {
+                await flushPromises();
+            });
+        });
+
+        when("I click next to retrieve a list of questionnaires", async () => {
+            userEvent.click(screen.getByTestId(/submit-button/i));
+
+            await act(async () => {
+                await flushPromises();
+            });
+        });
+
+        when("I select a questionnaire and click on run report", async () => {
+            userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
+            userEvent.click(screen.getByTestId(/submit-button/i));
+
+            await act(async () => {
+                await flushPromises();
+            });
+        });
+
+        then("I will receive a list of the following information for appointments made:", async () => {
+            await waitFor(() => {
+                expect(screen.getByText("Questionnaire")).toBeInTheDocument();
+                expect(screen.getByText("Appointment Time")).toBeInTheDocument();
+                expect(screen.getByText("Appointment Language")).toBeInTheDocument();
+                expect(screen.getByText("Case Reference")).toBeInTheDocument();
+                expect(screen.getByText("Telephone Number")).toBeInTheDocument();
+                expect(screen.getByText("Respondent Name")).toBeInTheDocument();
+                const list = screen.queryAllByTestId(/report-table-row/i);
+                const listItemOne = list[0].textContent;
+                expect(listItemOne).toEqual("LMS2101_AA110:00English123456");
+            });
+        });
+
+        and("the information will be displayed in time intervals of quarter of an hour, e.g. 09:00, 09:15, 09:30, 09:45, 10:00, 10:15, etc.", async () => {
+            expect(screen.getByText("10:00")).toBeInTheDocument();
+        });
+    });
 });
