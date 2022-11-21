@@ -19,3 +19,20 @@ Feature: Run and view appointment resource planning report
     """
     And the information will be displayed in time intervals of quarter of an hour, e.g. 09:00, 09:15, 09:30, 09:45, 10:00, 10:15, etc.
 
+  # Scenario 2: Older questionnaires may not have configuration set up to pull through telephone number and respondent name
+  Scenario: Run and view appointment resource planning report where telephone numbers and respondent name is not pulled through
+    Given A survey tla and date has been specified
+    And there are no telephone numbers and respondent names pulled through
+    When I click next to retrieve a list of questionnaires
+    When I select a questionnaire and click on run report
+    Then I will receive a list of the following information for appointments made:
+    """
+      * Questionnaire
+      * Appointment Time
+      * Appointment Language
+      * Case Reference
+      * Telephone Number
+      * Respondent Name
+    """
+    And the information will be displayed in time intervals of quarter of an hour, e.g. 09:00, 09:15, 09:30, 09:45, 10:00, 10:15, etc.
+
