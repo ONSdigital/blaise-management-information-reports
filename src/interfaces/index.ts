@@ -3,8 +3,8 @@ export type AppointmentResourcePlanningReportData = {
     appointment_time: string
     appointment_language: string
     case_reference: string
-    telephone_number: string
-    respondent_name: string
+    telephone_number?: string | null
+    respondent_name?: string | null
 };
 
 export type AppointmentResourcePlanningSummaryReportData = {
