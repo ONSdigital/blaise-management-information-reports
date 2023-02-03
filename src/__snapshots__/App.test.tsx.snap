@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <a
-        class="skip__link"
+        class="ons-skip-link"
         href="#main-content"
       >
         Skip to main content
@@ -137,7 +137,7 @@ Object {
         </div>
       </header>
       <div
-        class="page__container container"
+        class="ons-page__container ons-container"
         style="min-height: calc(72vh);"
       >
         <main
@@ -378,7 +378,7 @@ Object {
   </body>,
   "container": <div>
     <a
-      class="skip__link"
+      class="ons-skip-link"
       href="#main-content"
     >
       Skip to main content
@@ -509,7 +509,7 @@ Object {
       </div>
     </header>
     <div
-      class="page__container container"
+      class="ons-page__container ons-container"
       style="min-height: calc(72vh);"
     >
       <main
