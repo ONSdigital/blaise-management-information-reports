@@ -9,25 +9,25 @@ Object {
         action="#"
       >
         <fieldset
-          class="fieldset"
+          class="ons-fieldset"
         >
           <legend
-            class="fieldset__legend"
+            class="ons-fieldset__legend"
           >
             Select survey
           </legend>
           <div
-            class="radios__items"
+            class="ons-radios__items"
             id="Survey TLA"
           >
             <p
-              class="radios__item"
+              class="ons-radios__item"
             >
               <span
-                class="radio"
+                class="ons-radio"
               >
                 <input
-                  class="radio__input js-radio"
+                  class="ons-radio__input js-radio"
                   id="all"
                   initial_value="undefined"
                   name="Survey TLA"
@@ -35,7 +35,7 @@ Object {
                   value=""
                 />
                 <label
-                  class="radio__label "
+                  class="ons-radio__label "
                   for="all"
                   id="all-label"
                 >
@@ -45,13 +45,13 @@ Object {
             </p>
             <br />
             <p
-              class="radios__item"
+              class="ons-radios__item"
             >
               <span
-                class="radio"
+                class="ons-radio"
               >
                 <input
-                  class="radio__input js-radio"
+                  class="ons-radio__input js-radio"
                   id="lms"
                   initial_value="undefined"
                   name="Survey TLA"
@@ -59,13 +59,13 @@ Object {
                   value="lms"
                 />
                 <label
-                  class="radio__label label--with-description"
+                  class="ons-radio__label ons-label--with-description"
                   for="lms"
                   id="lms-label"
                 >
                   LMS
                   <span
-                    class="label__description radio__label--with-description"
+                    class="ons-label__description ons-radio__label--with-description"
                     id="white-label-description-hint"
                   >
                     Labour Market Survey
@@ -75,13 +75,13 @@ Object {
             </p>
             <br />
             <p
-              class="radios__item"
+              class="ons-radios__item"
             >
               <span
-                class="radio"
+                class="ons-radio"
               >
                 <input
-                  class="radio__input js-radio"
+                  class="ons-radio__input js-radio"
                   id="opn"
                   initial_value="undefined"
                   name="Survey TLA"
@@ -89,13 +89,13 @@ Object {
                   value="opn"
                 />
                 <label
-                  class="radio__label label--with-description"
+                  class="ons-radio__label ons-label--with-description"
                   for="opn"
                   id="opn-label"
                 >
                   OPN
                   <span
-                    class="label__description radio__label--with-description"
+                    class="ons-label__description ons-radio__label--with-description"
                     id="white-label-description-hint"
                   >
                     Opinions and Lifestyle Survey
@@ -107,16 +107,16 @@ Object {
           </div>
         </fieldset>
         <div
-          class="field"
+          class="ons-field"
         >
           <label
-            class="label "
+            class="ons-label "
             for="Date"
           >
             Date
           </label>
           <input
-            class="input input--text input-type__input "
+            class="ons-input ons-input--text ons-input-type__input "
             id="Date"
             initial_value="1997-12-24"
             name="Date"
@@ -126,12 +126,12 @@ Object {
         </div>
         <br />
         <button
-          class="btn "
+          class="ons-btn "
           data-testid="submit-button"
           type="submit"
         >
           <span
-            class="btn__inner"
+            class="ons-btn__inner"
           >
             Run
           </span>
@@ -144,25 +144,25 @@ Object {
       action="#"
     >
       <fieldset
-        class="fieldset"
+        class="ons-fieldset"
       >
         <legend
-          class="fieldset__legend"
+          class="ons-fieldset__legend"
         >
           Select survey
         </legend>
         <div
-          class="radios__items"
+          class="ons-radios__items"
           id="Survey TLA"
         >
           <p
-            class="radios__item"
+            class="ons-radios__item"
           >
             <span
-              class="radio"
+              class="ons-radio"
             >
               <input
-                class="radio__input js-radio"
+                class="ons-radio__input js-radio"
                 id="all"
                 initial_value="undefined"
                 name="Survey TLA"
@@ -170,7 +170,7 @@ Object {
                 value=""
               />
               <label
-                class="radio__label "
+                class="ons-radio__label "
                 for="all"
                 id="all-label"
               >
@@ -180,13 +180,13 @@ Object {
           </p>
           <br />
           <p
-            class="radios__item"
+            class="ons-radios__item"
           >
             <span
-              class="radio"
+              class="ons-radio"
             >
               <input
-                class="radio__input js-radio"
+                class="ons-radio__input js-radio"
                 id="lms"
                 initial_value="undefined"
                 name="Survey TLA"
@@ -194,13 +194,13 @@ Object {
                 value="lms"
               />
               <label
-                class="radio__label label--with-description"
+                class="ons-radio__label ons-label--with-description"
                 for="lms"
                 id="lms-label"
               >
                 LMS
                 <span
-                  class="label__description radio__label--with-description"
+                  class="ons-label__description ons-radio__label--with-description"
                   id="white-label-description-hint"
                 >
                   Labour Market Survey
@@ -210,13 +210,13 @@ Object {
           </p>
           <br />
           <p
-            class="radios__item"
+            class="ons-radios__item"
           >
             <span
-              class="radio"
+              class="ons-radio"
             >
               <input
-                class="radio__input js-radio"
+                class="ons-radio__input js-radio"
                 id="opn"
                 initial_value="undefined"
                 name="Survey TLA"
@@ -224,13 +224,13 @@ Object {
                 value="opn"
               />
               <label
-                class="radio__label label--with-description"
+                class="ons-radio__label ons-label--with-description"
                 for="opn"
                 id="opn-label"
               >
                 OPN
                 <span
-                  class="label__description radio__label--with-description"
+                  class="ons-label__description ons-radio__label--with-description"
                   id="white-label-description-hint"
                 >
                   Opinions and Lifestyle Survey
@@ -242,16 +242,16 @@ Object {
         </div>
       </fieldset>
       <div
-        class="field"
+        class="ons-field"
       >
         <label
-          class="label "
+          class="ons-label "
           for="Date"
         >
           Date
         </label>
         <input
-          class="input input--text input-type__input "
+          class="ons-input ons-input--text ons-input-type__input "
           id="Date"
           initial_value="1997-12-24"
           name="Date"
@@ -261,12 +261,12 @@ Object {
       </div>
       <br />
       <button
-        class="btn "
+        class="ons-btn "
         data-testid="submit-button"
         type="submit"
       >
         <span
-          class="btn__inner"
+          class="ons-btn__inner"
         >
           Run
         </span>

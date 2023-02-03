@@ -96,10 +96,10 @@ Object {
             Data in this report only goes back to the last 12 months.
           </p>
           <div
-            class="panel panel--info panel--no-title  u-mt-m"
+            class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
           >
             <div
-              class="panel__body "
+              class="ons-panel__body "
             >
               <div
                 style="text-align: center;"
@@ -280,10 +280,10 @@ Object {
           Data in this report only goes back to the last 12 months.
         </p>
         <div
-          class="panel panel--info panel--no-title  u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
         >
           <div
-            class="panel__body "
+            class="ons-panel__body "
           >
             <div
               style="text-align: center;"
@@ -536,17 +536,17 @@ Object {
                 action="#"
               >
                 <fieldset
-                  class="fieldset"
+                  class="ons-fieldset"
                 >
                   <legend
-                    class="fieldset__legend"
+                    class="ons-fieldset__legend"
                   />
                   <button
-                    class="btn u-mb-s js-auto-selector btn--small btn--secondary"
+                    class="ons-btn ons-u-mb-s js-auto-selector ons-btn--small ons-btn--secondary"
                     type="button"
                   >
                     <span
-                      class="btn__inner"
+                      class="ons-btn__inner"
                     >
                       <span
                         class="js-button-text"
@@ -554,7 +554,7 @@ Object {
                         Select All
                       </span>
                       <span
-                        class="u-vh"
+                        class="ons-u-vh"
                       >
                          following checkboxes
                       </span>
@@ -565,14 +565,14 @@ Object {
                     id="questionnaires"
                   >
                     <p
-                      class="checkboxes__item"
+                      class="ons-checkboxes__item"
                     >
                       <span
-                        class="checkbox"
+                        class="ons-checkbox"
                       >
                         <input
                           checked=""
-                          class="checkbox__input js-checkbox"
+                          class="ons-checkbox__input js-checkbox"
                           id="LMS2101_AA1"
                           initial_value="LMS2101_AA1"
                           name="questionnaires"
@@ -580,7 +580,7 @@ Object {
                           value="LMS2101_AA1"
                         />
                         <label
-                          class="checkbox__label "
+                          class="ons-checkbox__label "
                           for="LMS2101_AA1"
                           id="LMS2101_AA1-label"
                         >
@@ -590,13 +590,13 @@ Object {
                     </p>
                     <br />
                     <p
-                      class="checkboxes__item"
+                      class="ons-checkboxes__item"
                     >
                       <span
-                        class="checkbox"
+                        class="ons-checkbox"
                       >
                         <input
-                          class="checkbox__input js-checkbox"
+                          class="ons-checkbox__input js-checkbox"
                           id="LMS2101_AA2"
                           initial_value="LMS2101_AA1"
                           name="questionnaires"
@@ -604,7 +604,7 @@ Object {
                           value="LMS2101_AA2"
                         />
                         <label
-                          class="checkbox__label "
+                          class="ons-checkbox__label "
                           for="LMS2101_AA2"
                           id="LMS2101_AA2-label"
                         >
@@ -617,12 +617,12 @@ Object {
                 </fieldset>
                 <br />
                 <button
-                  class="btn "
+                  class="ons-btn "
                   data-testid="submit-button"
                   type="submit"
                 >
                   <span
-                    class="btn__inner"
+                    class="ons-btn__inner"
                   >
                     Run report
                   </span>
@@ -741,17 +741,17 @@ Object {
               action="#"
             >
               <fieldset
-                class="fieldset"
+                class="ons-fieldset"
               >
                 <legend
-                  class="fieldset__legend"
+                  class="ons-fieldset__legend"
                 />
                 <button
-                  class="btn u-mb-s js-auto-selector btn--small btn--secondary"
+                  class="ons-btn ons-u-mb-s js-auto-selector ons-btn--small ons-btn--secondary"
                   type="button"
                 >
                   <span
-                    class="btn__inner"
+                    class="ons-btn__inner"
                   >
                     <span
                       class="js-button-text"
@@ -759,7 +759,7 @@ Object {
                       Select All
                     </span>
                     <span
-                      class="u-vh"
+                      class="ons-u-vh"
                     >
                        following checkboxes
                     </span>
@@ -770,14 +770,14 @@ Object {
                   id="questionnaires"
                 >
                   <p
-                    class="checkboxes__item"
+                    class="ons-checkboxes__item"
                   >
                     <span
-                      class="checkbox"
+                      class="ons-checkbox"
                     >
                       <input
                         checked=""
-                        class="checkbox__input js-checkbox"
+                        class="ons-checkbox__input js-checkbox"
                         id="LMS2101_AA1"
                         initial_value="LMS2101_AA1"
                         name="questionnaires"
@@ -785,7 +785,7 @@ Object {
                         value="LMS2101_AA1"
                       />
                       <label
-                        class="checkbox__label "
+                        class="ons-checkbox__label "
                         for="LMS2101_AA1"
                         id="LMS2101_AA1-label"
                       >
@@ -795,13 +795,13 @@ Object {
                   </p>
                   <br />
                   <p
-                    class="checkboxes__item"
+                    class="ons-checkboxes__item"
                   >
                     <span
-                      class="checkbox"
+                      class="ons-checkbox"
                     >
                       <input
-                        class="checkbox__input js-checkbox"
+                        class="ons-checkbox__input js-checkbox"
                         id="LMS2101_AA2"
                         initial_value="LMS2101_AA1"
                         name="questionnaires"
@@ -809,7 +809,7 @@ Object {
                         value="LMS2101_AA2"
                       />
                       <label
-                        class="checkbox__label "
+                        class="ons-checkbox__label "
                         for="LMS2101_AA2"
                         id="LMS2101_AA2-label"
                       >
@@ -822,12 +822,12 @@ Object {
               </fieldset>
               <br />
               <button
-                class="btn "
+                class="ons-btn "
                 data-testid="submit-button"
                 type="submit"
               >
                 <span
-                  class="btn__inner"
+                  class="ons-btn__inner"
                 >
                   Run report
                 </span>
