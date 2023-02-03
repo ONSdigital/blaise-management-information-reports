@@ -8,23 +8,23 @@ Object {
       <div>
         <nav
           aria-label="Breadcrumb"
-          class="breadcrumb"
+          class="ons-breadcrumb"
         >
           <ol
-            class="breadcrumb__items u-fs-s"
+            class="ons-breadcrumb__items ons-u-fs-s"
           >
             <li
-              class="breadcrumb__item"
+              class="ons-breadcrumb__item"
               id="breadcrumb-0"
             >
               <a
-                class="breadcrumb__link"
+                class="ons-breadcrumb__link"
                 href="/"
               >
                 Reports
               </a>
               <svg
-                class="svg-icon"
+                class="ons-svg-icon"
                 focusable="false"
                 viewBox="0 0 8 13"
                 xmlns="http://www.w3.org/2000/svg"
@@ -36,17 +36,17 @@ Object {
               </svg>
             </li>
             <li
-              class="breadcrumb__item"
+              class="ons-breadcrumb__item"
               id="breadcrumb-1"
             >
               <a
-                class="breadcrumb__link"
+                class="ons-breadcrumb__link"
                 href="/"
               >
                 Appointment Details
               </a>
               <svg
-                class="svg-icon"
+                class="ons-svg-icon"
                 focusable="false"
                 viewBox="0 0 8 13"
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,16 +60,16 @@ Object {
           </ol>
         </nav>
         <main
-          class="page__main u-mt-s"
+          class="ons-page__main ons-u-mt-s"
           id="main-content"
         >
           <h1
-            class="u-mb-m"
+            class="ons-u-mb-m"
           >
             Select questionnaires for 
           </h1>
           <h3
-            class="u-mb-m"
+            class="ons-u-mb-m"
           >
             Date: 
             21/01/2022
@@ -186,23 +186,23 @@ Object {
     <div>
       <nav
         aria-label="Breadcrumb"
-        class="breadcrumb"
+        class="ons-breadcrumb"
       >
         <ol
-          class="breadcrumb__items u-fs-s"
+          class="ons-breadcrumb__items ons-u-fs-s"
         >
           <li
-            class="breadcrumb__item"
+            class="ons-breadcrumb__item"
             id="breadcrumb-0"
           >
             <a
-              class="breadcrumb__link"
+              class="ons-breadcrumb__link"
               href="/"
             >
               Reports
             </a>
             <svg
-              class="svg-icon"
+              class="ons-svg-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -214,17 +214,17 @@ Object {
             </svg>
           </li>
           <li
-            class="breadcrumb__item"
+            class="ons-breadcrumb__item"
             id="breadcrumb-1"
           >
             <a
-              class="breadcrumb__link"
+              class="ons-breadcrumb__link"
               href="/"
             >
               Appointment Details
             </a>
             <svg
-              class="svg-icon"
+              class="ons-svg-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -238,16 +238,16 @@ Object {
         </ol>
       </nav>
       <main
-        class="page__main u-mt-s"
+        class="ons-page__main ons-u-mt-s"
         id="main-content"
       >
         <h1
-          class="u-mb-m"
+          class="ons-u-mb-m"
         >
           Select questionnaires for 
         </h1>
         <h3
-          class="u-mb-m"
+          class="ons-u-mb-m"
         >
           Date: 
           21/01/2022
@@ -421,23 +421,23 @@ Object {
       <div>
         <nav
           aria-label="Breadcrumb"
-          class="breadcrumb"
+          class="ons-breadcrumb"
         >
           <ol
-            class="breadcrumb__items u-fs-s"
+            class="ons-breadcrumb__items ons-u-fs-s"
           >
             <li
-              class="breadcrumb__item"
+              class="ons-breadcrumb__item"
               id="breadcrumb-0"
             >
               <a
-                class="breadcrumb__link"
+                class="ons-breadcrumb__link"
                 href="/"
               >
                 Reports
               </a>
               <svg
-                class="svg-icon"
+                class="ons-svg-icon"
                 focusable="false"
                 viewBox="0 0 8 13"
                 xmlns="http://www.w3.org/2000/svg"
@@ -449,17 +449,17 @@ Object {
               </svg>
             </li>
             <li
-              class="breadcrumb__item"
+              class="ons-breadcrumb__item"
               id="breadcrumb-1"
             >
               <a
-                class="breadcrumb__link"
+                class="ons-breadcrumb__link"
                 href="/"
               >
                 Appointment Details
               </a>
               <svg
-                class="svg-icon"
+                class="ons-svg-icon"
                 focusable="false"
                 viewBox="0 0 8 13"
                 xmlns="http://www.w3.org/2000/svg"
@@ -473,16 +473,16 @@ Object {
           </ol>
         </nav>
         <main
-          class="page__main u-mt-s"
+          class="ons-page__main ons-u-mt-s"
           id="main-content"
         >
           <h1
-            class="u-mb-m"
+            class="ons-u-mb-m"
           >
             Select questionnaires for 
           </h1>
           <h3
-            class="u-mb-m"
+            class="ons-u-mb-m"
           >
             Date: 
             21/01/2022
@@ -503,10 +503,10 @@ Object {
           </div>
           <br />
           <div
-            class="input-items"
+            class="ons-input-items"
           >
             <div
-              class="checkboxes__items"
+              class="ons-checkboxes__items"
             >
               <form
                 action="#"
@@ -614,23 +614,23 @@ Object {
     <div>
       <nav
         aria-label="Breadcrumb"
-        class="breadcrumb"
+        class="ons-breadcrumb"
       >
         <ol
-          class="breadcrumb__items u-fs-s"
+          class="ons-breadcrumb__items ons-u-fs-s"
         >
           <li
-            class="breadcrumb__item"
+            class="ons-breadcrumb__item"
             id="breadcrumb-0"
           >
             <a
-              class="breadcrumb__link"
+              class="ons-breadcrumb__link"
               href="/"
             >
               Reports
             </a>
             <svg
-              class="svg-icon"
+              class="ons-svg-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -642,17 +642,17 @@ Object {
             </svg>
           </li>
           <li
-            class="breadcrumb__item"
+            class="ons-breadcrumb__item"
             id="breadcrumb-1"
           >
             <a
-              class="breadcrumb__link"
+              class="ons-breadcrumb__link"
               href="/"
             >
               Appointment Details
             </a>
             <svg
-              class="svg-icon"
+              class="ons-svg-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -666,16 +666,16 @@ Object {
         </ol>
       </nav>
       <main
-        class="page__main u-mt-s"
+        class="ons-page__main ons-u-mt-s"
         id="main-content"
       >
         <h1
-          class="u-mb-m"
+          class="ons-u-mb-m"
         >
           Select questionnaires for 
         </h1>
         <h3
-          class="u-mb-m"
+          class="ons-u-mb-m"
         >
           Date: 
           21/01/2022
@@ -696,10 +696,10 @@ Object {
         </div>
         <br />
         <div
-          class="input-items"
+          class="ons-input-items"
         >
           <div
-            class="checkboxes__items"
+            class="ons-checkboxes__items"
           >
             <form
               action="#"

@@ -6,15 +6,15 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="grid__col col-6@m"
+        class="ons-grid__col ons-col-6@m"
       >
         <div
           aria-describedby="-text"
           aria-labelledby=""
-          class="card"
+          class="ons-card"
         >
           <h2
-            class="u-fs-m"
+            class="ons-u-fs-m"
             id=""
           >
             <a
@@ -30,15 +30,15 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="grid__col col-6@m"
+      class="ons-grid__col ons-col-6@m"
     >
       <div
         aria-describedby="-text"
         aria-labelledby=""
-        class="card"
+        class="ons-card"
       >
         <h2
-          class="u-fs-m"
+          class="ons-u-fs-m"
           id=""
         >
           <a

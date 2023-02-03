@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="input-items"
+        class="ons-input-items"
       >
         <div
-          class="checkboxes__items"
+          class="ons-checkboxes__items"
         >
           <form
             action="#"
@@ -137,10 +137,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="input-items"
+      class="ons-input-items"
     >
       <div
-        class="checkboxes__items"
+        class="ons-checkboxes__items"
       >
         <form
           action="#"
