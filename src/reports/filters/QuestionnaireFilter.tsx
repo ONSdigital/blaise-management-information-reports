@@ -43,7 +43,7 @@ function QuestionnaireFilter({
                     { link: "#", onClickFunction: navigateBack, title: "Interviewer details" },
                 ]}
             />
-            <main id="main-content" className="page__main u-mt-s">
+            <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1>Select questionnaires for</h1>
                 <FilterSummary
                     interviewer={interviewerFilterQuery.interviewer}

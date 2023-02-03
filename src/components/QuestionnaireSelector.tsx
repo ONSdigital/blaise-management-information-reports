@@ -49,8 +49,8 @@ function QuestionnaireSelector({
     }
 
     return (
-        <div className="input-items">
-            <div className="checkboxes__items">
+        <div className="ons-input-items">
+            <div className="ons-checkboxes__items">
                 { displayCheckboxes(questionnaires) }
             </div>
         </div>
