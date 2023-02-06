@@ -7,7 +7,7 @@ Object {
     <div>
       <p
         aria-live="polite"
-        class="u-fs-s u-mt-s"
+        class="ons-u-fs-s u-mt-s"
       >
         Data in this report was last updated: 
         <b>
@@ -21,7 +21,7 @@ Object {
         </b>
       </p>
       <p
-        class="u-fs-s"
+        class="ons-u-fs-s"
       >
         Data in this report only goes back to the last 12 months.
       </p>
@@ -30,7 +30,7 @@ Object {
   "container": <div>
     <p
       aria-live="polite"
-      class="u-fs-s u-mt-s"
+      class="ons-u-fs-s u-mt-s"
     >
       Data in this report was last updated: 
       <b>
@@ -44,7 +44,7 @@ Object {
       </b>
     </p>
     <p
-      class="u-fs-s"
+      class="ons-u-fs-s"
     >
       Data in this report only goes back to the last 12 months.
     </p>
@@ -110,7 +110,7 @@ Object {
     <div>
       <p
         aria-live="polite"
-        class="u-fs-s u-mt-s"
+        class="ons-u-fs-s u-mt-s"
       >
         Data in this report was last updated: 
         <b>
@@ -118,7 +118,7 @@ Object {
         </b>
       </p>
       <p
-        class="u-fs-s"
+        class="ons-u-fs-s"
       >
         Data in this report only goes back to the last 12 months.
       </p>
@@ -127,7 +127,7 @@ Object {
   "container": <div>
     <p
       aria-live="polite"
-      class="u-fs-s u-mt-s"
+      class="ons-u-fs-s u-mt-s"
     >
       Data in this report was last updated: 
       <b>
@@ -135,7 +135,7 @@ Object {
       </b>
     </p>
     <p
-      class="u-fs-s"
+      class="ons-u-fs-s"
     >
       Data in this report only goes back to the last 12 months.
     </p>

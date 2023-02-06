@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <h3
-        class="u-mb-m"
+        class="ons-u-mb-m"
       >
         Interviewer: 
         Cal
@@ -21,7 +21,7 @@ Object {
   </body>,
   "container": <div>
     <h3
-      class="u-mb-m"
+      class="ons-u-mb-m"
     >
       Interviewer: 
       Cal

@@ -41,8 +41,8 @@ function InterviewerFilter({
             <Breadcrumbs
                 BreadcrumbList={[{ link: "/", title: "Reports" }]}
             />
-            <main id="main-content" className="page__main u-mt-s">
-                <h1 className="u-mb-m">Run interviewer { title } report</h1>
+            <main id="main-content" className="ons-page__main ons-u-mt-s">
+                <h1 className="ons-u-mb-m">Run interviewer { title } report</h1>
                 <CallHistoryLastUpdatedStatus />
                 <SurveyInterviewerStartDateEndDateForm
                     interviewer={interviewer}

@@ -57,7 +57,7 @@ function RenderInterviewerCallHistoryReport({
                 { link: "#", onClickFunction: navigateBack, title: "Questionnaires" },
             ]}
             />
-            <main id="main-content" className="page__main u-mt-s">
+            <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1>Call History Report</h1>
                 <FilterSummary
                     interviewer={interviewerFilterQuery.interviewer}

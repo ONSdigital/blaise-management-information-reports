@@ -8,23 +8,23 @@ Object {
       <div>
         <nav
           aria-label="Breadcrumb"
-          class="breadcrumb"
+          class="ons-breadcrumb"
         >
           <ol
-            class="breadcrumb__items u-fs-s"
+            class="ons-breadcrumb__items ons-u-fs-s"
           >
             <li
-              class="breadcrumb__item"
+              class="ons-breadcrumb__item"
               id="breadcrumb-0"
             >
               <a
-                class="breadcrumb__link"
+                class="ons-breadcrumb__link"
                 href="/"
               >
                 Reports
               </a>
               <svg
-                class="svg-icon"
+                class="ons-svg-icon"
                 focusable="false"
                 viewBox="0 0 8 13"
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,11 +38,11 @@ Object {
           </ol>
         </nav>
         <main
-          class="page__main u-mt-s"
+          class="ons-page__main ons-u-mt-s"
           id="main-content"
         >
           <h1
-            class="u-mb-m"
+            class="ons-u-mb-m"
           >
             Run interviewer 
             
@@ -50,7 +50,7 @@ Object {
           </h1>
           <p
             aria-live="polite"
-            class="u-fs-s u-mt-s"
+            class="ons-u-fs-s u-mt-s"
           >
             Data in this report was last updated: 
             <b>
@@ -58,7 +58,7 @@ Object {
             </b>
           </p>
           <p
-            class="u-fs-s"
+            class="ons-u-fs-s"
           >
             Data in this report only goes back to the last 12 months.
           </p>
@@ -66,25 +66,25 @@ Object {
             action="#"
           >
             <fieldset
-              class="fieldset"
+              class="ons-fieldset"
             >
               <legend
-                class="fieldset__legend"
+                class="ons-fieldset__legend"
               >
                 Select survey
               </legend>
               <div
-                class="radios__items"
+                class="ons-radios__items"
                 id="Survey TLA"
               >
                 <p
-                  class="radios__item"
+                  class="ons-radios__item"
                 >
                   <span
-                    class="radio"
+                    class="ons-radio"
                   >
                     <input
-                      class="radio__input js-radio"
+                      class="ons-radio__input js-radio"
                       id="all"
                       initial_value="LMS"
                       name="Survey TLA"
@@ -92,7 +92,7 @@ Object {
                       value=""
                     />
                     <label
-                      class="radio__label "
+                      class="ons-radio__label "
                       for="all"
                       id="all-label"
                     >
@@ -102,13 +102,13 @@ Object {
                 </p>
                 <br />
                 <p
-                  class="radios__item"
+                  class="ons-radios__item"
                 >
                   <span
-                    class="radio"
+                    class="ons-radio"
                   >
                     <input
-                      class="radio__input js-radio"
+                      class="ons-radio__input js-radio"
                       id="lms"
                       initial_value="LMS"
                       name="Survey TLA"
@@ -116,13 +116,13 @@ Object {
                       value="lms"
                     />
                     <label
-                      class="radio__label label--with-description"
+                      class="ons-radio__label ons-label--with-description"
                       for="lms"
                       id="lms-label"
                     >
                       LMS
                       <span
-                        class="label__description radio__label--with-description"
+                        class="ons-label__description ons-radio__label--with-description"
                         id="white-label-description-hint"
                       >
                         Labour Market Survey
@@ -132,13 +132,13 @@ Object {
                 </p>
                 <br />
                 <p
-                  class="radios__item"
+                  class="ons-radios__item"
                 >
                   <span
-                    class="radio"
+                    class="ons-radio"
                   >
                     <input
-                      class="radio__input js-radio"
+                      class="ons-radio__input js-radio"
                       id="opn"
                       initial_value="LMS"
                       name="Survey TLA"
@@ -146,13 +146,13 @@ Object {
                       value="opn"
                     />
                     <label
-                      class="radio__label label--with-description"
+                      class="ons-radio__label ons-label--with-description"
                       for="opn"
                       id="opn-label"
                     >
                       OPN
                       <span
-                        class="label__description radio__label--with-description"
+                        class="ons-label__description ons-radio__label--with-description"
                         id="white-label-description-hint"
                       >
                         Opinions and Lifestyle Survey
@@ -164,16 +164,16 @@ Object {
               </div>
             </fieldset>
             <div
-              class="field"
+              class="ons-field"
             >
               <label
-                class="label "
+                class="ons-label "
                 for="Interviewer ID"
               >
                 Interviewer ID
               </label>
               <input
-                class="input input--text input-type__input "
+                class="ons-input ons-input--text ons-input-type__input "
                 id="Interviewer ID"
                 initial_value="James"
                 name="Interviewer ID"
@@ -182,16 +182,16 @@ Object {
               />
             </div>
             <div
-              class="field"
+              class="ons-field"
             >
               <label
-                class="label "
+                class="ons-label "
                 for="Start date"
               >
                 Start date
               </label>
               <input
-                class="input input--text input-type__input "
+                class="ons-input ons-input--text ons-input-type__input "
                 id="Start date"
                 initial_value="2021-01-01"
                 name="Start date"
@@ -200,16 +200,16 @@ Object {
               />
             </div>
             <div
-              class="field"
+              class="ons-field"
             >
               <label
-                class="label "
+                class="ons-label "
                 for="End date"
               >
                 End date
               </label>
               <input
-                class="input input--text input-type__input "
+                class="ons-input ons-input--text ons-input-type__input "
                 id="End date"
                 initial_value="2021-01-05"
                 name="End date"
@@ -219,12 +219,12 @@ Object {
             </div>
             <br />
             <button
-              class="btn "
+              class="ons-btn "
               data-testid="submit-button"
               type="submit"
             >
               <span
-                class="btn__inner"
+                class="ons-btn__inner"
               >
                 Next
               </span>
@@ -238,23 +238,23 @@ Object {
     <div>
       <nav
         aria-label="Breadcrumb"
-        class="breadcrumb"
+        class="ons-breadcrumb"
       >
         <ol
-          class="breadcrumb__items u-fs-s"
+          class="ons-breadcrumb__items ons-u-fs-s"
         >
           <li
-            class="breadcrumb__item"
+            class="ons-breadcrumb__item"
             id="breadcrumb-0"
           >
             <a
-              class="breadcrumb__link"
+              class="ons-breadcrumb__link"
               href="/"
             >
               Reports
             </a>
             <svg
-              class="svg-icon"
+              class="ons-svg-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -268,11 +268,11 @@ Object {
         </ol>
       </nav>
       <main
-        class="page__main u-mt-s"
+        class="ons-page__main ons-u-mt-s"
         id="main-content"
       >
         <h1
-          class="u-mb-m"
+          class="ons-u-mb-m"
         >
           Run interviewer 
           
@@ -280,7 +280,7 @@ Object {
         </h1>
         <p
           aria-live="polite"
-          class="u-fs-s u-mt-s"
+          class="ons-u-fs-s u-mt-s"
         >
           Data in this report was last updated: 
           <b>
@@ -288,7 +288,7 @@ Object {
           </b>
         </p>
         <p
-          class="u-fs-s"
+          class="ons-u-fs-s"
         >
           Data in this report only goes back to the last 12 months.
         </p>
@@ -296,25 +296,25 @@ Object {
           action="#"
         >
           <fieldset
-            class="fieldset"
+            class="ons-fieldset"
           >
             <legend
-              class="fieldset__legend"
+              class="ons-fieldset__legend"
             >
               Select survey
             </legend>
             <div
-              class="radios__items"
+              class="ons-radios__items"
               id="Survey TLA"
             >
               <p
-                class="radios__item"
+                class="ons-radios__item"
               >
                 <span
-                  class="radio"
+                  class="ons-radio"
                 >
                   <input
-                    class="radio__input js-radio"
+                    class="ons-radio__input js-radio"
                     id="all"
                     initial_value="LMS"
                     name="Survey TLA"
@@ -322,7 +322,7 @@ Object {
                     value=""
                   />
                   <label
-                    class="radio__label "
+                    class="ons-radio__label "
                     for="all"
                     id="all-label"
                   >
@@ -332,13 +332,13 @@ Object {
               </p>
               <br />
               <p
-                class="radios__item"
+                class="ons-radios__item"
               >
                 <span
-                  class="radio"
+                  class="ons-radio"
                 >
                   <input
-                    class="radio__input js-radio"
+                    class="ons-radio__input js-radio"
                     id="lms"
                     initial_value="LMS"
                     name="Survey TLA"
@@ -346,13 +346,13 @@ Object {
                     value="lms"
                   />
                   <label
-                    class="radio__label label--with-description"
+                    class="ons-radio__label ons-label--with-description"
                     for="lms"
                     id="lms-label"
                   >
                     LMS
                     <span
-                      class="label__description radio__label--with-description"
+                      class="ons-label__description ons-radio__label--with-description"
                       id="white-label-description-hint"
                     >
                       Labour Market Survey
@@ -362,13 +362,13 @@ Object {
               </p>
               <br />
               <p
-                class="radios__item"
+                class="ons-radios__item"
               >
                 <span
-                  class="radio"
+                  class="ons-radio"
                 >
                   <input
-                    class="radio__input js-radio"
+                    class="ons-radio__input js-radio"
                     id="opn"
                     initial_value="LMS"
                     name="Survey TLA"
@@ -376,13 +376,13 @@ Object {
                     value="opn"
                   />
                   <label
-                    class="radio__label label--with-description"
+                    class="ons-radio__label ons-label--with-description"
                     for="opn"
                     id="opn-label"
                   >
                     OPN
                     <span
-                      class="label__description radio__label--with-description"
+                      class="ons-label__description ons-radio__label--with-description"
                       id="white-label-description-hint"
                     >
                       Opinions and Lifestyle Survey
@@ -394,16 +394,16 @@ Object {
             </div>
           </fieldset>
           <div
-            class="field"
+            class="ons-field"
           >
             <label
-              class="label "
+              class="ons-label "
               for="Interviewer ID"
             >
               Interviewer ID
             </label>
             <input
-              class="input input--text input-type__input "
+              class="ons-input ons-input--text ons-input-type__input "
               id="Interviewer ID"
               initial_value="James"
               name="Interviewer ID"
@@ -412,16 +412,16 @@ Object {
             />
           </div>
           <div
-            class="field"
+            class="ons-field"
           >
             <label
-              class="label "
+              class="ons-label "
               for="Start date"
             >
               Start date
             </label>
             <input
-              class="input input--text input-type__input "
+              class="ons-input ons-input--text ons-input-type__input "
               id="Start date"
               initial_value="2021-01-01"
               name="Start date"
@@ -430,16 +430,16 @@ Object {
             />
           </div>
           <div
-            class="field"
+            class="ons-field"
           >
             <label
-              class="label "
+              class="ons-label "
               for="End date"
             >
               End date
             </label>
             <input
-              class="input input--text input-type__input "
+              class="ons-input ons-input--text ons-input-type__input "
               id="End date"
               initial_value="2021-01-05"
               name="End date"
@@ -449,12 +449,12 @@ Object {
           </div>
           <br />
           <button
-            class="btn "
+            class="ons-btn "
             data-testid="submit-button"
             type="submit"
           >
             <span
-              class="btn__inner"
+              class="ons-btn__inner"
             >
               Next
             </span>

@@ -13,9 +13,9 @@ function ReportDetails({
     title,
 }: ReportDetailsProps): ReactElement {
     return (
-        <div className="grid__col col-6@m">
-            <div className="card" aria-labelledby={link} aria-describedby={`${link}-text`}>
-                <h2 className="u-fs-m" id={link}>
+        <div className="ons-grid__col ons-col-6@m">
+            <div className="ons-card" aria-labelledby={link} aria-describedby={`${link}-text`}>
+                <h2 className="ons-u-fs-m" id={link}>
                     <Link to={link}>
                         {title}
                     </Link>
