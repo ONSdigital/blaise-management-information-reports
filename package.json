@@ -34,7 +34,7 @@
     "axios": "^0.21.0",
     "blaise-api-node-client": "https://github.com/ONSdigital/blaise-api-node-client",
     "blaise-design-system-react-components": "git+https://github.com/ONSdigital/blaise-design-system-react-components#0.13.2",
-    "blaise-iap-node-provider": "https://github.com/ONSdigital/blaise-iap-node-provider",
+    "blaise-iap-node-provider": "ONSdigital/blaise-iap-node-provider",
     "blaise-login-react-client": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-client?efadd8296708d3538c01e6a1561e85ee7b5256e9",
     "blaise-login-react-server": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-server?f8f2014510b2b9944746b996135cfe96733997cc",
     "dayjs": "^1.10.6",
@@ -70,6 +70,7 @@
     "@types/multer": "^1.4.5",
     "@types/node": "^14.14.45",
     "@types/pino-http": "^5.4.0",
+    "@types/pino-pretty": "^5.0.0",
     "@types/react": "^17.0.5",
     "@types/react-csv": "^1.1.1",
     "@types/react-router-dom": "^5.1.6",
@@ -88,7 +89,7 @@
     "jest-silent-reporter": "^0.5.0",
     "mockdate": "^3.0.5",
     "moment": "^2.29.1",
-    "pino-pretty": "^4.7.1",
+    "pino-pretty": "^9.1.1",
     "supertest": "^6.1.3"
   },
   "browserslist": {
