@@ -100,12 +100,12 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
                 title: "Appointment details",
             }, { link: "#", onClickFunction: navigateBack, title: "Questionnaires" }]}
             />
-            <main id="main-content" className="page__main u-mt-s">
+            <main id="main-content" className="ons-page__main ons-u-mt-s">
 
-                <h1 className="u-mb-m">
+                <h1 className="ons-u-mb-m">
                     Appointment Resource Planning Report
                 </h1>
-                <h3 className="u-mb-m">
+                <h3 className="ons-u-mb-m">
                     Date: {formatDate(reportDate)}<br />
                     Questionnaire{questionnaires.length > 1 ? ("s:") : ":"} {formatList(questionnaires)}{" "}
                 </h3>
@@ -114,10 +114,10 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
                 <ReportErrorPanel error={reportFailed} />
 
                 <AppointmentSummary data={summaryData} failed={summaryFailed} />
-                <h2 className="u-mb-m">
+                <h2 className="ons-u-mb-m">
                     Appointment details
                 </h2>
-                <div className=" u-mt-m">
+                <div className="ons-u-mt-m">
                     <CSVLink
                         hidden={reportData === null || reportData.length === 0}
                         data={reportData}

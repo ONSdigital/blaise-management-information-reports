@@ -46,12 +46,12 @@ function CallHistoryLastUpdatedStatus(): ReactElement {
 
     return (
         <>
-            <p className="u-fs-s u-mt-s" aria-live="polite">
+            <p className="ons-u-fs-s u-mt-s" aria-live="polite">
                 Data in this report was last updated: <b>
                     <ReportStatusText reportStatusFailed={reportStatusFailed} reportLastUpdatedDate={reportLastUpdatedDate} />
                 </b>
             </p>
-            <p className="u-fs-s">
+            <p className="ons-u-fs-s">
                 Data in this report only goes back to the last 12 months.
             </p>
         </>

@@ -33,10 +33,10 @@
     "@types/react-dom": "^17.0.2",
     "axios": "^0.21.0",
     "blaise-api-node-client": "https://github.com/ONSdigital/blaise-api-node-client",
-    "blaise-design-system-react-components": "git+https://github.com/ONSdigital/blaise-design-system-react-components#014a606b35c63d6fd703f7523918b8f9527bf2ff",
-    "blaise-iap-node-provider": "https://github.com/ONSdigital/blaise-iap-node-provider",
-    "blaise-login-react-client": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-client?1bc811bb8993db7a8e75409cdd004500ebaba3d5",
-    "blaise-login-react-server": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-server?74e88ad500a734ce797df3ed3e2a85bdacb71980",
+    "blaise-design-system-react-components": "git+https://github.com/ONSdigital/blaise-design-system-react-components#0.13.2",
+    "blaise-iap-node-provider": "ONSdigital/blaise-iap-node-provider",
+    "blaise-login-react-client": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-client?efadd8296708d3538c01e6a1561e85ee7b5256e9",
+    "blaise-login-react-server": "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-server?f8f2014510b2b9944746b996135cfe96733997cc",
     "dayjs": "^1.10.6",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
@@ -70,6 +70,7 @@
     "@types/multer": "^1.4.5",
     "@types/node": "^14.14.45",
     "@types/pino-http": "^5.4.0",
+    "@types/pino-pretty": "^4.7.1",
     "@types/react": "^17.0.5",
     "@types/react-csv": "^1.1.1",
     "@types/react-router-dom": "^5.1.6",
@@ -102,5 +103,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "@types/react": "17.0.14",
+    "@types/react-dom": "17.0.14"
   }
 }

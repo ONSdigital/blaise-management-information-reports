@@ -81,7 +81,7 @@ function AppointmentResourcePlanning(): ReactElement {
 
     return (
         <div>
-            <div className="u-mt-m">
+            <div className="ons-u-mt-m">
                 {currentStep}
             </div>
         </div>

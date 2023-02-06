@@ -19,11 +19,11 @@ function AppointmentSummary({ data, failed }: Props): ReactElement {
 
     return (
         <div>
-            <div className="summary u-mb-m elementToFadeIn u-mt-m">
-                <div className="summary__group">
-                    <h2 className="summary__group-title">Appointment language summary</h2>
-                    <table className="summary__items u-mt-s">
-                        <thead className="u-vh">
+            <div className="ons-summary ons-u-mb-m ons-elementToFadeIn ons-u-mt-m">
+                <div className="ons-summary__group">
+                    <h2 className="ons-summary__group-title">Appointment language summary</h2>
+                    <table className="ons-summary__items ons-u-mt-s">
+                        <thead className="ons-u-vh">
                             <tr>
                                 <th>Language</th>
                                 <th>Total appointments</th>
@@ -31,17 +31,17 @@ function AppointmentSummary({ data, failed }: Props): ReactElement {
                         </thead>
                         {
                             data.map(({ language, total }: AppointmentResourcePlanningSummaryReportData) => (
-                                <tbody className="summary__item" key={language}>
+                                <tbody className="ons-summary__item" key={language}>
                                     <tr
-                                        className="summary__row summary__row--has-values"
+                                        className="ons-summary__row ons-summary__row--has-values"
                                         data-testid="summary-table-row"
                                     >
-                                        <td className="summary__item-title">
-                                            <div className="summary__item--text">
+                                        <td className="ons-summary__item-title">
+                                            <div className="ons-summary__item--text">
                                                 {language}
                                             </div>
                                         </td>
-                                        <td className="summary__values">
+                                        <td className="ons-summary__values">
                                             {total}
                                         </td>
                                     </tr>
