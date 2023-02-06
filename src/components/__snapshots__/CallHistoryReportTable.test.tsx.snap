@@ -6,17 +6,17 @@ Object {
   "baseElement": <body>
     <div>
       <table
-        class="table u-mt-s"
+        class="ons-table u-mt-s"
         id="report-table"
       >
         <thead
-          class="table__head u-mt-m"
+          class="ons-table__head u-mt-m"
         >
           <tr
-            class="table__row"
+            class="ons-table__row"
           >
             <th
-              class="table__header "
+              class="ons-table__header "
               scope="col"
             >
               <span>
@@ -24,7 +24,7 @@ Object {
               </span>
             </th>
             <th
-              class="table__header "
+              class="ons-table__header "
               scope="col"
             >
               <span>
@@ -32,7 +32,7 @@ Object {
               </span>
             </th>
             <th
-              class="table__header "
+              class="ons-table__header "
               scope="col"
             >
               <span>
@@ -40,7 +40,7 @@ Object {
               </span>
             </th>
             <th
-              class="table__header "
+              class="ons-table__header "
               scope="col"
             >
               <span>
@@ -48,7 +48,7 @@ Object {
               </span>
             </th>
             <th
-              class="table__header "
+              class="ons-table__header "
               scope="col"
             >
               <span>
@@ -56,7 +56,7 @@ Object {
               </span>
             </th>
             <th
-              class="table__header "
+              class="ons-table__header "
               scope="col"
             >
               <span>
@@ -66,39 +66,39 @@ Object {
           </tr>
         </thead>
         <tbody
-          class="table__body"
+          class="ons-table__body"
         >
           <tr
-            class="table__row"
+            class="ons-table__row"
             data-testid="report-table-row"
           >
             <td
-              class="table__cell "
+              class="ons-table__cell "
             >
               LMS2101_AA1
             </td>
             <td
-              class="table__cell "
+              class="ons-table__cell "
             >
               900001
             </td>
             <td
-              class="table__cell "
+              class="ons-table__cell "
             >
               31/01/2022 09:00:00
             </td>
             <td
-              class="table__cell "
+              class="ons-table__cell "
             >
               01:30
             </td>
             <td
-              class="table__cell "
+              class="ons-table__cell "
             >
               Appointment
             </td>
             <td
-              class="table__cell "
+              class="ons-table__cell "
             >
               320
             </td>
@@ -109,17 +109,17 @@ Object {
   </body>,
   "container": <div>
     <table
-      class="table u-mt-s"
+      class="ons-table u-mt-s"
       id="report-table"
     >
       <thead
-        class="table__head u-mt-m"
+        class="ons-table__head u-mt-m"
       >
         <tr
-          class="table__row"
+          class="ons-table__row"
         >
           <th
-            class="table__header "
+            class="ons-table__header "
             scope="col"
           >
             <span>
@@ -127,7 +127,7 @@ Object {
             </span>
           </th>
           <th
-            class="table__header "
+            class="ons-table__header "
             scope="col"
           >
             <span>
@@ -135,7 +135,7 @@ Object {
             </span>
           </th>
           <th
-            class="table__header "
+            class="ons-table__header "
             scope="col"
           >
             <span>
@@ -143,7 +143,7 @@ Object {
             </span>
           </th>
           <th
-            class="table__header "
+            class="ons-table__header "
             scope="col"
           >
             <span>
@@ -151,7 +151,7 @@ Object {
             </span>
           </th>
           <th
-            class="table__header "
+            class="ons-table__header "
             scope="col"
           >
             <span>
@@ -159,7 +159,7 @@ Object {
             </span>
           </th>
           <th
-            class="table__header "
+            class="ons-table__header "
             scope="col"
           >
             <span>
@@ -169,39 +169,39 @@ Object {
         </tr>
       </thead>
       <tbody
-        class="table__body"
+        class="ons-table__body"
       >
         <tr
-          class="table__row"
+          class="ons-table__row"
           data-testid="report-table-row"
         >
           <td
-            class="table__cell "
+            class="ons-table__cell "
           >
             LMS2101_AA1
           </td>
           <td
-            class="table__cell "
+            class="ons-table__cell "
           >
             900001
           </td>
           <td
-            class="table__cell "
+            class="ons-table__cell "
           >
             31/01/2022 09:00:00
           </td>
           <td
-            class="table__cell "
+            class="ons-table__cell "
           >
             01:30
           </td>
           <td
-            class="table__cell "
+            class="ons-table__cell "
           >
             Appointment
           </td>
           <td
-            class="table__cell "
+            class="ons-table__cell "
           >
             320
           </td>

@@ -68,9 +68,9 @@ function App(): ReactElement {
                             <AppointmentResourcePlanning />
                         </Route>
                         <Route path="/">
-                            <main id="main-content" className="page__main u-mt-no">
-                                <h1 className="u-mt-m">Reports</h1>
-                                <div className="grid grid--column@xxs@s u-mt-m">
+                            <main id="main-content" className="ons-page__main ons-u-mt-no">
+                                <h1 className="ons-u-mt-m">Reports</h1>
+                                <div className="ons-grid ons-grid--column@xxs@s ons-u-mt-m">
                                     <ReportDetails
                                         link="/interviewer-call-history"
                                         title="Interviewer call history"
@@ -98,7 +98,7 @@ function App(): ReactElement {
 
     return (
         <>
-            <a className="skip__link" href="#main-content">Skip to main content</a>
+            <a className="ons-skip-link" href="#main-content">Skip to main content</a>
             <BetaBanner />
             <Header
                 title="Management Information Reports"
@@ -106,7 +106,7 @@ function App(): ReactElement {
                 noSave
                 signOutFunction={signOut}
             />
-            <div style={divStyle} className="page__container container">
+            <div style={divStyle} className="ons-page__container ons-container">
                 {loading()}
                 {loginPage()}
                 {app()}

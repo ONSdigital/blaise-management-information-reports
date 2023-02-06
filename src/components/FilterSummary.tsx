@@ -24,7 +24,7 @@ function FilterSummary({
         questionaires = <>{questionnaireHeading} {formatList(questionnaires)}</>;
     }
     return (
-        <h3 className="u-mb-m">
+        <h3 className="ons-u-mb-m">
             Interviewer: {interviewer}<br />
             Period: {formatDate(startDate)}–{formatDate(endDate)}<br />
             {questionaires}

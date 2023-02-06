@@ -144,8 +144,8 @@ function ReportData(
     }
 
     return (
-        <div className="summary u-mt-m">
-            <div className="summary__group" id="report-table">
+        <div className="ons-summary ons-u-mt-m">
+            <div className="ons-summary__group" id="report-table">
                 <SummaryGroupTable groupedSummary={groupedSummary} />
             </div>
         </div>
@@ -208,7 +208,7 @@ function RenderInterviewerCallPatternReport({
                 { link: "#", onClickFunction: navigateBack, title: "Questionnaires" },
             ]}
             />
-            <main id="main-content" className="page__main u-mt-s">
+            <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1>Call Pattern Report</h1>
                 <FilterSummary
                     interviewer={interviewerFilterQuery.interviewer}
@@ -218,7 +218,7 @@ function RenderInterviewerCallPatternReport({
                 />
                 <ReportErrorPanel error={reportFailed} />
                 <CallHistoryLastUpdatedStatus />
-                <div className="u-mb-m">
+                <div className="ons-u-mb-m">
                     <ONSPanel>
                         <p>
                             Incomplete data is removed from this report. This will impact the accuracy of the report.
