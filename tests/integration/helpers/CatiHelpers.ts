@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { NewUser } from "blaise-api-node-client";
+import { INewUser } from "blaise-api-node-client";
 
 const CATI_URL = process.env.CATI_URL;
 
-export async function setupAppointment(page: Page, questionnaireName: string, userCredentials: NewUser): Promise<void> {
+export async function setupAppointment(page: Page, questionnaireName: string, userCredentials: INewUser): Promise<void> {
     console.log(`Attempting to set up an appointment for questionnaire ${questionnaireName}`);
 
     await new Promise((f) => setTimeout(f, 20000));
@@ -32,7 +32,7 @@ export async function setupAppointment(page: Page, questionnaireName: string, us
     console.log(`Set up an appointment for questionnaire ${questionnaireName}`);
 }
 
-export async function clearCATIData(page: Page, questionnaireName: string, userCredentials: NewUser): Promise<void> {
+export async function clearCATIData(page: Page, questionnaireName: string, userCredentials: INewUser): Promise<void> {
     try {
         console.log(`Attempting to clear down CATI data for questionnaire ${questionnaireName}`);
 
@@ -56,7 +56,7 @@ export async function clearCATIData(page: Page, questionnaireName: string, userC
     }
 }
 
-async function loginCATI(page: Page, userCredentials: NewUser) {
+async function loginCATI(page: Page, userCredentials: INewUser) {
     await page.goto(`${CATI_URL}/blaise`);
     const loginHeader = page.locator("h1:has-text('Login')");
     if (await loginHeader.isVisible({ timeout: 20000 })) {

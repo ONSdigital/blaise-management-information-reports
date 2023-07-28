@@ -6,7 +6,7 @@ import { newServer } from "./Server";
 import { loadConfigFromEnv } from "./Config";
 
 if (process.env.NODE_ENV !== "production") {
-    dotenv.config({ path: `${__dirname}/../.env` });
+    dotenv.config({ path: `${__dirname}/../../.env` });
 }
 
 const config = loadConfigFromEnv();

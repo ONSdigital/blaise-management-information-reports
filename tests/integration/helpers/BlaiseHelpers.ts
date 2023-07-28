@@ -1,7 +1,7 @@
-import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
+import BlaiseApiClient, { INewUser } from "blaise-api-node-client";
 import { v4 as uuidv4 } from "uuid";
 
-export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark :string): Promise<NewUser> {
+export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark: string): Promise<INewUser> {
     await connectToRestApi(blaiseApiClient);
     const password = uuidv4();
     const userName = `dst-test-user-${uuidv4()}`;
@@ -29,8 +29,7 @@ export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark
     }
 }
 
-export async function deleteTestUser(blaiseApiClient: BlaiseApiClient, serverPark :string, userName: string): Promise<void>
-{
+export async function deleteTestUser(blaiseApiClient: BlaiseApiClient, serverPark: string, userName: string): Promise<void> {
     try {
         console.log(`Attempting to delete test user ${userName}`);
 
@@ -100,8 +99,7 @@ async function installQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark
     }
 }
 
-export async function unInstallQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark: string, questionnaireName: string): Promise<void>
-{
+export async function unInstallQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark: string, questionnaireName: string): Promise<void> {
     try {
         console.log(`Uninstalling test questionnaire ${questionnaireName}`);
         await blaiseApiClient.deleteQuestionnaire(serverPark, `${questionnaireName}`);
