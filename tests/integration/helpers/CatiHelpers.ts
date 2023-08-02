@@ -1,9 +1,9 @@
 import { Page } from "@playwright/test";
-import { INewUser } from "blaise-api-node-client";
+import { NewUser } from "blaise-api-node-client";
 
 const CATI_URL = process.env.CATI_URL;
 
-export async function setupAppointment(page: Page, questionnaireName: string, userCredentials: INewUser): Promise<void> {
+export async function setupAppointment(page: Page, questionnaireName: string, userCredentials: NewUser): Promise<void> {
     console.log(`Attempting to set up an appointment for questionnaire ${questionnaireName}`);
 
     await new Promise((f) => setTimeout(f, 20000));

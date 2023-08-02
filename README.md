@@ -1,13 +1,14 @@
 # Blaise Management Information Reports ![Ernie](.github/ernie.png)
 
-[![codecov](https://codecov.io/gh/ONSdigital/blaise-management-information-reports/branch/main/graph/badge.svg)](https://codecov.io/gh/ONSdigital/blaise-management-information-reports)
 <img src="https://github.com/ONSdigital/blaise-management-information-reports/workflows/Test%20coverage%20report/badge.svg">
-<img src="https://img.shields.io/github/release/ONSdigital/blaise-management-information-reports.svg?style=flat-square">
+
+[![codecov](https://codecov.io/gh/ONSdigital/blaise-management-information-reports/branch/main/graph/badge.svg)](https://codecov.io/gh/ONSdigital/blaise-management-information-reports)
+
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/ONSdigital/blaise-management-information-reports.svg)](https://github.com/ONSdigital/blaise-management-information-reports/pulls)
+
 [![Github last commit](https://img.shields.io/github/last-commit/ONSdigital/blaise-management-information-reports.svg)](https://github.com/ONSdigital/blaise-management-information-reports/commits)
+
 [![Github contributors](https://img.shields.io/github/contributors/ONSdigital/blaise-management-information-reports.svg)](https://github.com/ONSdigital/blaise-management-information-reports/graphs/contributors)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/ONSdigital/blaise-management-information-reports.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ONSdigital/blaise-management-information-reports/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/ONSdigital/blaise-management-information-reports.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ONSdigital/blaise-management-information-reports/context:javascript)
 
 Web-based user interface for running and viewing management information reports.
 
@@ -21,39 +22,79 @@ The application calls API endpoints from the BERT application to receive the man
 
 ![Flow](.github/bert-ernie-flow.png)
 
-### First-time setup
+## Local Setup
 
-To run Blaise Management Information Reports locally, you'll need to have [Node installed](https://nodejs.org/en/), as
-well as [yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable).
+Prerequisites:
+
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/)
+- [Cloud SDK](https://cloud.google.com/sdk/)
 
 Clone the repository:
+
 ```shell script
 git clone https://github.com/ONSdigital/blaise-management-information-reports.git
 ```
 
-and install the project dependencies:
+Create an .env file in the root of the project and add the following variables:
+
+| Variable | Description | Example |
+| --- | --- | --- |
+| PROJECT_ID | The Google Cloud project ID for the environment the app is running against. | blah |
+| BERT_URL | The base URL for [BERT](https://github.com/ONSdigital/blaise-export-reporting-tool), used to retrieve report data from BERT API endpoints. | https://dev-<sandbox>-bert.social-surveys.gcp.onsdigital.uk |
+| BERT_CLIENT_ID | The client ID For authenticating with [BERT](https://github.com/ONSdigital/blaise-export-reporting-tool) | foo.apps.googleusercontent.com |
+| BLAISE_API_URL | The base URL for our [Blaise RESTful API](https://github.com/ONSdigital/blaise-api-rest), used to auth into the app. | http://localhost:90 |
+
+Example .env file:
+
+```
+PROJECT_ID = 'ons-blaise-v2-dev-<sandbox>'
+BERT_URL = 'https://dev-<sandbox>-bert.social-surveys.gcp.onsdigital.uk'
+BERT_CLIENT_ID = 'foo.apps.googleusercontent.com'
+BLAISE_API_URL = 'http://localhost:90'
+```
+
+To find the `BERT_CLIENT_ID`, navigate to the GCP console, search for `Identity-Aware Proxy`, click the three dots on right of the `BERT` service and select `OAuth`. the `Client Id` will be on the right.
+
+Install the project dependencies:
+
 ```shell script
 yarn install
 ```
 
-Create a .env file in the root of the project and add the following variables:
-
-| Variable | Description | Example |
-| --- | --- | --- |
-| PROJECT_ID | To <i>run</i> locally, set this to the unique GCP project ID. Set to anything when <i>testing</i> locally. | blah |
-| BERT_URL | The base URL the application will use to formulate URLs for API calls. Consider giving "IAP-secured Web App User" permission to "allUsers" in a sandbox when testing locally. | https://dev-bert.social-surveys.gcp.onsdigital.uk |
-| BERT_CLIENT_ID | For authenticating with BERT in locked down formal environments. Set to anything when testing locally. | blah |
-| BLAISE_API_URL | For authenticating with Blaise. | http://localhost:8011 |
-
-To find the `X_CLIENT_ID`, navigate to the GCP console, search for `IAP`, click the three dots on right of the service and select `OAuth`. `Client Id` will be on the right.
-
-The .env file should be setup as below. **DO NOT COMMIT THIS FILE**
-```.env
-PROJECT_ID=ons-blaise-v2-dev-<sandbox>
-BERT_URL=https://dev-<sandbox>-bert.social-surveys.gcp.onsdigital.uk
-BERT_CLIENT_ID=foo.apps.googleusercontent.com
-BLAISE_API_URL=http://localhost:8011
+Authenticate with GCP:
+```shell
+gcloud auth login
 ```
+
+Set your GCP project:
+```shell
+gcloud config set project ons-blaise-v2-dev-sandbox123
+```
+
+Open a tunnel to our Blaise RESTful API in your GCP project:
+```shell
+gcloud compute start-iap-tunnel restapi-1 80 --local-host-port=localhost:90 --zone europe-west2-a
+```
+
+Run Node.js server and React.js client via the following package.json script:
+
+```shell script
+yarn dev
+```
+
+The UI should now be accessible via:
+
+http://localhost:3000/
+
+
+
+
+
+
+
+
+
 
 To get the service working locally, you need
 to [obtain a JSON service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys), this
@@ -67,28 +108,6 @@ To create a keys.json file:
 gcloud iam service-accounts keys create keys.json --iam-account ons-blaise-v2-dev-<sandbox>@appspot.gserviceaccount.com`
 ```
 
-### Running MIR locally
-
-To authenticate MIR login, you'll need to
-have [Blaise Rest API](https://github.com/ONSdigital/blaise-api-rest) running locally (On a Windows machine), or you
-can [create an Identity-Aware Proxy (IAP) tunnel](https://cloud.google.com/sdk/gcloud/reference/compute/start-iap-tunnel)
-from a GCP Compute Instance running the rest API in a sandbox.
-
-Authenticate with Google:
-```shell
-gcloud auth login
-```
-
-Select the environment to connect to the rest-api, for example where PROJECT-ID is ons-blaise-v2-dev-<SANDBOX-NAME>:
-```shell script
-gcloud config set project <PROJECT-ID>
-```
-
-Run the following to connect to the rest api in your environment where <PORT> is the same port in your environment variables for BLAISE_API_URL:
-```shell
-gcloud compute start-iap-tunnel restapi-1 80 --local-host-port=localhost:<PORT> --zone europe-west2-a
-```
-NB Port 5004 is already in use by the server.
 
 In a new terminal export the `Google application credentials` as a runtime variable:
 ```shell

@@ -1,7 +1,7 @@
-import BlaiseApiClient, { INewUser } from "blaise-api-node-client";
+import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
 import { v4 as uuidv4 } from "uuid";
 
-export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark: string): Promise<INewUser> {
+export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark: string): Promise<NewUser> {
     await connectToRestApi(blaiseApiClient);
     const password = uuidv4();
     const userName = `dst-test-user-${uuidv4()}`;
