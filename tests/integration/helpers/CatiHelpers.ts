@@ -5,13 +5,10 @@ const CATI_URL = process.env.CATI_URL;
 
 export async function setupAppointment(page: Page, questionnaireName: string, userCredentials: NewUser): Promise<void> {
     console.log(`Attempting to set up an appointment for questionnaire ${questionnaireName}`);
-
     await new Promise((f) => setTimeout(f, 20000));
-
     await loginCATI(page, userCredentials);
     await page.click(".nav li:has-text('Case Info')");
     await filterCATIQuestionnaire(page, questionnaireName);
-
     const [casePage] = await Promise.all([
         page.waitForEvent("popup"),
         await page.click(".glyphicon-calendar >> nth=0"),
@@ -32,10 +29,9 @@ export async function setupAppointment(page: Page, questionnaireName: string, us
     console.log(`Set up an appointment for questionnaire ${questionnaireName}`);
 }
 
-export async function clearCATIData(page: Page, questionnaireName: string, userCredentials: INewUser): Promise<void> {
+export async function clearCATIData(page: Page, questionnaireName: string, userCredentials: NewUser): Promise<void> {
     try {
         console.log(`Attempting to clear down CATI data for questionnaire ${questionnaireName}`);
-
         await new Promise((f) => setTimeout(f, 20000));
         await loginCATI(page, userCredentials);
         await page.click(".nav li:has-text('Surveys')");
@@ -48,7 +44,6 @@ export async function clearCATIData(page: Page, questionnaireName: string, userC
         await page.uncheck("#BackupEvents");
         await page.click("#chkClearAll");
         await page.click("input[type=submit]:has-text('Execute')", { timeout: 20000 });
-
         console.log(`Cleared CATI data for ${questionnaireName}`);
     }
     catch (error) {
@@ -56,7 +51,7 @@ export async function clearCATIData(page: Page, questionnaireName: string, userC
     }
 }
 
-async function loginCATI(page: Page, userCredentials: INewUser) {
+async function loginCATI(page: Page, userCredentials: NewUser) {
     await page.goto(`${CATI_URL}/blaise`);
     const loginHeader = page.locator("h1:has-text('Login')");
     if (await loginHeader.isVisible({ timeout: 20000 })) {

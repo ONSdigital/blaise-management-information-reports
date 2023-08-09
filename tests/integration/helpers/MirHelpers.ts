@@ -5,7 +5,7 @@ import { NewUser } from "blaise-api-node-client";
 const REPORTS_URL = process.env.REPORTS_URL;
 
 export async function loginMIR(page: Page, userCredentials: NewUser): Promise<void> {
-    await page.goto(`${REPORTS_URL}/`);
+    await page.goto(`${REPORTS_URL}`);
     const loginHeader = page.locator("h1:has-text('Sign in')");
     if (await loginHeader.isVisible({ timeout: 100 })) {
         await page.locator("#username").type(`${userCredentials.name}`);

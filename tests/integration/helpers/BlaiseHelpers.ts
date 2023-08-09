@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 
 export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark: string): Promise<NewUser> {
     await connectToRestApi(blaiseApiClient);
-    const password = uuidv4();
-    const userName = `dst-test-user-${uuidv4()}`;
+    const password = uuidv4().slice(0, 8);
+    const userName = `dst-test-user-${uuidv4().slice(0, 8)}`;
     const user = {
         password: password,
         name: userName,
@@ -14,14 +14,10 @@ export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark
         ],
         defaultServerPark: serverPark,
     };
-
     try {
-        console.log(`Attempting to create a test user ${user.name} on server park ${serverPark}`);
-
+        console.log(`Attempting to create test user ${user.name} on server park ${serverPark}`);
         const newUser = await blaiseApiClient.createUser(user);
-
         console.log(`Created test user ${user.name}`);
-
         return newUser;
     } catch (error) {
         console.error(`Failed to create user: ${error}`);
@@ -32,9 +28,7 @@ export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark
 export async function deleteTestUser(blaiseApiClient: BlaiseApiClient, serverPark: string, userName: string): Promise<void> {
     try {
         console.log(`Attempting to delete test user ${userName}`);
-
         await blaiseApiClient.deleteUser(userName);
-
         console.log(`Deleted test user ${userName}`);
     }
     catch (error) {
@@ -46,14 +40,11 @@ export async function setupQuestionnaire(blaiseApiClient: BlaiseApiClient, quest
     const today = new Date();
     const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
-
     console.log(`Attempting to install and configure questionnaire ${questionnaireName} on server park ${serverPark}`);
-
     await connectToRestApi(blaiseApiClient);
     await installQuestionnaire(blaiseApiClient, serverPark, questionnaireName);
     await addSurveyDays(blaiseApiClient, serverPark, today, tomorrow, questionnaireName);
     await addDaybatch(blaiseApiClient, serverPark, today, questionnaireName);
-
     console.log(`Installed and configured questionnaire ${questionnaireName} on server park ${serverPark}`);
 }
 
@@ -71,7 +62,6 @@ async function installQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark
         const installQuestionnaireObject = {
             questionnaireFile: `${questionnaireName}.bpkg`,
         };
-
         await blaiseApiClient.installQuestionnaire(serverPark, installQuestionnaireObject);
         for (let attempts = 0; attempts <= 12; attempts++) {
             const questionnaireDetails = await blaiseApiClient.getQuestionnaire(serverPark, `${questionnaireName}`);
@@ -99,7 +89,7 @@ async function installQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark
     }
 }
 
-export async function unInstallQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark: string, questionnaireName: string): Promise<void> {
+export async function uninstallQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark: string, questionnaireName: string): Promise<void> {
     try {
         console.log(`Uninstalling test questionnaire ${questionnaireName}`);
         await blaiseApiClient.deleteQuestionnaire(serverPark, `${questionnaireName}`);

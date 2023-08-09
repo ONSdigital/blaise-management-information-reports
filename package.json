@@ -15,7 +15,7 @@
     "integration-test": "playwright test tests/integration",
     "dev": "concurrently --kill-others-on-fail \"yarn start-server\" \"yarn start-react\""
   },
-  "proxy": "http://localhost:5004",
+  "proxy": "http://localhost:5000",
   "keywords": [],
   "author": "",
   "license": "ISC",
