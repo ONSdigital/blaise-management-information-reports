@@ -2,8 +2,8 @@ import { expect, test } from "@playwright/test";
 import dotenv from "dotenv";
 import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
 import { deleteTestUser, setupQuestionnaire, setupTestUser, uninstallQuestionnaire } from "./helpers/BlaiseHelpers";
-import { setupAppointment, clearCATIData } from "./helpers/CatiHelpers";
-import { loginMIR, mirTomorrow } from "./helpers/MirHelpers";
+import { setupAppointment, clearCatiData } from "./helpers/CatiHelpers";
+import { loginToMir, createDateForTomorrow } from "./helpers/MirHelpers";
 
 if (process.env.NODE_ENV !== "production") {
     dotenv.config({ path: `${__dirname}/../../.env` });
@@ -41,14 +41,15 @@ test.describe("Without data", () => {
     });
     test("I can get to, and run an ARPR for a day with no data", async ({ page }, testInfo) => {
         console.log(`Started running ${testInfo.title}`);
-        await loginMIR(page, userCredentials);
+        await loginToMir(page, userCredentials);
         await page.click("text=Appointment resource planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Run a Daybatch first to obtain the most accurate results.");
         await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Appointments that have already been attempted will not be displayed.");
         await page.locator("#Date").type("30-06-1990");
         await page.click("button[type=submit]");
-        await expect(page.locator(".ons-panel__body ").nth(1)).toContainText("No questionnaires found for given parameters.");
+        await page.waitForSelector("text=Loading", { state: "hidden" });
+        await expect(page.locator(".ons-panel__body ").nth(1)).toContainText("No questionnaires found for given parameters.");        
         console.log(`Finished running ${testInfo.title}`);
     });
 });
@@ -65,21 +66,22 @@ test.describe("With data", () => {
     test.afterEach(async ({ page }, testInfo) => {
         console.log(`Started running after each hook for test ${testInfo.title}`);
         await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
-        await clearCATIData(page, questionnaireName, userCredentials);
+        await clearCatiData(page, questionnaireName, userCredentials);
         await uninstallQuestionnaire(blaiseApiClient, serverPark, questionnaireName);
         console.log(`Finished running after each hook for test ${testInfo.title}`);
     });
     test("I can get to, and run an ARPR for a day with data", async ({ page }, testInfo) => {
         console.log(`Started running ${testInfo.title}`);
-        await loginMIR(page, userCredentials);
+        await loginToMir(page, userCredentials);
         await page.click("text=Appointment resource planning");
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Run a Daybatch first to obtain the most accurate results.");
         await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Appointments that have already been attempted will not be displayed.");
-        await page.locator("#Date").type(`${mirTomorrow()}`);
+        await page.locator("#Date").type(`${createDateForTomorrow()}`);
         await page.click("button[type=submit]");
         await page.click('button:has-text("Select All")');
         await page.click('button:has-text("Run report")');
+        await page.waitForSelector("text=Loading", { state: "hidden" });
         const row = await page.locator(`tr:has-text('${questionnaireName}')`);
         await expect(row.locator('td:nth-child(2)')).toHaveText("10:00");
         await expect(row.locator('td:nth-child(3)')).toHaveText("English");
