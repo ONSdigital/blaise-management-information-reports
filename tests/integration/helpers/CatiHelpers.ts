@@ -17,8 +17,10 @@ export async function setupAppointment(page: Page, questionnaireName: string, us
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
     await casePage.waitForSelector("img[alt='loading gif']", { state: 'hidden' });
     await casePage.waitForSelector("text=Selected timeslot: No timeslot selected", {state: 'visible'});
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     await casePage.locator("table.e-schedule-table").locator("tbody")
         .locator(`//tr/td[@data-date=${createDateForTomorrowAt1000()}]`).click();
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     await casePage.click("button:has-text('Confirm')");
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
     await casePage.type(".StringTextBoxComponent", `${userCredentials.name}`);
