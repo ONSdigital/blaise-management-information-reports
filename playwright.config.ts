@@ -9,8 +9,10 @@ const config: PlaywrightTestConfig = {
     },
     projects: [
         {
-            name: "Microsoft Edge",
-            use: { channel: 'msedge', },
+            name: 'chromium',
+            use: { ...devices['Desktop Chrome'],
+            viewport: { width: 1920, height: 1080 },
+            launchOptions: { args: ['--start-maximized'] } },
         },
     ],
 };
