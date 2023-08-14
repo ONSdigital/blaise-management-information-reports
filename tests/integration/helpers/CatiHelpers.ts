@@ -17,6 +17,13 @@ export async function setupAppointment(page: Page, questionnaireName: string, us
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
     await casePage.waitForSelector("img[alt='loading gif']", { state: 'hidden' });
     await casePage.waitForSelector("text=Selected timeslot: No timeslot selected", {state: 'visible'});
+
+    const now = new Date();
+    const localDate = now.toLocaleDateString();
+    const localTime = now.toLocaleTimeString();
+    console.log(`Local date: ${localDate}`);
+    console.log(`Local time: ${localTime}`);
+
     await casePage.locator("table.e-schedule-table").locator("tbody")
         .locator(`//tr/td[@data-date=${createDateForTomorrowAt1000()}]`).click();
     await casePage.click("button:has-text('Confirm')");

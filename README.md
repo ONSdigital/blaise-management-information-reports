@@ -123,7 +123,7 @@ Create an .env file in the root of the project and add the following variables:
 | REPORTS_URL | The URL for ERNIE | https://dev-<sandbox>-reports.social-surveys.gcp.onsdigital.uk |
 | REST_API_URL | The base URL for our [Blaise RESTful API](https://github.com/ONSdigital/blaise-api-rest), used to auth into the app. | http://localhost:1337 |
 | SERVER_PARK | The name of the server park | gusty |
-| TEST_QUESTIONNAIRE | The name of the test questionnaire in the DQS bucket (this questionnaire needs to be configured for appointments) | DST2111Z |
+| TEST_QUESTIONNAIRE | The name of the test questionnaire in the DQS bucket (this questionnaire needs to be configured for appointments) | DST2304Z |
 
 Example .env file:
 
@@ -132,7 +132,7 @@ CATI_URL = 'https://dev-<sandbox>-cati.social-surveys.gcp.onsdigital.uk'
 REPORTS_URL = 'https://dev-<sandbox>-reports.social-surveys.gcp.onsdigital.uk '
 REST_API_URL = 'http://localhost:1337'
 SERVER_PARK = 'gusty'
-TEST_QUESTIONNAIRE = 'DST2111Z'
+TEST_QUESTIONNAIRE = 'DST2304Z'
 ```
 
 Authenticate with GCP:
@@ -167,17 +167,28 @@ yarn run playwright test tests --headed
 
 ## Using Playwright Trace Viewer
 
-Playwright provides a trace viewer, so you can playback the test, this can be very useful for debugging.
+Playwright offers a trace viewer that facilitates test playback. This can be very useful for debugging purposes.
 
 To run Playwright with trace enabled:
 ```shell
 yarn run playwright test tests --trace on
 ```
 
-This will generate a separate trace.zip file for each test, and these files will be stored within subfolders located in the test-results directory.
+This will generate a separate trace.zip file for each test, these files will be stored within subfolders located in the test-results directory.
 
 To view the trace:
 ```shell
 yarn run playwright show-trace test-results/<test-sub-folder>/trace.zip
 ```
-    
+
+Tests run within the Concourse worker's remote container might behave differently than when run locally. You can use the Concourse "fly hijack" command to download the trace.zip file from the remote container. You can then view the downloaded trace locally via the trace viewer.
+
+Download trace.zip from remote container:
+```shell
+fly hijack \
+--target <fly-target> \
+--build <build-number> \
+--job blaise-deploy-dev/mir-test \
+--step mir-integration-test \
+cat mir-git/test-results/<test-sub-folder>/trace.zip > ./trace.zip
+```
