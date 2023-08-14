@@ -180,3 +180,4 @@ To view the trace:
 ```shell
 yarn run playwright show-trace test-results/<test-sub-folder>/trace.zip
 ```
+    

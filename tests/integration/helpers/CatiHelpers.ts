@@ -15,11 +15,13 @@ export async function setupAppointment(page: Page, questionnaireName: string, us
     ]);
     await casePage.check("input:left-of(.CategoryButtonComponent:has-text('Appointment agreed'))");
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
+    await casePage.waitForSelector("img[alt='loading gif']", { state: 'hidden' });
+    await casePage.waitForSelector("text=Selected timeslot: No timeslot selected", {state: 'visible'});
     await casePage.locator("table.e-schedule-table").locator("tbody")
         .locator(`//tr/td[@data-date=${createDateForTomorrowAt1000()}]`).click();
     await casePage.click("button:has-text('Confirm')");
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
-    await casePage.type(".StringTextBoxComponent", `${userCredentials}`);
+    await casePage.type(".StringTextBoxComponent", `${userCredentials.name}`);
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
     await casePage.click(".CategoryButtonComponent >> nth=0");
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
