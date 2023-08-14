@@ -27,7 +27,7 @@ if (!serverPark) {
     process.exit(1);
 }
 
-test.describe("Without data", () => {
+test.describe("ARPR without data", () => {
     test.beforeEach(async ({ page }, testInfo) => {
         console.log(`Started running before each hook for test ${testInfo.title}`);
         testInfo.setTimeout(30000);
@@ -39,7 +39,7 @@ test.describe("Without data", () => {
         await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
         console.log(`Finished running after each hook for test ${testInfo.title}`);
     });
-    test("I can get to, and run an ARPR for a day with no data", async ({ page }, testInfo) => {
+    test("ARPR without data", async ({ page }, testInfo) => {
         console.log(`Started running ${testInfo.title}`);
         await loginToMir(page, userCredentials);
         await page.click("text=Appointment resource planning");
@@ -54,7 +54,7 @@ test.describe("Without data", () => {
     });
 });
 
-test.describe("With data", () => {
+test.describe("ARPR with data", () => {
     test.beforeEach(async ({ page }, testInfo) => {
         console.log(`Started running before each hook for test ${testInfo.title}`);
         testInfo.setTimeout(180000);
@@ -70,7 +70,7 @@ test.describe("With data", () => {
         await uninstallQuestionnaire(blaiseApiClient, serverPark, questionnaireName);
         console.log(`Finished running after each hook for test ${testInfo.title}`);
     });
-    test("I can get to, and run an ARPR for a day with data", async ({ page }, testInfo) => {
+    test("ARPR with data", async ({ page }, testInfo) => {
         console.log(`Started running ${testInfo.title}`);
         await loginToMir(page, userCredentials);
         await page.click("text=Appointment resource planning");
