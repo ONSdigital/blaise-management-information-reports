@@ -1,9 +1,8 @@
 import { expect, test } from "@playwright/test";
 import dotenv from "dotenv";
 import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
-import { deleteTestUser, setupQuestionnaire, setupTestUser, uninstallQuestionnaire } from "./helpers/BlaiseHelpers";
-import { setupAppointment, clearCatiData } from "./helpers/CatiHelpers";
-import { loginToMir, createDateForTomorrow } from "./helpers/MirHelpers";
+import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
+import { loginToMir } from "./helpers/MirHelpers";
 
 if (process.env.NODE_ENV !== "production") {
     dotenv.config({ path: `${__dirname}/../../.env` });
@@ -55,8 +54,12 @@ test.describe("ARPR without data", () => {
 });
 
 /*
-commenting this test out for now, for some reason the book appointment page displays differently when run from a concourse worker
+commenting this test out for now, for some reason the cati book appointment page displays differently when run from a concourse worker
 ideally we want to upgrade to a version of blaise that allows appointments to be booked via the api
+
+import { deleteTestUser, setupQuestionnaire, setupTestUser, uninstallQuestionnaire } from "./helpers/BlaiseHelpers";
+import { setupAppointment, clearCatiData } from "./helpers/CatiHelpers";
+import { loginToMir, createDateForTomorrow } from "./helpers/MirHelpers";
 
 test.describe("ARPR with data", () => {
     test.beforeEach(async ({ page }, testInfo) => {
@@ -94,4 +97,3 @@ test.describe("ARPR with data", () => {
     });
 });
 */
-
