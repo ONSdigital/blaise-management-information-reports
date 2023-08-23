@@ -6,7 +6,7 @@ import { newServer } from "./Server";
 import { loadConfigFromEnv } from "./Config";
 
 if (process.env.NODE_ENV !== "production") {
-    dotenv.config({ path: `${__dirname}/../.env` });
+    dotenv.config({ path: `${__dirname}/../../.env` });
 }
 
 const config = loadConfigFromEnv();
@@ -17,7 +17,7 @@ const auth = new Auth(config);
 
 const app = newServer(config, authProvider, auth, blaiseApiClient);
 
-const port: string = process.env.PORT || "5004";
+const port: string = process.env.PORT || "5000";
 
 app.listen(port);
 
