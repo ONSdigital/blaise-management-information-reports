@@ -1,13 +1,14 @@
 # Blaise Management Information Reports ![Ernie](.github/ernie.png)
 
-[![codecov](https://codecov.io/gh/ONSdigital/blaise-management-information-reports/branch/main/graph/badge.svg)](https://codecov.io/gh/ONSdigital/blaise-management-information-reports)
 <img src="https://github.com/ONSdigital/blaise-management-information-reports/workflows/Test%20coverage%20report/badge.svg">
-<img src="https://img.shields.io/github/release/ONSdigital/blaise-management-information-reports.svg?style=flat-square">
+
+[![codecov](https://codecov.io/gh/ONSdigital/blaise-management-information-reports/branch/main/graph/badge.svg)](https://codecov.io/gh/ONSdigital/blaise-management-information-reports)
+
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/ONSdigital/blaise-management-information-reports.svg)](https://github.com/ONSdigital/blaise-management-information-reports/pulls)
+
 [![Github last commit](https://img.shields.io/github/last-commit/ONSdigital/blaise-management-information-reports.svg)](https://github.com/ONSdigital/blaise-management-information-reports/commits)
+
 [![Github contributors](https://img.shields.io/github/contributors/ONSdigital/blaise-management-information-reports.svg)](https://github.com/ONSdigital/blaise-management-information-reports/graphs/contributors)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/ONSdigital/blaise-management-information-reports.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ONSdigital/blaise-management-information-reports/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/ONSdigital/blaise-management-information-reports.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ONSdigital/blaise-management-information-reports/context:javascript)
 
 Web-based user interface for running and viewing management information reports.
 
@@ -21,168 +22,173 @@ The application calls API endpoints from the BERT application to receive the man
 
 ![Flow](.github/bert-ernie-flow.png)
 
-### First-time setup
+## Local Setup
 
-To run Blaise Management Information Reports locally, you'll need to have [Node installed](https://nodejs.org/en/), as
-well as [yarn](https://classic.yarnpkg.com/en/docs/install#mac-stable).
+Prerequisites:
+
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/)
+- [Cloud SDK](https://cloud.google.com/sdk/)
 
 Clone the repository:
-```shell script
+
+```shell
 git clone https://github.com/ONSdigital/blaise-management-information-reports.git
 ```
 
-and install the project dependencies:
-```shell script
-yarn install
-```
-
-Create a .env file in the root of the project and add the following variables:
+Create an .env file in the root of the project and add the following variables:
 
 | Variable | Description | Example |
 | --- | --- | --- |
-| PROJECT_ID | To <i>run</i> locally, set this to the unique GCP project ID. Set to anything when <i>testing</i> locally. | blah |
-| BERT_URL | The base URL the application will use to formulate URLs for API calls. Consider giving "IAP-secured Web App User" permission to "allUsers" in a sandbox when testing locally. | https://dev-bert.social-surveys.gcp.onsdigital.uk |
-| BERT_CLIENT_ID | For authenticating with BERT in locked down formal environments. Set to anything when testing locally. | blah |
-| BLAISE_API_URL | For authenticating with Blaise. | http://localhost:8011 |
+| PROJECT_ID | The Google Cloud project ID for the environment the app is running against. | blah |
+| BERT_URL | The base URL for [BERT](https://github.com/ONSdigital/blaise-export-reporting-tool), used to retrieve report data from BERT API endpoints. | https://dev-<sandbox>-bert.social-surveys.gcp.onsdigital.uk |
+| BERT_CLIENT_ID | The client ID For authenticating with [BERT](https://github.com/ONSdigital/blaise-export-reporting-tool) | foo.apps.googleusercontent.com |
+| BLAISE_API_URL | The base URL for our [Blaise RESTful API](https://github.com/ONSdigital/blaise-api-rest), used to auth into the app. | http://localhost:1337 |
 
-To find the `X_CLIENT_ID`, navigate to the GCP console, search for `IAP`, click the three dots on right of the service and select `OAuth`. `Client Id` will be on the right.
+Example .env file:
 
-The .env file should be setup as below. **DO NOT COMMIT THIS FILE**
-```.env
-PROJECT_ID=ons-blaise-v2-dev-<sandbox>
-BERT_URL=https://dev-<sandbox>-bert.social-surveys.gcp.onsdigital.uk
-BERT_CLIENT_ID=foo.apps.googleusercontent.com
-BLAISE_API_URL=http://localhost:8011
+```
+PROJECT_ID = 'ons-blaise-v2-dev-<sandbox>'
+BERT_URL = 'https://dev-<sandbox>-bert.social-surveys.gcp.onsdigital.uk'
+BERT_CLIENT_ID = 'foo.apps.googleusercontent.com'
+BLAISE_API_URL = 'http://localhost:1337'
 ```
 
-To get the service working locally, you need
-to [obtain a JSON service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys), this
-will need to be a service account with create and list permissions. Save the service account key
-as  `keys.json` and place in the root of the project. Providing the NODE_ENV is not production, then the GCP storage
-config will attempt to use this file. **DO NOT COMMIT THIS FILE**
+To find the `BERT_CLIENT_ID`, navigate to the GCP console, search for `Identity-Aware Proxy`, click the three dots on right of the `BERT` service and select `OAuth`. the `Client Id` will be on the right.
 
-
-To create a keys.json file:
+Install the project dependencies:
 ```shell
-gcloud iam service-accounts keys create keys.json --iam-account ons-blaise-v2-dev-<sandbox>@appspot.gserviceaccount.com`
+yarn install
 ```
 
-### Running MIR locally
-
-To authenticate MIR login, you'll need to
-have [Blaise Rest API](https://github.com/ONSdigital/blaise-api-rest) running locally (On a Windows machine), or you
-can [create an Identity-Aware Proxy (IAP) tunnel](https://cloud.google.com/sdk/gcloud/reference/compute/start-iap-tunnel)
-from a GCP Compute Instance running the rest API in a sandbox.
-
-Authenticate with Google:
+Authenticate with GCP:
 ```shell
 gcloud auth login
 ```
 
-Select the environment to connect to the rest-api, for example where PROJECT-ID is ons-blaise-v2-dev-<SANDBOX-NAME>:
-```shell script
-gcloud config set project <PROJECT-ID>
-```
-
-Run the following to connect to the rest api in your environment where <PORT> is the same port in your environment variables for BLAISE_API_URL:
+Set your GCP project:
 ```shell
-gcloud compute start-iap-tunnel restapi-1 80 --local-host-port=localhost:<PORT> --zone europe-west2-a
+gcloud config set project ons-blaise-v2-dev-<sandbox>
 ```
-NB Port 5004 is already in use by the server.
 
-In a new terminal export the `Google application credentials` as a runtime variable:
+Open a tunnel to our Blaise RESTful API in your GCP project:
 ```shell
-export GOOGLE_APPLICATION_CREDENTIALS=keys.json
+gcloud compute start-iap-tunnel restapi-1 80 --local-host-port=localhost:1337 --zone europe-west2-a
 ```
 
-Run Node.js and React.js via the package.json script:
-```shell script
+Download a service account JSON key:
+```shell
+gcloud iam service-accounts keys create keys.json --iam-account ons-blaise-v2-dev-<sandbox>@appspot.gserviceaccount.com
+```
+
+Temporary set your local GOOGLE_APPLICATION_CREDENTIALS environment variable to this JSON file:
+```shell
+Unix: export GOOGLE_APPLICATION_CREDENTIALS=keys.json
+Windows: set GOOGLE_APPLICATION_CREDENTIALS=keys.json
+```
+
+Run Node.js server and React.js client via the following package.json script:
+```shell
 yarn dev
 ```
 
 The UI should now be accessible via:
+
 http://localhost:3000/
 
-### Executing tests
+## Running Jest Tests
 
-Tests can be run via the package.json script:
-```shell script
+Jest tests can be run via the following package.json script:
+```shell
 yarn test
 ```
 
-To prevent tests from printing messages through the console tests can be run silently via the package.json script:
-```shell script
+Tests can be run without sending all messages to the console by adding the following flag:
+```shell
 yarn test --silent
 ```
 
-Test snapshots can be updated via:
-```shell script
+Test snapshots can be updated by adding the following flag:
+```shell
 yarn test -u
 ```
 
-### Troubleshooting
+## Running Playwright Tests
 
-Trying to run the application locally and getting the following error?
-```
-Proxy error: Could not proxy request /api/login/users/password/validate from localhost:3000 to http://localhost:5004.
-```
-
-Exporting the environment variables in the same terminal as ```yarn dev``` worked for me:
-```shell script
-export $(cat .env | xargs)
-```
-
-
-
-
-### Playwright tests 
-
-To set up Playwright tests <i>locally</i> your .env file will need the following variables:
+Create an .env file in the root of the project and add the following variables:
 
 | Variable | Description | Example |
 | --- | --- | --- |
-| CATI_URL | The URL to CATI | https://dev-cati.social-surveys.gcp.onsdigital.uk |
-| CATI_USERNAME | The username to log in to CATI | foobar |
-| CATI_PASSWORD | The password to log in to CATi | foobar |
-| REPORTS_URL | The URL to ERNIE | https://dev-reports.social-surveys.gcp.onsdigital.uk |
-| REST_API_URL | The URL to swagger | http://localhost:8000 |
-| TEST_QUESTIONNAIRE | The name of the test questionnaire in the DQS bucket (this questionnaire needs to be configured for appointments) | DST2111Z |
+| CATI_URL | The URL for CATI | https://dev-<sandbox>-cati.social-surveys.gcp.onsdigital.uk |
+| REPORTS_URL | The URL for ERNIE | https://dev-<sandbox>-reports.social-surveys.gcp.onsdigital.uk |
+| REST_API_URL | The base URL for our [Blaise RESTful API](https://github.com/ONSdigital/blaise-api-rest), used to auth into the app. | http://localhost:1337 |
 | SERVER_PARK | The name of the server park | gusty |
+| TEST_QUESTIONNAIRE | The name of the test questionnaire in the DQS bucket (this questionnaire needs to be configured for appointments) | DST2304Z |
 
-You <i>may</i> also need to run the following command to export the environment variables:
+Example .env file:
 
-```shell script
-export $(cat .env | xargs)
+```
+CATI_URL = 'https://dev-<sandbox>-cati.social-surveys.gcp.onsdigital.uk'
+REPORTS_URL = 'https://dev-<sandbox>-reports.social-surveys.gcp.onsdigital.uk '
+REST_API_URL = 'http://localhost:1337'
+SERVER_PARK = 'gusty'
+TEST_QUESTIONNAIRE = 'DST2304Z'
 ```
 
-Select the environment to connect to the rest-api, for example where PROJECT-ID is ons-blaise-v2-dev-<your-sandbox> :
-```shell script
-gcloud config set project <PROJECT-ID>
+Authenticate with GCP:
+```shell
+gcloud auth login
 ```
 
-Open the tunnel the to rest api:
-```shell script
-gcloud compute start-iap-tunnel restapi-1 80 --local-host-port=localhost:8000
+Set your GCP project:
+```shell
+gcloud config set project ons-blaise-v2-dev-<sandbox>
 ```
 
-(In a different terminal) Playwright tests can be run via:
+Open a tunnel to our Blaise RESTful API in your GCP project:
+```shell
+gcloud compute start-iap-tunnel restapi-1 80 --local-host-port=localhost:1337 --zone europe-west2-a
+```
 
-```shell script
+Install the latest Playwright browsers if necessary:
+```shell
+yarn run playwright install
+```
+
+Run the tests headless (console only):
+```shell
 yarn run playwright test tests
 ```
 
-Or a live demo can be run via:
-
-```shell script
+Run the tests headed (visible browser):
+```shell
 yarn run playwright test tests --headed
 ```
 
-#### To help debug:
-```shell script
-export TRACE=true
-yarn run playwright test tests
+## Using Playwright Trace Viewer
+
+Playwright offers a trace viewer that facilitates test playback. This can be very useful for debugging purposes.
+
+To run Playwright with trace enabled:
+```shell
+yarn run playwright test tests --trace on
 ```
-and once the tests have finished run the following, where <TEST-NAME> is the title of test.describe() and the test. For example, 'Without-data-I-can-get-to-and-run-an-ARPR-for-a-day-with-no-data':
-```shell script
-yarn run playwright show-trace test-results/tests-integration-arpr-<TEST-NAME>-chromium/trace.zip
+
+This will generate a separate trace.zip file for each test, these files will be stored within subfolders located in the test-results directory.
+
+To view the trace:
+```shell
+yarn run playwright show-trace test-results/<test-sub-folder>/trace.zip
+```
+
+Tests run within the Concourse worker's remote container might behave differently than when run locally. You can use the Concourse "fly hijack" command to download the trace.zip file from the remote container. You can then view the downloaded trace locally via the trace viewer.
+
+Download trace.zip from remote container:
+```shell
+fly hijack \
+--target <fly-target> \
+--build <build-number> \
+--job blaise-deploy-dev/mir-test \
+--step mir-integration-test \
+cat mir-git/test-results/<test-sub-folder>/trace.zip > ./trace.zip
 ```
