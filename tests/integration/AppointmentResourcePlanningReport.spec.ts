@@ -1,121 +1,99 @@
 import { expect, test } from "@playwright/test";
-// import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
-// import { deleteTestUser, setupQuestionnaire, setupTestUser, unInstallQuestionnaire, } from "./helpers/BlaiseHelpers";
-// import { setupAppointment, clearCATIData } from "./helpers/CatiHelpers";
-// import { loginMIR, mirTomorrow } from "./helpers/MirHelpers";
+import dotenv from "dotenv";
+import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
+import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
+import { loginToMir } from "./helpers/MirHelpers";
 
-// const restApiUrl = process.env.REST_API_URL || "http://localhost:8000";
-// const restApiClientId = process.env.REST_API_CLIENT_ID || undefined;
-// const questionnaireName = process.env.TEST_QUESTIONNAIRE;
-// const serverPark = process.env.SERVER_PARK;
-// const blaiseApiClient = new BlaiseApiClient(restApiUrl, { blaiseApiClientId: restApiClientId });
+if (process.env.NODE_ENV !== "production") {
+    dotenv.config({ path: `${__dirname}/../../.env` });
+}
 
-// let userCredentials: NewUser;
+const restApiUrl = process.env.REST_API_URL || "http://localhost:1337";
+const restApiClientId = process.env.REST_API_CLIENT_ID || undefined;
+const questionnaireName = process.env.TEST_QUESTIONNAIRE;
+const serverPark = process.env.SERVER_PARK;
+const blaiseApiClient = new BlaiseApiClient(restApiUrl, { blaiseApiClientId: restApiClientId });
 
-// if (!questionnaireName) {
-//     console.error("Questionnaire name is undefined");
-//     process.exit(1);
-// }
-//
-// if (!serverPark) {
-//     console.error("Server park is undefined");
-//     process.exit(1);
-// }
-//
-//
-// test.describe("Without data", () => {
-//     test.beforeEach(async ({ page }, testInfo) => {
-//         console.log(`Started running before each hook for test ${testInfo.title}`);
-//
-//         testInfo.setTimeout(300000);
-//         userCredentials = await setupTestUser(blaiseApiClient, serverPark);
-//
-//         console.log(`Finished running before each hook for test ${testInfo.title}`);
-//     });
-//
-//     test.afterEach(async ({ page }, testInfo) => {
-//         console.log(`Started running after each hook for test ${testInfo.title}`);
-//
-//         await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
-//
-//         console.log(`Finished running after each hook for test ${testInfo.title}`);
-//     });
-//
-//     test("I can get to, and run an ARPR for a day with no data", async ({ page }, testInfo) => {
-//         try {
-//             console.log(`Started running ${testInfo.title}`);
-//
-//             await loginMIR(page, userCredentials);
-//             await page.click("#appointment-resource-planning");
-//
-//             await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
-//             await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
-//
-//             await page.locator("#Date").type("30-06-1990");
-//             await page.click("button[type=submit]");
-//
-//             await expect(page.locator(".panel--info >> nth=1")).toHaveText("No data found for parameters given.");
-//
-//             console.log(`Finished running ${testInfo.title}`);
-//         }
-//         catch (error) {
-//             console.log(`Test ${testInfo.title} failed: ${error}`);
-//         }
-//     });
-// });
-//
-// test.describe("With data", () => {
-//     test.beforeEach(async ({ page }, testInfo) => {
-//         console.log(`Started running before each hook for test ${testInfo.title}`);
-//
-//         testInfo.setTimeout(300000);
-//
-//         userCredentials = await setupTestUser(blaiseApiClient, serverPark);
-//         await setupQuestionnaire(blaiseApiClient, questionnaireName, serverPark);
-//         await setupAppointment(page, questionnaireName, userCredentials);
-//
-//         console.log(`Finished running before each hook for test ${testInfo.title}`);
-//     });
-//
-//     test.afterEach(async ({ page }, testInfo) => {
-//         console.log(`Started running after each hook for test ${testInfo.title}`);
-//
-//         await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
-//         await clearCATIData(page, questionnaireName, userCredentials);
-//         await unInstallQuestionnaire(blaiseApiClient, serverPark, questionnaireName);
-//
-//         console.log(`Finished running after each hook for test ${testInfo.title}`);
-//     });
-//
-//     test("I can get to, and run an ARPR for a day with data", async ({ page }, testInfo) => {
-//         try {
-//             console.log(`Started running ${testInfo.title}`);
-//
-//             await loginMIR(page, userCredentials);
-//
-//             await page.click("#appointment-resource-planning");
-//
-//             await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
-//             await expect(page.locator(".panel--info >> nth=0")).toContainText("Run a Daybatch first to obtain the most accurate results.");
-//
-//             await page.locator("#Date").type(`${mirTomorrow()}`);
-//             await page.click("button[type=submit]");
-//
-//             // Report items
-//             await expect(page.locator(".table__row:has-text('DST2111Z') >> nth=0 >> td >> nth=1")).toHaveText("10:00");
-//             await expect(page.locator(".table__row:has-text('DST2111Z') >> nth=0 >> td >> nth=2")).toHaveText("English");
-//             await expect(page.locator(".table__row:has-text('DST2111Z') >> nth=0 >> td >> nth=3")).toHaveText("1");
-//
-//             console.log(`Finished running ${testInfo.title}`);
-//         }
-//         catch (error) {
-//             console.log(`Test ${testInfo.title} failed: ${error}`);
-//         }
-//     });
-// });
+let userCredentials: NewUser;
 
-test.describe("Placeholder test that always passes", () => {
-    test("These integration tests need to be looked at again - specifically the framework we are using", () => {
-        expect("True");
+if (!questionnaireName) {
+    console.error("Questionnaire name is undefined");
+    process.exit(1);
+}
+
+if (!serverPark) {
+    console.error("Server park is undefined");
+    process.exit(1);
+}
+
+test.describe("ARPR without data", () => {
+    test.beforeEach(async ({ page }, testInfo) => {
+        console.log(`Started running before each hook for test ${testInfo.title}`);
+        testInfo.setTimeout(30000);
+        userCredentials = await setupTestUser(blaiseApiClient, serverPark);
+        console.log(`Finished running before each hook for test ${testInfo.title}`);
+    });
+    test.afterEach(async ({ page }, testInfo) => {
+        console.log(`Started running after each hook for test ${testInfo.title}`);
+        await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
+        console.log(`Finished running after each hook for test ${testInfo.title}`);
+    });
+    test("ARPR without data", async ({ page }, testInfo) => {
+        console.log(`Started running ${testInfo.title}`);
+        await loginToMir(page, userCredentials);
+        await page.click("text=Appointment resource planning");
+        await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
+        await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Run a Daybatch first to obtain the most accurate results.");
+        await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Appointments that have already been attempted will not be displayed.");
+        await page.locator("#Date").type("30-06-1990");
+        await page.click("button[type=submit]");
+        await page.waitForSelector("text=Loading", { state: "hidden" });
+        await expect(page.locator(".ons-panel__body ").nth(1)).toContainText("No questionnaires found for given parameters.");        
+        console.log(`Finished running ${testInfo.title}`);
     });
 });
+
+/*
+commenting this test out for now, for some reason the cati book appointment page displays differently when run from a concourse worker
+ideally we want to upgrade to a version of blaise that allows appointments to be booked via the api
+
+import { deleteTestUser, setupQuestionnaire, setupTestUser, uninstallQuestionnaire } from "./helpers/BlaiseHelpers";
+import { setupAppointment, clearCatiData } from "./helpers/CatiHelpers";
+import { loginToMir, createDateForTomorrow } from "./helpers/MirHelpers";
+
+test.describe("ARPR with data", () => {
+    test.beforeEach(async ({ page }, testInfo) => {
+        console.log(`Started running before each hook for test ${testInfo.title}`);
+        testInfo.setTimeout(180000);
+        userCredentials = await setupTestUser(blaiseApiClient, serverPark);
+        await setupQuestionnaire(blaiseApiClient, questionnaireName, serverPark);
+        await setupAppointment(page, questionnaireName, userCredentials);
+        console.log(`Finished running before each hook for test ${testInfo.title}`);
+    });
+    test.afterEach(async ({ page }, testInfo) => {
+        console.log(`Started running after each hook for test ${testInfo.title}`);
+        await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
+        await clearCatiData(page, questionnaireName, userCredentials);
+        await uninstallQuestionnaire(blaiseApiClient, serverPark, questionnaireName);
+        console.log(`Finished running after each hook for test ${testInfo.title}`);
+    });
+    test("ARPR with data", async ({ page }, testInfo) => {
+        console.log(`Started running ${testInfo.title}`);
+        await loginToMir(page, userCredentials);
+        await page.click("text=Appointment resource planning");
+        await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
+        await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Run a Daybatch first to obtain the most accurate results.");
+        await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Appointments that have already been attempted will not be displayed.");
+        await page.locator("#Date").type(`${createDateForTomorrow()}`);
+        await page.click("button[type=submit]");
+        await page.click('button:has-text("Select All")');
+        await page.click('button:has-text("Run report")');
+        await page.waitForSelector("text=Loading", { state: "hidden" });
+        const row = await page.locator(`tr:has-text('${questionnaireName}')`);
+        await expect(row.locator('td:nth-child(2)')).toHaveText("10:00");
+        await expect(row.locator('td:nth-child(3)')).toHaveText("English");
+        await expect(row.locator('td:nth-child(4)')).toHaveText("1");
+        console.log(`Finished running ${testInfo.title}`);
+    });
+});
+*/
