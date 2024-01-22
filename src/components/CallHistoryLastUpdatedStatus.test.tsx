@@ -19,6 +19,14 @@ const mockAdapter = new MockAdapter(axios);
 
 const dateOneYearAgo = subtractYears(1);
 
+function DateHelper() {
+    const today = new Date();
+    const lastYear = new Date(today);
+    lastYear.setFullYear(today.getFullYear() - 1);
+
+    return lastYear.toUTCString();
+}
+
 describe("call history last updated status with data", () => {
     beforeEach(() => {
         mockAdapter.onGet("/api/reports/call-history-status").reply(
@@ -32,10 +40,9 @@ describe("call history last updated status with data", () => {
     });
 
     it("matches snapshot", async () => {
-        // This snapshot will need to be updated in 1 years time (28/06/2023)
         mockAdapter
             .onGet("/api/reports/call-history-status")
-            .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
+            .reply(200, { last_updated: DateHelper() });
         const history = createMemoryHistory();
         const wrapper = render(
             <Router history={history}>
