@@ -12,12 +12,12 @@ Object {
         Data in this report was last updated: 
         <b>
           <time
-            datetime="2000-01-01T10:00:00.000Z"
-            title="2000-01-01 10:00"
+            datetime="2023-01-22T12:04:32.000Z"
+            title="2023-01-22 12:04"
           >
-            24 years ago
+            1 year ago
           </time>
-           (01/01/2000 10:00:00)
+           (22/01/2023 12:04:32)
         </b>
       </p>
       <p
@@ -35,12 +35,12 @@ Object {
       Data in this report was last updated: 
       <b>
         <time
-          datetime="2000-01-01T10:00:00.000Z"
-          title="2000-01-01 10:00"
+          datetime="2023-01-22T12:04:32.000Z"
+          title="2023-01-22 12:04"
         >
-          24 years ago
+          1 year ago
         </time>
-         (01/01/2000 10:00:00)
+         (22/01/2023 12:04:32)
       </b>
     </p>
     <p
