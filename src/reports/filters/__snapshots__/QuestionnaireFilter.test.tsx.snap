@@ -513,12 +513,12 @@ Object {
             Data in this report was last updated: 
             <b>
               <time
-                datetime="2023-01-22T15:14:20.000Z"
-                title="2023-01-22 15:14"
+                datetime="2013-01-01T00:00:00.000Z"
+                title="2013-01-01 00:00"
               >
                 1 year ago
               </time>
-               (22/01/2023 15:14:20)
+               (01/01/2013 00:00:00)
             </b>
           </p>
           <p
@@ -718,12 +718,12 @@ Object {
           Data in this report was last updated: 
           <b>
             <time
-              datetime="2023-01-22T15:14:20.000Z"
-              title="2023-01-22 15:14"
+              datetime="2013-01-01T00:00:00.000Z"
+              title="2013-01-01 00:00"
             >
               1 year ago
             </time>
-             (22/01/2023 15:14:20)
+             (01/01/2013 00:00:00)
           </b>
         </p>
         <p
