@@ -19,17 +19,14 @@ const mockAdapter = new MockAdapter(axios);
 
 describe("CallHistoryLastUpdatedStatus component", () => {
     beforeAll(() => {
-        // Lock Time
         timekeeper.freeze(new Date("2014-01-01"));
     });
 
     afterAll(() => {
-        // Unlock Time
         timekeeper.reset();
     });
 
     it("matches snapshot", async () => {
-        // Mock the API response
         mockAdapter
             .onGet("/api/reports/call-history-status")
             .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
