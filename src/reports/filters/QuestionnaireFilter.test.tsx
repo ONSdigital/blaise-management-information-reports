@@ -15,6 +15,7 @@ import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import userEvent from "@testing-library/user-event";
+import timekeeper from "timekeeper";
 import subtractYears from "../../utilities/DateFormatter";
 import { InterviewerFilterQuery } from "./InterviewerFilter";
 import QuestionnaireFilter from "./QuestionnaireFilter";
@@ -28,6 +29,14 @@ const questionnaireDataReturned: string[] = [
 
 dateFormatter.extend(utc);
 dateFormatter.extend(timezone);
+
+function DateHelper() {
+    const today = new Date();
+    const lastYear = new Date(today);
+    lastYear.setFullYear(today.getFullYear() - 1);
+
+    return lastYear.toUTCString();
+}
 
 describe("the interviewer details page renders correctly", () => {
     let history: History;
@@ -99,14 +108,18 @@ describe("the interviewer details page renders correctly", () => {
     });
 
     it("matches snapshot", async () => {
-        // This snapshot will need to be updated in 1 years time (28/06/2023)
         mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
+        timekeeper.freeze(new Date("2014-01-01"));
+
         mockAdapter
             .onGet("/api/reports/call-history-status")
-            .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
+            .reply(200, { last_updated: DateHelper() });
+
         const wrapper = renderComponent();
         await screen.findByText("LMS2101_AA1");
+
         expect(wrapper).toMatchSnapshot();
+        timekeeper.reset();
     });
 
     it("renders correctly", async () => {
