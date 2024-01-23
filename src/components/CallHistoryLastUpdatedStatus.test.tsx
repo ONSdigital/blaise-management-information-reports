@@ -47,23 +47,30 @@ describe("CallHistoryLastUpdatedStatus component", () => {
 
         expect(await wrapper).toMatchSnapshot();
     });
+    it("renders correctly", async () => {
+        mockAdapter
+            .onGet("/api/reports/call-history-status")
+            .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
 
-    // it("renders correctly", async () => {
-    //     const history = createMemoryHistory();
-    //     await act(async () => {
-    //         render(
-    //             <Router history={history}>
-    //                 <CallHistoryLastUpdatedStatus />
-    //             </Router>,
-    //         );
-    //     });
-    //     expect(screen.queryByText("Data in this report was last updated:")).toBeVisible();
-    //     expect(screen.queryByText("Data in this report only goes back to the last 12 months.")).toBeVisible();
-    //     await act(async () => {
-    //         await flushPromises();
-    //     });
-    //     expect(await screen.findByText(`(${formatDateAndTime(dateOneYearAgo)})`)).toBeVisible();
-    // });
+        const history = createMemoryHistory();
+
+        await act(async () => {
+            render(
+                <Router history={history}>
+                    <CallHistoryLastUpdatedStatus />
+                </Router>,
+            );
+        });
+
+        expect(screen.queryByText("Data in this report was last updated:")).toBeVisible();
+        expect(screen.queryByText("Data in this report only goes back to the last 12 months.")).toBeVisible();
+
+        await act(async () => {
+            await flushPromises();
+        });
+
+        expect(await screen.findByText("14 years ago")).toBeVisible();
+    });
 });
 
 describe("call history last updated status with invalid data", () => {
