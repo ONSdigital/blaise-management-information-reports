@@ -28,6 +28,12 @@ const questionnaireDataReturned: string[] = [
 dateFormatter.extend(utc);
 dateFormatter.extend(timezone);
 
+function DateHelper() {
+    const today = new Date();
+    const lastYear = new Date(today);
+    lastYear.setFullYear(today.getFullYear() - 1);
+}
+
 describe("the interviewer details page renders correctly", () => {
     let history: History;
     let setQuestionnaires: (questionnaires: string[]) => void;
@@ -90,11 +96,10 @@ describe("the interviewer details page renders correctly", () => {
     });
 
     it("matches snapshot", async () => {
-        // This snapshot will need to be updated in 1 years time (28/06/2023)
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         mockAdapter
             .onGet("/api/reports/call-history-status")
-            .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
+            .reply(200, { last_updated: DateHelper() });
         const wrapper = renderComponent();
         await screen.findByText("LMS2101_AA1");
         expect(wrapper).toMatchSnapshot();
