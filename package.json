@@ -6,10 +6,10 @@
   "scripts": {
     "start": "node ./dist/server/index.js",
     "start-server": "tsc --project tsconfig.server.json && node ./dist/server/index.js | pino-pretty -c -t",
-    "start-react": "react-scripts start",
-    "build-react": "react-scripts build",
+    "start-react": "react-scripts --openssl-legacy-provider start",
+    "build-react": "react-scripts --openssl-legacy-provider build",
     "test": "jest --coverage --watchAll=false",
-    "gcp-build": "react-scripts build && tsc --project tsconfig.server.json",
+    "gcp-build": "react-scripts --openssl-legacy-provider build && tsc --project tsconfig.server.json",
     "lint": "eslint . --ext .ts --ext .tsx",
     "lint-fix": "eslint . --fix",
     "integration-test": "playwright test tests/integration",
