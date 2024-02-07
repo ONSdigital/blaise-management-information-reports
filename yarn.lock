@@ -1812,11 +1812,6 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@remix-run/router@1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.8.0.tgz#e848d2f669f601544df15ce2a313955e4bf0bafc"
-  integrity sha512-mrfKqIHnSZRyIzBcanNJmVQELTnX+qagEDlcKO90RgRBVOZGSGvZKeDihTRfWcqoDn5N/NkUcwWTccnpN18Tfg==
-
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-7.1.3.tgz#80de384edfbd7bfc9101164910f86078151a3eca"
@@ -3280,7 +3275,7 @@ axios-mock-adapter@^1.19.0:
     fast-deep-equal "^3.1.3"
     is-buffer "^2.0.5"
 
-axios@^0.21.0, axios@^0.21.1, axios@~0.21.0:
+axios@^0.21.0, axios@^0.21.1:
   version "0.21.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.4.tgz#c67b90dc0568e5c1cf2b0b858c43ba28e2eda575"
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
@@ -3541,16 +3536,6 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-blaise-api-node-client@ONSDigital/blaise-api-node-client:
-  version "1.0.0"
-  uid dbc1474e320153e94a43673c8ecaa18ce1b7c65a
-  resolved "https://codeload.github.com/ONSDigital/blaise-api-node-client/tar.gz/dbc1474e320153e94a43673c8ecaa18ce1b7c65a"
-  dependencies:
-    "@babel/preset-env" "^7.14.7"
-    axios "^0.21.1"
-    blaise-iap-node-provider "https://github.com/ONSdigital/blaise-iap-node-provider.git"
-    typescript "~4.2.2"
-
 "blaise-api-node-client@https://github.com/ONSdigital/blaise-api-node-client":
   version "1.0.0"
   resolved "https://github.com/ONSdigital/blaise-api-node-client#dbc1474e320153e94a43673c8ecaa18ce1b7c65a"
@@ -3559,16 +3544,6 @@ blaise-api-node-client@ONSDigital/blaise-api-node-client:
     axios "^0.21.1"
     blaise-iap-node-provider "https://github.com/ONSdigital/blaise-iap-node-provider.git"
     typescript "~4.2.2"
-
-"blaise-design-system-react-components@git+https://github.com/ONSdigital/blaise-design-system-react-components#0.13.2":
-  version "1.0.0"
-  uid "2150c7a402fa6efd5be82a32dda2e671fdeddd58"
-  resolved "git+https://github.com/ONSdigital/blaise-design-system-react-components#2150c7a402fa6efd5be82a32dda2e671fdeddd58"
-  dependencies:
-    formik "^2.2.9"
-    react "^17.0.2"
-    react-dom "^17.0.2"
-    react-loader-spinner "^4.0.0"
 
 "blaise-design-system-react-components@https://github.com/ONSdigital/blaise-design-system-react-components#0.13.2":
   version "1.0.0"
@@ -3602,31 +3577,6 @@ blaise-api-node-client@ONSDigital/blaise-api-node-client:
     google-auth-library "^7.9.1"
     jsonwebtoken "^8.5.1"
     path-parse "^1.0.7"
-    typescript "~4.2.2"
-
-"blaise-login-react-client@https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-client?ced09846ac3be3ebd9c5cc9ee75986187214695b":
-  version "1.0.0"
-  resolved "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-client?ced09846ac3be3ebd9c5cc9ee75986187214695b#49a2b8257b23d6ba1241de810541321ce985c771"
-  dependencies:
-    axios "~0.21.0"
-    blaise-api-node-client ONSDigital/blaise-api-node-client
-    blaise-design-system-react-components "git+https://github.com/ONSdigital/blaise-design-system-react-components#0.13.2"
-    formik "^2.2.9"
-    react "^17.0.1"
-    react-dom "^17.0.0"
-    react-loader-spinner "^4.0.0"
-    react-router-dom "^6.2.1"
-    universal-cookie "^4.0.4"
-
-"blaise-login-react-server@https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-server?ced09846ac3be3ebd9c5cc9ee75986187214695b":
-  version "1.1.0"
-  resolved "https://gitpkg.now.sh/ONSdigital/blaise-login-react/blaise-login-react-server?ced09846ac3be3ebd9c5cc9ee75986187214695b#6921391d3f5f253d07e17c332f3e43fb4ce5e17c"
-  dependencies:
-    "@babel/preset-env" "^7.14.7"
-    axios "^0.21.1"
-    blaise-api-node-client ONSDigital/blaise-api-node-client
-    express "^4.17.2"
-    jsonwebtoken "^8.5.1"
     typescript "~4.2.2"
 
 bluebird@^3.5.5:
@@ -5870,7 +5820,7 @@ expect@^29.0.0:
     jest-message-util "^29.6.2"
     jest-util "^29.6.2"
 
-express@^4.17.1, express@^4.17.2:
+express@^4.17.1:
   version "4.18.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.18.2.tgz#3fabe08296e930c796c19e3c516979386ba9fd59"
   integrity sha512-5/PsL6iGPdfQ/lKM1UuielYgv3BUoJfz1aUwU9vHZ+J7gyvwdQXFEBIEIaxeGf0GIcreATNyBExtalisDbuMqQ==
@@ -10709,7 +10659,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@^17.0.0, react-dom@^17.0.1, react-dom@^17.0.2:
+react-dom@^17.0.1, react-dom@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
@@ -10786,14 +10736,6 @@ react-router-dom@^5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router-dom@^6.2.1:
-  version "6.15.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.15.0.tgz#6da7db61e56797266fbbef0d5e324d6ac443ee40"
-  integrity sha512-aR42t0fs7brintwBGAv2+mGlCtgtFQeOzK0BM1/OiqEzRejOZtpMZepvgkscpMUnKb8YO84G7s3LsHnnDNonbQ==
-  dependencies:
-    "@remix-run/router" "1.8.0"
-    react-router "6.15.0"
-
 react-router@5.3.4:
   version "5.3.4"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.3.4.tgz#8ca252d70fcc37841e31473c7a151cf777887bb5"
@@ -10808,13 +10750,6 @@ react-router@5.3.4:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
-
-react-router@6.15.0:
-  version "6.15.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.15.0.tgz#bf2cb5a4a7ed57f074d4ea88db0d95033f39cac8"
-  integrity sha512-NIytlzvzLwJkCQj2HLefmeakxxWHWAP+02EGqWEZy+DgfHHKQMUoBBjUQLOtFInBMhWtb3hiUy6MfFgwLjXhqg==
-  dependencies:
-    "@remix-run/router" "1.8.0"
 
 react-scripts@4.0.3:
   version "4.0.3"
