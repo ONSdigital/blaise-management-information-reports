@@ -13,6 +13,7 @@ env_variables:
   SESSION_SECRET: _SESSION_SECRET
   ROLES: _ROLES
 
-basic_scaling:
-  idle_timeout: 1m
-  max_instances: 1
+automatic_scaling:
+  min_instances: _MAX_INSTANCES
+  max_instances: _MAX_INSTANCES
+  target_cpu_utilization: _TARGET_CPU_UTILIZATION
