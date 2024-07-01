@@ -30,7 +30,7 @@
     "@types/express": "^4.17.11",
     "@types/jest": "26.0.20",
     "@types/react-datepicker": "^3.1.8",
-    "@types/react-dom": "^17.0.2",
+    "@types/react-dom": "^18.3.0",
     "axios": "^0.21.0",
     "blaise-api-node-client": "https://github.com/ONSdigital/blaise-api-node-client",
     "blaise-design-system-react-components": "https://github.com/ONSdigital/blaise-design-system-react-components#0.13.2",
