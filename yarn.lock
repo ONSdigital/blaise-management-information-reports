@@ -5175,9 +5175,9 @@ blaise-api-node-client@ONSDigital/blaise-api-node-client:
     react-dom "^17.0.2"
     react-loader-spinner "^4.0.0"
 
-"blaise-design-system-react-components@git+https://github.com/ONSdigital/blaise-design-system-react-components#0.14.0":
+"blaise-design-system-react-components@https://github.com/ONSdigital/blaise-design-system-react-components#0.14.0":
   version "1.0.0"
-  resolved "git+https://github.com/ONSdigital/blaise-design-system-react-components#30ea96f77c024cb0cec27e05e5c1c1c10dd4eca0"
+  resolved "https://github.com/ONSdigital/blaise-design-system-react-components#30ea96f77c024cb0cec27e05e5c1c1c10dd4eca0"
   dependencies:
     formik "^2.2.9"
     react "^18.2.0"
