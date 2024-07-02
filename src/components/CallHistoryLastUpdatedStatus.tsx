@@ -24,6 +24,7 @@ function ReportStatusText({
 
     return (
         <>
+            {/* @ts-expect-error Server Component */}
             <TimeAgo live={false} date={reportLastUpdatedDate} />
             { reportLastUpdatedDate ? displayResult(reportLastUpdatedDate) : "Loading" }
         </>

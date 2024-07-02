@@ -57,16 +57,21 @@ function App(): ReactElement {
         if (loaded && loggedIn) {
             return (
                 <DefaultErrorBoundary>
+                    {/* @ts-expect-error Server Component */}
                     <Switch>
+                        {/* @ts-expect-error Server Component */}
                         <Route path="/interviewer-call-history">
                             <InterviewerCallHistory />
                         </Route>
+                        {/* @ts-expect-error Server Component */}
                         <Route path="/interviewer-call-pattern">
                             <InterviewerCallPattern />
                         </Route>
+                        {/* @ts-expect-error Server Component */}
                         <Route path="/appointment-resource-planning">
                             <AppointmentResourcePlanning />
                         </Route>
+                        {/* @ts-expect-error Server Component */}
                         <Route path="/">
                             <main id="main-content" className="ons-page__main ons-u-mt-no">
                                 <h1 className="ons-u-mt-m">Reports</h1>

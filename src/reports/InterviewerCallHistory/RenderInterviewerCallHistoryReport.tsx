@@ -75,6 +75,7 @@ function RenderInterviewerCallHistoryReport({
                 >
                     { (reportData) => (
                         <>
+                            {/* @ts-expect-error Server Component */}
                             <CSVLink
                                 hidden={reportData === null || reportData.length === 0}
                                 data={

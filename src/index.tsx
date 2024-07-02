@@ -6,6 +6,7 @@ import * as ServiceWorker from "./ServiceWorker";
 
 ReactDOM.render(
     <React.StrictMode>
+        {/* @ts-expect-error Server Component */}
         <Router>
             <App />
         </Router>
