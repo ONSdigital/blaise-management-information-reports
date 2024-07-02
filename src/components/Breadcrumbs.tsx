@@ -18,7 +18,6 @@ function Breadcrumbs({ BreadcrumbList }: Props): ReactElement {
                 {
                     BreadcrumbList.map(({ link, title, onClickFunction }: BreadcrumbItem, index) => (
                         <li className="ons-breadcrumb__item" id={`breadcrumb-${index}`} key={title}>
-                            {/* @ts-expect-error Server Component */}
                             <Link className="ons-breadcrumb__link" to={link} onClick={onClickFunction}>{title}</Link>
                             <svg
                                 className="ons-svg-icon"

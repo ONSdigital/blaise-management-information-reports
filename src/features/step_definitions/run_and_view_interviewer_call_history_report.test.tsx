@@ -9,7 +9,7 @@ import { Router } from "react-router-dom";
 import React from "react";
 import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
-import { AuthManager } from "blaise-login-react-client";
+import { AuthManager } from "blaise-login-react/blaise-login-react-client";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { InterviewerCallHistoryReport } from "../../interfaces";
@@ -19,7 +19,7 @@ import "@testing-library/jest-dom";
 
 const mockAdapter = new MockAdapter(axios);
 
-jest.mock("blaise-login-react-client");
+jest.mock("blaise-login-react/blaise-login-react-client");
 AuthManager.prototype.loggedIn = jest.fn().mockImplementation(() => Promise.resolve(true));
 
 const feature = loadFeature(
