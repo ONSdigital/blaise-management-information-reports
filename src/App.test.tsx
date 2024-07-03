@@ -5,7 +5,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { AuthManager } from "blaise-login-react/blaise-login-react-client";
-import { Router, MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router";
 import "@testing-library/jest-dom";
 import { act } from "react-dom/test-utils";
 import { createMemoryHistory } from "history";

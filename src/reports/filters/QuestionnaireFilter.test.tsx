@@ -4,17 +4,15 @@
 
 import "@testing-library/jest-dom";
 import { createMemoryHistory, History } from "history";
-import { render, waitFor } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import { act } from "react";
-import { screen } from "@testing-library/dom";
 import React from "react";
+import { screen } from "@testing-library/dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import userEvent from "@testing-library/user-event";
 import timekeeper from "timekeeper";
 import subtractYears from "../../utilities/DateFormatter";
 import { InterviewerFilterQuery } from "./InterviewerFilter";

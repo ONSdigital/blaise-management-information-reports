@@ -137,7 +137,7 @@ describe("the interviewer details page renders correctly", () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
         await waitFor(() => {
-            expect(wrapper.findAllByText(/Run report/))
+            expect(wrapper.findAllByText(/Run report/));
         });
         await act(async () => {
             userEvent.click(await screen.findByText(/Run report/));
@@ -150,7 +150,7 @@ describe("the interviewer details page renders correctly", () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
         await waitFor(() => {
-            expect(wrapper.findAllByText(/LMS2101_AA1/))
+            expect(wrapper.findAllByText(/LMS2101_AA1/));
         });
         await act(async () => {
             userEvent.click(await screen.findByLabelText(/LMS2101_AA1/));
@@ -165,7 +165,7 @@ describe("the interviewer details page renders correctly", () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
         await waitFor(() => {
-            expect(wrapper.findAllByText(/LMS2101_AA1/))
+            expect(wrapper.findAllByText(/LMS2101_AA1/));
         });
         await act(async () => {
             userEvent.click(await screen.findByText(/LMS2101_AA1/));
