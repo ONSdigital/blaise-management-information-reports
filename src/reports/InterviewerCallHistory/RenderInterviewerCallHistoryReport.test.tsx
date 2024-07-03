@@ -31,6 +31,10 @@ describe("RenderInterviewerCallHistoryReport", () => {
             .reply(200, { last_updated: "Tue, 04 Oct 2022 00:00:06 GMT" });
     });
 
+    afterEach(() => {
+        http.reset();
+    });
+
     function renderComponent(): RenderResult {
         const interviewerFilterQuery = {
             interviewer: "rich",
