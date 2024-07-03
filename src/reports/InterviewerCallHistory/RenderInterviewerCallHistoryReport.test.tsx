@@ -148,7 +148,11 @@ describe("RenderInterviewerCallHistoryReport", () => {
             http.onPost("/api/reports/interviewer-call-history").reply(() => {
                 throw new Error("Boom!");
             });
-            renderComponent();
+            const wrapper = renderComponent();
+
+            await waitFor(() => {
+                expect(wrapper.findByText(/Failed to run the report/))
+            });
             await screen.findByText(/Failed to run the report/);
         });
     });
