@@ -117,7 +117,6 @@ Object {
             Interviewer ID
           </label>
           <input
-            class="ons-input ons-input--text ons-input-type__input "
             id="Interviewer ID"
             initial_value=""
             name="Interviewer ID"
@@ -135,7 +134,6 @@ Object {
             Start date
           </label>
           <input
-            class="ons-input ons-input--text ons-input-type__input "
             id="Start date"
             initial_value="1997-12-24"
             name="Start date"
@@ -153,7 +151,6 @@ Object {
             End date
           </label>
           <input
-            class="ons-input ons-input--text ons-input-type__input "
             id="End date"
             initial_value="1997-12-24"
             name="End date"
@@ -289,7 +286,6 @@ Object {
           Interviewer ID
         </label>
         <input
-          class="ons-input ons-input--text ons-input-type__input "
           id="Interviewer ID"
           initial_value=""
           name="Interviewer ID"
@@ -307,7 +303,6 @@ Object {
           Start date
         </label>
         <input
-          class="ons-input ons-input--text ons-input-type__input "
           id="Start date"
           initial_value="1997-12-24"
           name="Start date"
@@ -325,7 +320,6 @@ Object {
           End date
         </label>
         <input
-          class="ons-input ons-input--text ons-input-type__input "
           id="End date"
           initial_value="1997-12-24"
           name="End date"
