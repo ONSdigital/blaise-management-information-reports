@@ -10,7 +10,7 @@ import axios from "axios";
 import MockDate from "mockdate";
 import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import React from "react";
 import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
@@ -191,9 +191,9 @@ describe("function InterviewerCallPattern() with happy data", () => {
         const history = createMemoryHistory();
 
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <InterviewerCallPattern {... mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await screen.findByText("Questionnaires");
@@ -204,9 +204,9 @@ describe("function InterviewerCallPattern() with happy data", () => {
     it("should render correctly", async () => {
         const history = createMemoryHistory();
         render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         expect(await screen.findByText("Reports")).toBeVisible();
@@ -277,9 +277,9 @@ describe("function InterviewerCallPattern() with data and invalid data", () => {
         const history = createMemoryHistory();
 
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await screen.findByText("Questionnaires");
@@ -292,9 +292,9 @@ describe("function InterviewerCallPattern() with data and invalid data", () => {
 
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
@@ -370,9 +370,9 @@ describe("function InterviewerCallPattern() without data", () => {
         const history = createMemoryHistory();
 
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await screen.findByText("Questionnaires");
@@ -385,9 +385,9 @@ describe("function InterviewerCallPattern() without data", () => {
 
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
@@ -415,9 +415,9 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
         const history = createMemoryHistory();
 
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         expect(await screen.findByText("Reports")).toBeVisible();
@@ -430,9 +430,9 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
 
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
@@ -475,9 +475,9 @@ describe("function InterviewerCallPattern() with request error", () => {
         const history = createMemoryHistory();
 
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await screen.findByRole("heading", { name: "Failed to run the report" });
@@ -490,9 +490,9 @@ describe("function InterviewerCallPattern() with request error", () => {
 
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
