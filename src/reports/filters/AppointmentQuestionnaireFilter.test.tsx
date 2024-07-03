@@ -5,7 +5,7 @@
 import "@testing-library/jest-dom";
 import { createMemoryHistory, History } from "history";
 import { render, waitFor } from "@testing-library/react";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
 import React from "react";
@@ -55,7 +55,7 @@ describe("the interviewer details page renders correctly", () => {
 
     function renderComponent() {
         return render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <AppointmentQuestionnaireFilter
                     reportDate={new Date("2022-01-21")}
                     surveyTla="LMS"
@@ -64,7 +64,7 @@ describe("the interviewer details page renders correctly", () => {
                     submitFunction={submit}
                     navigateBack={() => {}}
                 />
-            </Router>,
+            </MemoryRouter>,
         );
     }
 
@@ -135,7 +135,10 @@ describe("the interviewer details page renders correctly", () => {
 
     it("checks current value questionnaires by default", async () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
-        renderComponent();
+        const wrapper = renderComponent();
+        await waitFor(() => {
+            expect(wrapper.findAllByText(/Run report/))
+        });
         await act(async () => {
             userEvent.click(await screen.findByText(/Run report/));
         });
@@ -145,7 +148,10 @@ describe("the interviewer details page renders correctly", () => {
 
     it("returns the questionnaires when a checkbox is ticket", async () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
-        renderComponent();
+        const wrapper = renderComponent();
+        await waitFor(() => {
+            expect(wrapper.findAllByText(/LMS2101_AA1/))
+        });
         await act(async () => {
             userEvent.click(await screen.findByLabelText(/LMS2101_AA1/));
             userEvent.click(await screen.findByLabelText(/LMS2101_AA2/));
@@ -157,9 +163,12 @@ describe("the interviewer details page renders correctly", () => {
 
     it("displays an error when submitting with no checkboxes selected", async () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
-        renderComponent();
+        const wrapper = renderComponent();
+        await waitFor(() => {
+            expect(wrapper.findAllByText(/LMS2101_AA1/))
+        });
         await act(async () => {
-            userEvent.click(await screen.findByLabelText(/LMS2101_AA1/));
+            userEvent.click(await screen.findByText(/LMS2101_AA1/));
             userEvent.click(await screen.findByText(/Run report/));
         });
         const elements = await screen.findAllByText("At least one questionnaire must be selected");
