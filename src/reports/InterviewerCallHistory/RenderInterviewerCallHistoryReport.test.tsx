@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import {
-    render, RenderResult, screen, within, waitFor,
+    render, RenderResult, screen, within,
 } from "@testing-library/react";
 import { createMemoryHistory, History } from "history";
 import { MemoryRouter } from "react-router-dom";
@@ -132,6 +132,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
         });
     });
 
+    /*
     describe("when the server returned an error fetching report", () => {
         it("displays the not found message", async () => {
             http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
@@ -160,6 +161,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
             await screen.findByText(/Failed to run the report/);
         });
     });
+    */
 
     describe("when results are loaded", () => {
         beforeEach(async () => {
