@@ -9,7 +9,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import MockDate from "mockdate";
 import { createMemoryHistory } from "history";
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import React from "react";
 import { act } from "react-dom/test-utils";
@@ -474,12 +474,14 @@ describe("function InterviewerCallPattern() with request error", () => {
     it("should match the snapshot", async () => {
         const history = createMemoryHistory();
         
-        const wrapper = render(
-            <MemoryRouter history={history}>
-                <InterviewerCallPattern {...mockProps} />
-            </MemoryRouter>,
-        );
-        
+        const wrapper = await act(async () => {
+            render(
+                <MemoryRouter history={history}>
+                    <InterviewerCallPattern {...mockProps} />
+                </MemoryRouter>,
+            );
+        });
+
         await screen.findByRole("heading", { name: "Failed to run the report" });
 
         expect(await wrapper).toMatchSnapshot();
