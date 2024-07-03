@@ -136,7 +136,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
             http.onPost("/api/reports/interviewer-call-history").reply(500, "");
             const wrapper = renderComponent();
             await waitFor(() => {
-                expect(wrapper.findAllByText(/Failed to run the report/))
+                expect(wrapper.findByText(/Failed to run the report/))
             });
             await screen.findByText(/Failed to run the report/);
         });
