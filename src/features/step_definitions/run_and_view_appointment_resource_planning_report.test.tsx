@@ -5,7 +5,7 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { createMemoryHistory } from "history";
 import { render, screen, waitFor } from "@testing-library/react";
-import { Router } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import React from "react";
 import { fireEvent } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
@@ -80,9 +80,9 @@ defineFeature(feature, (test) => {
         given("A survey tla and date has been specified", async () => {
             const history = createMemoryHistory();
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <App />
-                </Router>,
+                </MemoryRouter>,
             );
 
             await act(async () => {
@@ -150,9 +150,9 @@ defineFeature(feature, (test) => {
         given("A survey tla and date has been specified", async () => {
             const history = createMemoryHistory();
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <App />
-                </Router>,
+                </MemoryRouter>,
             );
 
             await act(async () => {
