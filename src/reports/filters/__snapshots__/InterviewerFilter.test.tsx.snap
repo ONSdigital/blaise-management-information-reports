@@ -45,7 +45,6 @@ Object {
             class="ons-u-mb-m"
           >
             Run interviewer 
-            
              report
           </h1>
           <p
@@ -173,7 +172,6 @@ Object {
                 Interviewer ID
               </label>
               <input
-                class="ons-input ons-input--text ons-input-type__input "
                 id="Interviewer ID"
                 initial_value="James"
                 name="Interviewer ID"
@@ -191,7 +189,6 @@ Object {
                 Start date
               </label>
               <input
-                class="ons-input ons-input--text ons-input-type__input "
                 id="Start date"
                 initial_value="2021-01-01"
                 name="Start date"
@@ -209,7 +206,6 @@ Object {
                 End date
               </label>
               <input
-                class="ons-input ons-input--text ons-input-type__input "
                 id="End date"
                 initial_value="2021-01-05"
                 name="End date"
@@ -275,7 +271,6 @@ Object {
           class="ons-u-mb-m"
         >
           Run interviewer 
-          
            report
         </h1>
         <p
@@ -403,7 +398,6 @@ Object {
               Interviewer ID
             </label>
             <input
-              class="ons-input ons-input--text ons-input-type__input "
               id="Interviewer ID"
               initial_value="James"
               name="Interviewer ID"
@@ -421,7 +415,6 @@ Object {
               Start date
             </label>
             <input
-              class="ons-input ons-input--text ons-input-type__input "
               id="Start date"
               initial_value="2021-01-01"
               name="Start date"
@@ -439,7 +432,6 @@ Object {
               End date
             </label>
             <input
-              class="ons-input ons-input--text ons-input-type__input "
               id="End date"
               initial_value="2021-01-05"
               name="End date"

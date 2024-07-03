@@ -5,7 +5,7 @@
 import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
 import { render, RenderResult, waitFor } from "@testing-library/react";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { screen } from "@testing-library/dom";
 import React from "react";
 import userEvent from "@testing-library/user-event";
@@ -29,13 +29,13 @@ describe("the interviewer details page renders correctly", () => {
         };
 
         view = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <InterviewerFilter
                     title=""
                     query={initialQuery}
                     onSubmit={submitFunction}
                 />
-            </Router>,
+            </MemoryRouter>,
         );
     });
 

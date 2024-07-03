@@ -473,13 +473,13 @@ describe("function InterviewerCallPattern() with request error", () => {
 
     it("should match the snapshot", async () => {
         const history = createMemoryHistory();
-
+        
         const wrapper = render(
             <MemoryRouter history={history}>
                 <InterviewerCallPattern {...mockProps} />
             </MemoryRouter>,
         );
-
+        
         await screen.findByRole("heading", { name: "Failed to run the report" });
 
         expect(await wrapper).toMatchSnapshot();
