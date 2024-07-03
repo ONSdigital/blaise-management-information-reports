@@ -31,10 +31,6 @@ describe("RenderInterviewerCallHistoryReport", () => {
             .reply(200, { last_updated: "Tue, 04 Oct 2022 00:00:06 GMT" });
     });
 
-    afterEach(() => {
-        http.reset();
-    });
-
     function renderComponent(): RenderResult {
         const interviewerFilterQuery = {
             interviewer: "rich",
@@ -138,7 +134,9 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
     describe("when the server returned an error fetching report", () => {
         it("displays the not found message", async () => {
-            http.onPost("/api/reports/interviewer-call-history").reply(500, "Boom");
+            http.onPost("/api/reports/interviewer-call-history").reply(() => {
+                throw new Error("Boom");
+            });
             const wrapper = renderComponent();
             await waitFor(() => {
                 expect(wrapper.findByText(/Failed to run the report/));
