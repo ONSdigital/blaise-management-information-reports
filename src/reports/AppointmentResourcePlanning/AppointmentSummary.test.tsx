@@ -1,7 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { MemoryRouter } from "react-router-dom";
+import { createMemoryHistory } from "history";
+import { MemoryRouter } from "react-router";
 import AppointmentSummary from "./AppointmentSummary";
 
 describe("Appointment Summary Section", () => {
@@ -11,8 +16,14 @@ describe("Appointment Summary Section", () => {
     ];
 
     it("displays appointment summary", async () => {
-       render(<AppointmentSummary data={languageSummary} failed={false} />, {wrapper: MemoryRouter});
-       await waitFor(() => {
+        const history = createMemoryHistory();
+        render(
+            <MemoryRouter history={history}>
+                <AppointmentSummary data={languageSummary} failed={false} />
+            </MemoryRouter>,
+        );
+
+        await waitFor(() => {
             const list = screen.queryAllByTestId(/summary-table-row/i);
             const listItemOne = list[0];
             const firstRowLanguage = listItemOne.firstChild;
@@ -42,7 +53,13 @@ describe("Appointment Summary Section", () => {
     });
 
     it("displays error message on failure", async () => {
-        render(<AppointmentSummary data={[]} failed />, {wrapper: MemoryRouter});
+        const history = createMemoryHistory();
+        render(
+            <MemoryRouter history={history}>
+                <AppointmentSummary data={[]} failed />
+            </MemoryRouter>,
+        );
+
         expect(await screen.queryByText("Failed to get appointment language summary")).toBeVisible();
     });
 });
