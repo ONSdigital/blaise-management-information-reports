@@ -121,16 +121,13 @@ function DownloadCSVLink(
     }
 
     return (
-        <>
-            {/* @ts-expect-error Server Component */}
-            <CSVLink
-                data={groupedSummary.csv()}
-                target="_blank"
-                filename={filename}
-            >
-                Export report as Comma-Separated Values (CSV) file
-            </CSVLink>
-        </>
+        <CSVLink
+            data={groupedSummary.csv()}
+            target="_blank"
+            filename={filename}
+        >
+            Export report as Comma-Separated Values (CSV) file
+        </CSVLink>
     );
 }
 

@@ -118,7 +118,6 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
                     Appointment details
                 </h2>
                 <div className="ons-u-mt-m">
-                    {/* @ts-expect-error Server Component */}
                     <CSVLink
                         hidden={reportData === null || reportData.length === 0}
                         data={reportData}
