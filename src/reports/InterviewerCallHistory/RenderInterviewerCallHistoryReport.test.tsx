@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import {
-    render, RenderResult, screen, within,
+    render, RenderResult, screen, within, waitFor,
 } from "@testing-library/react";
 import { createMemoryHistory, History } from "history";
 import { MemoryRouter } from "react-router-dom";
@@ -131,36 +131,43 @@ describe("RenderInterviewerCallHistoryReport", () => {
             await screen.findByText("No data found for parameters given.");
         });
     });
-    /*
+
     describe("when the server returned an error fetching report", () => {
         it("displays the not found message", async () => {
-            http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
-            // http.onPost("/api/reports/interviewer-call-history").reply(() => {
-            //     throw new Error("Boom");
-            // });
-            const wrapper = renderComponent();
-            await waitFor(() => {
-                expect(wrapper.findByText(/Failed to run the report/));
+            // http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
+            http.onPost("/api/reports/interviewer-call-history").reply(() => {
+                throw new Error("Boom");
             });
+            try {
+                const wrapper = renderComponent();
+                await waitFor(() => {
+                    expect(wrapper.findByText(/Failed to run the report/));
+                });
+            } catch (error) {
+                console.error(`Failed with error: ${error}`);
+            }
             await screen.findByText(/Failed to run the report/);
         });
     });
 
     describe("when error occurred while fetching report", () => {
         it("displays the not found message", async () => {
-            http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
-            // http.onPost("/api/reports/interviewer-call-history").reply(() => {
-            //     throw new Error("Boom!");
-            // });
-            const wrapper = renderComponent();
-
-            await waitFor(() => {
-                expect(wrapper.findByText(/Failed to run the report/));
+            // http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
+            http.onPost("/api/reports/interviewer-call-history").reply(() => {
+                throw new Error("Boom!");
             });
+            try {
+                const wrapper = renderComponent();
+                await waitFor(() => {
+                    expect(wrapper.findByText(/Failed to run the report/));
+                });
+            } catch (error) {
+                console.error(`Failed with error: ${error}`);
+            }
             await screen.findByText(/Failed to run the report/);
         });
     });
-    */
+
     describe("when results are loaded", () => {
         beforeEach(async () => {
             const results: InterviewerCallHistoryReport[] = [
