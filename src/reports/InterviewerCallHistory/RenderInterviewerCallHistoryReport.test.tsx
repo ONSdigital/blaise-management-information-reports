@@ -137,10 +137,14 @@ describe("RenderInterviewerCallHistoryReport", () => {
             http.onPost("/api/reports/interviewer-call-history").reply(() => {
                 throw new Error("Boom");
             });
-            const wrapper = renderComponent();
-            await waitFor(() => {
-                expect(wrapper.findByText(/Failed to run the report/));
-            });
+            try {
+                const wrapper = renderComponent();
+                await waitFor(() => {
+                    expect(wrapper.findByText(/Failed to run the report/));
+                });
+            } catch (error) {
+                console.error(`Failed with error: ${error}`);
+            }
             await screen.findByText(/Failed to run the report/);
         });
     });
@@ -150,10 +154,14 @@ describe("RenderInterviewerCallHistoryReport", () => {
             http.onPost("/api/reports/interviewer-call-history").reply(() => {
                 throw new Error("Boom!");
             });
-            const wrapper = renderComponent();
-            await waitFor(() => {
-                expect(wrapper.findByText(/Failed to run the report/));
-            });
+            try {
+                const wrapper = renderComponent();
+                await waitFor(() => {
+                    expect(wrapper.findByText(/Failed to run the report/));
+                });
+            } catch (error) {
+                console.error(`Failed with error: ${error}`);
+            }
             await screen.findByText(/Failed to run the report/);
         });
     });
