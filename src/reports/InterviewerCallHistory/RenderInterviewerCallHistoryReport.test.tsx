@@ -134,36 +134,26 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
     describe("when the server returned an error fetching report", () => {
         it("displays the not found message", async () => {
-            // http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
             http.onPost("/api/reports/interviewer-call-history").reply(() => {
                 throw new Error("Boom");
             });
-            try {
-                const wrapper = renderComponent();
-                await waitFor(() => {
-                    expect(wrapper.findByText(/Failed to run the report/));
-                });
-            } catch (error) {
-                console.error(`Failed with error: ${error}`);
-            }
+            const wrapper = renderComponent();
+            await waitFor(() => {
+                expect(wrapper.findByText(/Failed to run the report/));
+            });
             await screen.findByText(/Failed to run the report/);
         });
     });
 
     describe("when error occurred while fetching report", () => {
         it("displays the not found message", async () => {
-            // http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
             http.onPost("/api/reports/interviewer-call-history").reply(() => {
                 throw new Error("Boom!");
             });
-            try {
-                const wrapper = renderComponent();
-                await waitFor(() => {
-                    expect(wrapper.findByText(/Failed to run the report/));
-                });
-            } catch (error) {
-                console.error(`Failed with error: ${error}`);
-            }
+            const wrapper = renderComponent();
+            await waitFor(() => {
+                expect(wrapper.findByText(/Failed to run the report/));
+            });
             await screen.findByText(/Failed to run the report/);
         });
     });
