@@ -101,10 +101,10 @@ describe("RenderInterviewerCallHistoryReport", () => {
             expect(screen.getByRole("heading", { name: "Call History Report" })).toBeVisible();
         });
 
-        // it("navigates to / when Reports is clicked", () => {
-        //     userEvent.click(screen.getByRole("link", { name: "Reports" }));
-        //     expect(history.location.pathname).toBe("/");
-        // });
+        it("navigates to / when Reports is clicked", () => {
+            userEvent.click(screen.getByRole("link", { name: "Reports" }));
+            expect(screen.getByText("Reports")).toBeInTheDocument();
+        });
 
         it("calls navigateBackTwoSteps when Interview details is clicked", () => {
             userEvent.click(screen.getByRole("link", { name: "Interviewer details" }));
