@@ -8,11 +8,9 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import MockDate from "mockdate";
-import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
-import React from "react";
-import { act } from "react-dom/test-utils";
+import React, { act } from "react";
 import { screen } from "@testing-library/dom";
 import { InterviewerCallPatternReport } from "../../interfaces";
 import InterviewerCallPattern, {
@@ -188,10 +186,8 @@ describe("function InterviewerCallPattern() with happy data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {... mockProps} />
             </MemoryRouter>,
         );
@@ -202,9 +198,8 @@ describe("function InterviewerCallPattern() with happy data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
         render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
             </MemoryRouter>,
         );
@@ -274,10 +269,8 @@ describe("function InterviewerCallPattern() with data and invalid data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
             </MemoryRouter>,
         );
@@ -288,11 +281,9 @@ describe("function InterviewerCallPattern() with data and invalid data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
                 </MemoryRouter>,
             );
@@ -367,10 +358,8 @@ describe("function InterviewerCallPattern() without data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
             </MemoryRouter>,
         );
@@ -381,11 +370,9 @@ describe("function InterviewerCallPattern() without data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
                 </MemoryRouter>,
             );
@@ -412,10 +399,8 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
             </MemoryRouter>,
         );
@@ -426,11 +411,9 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
                 </MemoryRouter>,
             );
@@ -472,11 +455,9 @@ describe("function InterviewerCallPattern() with request error", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
                 </MemoryRouter>,
             );
@@ -488,11 +469,9 @@ describe("function InterviewerCallPattern() with request error", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
                 </MemoryRouter>,
             );
