@@ -134,10 +134,10 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
     describe("when the server returned an error fetching report", () => {
         it("displays the not found message", async () => {
-            // http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
-            http.onPost("/api/reports/interviewer-call-history").reply(() => {
-                throw new Error("Boom");
-            });
+            http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
+            // http.onPost("/api/reports/interviewer-call-history").reply(() => {
+            //     throw new Error("Boom");
+            // });
             const wrapper = renderComponent();
             await waitFor(() => {
                 expect(wrapper.findByText(/Failed to run the report/));
@@ -148,10 +148,10 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
     describe("when error occurred while fetching report", () => {
         it("displays the not found message", async () => {
-            // http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
-            http.onPost("/api/reports/interviewer-call-history").reply(() => {
-                throw new Error("Boom!");
-            });
+            http.onPost("/api/reports/interviewer-call-history").reply(500, ["Boom"]);
+            // http.onPost("/api/reports/interviewer-call-history").reply(() => {
+            //     throw new Error("Boom!");
+            // });
             const wrapper = renderComponent();
 
             await waitFor(() => {
