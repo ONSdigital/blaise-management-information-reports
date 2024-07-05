@@ -6,7 +6,7 @@ import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import AppointmentSummary from "./AppointmentSummary";
 
 describe("Appointment Summary Section", () => {
@@ -18,9 +18,9 @@ describe("Appointment Summary Section", () => {
     it("displays appointment summary", async () => {
         const history = createMemoryHistory();
         render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <AppointmentSummary data={languageSummary} failed={false} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await waitFor(() => {
@@ -55,9 +55,9 @@ describe("Appointment Summary Section", () => {
     it("displays error message on failure", async () => {
         const history = createMemoryHistory();
         render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <AppointmentSummary data={[]} failed />
-            </Router>,
+            </MemoryRouter>,
         );
 
         expect(await screen.queryByText("Failed to get appointment language summary")).toBeVisible();

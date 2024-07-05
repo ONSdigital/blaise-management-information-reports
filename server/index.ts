@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
-import { Auth } from "blaise-login-react-server";
+import { Auth } from "blaise-login-react/blaise-login-react-server";
 import { newServer } from "./Server";
 import { loadConfigFromEnv } from "./Config";
 

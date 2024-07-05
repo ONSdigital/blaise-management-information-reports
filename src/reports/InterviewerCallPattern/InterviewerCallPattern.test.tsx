@@ -8,11 +8,9 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import MockDate from "mockdate";
-import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
-import { Router } from "react-router";
-import React from "react";
-import { act } from "react-dom/test-utils";
+import { MemoryRouter } from "react-router";
+import React, { act } from "react";
 import { screen } from "@testing-library/dom";
 import { InterviewerCallPatternReport } from "../../interfaces";
 import InterviewerCallPattern, {
@@ -188,12 +186,10 @@ describe("function InterviewerCallPattern() with happy data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {... mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await screen.findByText("Questionnaires");
@@ -202,11 +198,10 @@ describe("function InterviewerCallPattern() with happy data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
         render(
-            <Router history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         expect(await screen.findByText("Reports")).toBeVisible();
@@ -274,12 +269,10 @@ describe("function InterviewerCallPattern() with data and invalid data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await screen.findByText("Questionnaires");
@@ -288,13 +281,11 @@ describe("function InterviewerCallPattern() with data and invalid data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
@@ -367,12 +358,10 @@ describe("function InterviewerCallPattern() without data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await screen.findByText("Questionnaires");
@@ -381,13 +370,11 @@ describe("function InterviewerCallPattern() without data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
@@ -412,12 +399,10 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter>
                 <InterviewerCallPattern {...mockProps} />
-            </Router>,
+            </MemoryRouter>,
         );
 
         expect(await screen.findByText("Reports")).toBeVisible();
@@ -426,13 +411,11 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
@@ -472,13 +455,13 @@ describe("function InterviewerCallPattern() with request error", () => {
     });
 
     it("should match the snapshot", async () => {
-        const history = createMemoryHistory();
-
-        const wrapper = render(
-            <Router history={history}>
-                <InterviewerCallPattern {...mockProps} />
-            </Router>,
-        );
+        const wrapper = await act(async () => {
+            render(
+                <MemoryRouter>
+                    <InterviewerCallPattern {...mockProps} />
+                </MemoryRouter>,
+            );
+        });
 
         await screen.findByRole("heading", { name: "Failed to run the report" });
 
@@ -486,13 +469,11 @@ describe("function InterviewerCallPattern() with request error", () => {
     });
 
     it("should render correctly", async () => {
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter>
                     <InterviewerCallPattern {...mockProps} />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 

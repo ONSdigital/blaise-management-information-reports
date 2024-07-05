@@ -5,7 +5,7 @@
 import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
 import React from "react";
@@ -33,9 +33,9 @@ describe("CallHistoryLastUpdatedStatus component", () => {
 
         const history = createMemoryHistory();
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <CallHistoryLastUpdatedStatus />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await act(async () => {
@@ -53,9 +53,9 @@ describe("CallHistoryLastUpdatedStatus component", () => {
 
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <CallHistoryLastUpdatedStatus />
-                </Router>,
+                </MemoryRouter>,
             );
         });
 
@@ -82,9 +82,9 @@ describe("call history last updated status with invalid data", () => {
     it("matches snapshot", async () => {
         const history = createMemoryHistory();
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <CallHistoryLastUpdatedStatus />
-            </Router>,
+            </MemoryRouter>,
         );
         await act(async () => {
             await flushPromises();
@@ -97,9 +97,9 @@ describe("call history last updated status with invalid data", () => {
         const history = createMemoryHistory();
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <CallHistoryLastUpdatedStatus />
-                </Router>,
+                </MemoryRouter>,
             );
         });
         expect(screen.queryByText("Data in this report was last updated:")).toBeVisible();

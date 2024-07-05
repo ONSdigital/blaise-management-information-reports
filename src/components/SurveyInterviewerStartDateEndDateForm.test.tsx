@@ -5,7 +5,7 @@
 import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
 import React from "react";
@@ -27,7 +27,7 @@ describe("form - survey, interviewer, start date, end date", () => {
     it("matches snapshot", async () => {
         const history = createMemoryHistory();
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <SurveyInterviewerStartDateEndDateForm
                     interviewer=""
                     surveyTLA=""
@@ -35,7 +35,7 @@ describe("form - survey, interviewer, start date, end date", () => {
                     endDate={new Date()}
                     onSubmit={() => true}
                 />
-            </Router>,
+            </MemoryRouter>,
         );
 
         await act(async () => {
@@ -49,7 +49,7 @@ describe("form - survey, interviewer, start date, end date", () => {
         const history = createMemoryHistory();
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <SurveyInterviewerStartDateEndDateForm
                         interviewer=""
                         surveyTLA=""
@@ -57,7 +57,7 @@ describe("form - survey, interviewer, start date, end date", () => {
                         endDate={new Date()}
                         onSubmit={() => true}
                     />
-                </Router>,
+                </MemoryRouter>,
             );
         });
         expect(screen.queryByText("Select survey")).toBeVisible();

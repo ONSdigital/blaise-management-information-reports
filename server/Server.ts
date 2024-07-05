@@ -6,7 +6,7 @@ import ejs from "ejs";
 import multer from "multer";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
-import { newLoginHandler, Auth } from "blaise-login-react-server";
+import { newLoginHandler, Auth } from "blaise-login-react/blaise-login-react-server";
 import PinoHttp from "pino-http";
 import { Config } from "./Config";
 import SendAPIRequest from "./SendRequest";
