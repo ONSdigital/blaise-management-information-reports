@@ -23,7 +23,7 @@
     "lint-fix"
   ],
   "resolutions": {
-    "formik": "2.4.2"
+    "formik": "2.4.6"
   },
   "dependencies": {
     "@testing-library/dom": "^7.30.0",
