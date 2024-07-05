@@ -2,7 +2,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
 import ReportDetails from "./ReportDetails";
@@ -12,9 +12,9 @@ describe("ReportDetails", () => {
     it("matches snapshot", async () => {
         const history = createMemoryHistory();
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <ReportDetails link="" title="" description="" />
-            </Router>,
+            </MemoryRouter>,
         );
         await act(async () => {
             await flushPromises();
@@ -26,9 +26,9 @@ describe("ReportDetails", () => {
         const history = createMemoryHistory();
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <ReportDetails link="blah-link" title="blah-title" description="blah-description" />
-                </Router>,
+                </MemoryRouter>,
             );
         });
         expect(screen.queryByText("blah-title")).toBeVisible();

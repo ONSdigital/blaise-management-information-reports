@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
-import { Auth } from "blaise-login-react-server";
+import { Auth } from "blaise-login-react/blaise-login-react-server";
 import { Request, Response, NextFunction } from "express";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";

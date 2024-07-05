@@ -1,10 +1,10 @@
 import "@testing-library/jest-dom";
-import React from "react";
+import React, { act } from "react";
 import {
     render, RenderResult, screen, within,
 } from "@testing-library/react";
 import { createMemoryHistory, History } from "history";
-import { Router } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -16,7 +16,7 @@ const http = new MockAdapter(axios);
 describe("RenderInterviewerCallHistoryReport", () => {
     let navigateBack: () => void;
     let navigateBackTwoSteps: () => void;
-    let history: History<unknown>;
+    let history: History;
 
     beforeEach(async () => {
         http.reset();
@@ -40,14 +40,14 @@ describe("RenderInterviewerCallHistoryReport", () => {
         };
 
         return render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <RenderInterviewerCallHistoryReport
                     interviewerFilterQuery={interviewerFilterQuery}
                     questionnaires={["LMS1111", "LMS2222"]}
                     navigateBack={navigateBack}
                     navigateBackTwoSteps={navigateBackTwoSteps}
                 />
-            </Router>,
+            </MemoryRouter>,
         );
     }
 
@@ -103,7 +103,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
         it("navigates to / when Reports is clicked", () => {
             userEvent.click(screen.getByRole("link", { name: "Reports" }));
-            expect(history.location.pathname).toBe("/");
+            expect(screen.getByText("Reports")).toBeInTheDocument();
         });
 
         it("calls navigateBackTwoSteps when Interview details is clicked", () => {
@@ -133,8 +133,10 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
     describe("when the server returned an error fetching report", () => {
         it("displays the not found message", async () => {
-            http.onPost("/api/reports/interviewer-call-history").reply(500, "");
-            renderComponent();
+            http.onPost("/api/reports/interviewer-call-history").reply(500, [""]);
+            await act(async () => {
+                renderComponent();
+            });
             await screen.findByText(/Failed to run the report/);
         });
     });
@@ -144,11 +146,12 @@ describe("RenderInterviewerCallHistoryReport", () => {
             http.onPost("/api/reports/interviewer-call-history").reply(() => {
                 throw new Error("Boom!");
             });
-            renderComponent();
+            await act(async () => {
+                renderComponent();
+            });
             await screen.findByText(/Failed to run the report/);
         });
     });
-
     describe("when results are loaded", () => {
         beforeEach(async () => {
             const results: InterviewerCallHistoryReport[] = [

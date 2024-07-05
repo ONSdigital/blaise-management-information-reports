@@ -5,7 +5,7 @@
 import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
-import { Router } from "react-router";
+import { MemoryRouter } from "react-router";
 import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
 import React from "react";
@@ -36,9 +36,9 @@ describe("appointment resource planning report without data", () => {
     it("matches snapshot", async () => {
         const history = createMemoryHistory();
         const wrapper = render(
-            <Router history={history}>
+            <MemoryRouter history={history}>
                 <AppointmentResourcePlanning />
-            </Router>,
+            </MemoryRouter>,
         );
         await act(async () => {
             await flushPromises();
@@ -50,9 +50,9 @@ describe("appointment resource planning report without data", () => {
         const history = createMemoryHistory();
         await act(async () => {
             render(
-                <Router history={history}>
+                <MemoryRouter history={history}>
                     <AppointmentResourcePlanning />
-                </Router>,
+                </MemoryRouter>,
             );
         });
         expect(screen.queryByText("Run appointment resource planning report")).toBeVisible();
