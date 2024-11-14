@@ -192,7 +192,7 @@ describe("function InterviewerCallPattern() with happy data", () => {
             </MemoryRouter>,
         );
 
-        await screen.findByText("Questionnaires");
+        await screen.findByText("Call times");
 
         expect(await wrapper).toMatchSnapshot();
     });
@@ -275,7 +275,7 @@ describe("function InterviewerCallPattern() with data and invalid data", () => {
             </MemoryRouter>,
         );
 
-        await screen.findByText("Questionnaires");
+        await screen.findByText("Call times");
 
         expect(await wrapper).toMatchSnapshot();
     });
@@ -364,7 +364,7 @@ describe("function InterviewerCallPattern() without data", () => {
             </MemoryRouter>,
         );
 
-        await screen.findByText("Questionnaires");
+        await screen.findByText(/no data found/i);
 
         expect(await wrapper).toMatchSnapshot();
     });
@@ -405,7 +405,7 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
             </MemoryRouter>,
         );
 
-        expect(await screen.findByText("Reports")).toBeVisible();
+        await screen.findByText(/invalid fields/i);
 
         expect(await wrapper).toMatchSnapshot();
     });
