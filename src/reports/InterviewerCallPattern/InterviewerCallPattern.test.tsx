@@ -405,7 +405,7 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
             </MemoryRouter>,
         );
 
-        await screen.findByText(/invalid fieldsi/i);
+        await screen.findByText(/invalid fields/i);
 
         expect(await wrapper).toMatchSnapshot();
     });
