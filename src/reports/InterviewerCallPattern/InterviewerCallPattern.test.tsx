@@ -364,7 +364,7 @@ describe("function InterviewerCallPattern() without data", () => {
             </MemoryRouter>,
         );
 
-        await screen.findByText("Call times");
+        await screen.findByText("No data found");
 
         expect(await wrapper).toMatchSnapshot();
     });
@@ -405,7 +405,7 @@ describe("function InterviewerCallPattern() with only invalid data", () => {
             </MemoryRouter>,
         );
 
-        await screen.findByText("Call times");
+        await screen.findByText("invalid fields");
 
         expect(await wrapper).toMatchSnapshot();
     });
