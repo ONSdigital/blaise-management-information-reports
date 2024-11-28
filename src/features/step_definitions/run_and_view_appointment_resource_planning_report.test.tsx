@@ -3,13 +3,12 @@
  */
 
 import { defineFeature, loadFeature } from "jest-cucumber";
-import { createMemoryHistory } from "history";
+import { BrowserRouter } from "react-router-dom";
 import { render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import React from "react";
 import { fireEvent } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
-import { AuthManager } from "blaise-login-react/blaise-login-react-client";
+import { Authenticate } from "blaise-login-react/blaise-login-react-client";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import userEvent from "@testing-library/user-event";
@@ -21,7 +20,8 @@ import "@testing-library/jest-dom";
 const mockAdapter = new MockAdapter(axios);
 
 jest.mock("blaise-login-react/blaise-login-react-client");
-AuthManager.prototype.loggedIn = jest.fn().mockImplementation(() => Promise.resolve(true));
+const { MockAuthenticate } = jest.requireActual("blaise-login-react/blaise-login-react-client");
+Authenticate.prototype.render = MockAuthenticate.prototype.render;
 
 const feature = loadFeature(
     "./src/features/run_and_view_appointment_resource_planning_report.feature",
@@ -78,12 +78,7 @@ defineFeature(feature, (test) => {
         given, when, then, and,
     }) => {
         given("A survey tla and date has been specified", async () => {
-            const history = createMemoryHistory();
-            render(
-                <MemoryRouter history={history}>
-                    <App />
-                </MemoryRouter>,
-            );
+            render(<App />, { wrapper: BrowserRouter });
 
             await act(async () => {
                 await flushPromises();
@@ -148,18 +143,13 @@ defineFeature(feature, (test) => {
         given, when, then, and,
     }) => {
         given("A survey tla and date has been specified", async () => {
-            const history = createMemoryHistory();
-            render(
-                <MemoryRouter history={history}>
-                    <App />
-                </MemoryRouter>,
-            );
+            render(<App />, { wrapper: BrowserRouter });
 
             await act(async () => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText("Appointment resource planning"));
+            userEvent.click(screen.getByText(/Appointment resource planning/i));
 
             await act(async () => {
                 await flushPromises();
