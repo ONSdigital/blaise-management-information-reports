@@ -3,26 +3,21 @@
  */
 
 import React from "react";
-import { render } from "@testing-library/react";
-import { AuthManager } from "blaise-login-react/blaise-login-react-client";
-import { MemoryRouter } from "react-router";
+import { render, waitFor, screen } from "@testing-library/react";
+import { Authenticate } from "blaise-login-react/blaise-login-react-client";
+import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { act } from "react-dom/test-utils";
-import { createMemoryHistory } from "history";
 import App from "./App";
 import flushPromises from "./tests/utilities";
 
 jest.mock("blaise-login-react/blaise-login-react-client");
-AuthManager.prototype.loggedIn = jest.fn().mockImplementation(() => Promise.resolve(true));
+const { MockAuthenticate } = jest.requireActual("blaise-login-react/blaise-login-react-client");
+Authenticate.prototype.render = MockAuthenticate.prototype.render;
 
 describe("management information reports homepage", () => {
     it("matches snapshot", async () => {
-        const history = createMemoryHistory();
-        const wrapper = render(
-            <MemoryRouter history={history}>
-                <App />
-            </MemoryRouter>,
-        );
+        const wrapper = render(<App />, { wrapper: BrowserRouter });
 
         await act(async () => {
             await flushPromises();
@@ -32,20 +27,17 @@ describe("management information reports homepage", () => {
     });
 
     it("renders correctly", async () => {
-        const history = createMemoryHistory();
-        const { queryByText } = render(
-            <MemoryRouter history={history}>
-                <App />
-            </MemoryRouter>,
-        );
+        render(<App />, { wrapper: BrowserRouter });
 
         await act(async () => {
             await flushPromises();
         });
 
-        expect(queryByText(/Management Information Reports/)).toBeInTheDocument();
-        expect(queryByText(/Interviewer call history/)).toBeInTheDocument();
-        expect(queryByText(/Interviewer call pattern/)).toBeInTheDocument();
-        expect(queryByText(/Appointment resource planning/)).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText(/Management Information Reports/i)).toBeInTheDocument();
+            expect(screen.getByText(/Interviewer call history/i)).toBeInTheDocument();
+            expect(screen.getByText(/Interviewer call pattern/i)).toBeInTheDocument();
+            expect(screen.getByText(/Appointment resource planning/i)).toBeInTheDocument();
+        });
     });
 });
