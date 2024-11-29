@@ -3,13 +3,12 @@
  */
 
 import { defineFeature, loadFeature } from "jest-cucumber";
-import { createMemoryHistory } from "history";
 import { render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
-import { AuthManager } from "blaise-login-react/blaise-login-react-client";
+import { Authenticate } from "blaise-login-react/blaise-login-react-client";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { InterviewerCallHistoryReport } from "../../interfaces";
@@ -20,7 +19,8 @@ import "@testing-library/jest-dom";
 const mockAdapter = new MockAdapter(axios);
 
 jest.mock("blaise-login-react/blaise-login-react-client");
-AuthManager.prototype.loggedIn = jest.fn().mockImplementation(() => Promise.resolve(true));
+const { MockAuthenticate } = jest.requireActual("blaise-login-react/blaise-login-react-client");
+Authenticate.prototype.render = MockAuthenticate.prototype.render;
 
 const feature = loadFeature(
     "./src/features/run_and_view_interviewer_call_history_report.feature",
@@ -56,18 +56,13 @@ defineFeature(feature, (test) => {
 
     test("Run and view interviewer call history report", ({ given, when, then }) => {
         given("An interviewer ID and time period (start date and end date) has been specified", async () => {
-            const history = createMemoryHistory();
-            render(
-                <MemoryRouter history={history}>
-                    <App />
-                </MemoryRouter>,
-            );
+            render(<App />, { wrapper: BrowserRouter });
 
             await act(async () => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText("Interviewer call history"));
+            userEvent.click(screen.getByText(/Interviewer call history/i));
 
             await act(async () => {
                 await flushPromises();
