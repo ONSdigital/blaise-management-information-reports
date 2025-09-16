@@ -205,6 +205,7 @@ describe("function InterviewerCallPattern() with happy data", () => {
         );
 
         expect(await screen.findByText("Reports")).toBeVisible();
+        expect(await screen.findByText("Call times")).toBeVisible();
         expect(screen.getByText("Interviewer details")).toBeVisible();
         expect(screen.getByText("Call Pattern Report")).toBeVisible();
         expect(screen.getByText(/Interviewer:/)).toBeVisible();
