@@ -13,7 +13,6 @@ const restApiUrl = process.env.REST_API_URL || "http://localhost:1337";
 const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
 
-// Create custom axios client with IAP token
 const httpClient = axios.create();
 const iapToken = process.env.IAP_TOKEN;
 
@@ -27,13 +26,10 @@ if (iapToken) {
     console.warn('No IAP_TOKEN found in environment - requests may fail');
 }
 
-// Create client WITHOUT blaiseApiClientId
 const blaiseApiClient = new BlaiseApiClient(restApiUrl);
 blaiseApiClient.httpClient = httpClient;
 
 let userCredentials: NewUser;
-
-// ... rest of your test code
 
 if (!questionnaireName) {
     console.error("Questionnaire name is undefined");
