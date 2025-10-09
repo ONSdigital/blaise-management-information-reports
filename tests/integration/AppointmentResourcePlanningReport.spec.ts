@@ -3,18 +3,37 @@ import dotenv from "dotenv";
 import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
 import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
 import { loginToMir } from "./helpers/MirHelpers";
+import axios from 'axios';
 
 if (process.env.NODE_ENV !== "production") {
     dotenv.config({ path: `${__dirname}/../../.env` });
 }
 
 const restApiUrl = process.env.REST_API_URL || "http://localhost:1337";
-const restApiClientId = process.env.REST_API_CLIENT_ID || undefined;
 const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
-const blaiseApiClient = new BlaiseApiClient(restApiUrl, { blaiseApiClientId: restApiClientId });
+
+// Create custom axios client with IAP token
+const httpClient = axios.create();
+const iapToken = process.env.IAP_TOKEN;
+
+if (iapToken) {
+    console.log('Using pre-generated IAP token from environment');
+    httpClient.interceptors.request.use((config) => {
+        config.headers['Authorization'] = `Bearer ${iapToken}`;
+        return config;
+    });
+} else {
+    console.warn('No IAP_TOKEN found in environment - requests may fail');
+}
+
+// Create client WITHOUT blaiseApiClientId
+const blaiseApiClient = new BlaiseApiClient(restApiUrl);
+blaiseApiClient.httpClient = httpClient;
 
 let userCredentials: NewUser;
+
+// ... rest of your test code
 
 if (!questionnaireName) {
     console.error("Questionnaire name is undefined");
