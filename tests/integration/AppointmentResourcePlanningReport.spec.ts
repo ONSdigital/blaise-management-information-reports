@@ -5,7 +5,7 @@ import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
 import { loginToMir } from "./helpers/MirHelpers";
 import axios from 'axios';
 import { GoogleAuth } from 'google-auth-library';
-
+import path from 'path';
 import fs from 'fs';
 
 if (process.env.NODE_ENV !== "production") {
@@ -17,7 +17,10 @@ const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
 
 const httpClient = axios.create();
-let authorizationHeader = fs.readFileSync('../iapToken.txt', 'utf8');
+const tokenFilePath = path.resolve(process.cwd(), 'iapToken.txt');
+console.log(`Reading IAP token from: ${tokenFilePath}`); // Debugging line
+
+let authorizationHeader = fs.readFileSync(tokenFilePath, 'utf8');
 
 
 // BENTODO: Going to generate IAP_TOKEN here to test if wrong one is being sent through

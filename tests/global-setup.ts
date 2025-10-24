@@ -3,6 +3,7 @@
 import { FullConfig } from '@playwright/test';
 import { GoogleAuth } from 'google-auth-library';
 import fs from 'fs';
+import path from 'path';
 
 async function getIapToken(audience: string): Promise<string> {
     const auth = new GoogleAuth();
@@ -19,9 +20,11 @@ async function globalSetup(config: FullConfig) {
         
         // Save the token to a file. This is the standard way to pass data
         // from globalSetup to your tests.
-        fs.writeFileSync('iapToken.txt', iapToken);
+        const tokenFilePath = path.resolve(process.cwd(), 'iapToken.txt');
+        console.log(`Writing IAP token to: ${tokenFilePath}`); // Debugging line
 
-        console.log('Successfully fetched and saved IAP token.');
+        fs.writeFileSync(tokenFilePath, iapToken);
+        console.log('Successfully saved IAP token.');
     } catch (error) {
         console.error('FATAL: Could not fetch IAP token in global setup.', error);
         process.exit(1); // Stop everything if auth fails
