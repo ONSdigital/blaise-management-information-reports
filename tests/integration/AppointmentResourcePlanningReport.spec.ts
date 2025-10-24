@@ -4,7 +4,7 @@ import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
 import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
 import { loginToMir } from "./helpers/MirHelpers";
 import axios from 'axios';
-import { GoogleAuth } from 'google-auth-library
+import { GoogleAuth } from 'google-auth-library';
 
 if (process.env.NODE_ENV !== "production") {
     dotenv.config({ path: `${__dirname}/../../.env` });
