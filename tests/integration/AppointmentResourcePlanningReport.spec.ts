@@ -17,7 +17,7 @@ const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
 
 const httpClient = axios.create();
-let authorizationHeader = fs.readFileSync('iapToken.txt', 'utf8');
+let authorizationHeader = fs.readFileSync('../iapToken.txt', 'utf8');
 
 
 // BENTODO: Going to generate IAP_TOKEN here to test if wrong one is being sent through
