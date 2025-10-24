@@ -6,6 +6,8 @@ import { loginToMir } from "./helpers/MirHelpers";
 import axios from 'axios';
 import { GoogleAuth } from 'google-auth-library';
 
+import fs from 'fs';
+
 if (process.env.NODE_ENV !== "production") {
     dotenv.config({ path: `${__dirname}/../../.env` });
 }
@@ -15,20 +17,7 @@ const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
 
 const httpClient = axios.create();
-let authorizationHeader: string = "";
-
-// This is the IIFE pattern
-(async () => {
-  try {
-    let authorizationHeader = await getIapToken("1034983553529-gapl7ndqce23gdtra82lc8di67eql2vl.apps.googleusercontent.com");
-
-    console.log("Successfully retrieved tokenHeader:");
-    console.log(authorizationHeader);
-  } catch (error) {
-    console.error("An error occurred in the main execution block:", error);
-  }
-})(); // The () at the end runs the function immediately
-
+let authorizationHeader = fs.readFileSync('iapToken.txt', 'utf8');
 
 
 // BENTODO: Going to generate IAP_TOKEN here to test if wrong one is being sent through

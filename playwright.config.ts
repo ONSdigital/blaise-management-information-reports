@@ -1,4 +1,5 @@
 import { PlaywrightTestConfig, devices } from "@playwright/test";
+import { defineConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
     forbidOnly: !!process.env.CI,
@@ -15,5 +16,6 @@ const config: PlaywrightTestConfig = {
             launchOptions: { args: ['--start-maximized'] } },
         },
     ],
+    globalSetup: require.resolve('./tests/global-setup.ts'),
 };
 export default config;
