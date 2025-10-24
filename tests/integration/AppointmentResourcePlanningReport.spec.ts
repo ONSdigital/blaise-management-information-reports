@@ -4,6 +4,7 @@ import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
 import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
 import { loginToMir } from "./helpers/MirHelpers";
 import axios from 'axios';
+import { GoogleAuth } from 'google-auth-library
 
 if (process.env.NODE_ENV !== "production") {
     dotenv.config({ path: `${__dirname}/../../.env` });
@@ -14,7 +15,13 @@ const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
 
 const httpClient = axios.create();
-const iapToken = process.env.IAP_TOKEN;
+let iapToken = await getIapToken("1034983553529-gapl7ndqce23gdtra82lc8di67eql2vl.apps.googleusercontent.com");
+
+// BENTODO: Going to generate IAP_TOKEN here to test if wrong one is being sent through
+if (!iapToken) {
+    console.warn('No IAP_TOKEN found in environment - generating a new one for testing');
+    iapToken = 'test-generated-iap-token';
+}
 
 if (iapToken) {
     // BENTODO: do not checckin this log in future - security risk
@@ -69,6 +76,18 @@ test.describe("ARPR without data", () => {
         console.log(`Finished running ${testInfo.title}`);
     });
 });
+
+async function getIapToken(audience: string): Promise<string> {
+  const auth = new GoogleAuth();
+
+  try {
+    return await auth.getIdTokenClient(audience);
+
+  } catch (error) {
+    console.error('Error getting IAP token:', error);
+    throw new Error('Could not generate IAP token.');
+  }
+}
 
 /*
 commenting this test out for now, for some reason the cati book appointment page displays differently when run from a concourse worker
