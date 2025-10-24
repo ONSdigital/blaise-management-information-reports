@@ -17,6 +17,8 @@ const httpClient = axios.create();
 const iapToken = process.env.IAP_TOKEN;
 
 if (iapToken) {
+    // BENTODO: do not checckin this log in future - security risk
+    console.log('IAP Token is '+ iapToken.substring(0, 10) + '...' + iapToken.substring(iapToken.length - 10)); // Log only the beginning and end for security
     console.log('Using pre-generated IAP token from environment');
     httpClient.interceptors.request.use((config) => {
         config.headers['Authorization'] = `Bearer ${iapToken}`;
