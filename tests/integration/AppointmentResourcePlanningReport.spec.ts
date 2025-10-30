@@ -44,7 +44,7 @@ if (authorizationHeader) {
 } else {
     console.warn('No IAP_TOKEN found in environment - requests may fail');
 }
-
+console.log(`restapiurl is ${restApiUrl}`);
 const blaiseApiClient = new BlaiseApiClient(restApiUrl);
 blaiseApiClient.httpClient = httpClient;
 
