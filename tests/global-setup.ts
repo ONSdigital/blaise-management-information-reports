@@ -16,7 +16,7 @@ async function getIapToken(audience: string): Promise<string> {
 async function globalSetup(config: FullConfig) {
     console.log('Running global setup to fetch IAP token...');
     try {
-        const iapToken = await getIapToken("1034983553529-kneoh4aras9ilr0h4ohplkg629ojggr5.apps.googleusercontent.com");
+        const iapToken = await getIapToken("1034983553529-o1o762gmq02rjp25gu3bsg9l5uqvgubl.apps.googleusercontent.com");
         console.log(iapToken);
         
         // Save the token to a file. This is the standard way to pass data
