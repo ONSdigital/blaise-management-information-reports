@@ -15,6 +15,7 @@ const serverPark = process.env.SERVER_PARK;
 
 const httpClient = axios.create();
 const iapToken = process.env.IAP_TOKEN;
+console.log(iapToken);
 
 if (iapToken) {
     console.log('Using pre-generated IAP token from environment');
