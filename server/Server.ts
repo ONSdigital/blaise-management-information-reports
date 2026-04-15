@@ -7,7 +7,7 @@ import multer from "multer";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
 import { newLoginHandler, Auth } from "blaise-login-react/blaise-login-react-server";
-import PinoHttp from "pino-http";
+import type * as PinoHttp from "pino-http";
 import { Config } from "./Config";
 import SendAPIRequest from "./SendRequest";
 import createLogger from "./pino";
@@ -159,7 +159,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
 
     server.use("/", loginHandler);
 
-    server.get("*", (req: Request, res: Response) => {
+    server.get(/.*/, (req: Request, res: Response) => {
         res.render("index.html");
     });
 

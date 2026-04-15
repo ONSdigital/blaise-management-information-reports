@@ -9,6 +9,8 @@ import AppointmentResults from "./AppointmentResults";
 import AppointmentSummary from "./AppointmentSummary";
 import { formatDate } from "../../utilities/DateFormatter";
 
+const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
+
 interface RenderAppointmentResourcePlanningReportPageProps {
     reportDate: Date;
     surveyTla: string;
@@ -118,7 +120,7 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
                     Appointment details
                 </h2>
                 <div className="ons-u-mt-m">
-                    <CSVLink
+                    <CSVLinkComponent
                         hidden={reportData === null || reportData.length === 0}
                         data={reportData}
                         headers={reportExportHeaders}
@@ -126,7 +128,7 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
                         filename={`appointment-resource-planning-report-${reportDate}.csv`}
                     >
                         Export report as Comma-Separated Values (CSV) file
-                    </CSVLink>
+                    </CSVLinkComponent>
                 </div>
                 <AppointmentResults reportData={reportData} messageNoData={messageNoData} />
             </main>
