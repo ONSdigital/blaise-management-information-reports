@@ -3622,9 +3622,9 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.3.0.tgz#f6e14a97858d327252200242d4ccfe522c445522"
   integrity sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==
 
-"blaise-api-node-client@git+https://github.com/ONSdigital/blaise-api-node-client#2.0.2":
+"blaise-api-node-client@git+https://github.com/ONSdigital/blaise-api-node-client.git#2.0.2":
   version "1.0.0"
-  resolved "git+https://github.com/ONSdigital/blaise-api-node-client#7a77c7ea76131b15019692c5b82b8633e8f39431"
+  resolved "git+https://github.com/ONSdigital/blaise-api-node-client.git#7a77c7ea76131b15019692c5b82b8633e8f39431"
   dependencies:
     "@babel/preset-env" "^7.26.9"
     axios "^1.12.0"
@@ -3634,9 +3634,9 @@ binary-extensions@^2.0.0:
     eslint-plugin-import "^2.29.1"
     regenerator-runtime "^0.14.1"
 
-"blaise-design-system-react-components@git+https://github.com/ONSdigital/blaise-design-system-react-components#1.0.4":
+"blaise-design-system-react-components@git+https://github.com/ONSdigital/blaise-design-system-react-components.git#1.0.4":
   version "1.0.0"
-  resolved "git+https://github.com/ONSdigital/blaise-design-system-react-components#dde191bc71406edc353b91f601624b851ae990c2"
+  resolved "git+https://github.com/ONSdigital/blaise-design-system-react-components.git#dde191bc71406edc353b91f601624b851ae990c2"
   dependencies:
     "@testing-library/dom" "^10.4.0"
     formik "^2.2.9"
@@ -3645,18 +3645,6 @@ binary-extensions@^2.0.0:
     react-dom "^18.2.0"
     react-loader-spinner "^4.0.0"
     storybook "^10.1.10"
-
-"blaise-iap-node-provider@git+https://github.com/ONSdigital/blaise-iap-node-provider#2.0.2":
-  version "2.0.2-4894"
-  uid "6b01fd961794c17fb2162c0520ab79878059c57c"
-  resolved "git+https://github.com/ONSdigital/blaise-iap-node-provider#6b01fd961794c17fb2162c0520ab79878059c57c"
-  dependencies:
-    "@babel/preset-env" "^7.26.9"
-    "@types/jsonwebtoken" "^8.5.5"
-    axios "^1.13.2"
-    google-auth-library "^10.5.0"
-    jsonwebtoken "^9.0.3"
-    path-parse "^1.0.7"
 
 "blaise-iap-node-provider@git+https://github.com/ONSdigital/blaise-iap-node-provider.git#2.0.2":
   version "2.0.2-4894"
@@ -3669,9 +3657,9 @@ binary-extensions@^2.0.0:
     jsonwebtoken "^9.0.3"
     path-parse "^1.0.7"
 
-"blaise-login-react@git+https://github.com/ONSdigital/blaise-login-react#1.1.5":
+"blaise-login-react@git+https://github.com/ONSdigital/blaise-login-react.git#1.1.5":
   version "1.1.5"
-  resolved "git+https://github.com/ONSdigital/blaise-login-react#967383e1a59cf94cc2aa6ada0ba68adc9c654537"
+  resolved "git+https://github.com/ONSdigital/blaise-login-react.git#967383e1a59cf94cc2aa6ada0ba68adc9c654537"
 
 bluebird@^3.7.2:
   version "3.7.2"
