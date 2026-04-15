@@ -163,10 +163,19 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
         res.render("index.html");
     });
 
-    server.use((err: Error, req: Request, res: Response) => {
+    server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         logger(req, res);
         req.log.error(err, err.message);
-        res.render("../../views/500.html", {});
+
+        if (req.path.startsWith("/api/")) {
+            res.status(500).json({
+                error: "Internal server error",
+                message: err.message,
+            });
+            return;
+        }
+
+        res.status(500).render("../../views/500.html", {});
     });
 
     return server;
