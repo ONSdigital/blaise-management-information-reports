@@ -125,7 +125,8 @@ describe("LoadData", () => {
                 >{ display }</LoadData>,
             );
             rerender = view.rerender;
-            expect(await screen.findByText("Loading")).not.toBeInTheDocument();
+            expect(await screen.findByRole("heading", { name: "Old content" })).toBeVisible();
+            expect(screen.queryByText("Loading")).not.toBeInTheDocument();
         });
 
         it("displays the loading spinner when the dataPromise prop changes", async () => {

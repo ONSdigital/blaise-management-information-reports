@@ -19,6 +19,7 @@ Object {
             >
               <a
                 class="ons-breadcrumb__link"
+                data-discover="true"
                 href="/"
               >
                 Reports
@@ -41,6 +42,7 @@ Object {
             >
               <a
                 class="ons-breadcrumb__link"
+                data-discover="true"
                 href="/"
               >
                 Interviewer details
@@ -203,6 +205,7 @@ Object {
           >
             <a
               class="ons-breadcrumb__link"
+              data-discover="true"
               href="/"
             >
               Reports
@@ -225,6 +228,7 @@ Object {
           >
             <a
               class="ons-breadcrumb__link"
+              data-discover="true"
               href="/"
             >
               Interviewer details
@@ -444,6 +448,7 @@ Object {
             >
               <a
                 class="ons-breadcrumb__link"
+                data-discover="true"
                 href="/"
               >
                 Reports
@@ -466,6 +471,7 @@ Object {
             >
               <a
                 class="ons-breadcrumb__link"
+                data-discover="true"
                 href="/"
               >
                 Interviewer details
@@ -649,6 +655,7 @@ Object {
           >
             <a
               class="ons-breadcrumb__link"
+              data-discover="true"
               href="/"
             >
               Reports
@@ -671,6 +678,7 @@ Object {
           >
             <a
               class="ons-breadcrumb__link"
+              data-discover="true"
               href="/"
             >
               Interviewer details

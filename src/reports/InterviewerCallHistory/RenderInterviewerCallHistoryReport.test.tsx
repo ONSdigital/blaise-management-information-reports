@@ -106,13 +106,13 @@ describe("RenderInterviewerCallHistoryReport", () => {
             expect(screen.getByText("Reports")).toBeInTheDocument();
         });
 
-        it("calls navigateBackTwoSteps when Interview details is clicked", () => {
-            userEvent.click(screen.getByRole("link", { name: "Interviewer details" }));
+        it("calls navigateBackTwoSteps when Interview details is clicked", async () => {
+            await userEvent.click(screen.getByRole("link", { name: "Interviewer details" }));
             expect(navigateBackTwoSteps).toHaveBeenCalled();
         });
 
-        it("calls navigateBack when Questionnaires is clicked", () => {
-            userEvent.click(screen.getByRole("link", { name: "Questionnaires" }));
+        it("calls navigateBack when Questionnaires is clicked", async () => {
+            await userEvent.click(screen.getByRole("link", { name: "Questionnaires" }));
             expect(navigateBack).toHaveBeenCalled();
         });
 
