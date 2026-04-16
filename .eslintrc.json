@@ -21,7 +21,25 @@
   "parserOptions": {
     "warnOnUnsupportedTypeScriptVersion": false
   },
-  "rules": {},
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "react/require-default-props": "off",
+    "@typescript-eslint/indent": ["error", 4],
+    "@typescript-eslint/quotes": ["error", "double"],
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx", ".jsx"] }],
+    "react/jsx-indent": ["error", 4],
+    "react/jsx-indent-props": ["error", 4],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/space-before-blocks": "off",
+    "import/no-extraneous-dependencies": "off",
+    "max-len": "off",
+    "no-console": "off",
+    "no-mixed-operators": ["error", {"allowSamePrecedence": true}],
+    "react/jsx-closing-tag-location": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/no-unused-prop-types": "off"
+  },
   "overrides": [
     {
       "files": [
@@ -39,7 +57,17 @@
       "env": {
         "jest": true
       }
+    },
+    {
+      "files": ["server/*"],
+      "parserOptions": {
+        "project": "./tsconfig.server.json"
+      }
     }
   ],
-  "settings": {}
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }
