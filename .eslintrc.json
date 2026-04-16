@@ -18,6 +18,9 @@
     "react-app",
     "react-app/jest"
   ],
+  "parserOptions": {
+    "warnOnUnsupportedTypeScriptVersion": false
+  },
   "rules": {},
   "overrides": [
     {
