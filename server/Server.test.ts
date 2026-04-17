@@ -1,4 +1,6 @@
 import supertest from "supertest";
+import fs from "fs";
+import path from "path";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
 import { Auth } from "blaise-login-react/blaise-login-react-server";
@@ -75,8 +77,26 @@ describe("Test Endpoint health", () => {
 });
 
 describe("Static + catch-all routes", () => {
+    beforeAll(() => {
+        // These tests should not require `yarn build` to have been run.
+        // Create a minimal build folder structure if it doesn't exist.
+        const buildDir = path.resolve(process.cwd(), "build");
+        const staticCssDir = path.join(buildDir, "static", "css");
+        fs.mkdirSync(staticCssDir, { recursive: true });
+
+        const indexHtmlPath = path.join(buildDir, "index.html");
+        if (!fs.existsSync(indexHtmlPath)) {
+            fs.writeFileSync(indexHtmlPath, "<!doctype html><html><body><div id=\"root\"></div></body></html>");
+        }
+
+        const testCssPath = path.join(staticCssDir, "__jest_test__.css");
+        if (!fs.existsSync(testCssPath)) {
+            fs.writeFileSync(testCssPath, ".elementToFadeIn{animation:fadein .3s}\n");
+        }
+    });
+
     it("serves built static assets", async () => {
-        const response: supertest.Response = await request.get("/static/css/main.e6caf4ad.css");
+        const response: supertest.Response = await request.get("/static/css/__jest_test__.css");
         expect(response.status).toEqual(200);
         expect(response.text).toContain(".elementToFadeIn");
     });
