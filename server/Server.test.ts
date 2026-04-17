@@ -61,6 +61,17 @@ const mockAuth: Auth = {
     },
 };
 
+const buildDir = path.resolve(process.cwd(), "build");
+const staticCssDir = path.join(buildDir, "static", "css");
+fs.mkdirSync(staticCssDir, { recursive: true });
+if (!fs.existsSync(path.join(buildDir, "index.html"))) {
+    fs.writeFileSync(path.join(buildDir, "index.html"), '<!doctype html><html><body><div id="root"></div></body></html>');
+}
+const testCssPath = path.join(staticCssDir, "__jest_test__.css");
+if (!fs.existsSync(testCssPath)) {
+    fs.writeFileSync(testCssPath, ".elementToFadeIn{animation:fadein .3s}\n");
+}
+
 const app = newServer(config, mockAuthProvider, mockAuth, blaiseApiClient);
 const request = supertest(app);
 
