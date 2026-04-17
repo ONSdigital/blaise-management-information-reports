@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import express, {
     NextFunction, Request, Response, Express,
 } from "express";
@@ -63,12 +64,14 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     const loginHandler = newLoginHandler(auth, blaiseApiClient);
 
     // where ever the react built package is
-    const buildFolder = "../../build";
+    const buildFolderFromCwd = path.resolve(process.cwd(), "build");
+    const buildFolderFromDir = path.resolve(__dirname, "../../build");
+    const buildFolder = fs.existsSync(buildFolderFromCwd) ? buildFolderFromCwd : buildFolderFromDir;
 
     // treat the index.html as a template and substitute the values at runtime
-    server.set("views", path.join(__dirname, buildFolder));
+    server.set("views", buildFolder);
     server.engine("html", ejs.renderFile);
-    server.use("/static", express.static(path.join(__dirname, `${buildFolder}/static`)));
+    server.use("/static", express.static(path.join(buildFolder, "static")));
     server.use(requestLogger.logRequest);
 
     // health_check endpoint
