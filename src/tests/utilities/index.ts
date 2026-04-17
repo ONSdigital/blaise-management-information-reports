@@ -2,4 +2,6 @@
 // @ts-ignore
 const flushPromises = () => new Promise(setTimeout);
 
-export default (): Promise<void> => flushPromises().then(flushPromises);
+export default function flushPromisesAndTimers(): Promise<void> {
+    return flushPromises().then(flushPromises);
+}

@@ -169,6 +169,7 @@ Object {
                       id="/interviewer-call-history"
                     >
                       <a
+                        data-discover="true"
                         href="/interviewer-call-history"
                       >
                         Interviewer call history
@@ -194,6 +195,7 @@ Object {
                       id="/interviewer-call-pattern"
                     >
                       <a
+                        data-discover="true"
                         href="/interviewer-call-pattern"
                       >
                         Interviewer call pattern
@@ -219,6 +221,7 @@ Object {
                       id="/appointment-resource-planning"
                     >
                       <a
+                        data-discover="true"
                         href="/appointment-resource-planning"
                       >
                         Appointment resource planning
@@ -547,6 +550,7 @@ Object {
                     id="/interviewer-call-history"
                   >
                     <a
+                      data-discover="true"
                       href="/interviewer-call-history"
                     >
                       Interviewer call history
@@ -572,6 +576,7 @@ Object {
                     id="/interviewer-call-pattern"
                   >
                     <a
+                      data-discover="true"
                       href="/interviewer-call-pattern"
                     >
                       Interviewer call pattern
@@ -597,6 +602,7 @@ Object {
                     id="/appointment-resource-planning"
                   >
                     <a
+                      data-discover="true"
                       href="/appointment-resource-planning"
                     >
                       Appointment resource planning
