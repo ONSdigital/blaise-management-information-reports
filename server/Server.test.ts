@@ -89,8 +89,6 @@ describe("Test Endpoint health", () => {
 
 describe("Static + catch-all routes", () => {
     beforeAll(() => {
-        // These tests should not require `yarn build` to have been run.
-        // Create a minimal build folder structure if it doesn't exist.
         const buildDir = path.resolve(process.cwd(), "build");
         const staticCssDir = path.join(buildDir, "static", "css");
         fs.mkdirSync(staticCssDir, { recursive: true });
