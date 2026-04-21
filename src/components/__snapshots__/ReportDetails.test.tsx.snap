@@ -18,6 +18,7 @@ Object {
             id=""
           >
             <a
+              data-discover="true"
               href="/"
             />
           </h2>
@@ -42,6 +43,7 @@ Object {
           id=""
         >
           <a
+            data-discover="true"
             href="/"
           />
         </h2>

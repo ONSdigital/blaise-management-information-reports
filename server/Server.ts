@@ -1,4 +1,5 @@
 import path from "path";
+import fs from "fs";
 import express, {
     NextFunction, Request, Response, Express,
 } from "express";
@@ -7,11 +8,28 @@ import multer from "multer";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
 import { newLoginHandler, Auth } from "blaise-login-react/blaise-login-react-server";
-import PinoHttp from "pino-http";
+import type * as PinoHttp from "pino-http";
 import { Config } from "./Config";
 import SendAPIRequest from "./SendRequest";
 import createLogger from "./pino";
 import { formatISODate } from "../src/utilities/DateFormatter";
+
+function isSafePathSegment(value: unknown): value is string {
+    return typeof value === "string" && /^[A-Za-z0-9_-]+$/.test(value);
+}
+
+function toCsvQueryValue(value: unknown): string {
+    if (Array.isArray(value)) {
+        return value
+            .map((item) => String(item))
+            .filter((item) => item.length > 0)
+            .join(",");
+    }
+    if (typeof value === "string") {
+        return value;
+    }
+    return "";
+}
 
 class RequestLogger {
     logger: PinoHttp.HttpLogger;
@@ -46,12 +64,14 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     const loginHandler = newLoginHandler(auth, blaiseApiClient);
 
     // where ever the react built package is
-    const buildFolder = "../../build";
+    const buildFolderFromCwd = path.resolve(process.cwd(), "build");
+    const buildFolderFromDir = path.resolve(__dirname, "../../build");
+    const buildFolder = fs.existsSync(buildFolderFromCwd) ? buildFolderFromCwd : buildFolderFromDir;
 
     // treat the index.html as a template and substitute the values at runtime
-    server.set("views", path.join(__dirname, buildFolder));
+    server.set("views", buildFolder);
     server.engine("html", ejs.renderFile);
-    server.use("/static", express.static(path.join(__dirname, `${buildFolder}/static`)));
+    server.use("/static", express.static(path.join(buildFolder, "static")));
     server.use(requestLogger.logRequest);
 
     // health_check endpoint
@@ -76,9 +96,18 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
         const {
             interviewer, start_date: startDate, end_date: endDate, survey_tla: surveyTla,
         } = req.body;
+        if (!isSafePathSegment(interviewer)) {
+            res.status(400).json({ error: "Invalid interviewer" });
+            return;
+        }
         const startDateFormatted = formatISODate(startDate);
         const endDateFormatted = formatISODate(endDate);
-        const url = `${config.BertUrl}/api/${interviewer}/questionnaires?start-date=${startDateFormatted}&end-date=${endDateFormatted}&survey-tla=${surveyTla}`;
+        const query = new URLSearchParams({
+            "start-date": startDateFormatted,
+            "end-date": endDateFormatted,
+            "survey-tla": String(surveyTla ?? ""),
+        });
+        const url = `${config.BertUrl}/api/${encodeURIComponent(interviewer)}/questionnaires?${query.toString()}`;
         console.log(url);
         const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
         res.status(status).json(result);
@@ -91,11 +120,23 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
         const {
             interviewer, start_date: startDate, end_date: endDate, survey_tla: surveyTla, questionnaires,
         } = req.body;
+        if (!isSafePathSegment(interviewer)) {
+            res.status(400).json({ error: "Invalid interviewer" });
+            return;
+        }
         const startDateFormatted = formatISODate(startDate);
         const endDateFormatted = formatISODate(endDate);
         console.log(`questionnaires ${questionnaires}`);
-        const questionnairesQuery = questionnaires.length > 0 ? `&questionnaires=${questionnaires}` : "";
-        const url = `${config.BertUrl}/api/reports/call-history/${interviewer}?start-date=${startDateFormatted}&end-date=${endDateFormatted}&survey-tla=${surveyTla}${questionnairesQuery}`;
+        const query = new URLSearchParams({
+            "start-date": startDateFormatted,
+            "end-date": endDateFormatted,
+            "survey-tla": String(surveyTla ?? ""),
+        });
+        const questionnairesValue = toCsvQueryValue(questionnaires);
+        if (questionnairesValue.length > 0) {
+            query.set("questionnaires", questionnairesValue);
+        }
+        const url = `${config.BertUrl}/api/reports/call-history/${encodeURIComponent(interviewer)}?${query.toString()}`;
         console.log(url);
         const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
         res.status(status).json(result);
@@ -108,11 +149,23 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
         const {
             interviewer, start_date: startDate, end_date: endDate, survey_tla: surveyTla, questionnaires,
         } = req.body;
+        if (!isSafePathSegment(interviewer)) {
+            res.status(400).json({ error: "Invalid interviewer" });
+            return;
+        }
         const startDateFormatted = formatISODate(startDate);
         const endDateFormatted = formatISODate(endDate);
         console.log(`questionnaires ${questionnaires}`);
-        const questionnairesQuery = questionnaires.length > 0 ? `&questionnaires=${questionnaires}` : "";
-        const url = `${config.BertUrl}/api/reports/call-pattern/${interviewer}?start-date=${startDateFormatted}&end-date=${endDateFormatted}&survey-tla=${surveyTla}${questionnairesQuery}`;
+        const query = new URLSearchParams({
+            "start-date": startDateFormatted,
+            "end-date": endDateFormatted,
+            "survey-tla": String(surveyTla ?? ""),
+        });
+        const questionnairesValue = toCsvQueryValue(questionnaires);
+        if (questionnairesValue.length > 0) {
+            query.set("questionnaires", questionnairesValue);
+        }
+        const url = `${config.BertUrl}/api/reports/call-pattern/${encodeURIComponent(interviewer)}?${query.toString()}`;
         console.log(url);
         const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
         res.status(status).json(result);
@@ -159,14 +212,23 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
 
     server.use("/", loginHandler);
 
-    server.get("*", (req: Request, res: Response) => {
+    server.get(/.*/, (req: Request, res: Response) => {
         res.render("index.html");
     });
 
-    server.use((err: Error, req: Request, res: Response) => {
+    server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
         logger(req, res);
         req.log.error(err, err.message);
-        res.render("../../views/500.html", {});
+
+        if (req.path.startsWith("/api/")) {
+            res.status(500).json({
+                error: "Internal server error",
+                message: err.message,
+            });
+            return;
+        }
+
+        res.status(500).render("../../views/500.html", {});
     });
 
     return server;

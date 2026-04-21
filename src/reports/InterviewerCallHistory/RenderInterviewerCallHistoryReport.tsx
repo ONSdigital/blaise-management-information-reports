@@ -11,6 +11,8 @@ import { LoadData } from "../../components/LoadData";
 import { InterviewerFilterQuery } from "../filters/InterviewerFilter";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
 
+const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
+
 interface RenderInterviewerCallHistoryReportPageProps {
     interviewerFilterQuery: InterviewerFilterQuery,
     questionnaires: string[];
@@ -75,7 +77,7 @@ function RenderInterviewerCallHistoryReport({
                 >
                     { (reportData) => (
                         <>
-                            <CSVLink
+                            <CSVLinkComponent
                                 hidden={reportData === null || reportData.length === 0}
                                 data={
                                     reportData?.map((row) => (
@@ -87,7 +89,7 @@ function RenderInterviewerCallHistoryReport({
                                 filename={`interviewer-call-history-${interviewerFilterQuery.interviewer}.csv`}
                             >
                                 Export report as Comma-Separated Values (CSV) file
-                            </CSVLink>
+                            </CSVLinkComponent>
                             <CallHistoryReportTable
                                 messageNoData="No data found for parameters given."
                                 reportData={reportData}
