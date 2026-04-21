@@ -62,19 +62,19 @@ defineFeature(feature, (test) => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText(/Interviewer call history/i));
+            await userEvent.click(screen.getByText(/Interviewer call history/i));
 
             await act(async () => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText("LMS"));
+            await userEvent.click(screen.getByText("LMS"));
 
-            userEvent.type(screen.getByLabelText(/Interviewer ID/i), "ricer");
+            await userEvent.type(screen.getByLabelText(/Interviewer ID/i), "ricer");
         });
 
         when("I click next to retrieve a list of questionnaires", async () => {
-            userEvent.click(screen.getByTestId(/submit-button/i));
+            await userEvent.click(screen.getByTestId(/submit-button/i));
 
             await act(async () => {
                 await flushPromises();
@@ -82,8 +82,8 @@ defineFeature(feature, (test) => {
         });
 
         when("I select a questionnaire and click on run report", async () => {
-            userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
-            userEvent.click(screen.getByTestId(/submit-button/i));
+            await userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
+            await userEvent.click(screen.getByTestId(/submit-button/i));
 
             await act(async () => {
                 await flushPromises();

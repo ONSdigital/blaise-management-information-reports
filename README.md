@@ -198,3 +198,9 @@ fly hijack \
 --step mir-integration-test \
 cat mir-git/test-results/<test-sub-folder>/trace.zip > ./trace.zip
 ```
+
+## Styling Issues: 
+
+in package.json formik must remain at the same version as is being used by blaise-design-system-react-components or it won't apply the styling properly
+
+"formik": "2.4.2"

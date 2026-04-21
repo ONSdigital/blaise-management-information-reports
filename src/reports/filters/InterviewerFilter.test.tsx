@@ -62,21 +62,21 @@ describe("the interviewer details page renders correctly", () => {
 
     it("updates the values", async () => {
         const interviewer = screen.getByRole("textbox", { name: "Interviewer ID" });
-        userEvent.clear(interviewer);
-        userEvent.type(interviewer, "rich");
+        await userEvent.clear(interviewer);
+        await userEvent.type(interviewer, "rich");
 
         const startDate = screen.getByLabelText("Start date");
-        userEvent.clear(startDate);
-        userEvent.type(startDate, "2022-10-10");
+        await userEvent.clear(startDate);
+        await userEvent.type(startDate, "2022-10-10");
 
         const endDate = screen.getByLabelText("End date");
-        userEvent.clear(endDate);
-        userEvent.type(endDate, "2022-10-11");
+        await userEvent.clear(endDate);
+        await userEvent.type(endDate, "2022-10-11");
 
         const survey = screen.getByRole("radio", { name: "LMS Labour Market Survey" });
-        userEvent.click(survey);
+        await userEvent.click(survey);
 
-        userEvent.click(screen.getByRole("button", { name: "Next" }));
+        await userEvent.click(screen.getByRole("button", { name: "Next" }));
 
         await waitFor(() => {
             expect(submitFunction).toHaveBeenCalledWith({
