@@ -84,13 +84,13 @@ defineFeature(feature, (test) => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText("Appointment resource planning"));
+            await userEvent.click(screen.getByText("Appointment resource planning"));
 
             await act(async () => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText("LMS"));
+            await userEvent.click(screen.getByText("LMS"));
 
             await act(async () => {
                 await flushPromises();
@@ -104,7 +104,7 @@ defineFeature(feature, (test) => {
         });
 
         when("I click next to retrieve a list of questionnaires", async () => {
-            userEvent.click(screen.getByTestId(/submit-button/i));
+            await userEvent.click(screen.getByTestId(/submit-button/i));
 
             await act(async () => {
                 await flushPromises();
@@ -112,8 +112,8 @@ defineFeature(feature, (test) => {
         });
 
         when("I select a questionnaire and click on run report", async () => {
-            userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
-            userEvent.click(screen.getByTestId(/submit-button/i));
+            await userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
+            await userEvent.click(screen.getByTestId(/submit-button/i));
 
             await act(async () => {
                 await flushPromises();
@@ -149,13 +149,13 @@ defineFeature(feature, (test) => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText(/Appointment resource planning/i));
+            await userEvent.click(screen.getByText(/Appointment resource planning/i));
 
             await act(async () => {
                 await flushPromises();
             });
 
-            userEvent.click(screen.getByText("LMS"));
+            await userEvent.click(screen.getByText("LMS"));
 
             await act(async () => {
                 await flushPromises();
@@ -179,7 +179,7 @@ defineFeature(feature, (test) => {
         });
 
         when("I click next to retrieve a list of questionnaires", async () => {
-            userEvent.click(screen.getByTestId(/submit-button/i));
+            await userEvent.click(screen.getByTestId(/submit-button/i));
 
             await act(async () => {
                 await flushPromises();
@@ -187,8 +187,8 @@ defineFeature(feature, (test) => {
         });
 
         when("I select a questionnaire and click on run report", async () => {
-            userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
-            userEvent.click(screen.getByTestId(/submit-button/i));
+            await userEvent.click(screen.getByLabelText(/LMS2101_AA1/i));
+            await userEvent.click(screen.getByTestId(/submit-button/i));
 
             await act(async () => {
                 await flushPromises();

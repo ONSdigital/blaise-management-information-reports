@@ -4,6 +4,8 @@
     "dist/*",
     "build/*",
     "tests/integration/*",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
     "server/*.test.ts",
     "playwright.config.ts"
   ],
@@ -13,43 +15,30 @@
     "node": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "airbnb",
-    "airbnb-typescript"
+    "react-app",
+    "react-app/jest"
   ],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json",
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    "warnOnUnsupportedTypeScriptVersion": false
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
   "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
     "react/require-default-props": "off",
     "@typescript-eslint/indent": ["error", 4],
     "@typescript-eslint/quotes": ["error", "double"],
-    "react/jsx-filename-extension":  ["error", { "extensions": [".tsx", ".jsx"] }],
-    "react/jsx-indent":  ["error", 4],
+    "react/jsx-filename-extension": ["error", { "extensions": [".tsx", ".jsx"] }],
+    "react/jsx-indent": ["error", 4],
     "react/jsx-indent-props": ["error", 4],
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/space-before-blocks": "off",
     "import/no-extraneous-dependencies": "off",
-    "max-len":  "off",
+    "max-len": "off",
     "no-console": "off",
     "no-mixed-operators": ["error", {"allowSamePrecedence": true}],
     "react/jsx-closing-tag-location": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/no-unused-prop-types":  "off"
-
+    "react/no-unused-prop-types": "off"
   },
   "overrides": [
     {
@@ -70,9 +59,7 @@
       }
     },
     {
-      "files": [
-        "server/*"
-      ],
+      "files": ["server/*"],
       "parserOptions": {
         "project": "./tsconfig.server.json"
       }
@@ -80,20 +67,7 @@
   ],
   "settings": {
     "react": {
-      "createClass": "createReactClass",
-      // Regex for Component Factory to use,
-      // default to "createReactClass"
-      "pragma": "React",
-      // Pragma to use, default to "React"
-      "fragment": "Fragment",
-      // Fragment to use (may be a property of <pragma>), default to "Fragment"
-      "version": "detect",
-      // React version. "detect" automatically picks the version you have installed.
-      // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
-      // default to latest and warns if missing
-      // It will default to "detect" in the future
-      "flowVersion": "0.53"
-      // Flow version
+      "version": "detect"
     }
   }
 }

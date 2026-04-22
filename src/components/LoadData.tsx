@@ -1,7 +1,7 @@
 // eslint-disable-next-line max-classes-per-file
 import { ONSLoadingPanel, ONSPanel } from "blaise-design-system-react-components";
 import React, {
-    ReactElement, ReactNode, useEffect, useState,
+    ReactElement, ReactNode, useEffect, useMemo, useState,
 } from "react";
 
 export type DataRenderer<T> = (data: T) => ReactNode;
@@ -30,9 +30,16 @@ export function LoadData<T>({
 }: LoaderProps<T>): ReactElement {
     const [loadState, setLoadState] = useState<LoadState<T>>(new LoadingState());
 
+    const handledDataPromise = useMemo(
+        () => dataPromise.catch((error: Error) => {
+            throw error;
+        }),
+        [dataPromise],
+    );
+
     useEffect(() => {
         async function loadData() {
-            setLoadState(new LoadedState(await dataPromise));
+            setLoadState(new LoadedState(await handledDataPromise));
         }
 
         function setErroredState(error: Error): void {
@@ -45,7 +52,7 @@ export function LoadData<T>({
         setLoadState(new LoadingState());
 
         loadData().catch(setErroredState);
-    }, [dataPromise, onError]);
+    }, [handledDataPromise, onError]);
 
     function getErrorMessage(error: Error): ReactNode {
         if (typeof (errorMessage) === "string") {

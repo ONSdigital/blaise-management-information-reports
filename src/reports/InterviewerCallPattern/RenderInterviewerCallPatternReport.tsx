@@ -14,6 +14,8 @@ import FilterSummary from "../../components/FilterSummary";
 import { LoadData } from "../../components/LoadData";
 import { InterviewerFilterQuery } from "../filters/InterviewerFilter";
 
+const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
+
 interface RenderInterviewerCallPatternReportPageProps {
     interviewerFilterQuery: InterviewerFilterQuery;
     questionnaires: string[];
@@ -121,13 +123,13 @@ function DownloadCSVLink(
     }
 
     return (
-        <CSVLink
+        <CSVLinkComponent
             data={groupedSummary.csv()}
             target="_blank"
             filename={filename}
         >
             Export report as Comma-Separated Values (CSV) file
-        </CSVLink>
+        </CSVLinkComponent>
     );
 }
 
