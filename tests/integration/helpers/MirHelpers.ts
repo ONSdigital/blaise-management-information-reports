@@ -5,13 +5,20 @@ import { NewUser } from "blaise-api-node-client";
 const REPORTS_URL = process.env.REPORTS_URL;
 
 export async function loginToMir(page: Page, userCredentials: NewUser): Promise<void> {
-    await page.goto(`${REPORTS_URL}`);
+    await page.goto(`${REPORTS_URL}`, { waitUntil: "domcontentloaded" });
     const loginHeader = page.locator("h1:has-text('Sign in')");
-    if (await loginHeader.isVisible({ timeout: 100 })) {
-        await page.locator("#username").type(`${userCredentials.name}`);
-        await page.locator("#Password").type(`${userCredentials.password}`);
+    const signInPageIsVisible = await loginHeader
+        .waitFor({ state: "visible", timeout: 10000 })
+        .then(() => true)
+        .catch(() => false);
+
+    if (signInPageIsVisible) {
+        await page.locator("#username").fill(`${userCredentials.name}`);
+        await page.locator("#Password").fill(`${userCredentials.password}`);
         await page.click("button[type=submit]");
     }
+
+    await page.getByRole("link", { name: "Appointment resource planning" }).waitFor({ state: "visible", timeout: 30000 });
 }
 
 export function createDateForTomorrow(): string {
