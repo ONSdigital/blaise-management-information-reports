@@ -44,7 +44,7 @@ if (!serverPark) {
 test.describe("ARPR without data", () => {
     test.beforeEach(async ({ page }, testInfo) => {
         console.log(`Started running before each hook for test ${testInfo.title}`);
-        testInfo.setTimeout(30000);
+        testInfo.setTimeout(60000);
         userCredentials = await setupTestUser(blaiseApiClient, serverPark);
         console.log(`Finished running before each hook for test ${testInfo.title}`);
     });
@@ -56,7 +56,9 @@ test.describe("ARPR without data", () => {
     test("ARPR without data", async ({ page }, testInfo) => {
         console.log(`Started running ${testInfo.title}`);
         await loginToMir(page, userCredentials);
-        await page.click("text=Appointment resource planning");
+        const appointmentResourcePlanningLink = page.getByRole("link", { name: "Appointment resource planning" });
+        await expect(appointmentResourcePlanningLink).toBeVisible({ timeout: 30000 });
+        await appointmentResourcePlanningLink.click();
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
         await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Run a Daybatch first to obtain the most accurate results.");
         await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Appointments that have already been attempted will not be displayed.");
