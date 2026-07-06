@@ -1,11 +1,12 @@
+import "@testing-library/jest-dom/vitest";
 import React, { ReactNode } from "react";
-import "@testing-library/jest-dom";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, waitFor } from "@testing-library/react";
 import { screen } from "@testing-library/dom";
 import { DataRenderer, LoadData } from "./LoadData";
 
 describe("LoadData", () => {
-    const display: DataRenderer<ReactNode> = (data) => <h3>{ data }</h3>;
+    const display: DataRenderer<ReactNode> = (data) => <h3>{data}</h3>;
 
     describe("initial state", () => {
         it("displays the loading spinner", () => {
@@ -13,7 +14,7 @@ describe("LoadData", () => {
                 <LoadData
                     dataPromise={new Promise(() => {
                     }) as Promise<ReactNode>}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
 
             expect(screen.getByText("Loading")).toBeInTheDocument();
@@ -25,7 +26,7 @@ describe("LoadData", () => {
             render(
                 <LoadData
                     dataPromise={Promise.resolve("Hello world!")}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             expect(await screen.findByRole("heading", { name: "Hello world!" })).toBeVisible();
         });
@@ -34,7 +35,7 @@ describe("LoadData", () => {
             render(
                 <LoadData
                     dataPromise={Promise.resolve("Hello world!")}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             await screen.findByRole("heading", { name: "Hello world!" });
             expect(screen.queryByText("Loading")).not.toBeInTheDocument();
@@ -46,7 +47,7 @@ describe("LoadData", () => {
             render(
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             expect(await screen.findByText("Error: There was an error")).toBeVisible();
         });
@@ -56,7 +57,7 @@ describe("LoadData", () => {
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
                     errorMessage="Custom error message"
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             expect(await screen.findByText("Custom error message")).toBeVisible();
         });
@@ -66,7 +67,7 @@ describe("LoadData", () => {
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
                     errorMessage={(error) => `ERROR: ${error}`}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             expect(await screen.findByText("ERROR: Error: There was an error")).toBeVisible();
         });
@@ -76,7 +77,7 @@ describe("LoadData", () => {
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
                     errorMessage={(error) => <strong>HTML ERROR: {error.toString()} </strong>}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             expect(await screen.findByText("HTML ERROR: Error: There was an error")).toBeVisible();
         });
@@ -86,7 +87,7 @@ describe("LoadData", () => {
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
                     errorMessage={false}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             await waitFor(() => { expect(screen.queryByText("Loading")).not.toBeInTheDocument(); });
             expect(screen.queryByText(/There was an error/)).not.toBeInTheDocument();
@@ -96,19 +97,19 @@ describe("LoadData", () => {
             render(
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             await screen.findByText("Error: There was an error");
             expect(screen.queryByText("Loading")).not.toBeInTheDocument();
         });
 
         it("calls onError", async () => {
-            const onError = jest.fn();
+            const onError = vi.fn();
             render(
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
                     onError={onError}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             await screen.findByText("Error: There was an error");
             expect(onError).toHaveBeenCalledWith(new Error("There was an error"));
@@ -122,7 +123,7 @@ describe("LoadData", () => {
             const view = render(
                 <LoadData
                     dataPromise={Promise.resolve("Old content")}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
             rerender = view.rerender;
             expect(await screen.findByRole("heading", { name: "Old content" })).toBeVisible();
@@ -134,7 +135,7 @@ describe("LoadData", () => {
                 <LoadData
                     dataPromise={new Promise(() => {
                     }) as Promise<ReactNode>}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
 
             expect(await screen.findByText("Loading")).toBeInTheDocument();
@@ -144,7 +145,7 @@ describe("LoadData", () => {
             rerender(
                 <LoadData
                     dataPromise={Promise.resolve("New content")}
-                >{ display }</LoadData>,
+                >{display}</LoadData>,
             );
 
             expect(await screen.findByRole("heading", { name: "New content" })).toBeInTheDocument();

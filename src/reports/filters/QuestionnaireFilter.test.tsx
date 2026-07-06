@@ -1,11 +1,8 @@
-/**
- * @jest-environment jsdom
- */
-
 import "@testing-library/jest-dom";
 import { createMemoryHistory, History } from "history";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import React from "react";
 import { screen } from "@testing-library/dom";
 import MockAdapter from "axios-mock-adapter";
@@ -47,8 +44,8 @@ describe("the interviewer details page renders correctly", () => {
             // .reply(200, {last_updated: "Sat, 01 Jan 2000 10:00:00 GMT"});
             .reply(200, { last_updated: subtractYears(1) });
         history = createMemoryHistory();
-        setQuestionnaires = jest.fn();
-        submit = jest.fn();
+        setQuestionnaires = vi.fn();
+        submit = vi.fn();
     });
 
     afterEach(() => {
@@ -70,7 +67,7 @@ describe("the interviewer details page renders correctly", () => {
                     questionnaires={["LMS2101_AA1"]}
                     setQuestionnaires={setQuestionnaires}
                     onSubmit={submit}
-                    navigateBack={() => {}}
+                    navigateBack={() => { }}
                 />
             </MemoryRouter>,
         );

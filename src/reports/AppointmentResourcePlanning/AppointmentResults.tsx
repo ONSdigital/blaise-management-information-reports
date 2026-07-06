@@ -1,4 +1,4 @@
-import { ErrorBoundary, ONSPanel } from "blaise-design-system-react-components";
+import { ErrorBoundary, Panel } from "blaise-design-system-react-components";
 import React, { ReactElement } from "react";
 import { AppointmentResourcePlanningReportData } from "../../interfaces";
 
@@ -71,7 +71,7 @@ export default function AppointmentResults({
                             </tbody>
                         </table>
                     )
-                    : <ONSPanel hidden={messageNoData === "" && true}>{messageNoData}</ONSPanel>
+                    : <Panel hidden={messageNoData === "" && true}>{messageNoData}</Panel>
             }
             <br />
         </ErrorBoundary>

@@ -1,9 +1,47 @@
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { getQuestionnaireList, getInterviewerCallHistoryReport } from ".";
+import { vi } from "vitest";
 import { InterviewerCallHistoryReport } from "../../interfaces";
 
 const mockAdapter = new MockAdapter(axios);
+
+const { mockGetQuestionnaires } = vi.hoisted(() => ({
+    mockGetQuestionnaires: vi.fn(),
+}));
+
+vi.mock("blaise-api-node-client", () => ({
+    BlaiseApiClient: class MockBlaiseApiClient {
+        constructor(_url?: string) { }
+
+        public getQuestionnaires = mockGetQuestionnaires;
+    },
+    default: class MockBlaiseApiClient {
+        constructor(_url?: string) { }
+
+        public getQuestionnaires = mockGetQuestionnaires;
+    },
+}));
+
+const { authHeader, authManagerOptions, clearToken, getToken } = vi.hoisted(() => ({
+    authHeader: vi.fn(),
+    authManagerOptions: vi.fn(),
+    clearToken: vi.fn(),
+    getToken: vi.fn(),
+}));
+
+vi.mock("blaise-login-react-client", () => ({
+    AuthManager: class MockAuthManager {
+        constructor(options: unknown) {
+            authManagerOptions(options);
+        }
+
+        authHeader = authHeader;
+        clearToken = clearToken;
+        getToken = getToken;
+    },
+    createSessionKey: (environmentKey: string) => `blaise-user-${environmentKey}`,
+}));
 
 describe("getQuestionnaireList", () => {
     afterEach(() => {

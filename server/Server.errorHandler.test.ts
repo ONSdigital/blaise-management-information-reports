@@ -1,11 +1,13 @@
 import supertest from "supertest";
-import BlaiseIapNodeProvider from "blaise-iap-node-provider";
-import BlaiseApiClient from "blaise-api-node-client";
+import { IapProvider } from "blaise-iap-node-provider";
+import { BlaiseApiClient } from "blaise-api-node-client";
+import { describe, expect, it, vi } from "vitest";
 import { Auth } from "blaise-login-react/blaise-login-react-server";
-import { Request, Response, NextFunction } from "express";
-import { Config } from "./Config";
 
-jest.mock("./SendRequest", () => ({
+import { Request, Response, NextFunction } from "express";
+import { Config } from "./Config.js";
+
+vi.mock("./SendRequest", () => ({
     __esModule: true,
     default: jest.fn(() => Promise.reject(new Error("boom"))),
 }));
@@ -24,16 +26,68 @@ const config: Config = {
     Roles: [],
 };
 
-const mockAuthProvider: BlaiseIapNodeProvider = {
+const mockAuthProvider: IapProvider = {
     CLIENT_ID: undefined,
     token: undefined,
     getAuthHeader: async function (): Promise<{ Authorization: string; }> {
         return { Authorization: "example token" };
     },
     isValidToken: undefined,
-} as unknown as BlaiseIapNodeProvider;
+} as unknown as IapProvider;
 
-const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
+//const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
+const {
+    mockGetQuestionnaire,
+    mockGetQuestionnaires,
+    mockGetQuestionnaireCaseIds,
+    mockInstallQuestionnaire,
+    mockDeleteQuestionnaire,
+    mockActivateQuestionnaire,
+    mockDeactivateQuestionnaire,
+    mockDoesQuestionnaireHaveMode,
+    mockGetQuestionnaireModes,
+    mockGetQuestionnaireSettings,
+    mockGetSurveyDays,
+} = vi.hoisted(() => ({
+    mockGetQuestionnaire: vi.fn(),
+    mockGetQuestionnaires: vi.fn(),
+    mockGetQuestionnaireCaseIds: vi.fn(),
+    mockInstallQuestionnaire: vi.fn(),
+    mockDeleteQuestionnaire: vi.fn(),
+    mockActivateQuestionnaire: vi.fn(),
+    mockDeactivateQuestionnaire: vi.fn(),
+    mockDoesQuestionnaireHaveMode: vi.fn(),
+    mockGetQuestionnaireModes: vi.fn(),
+    mockGetQuestionnaireSettings: vi.fn(),
+    mockGetSurveyDays: vi.fn(),
+}));
+
+vi.mock("blaise-api-node-client", async () => {
+    const blaiseApiNodeClient = await vi.importActual("blaise-api-node-client");
+
+    class MockBlaiseApiClient {
+        constructor(_url?: string) { }
+
+        public getQuestionnaire = mockGetQuestionnaire;
+        public getQuestionnaires = mockGetQuestionnaires;
+        public getQuestionnaireCaseIds = mockGetQuestionnaireCaseIds;
+        public installQuestionnaire = mockInstallQuestionnaire;
+        public deleteQuestionnaire = mockDeleteQuestionnaire;
+        public activateQuestionnaire = mockActivateQuestionnaire;
+        public deactivateQuestionnaire = mockDeactivateQuestionnaire;
+        public doesQuestionnaireHaveMode = mockDoesQuestionnaireHaveMode;
+        public getQuestionnaireModes = mockGetQuestionnaireModes;
+        public getQuestionnaireSettings = mockGetQuestionnaireSettings;
+        public getSurveyDays = mockGetSurveyDays;
+    }
+
+    return {
+        __esModule: true,
+        ...blaiseApiNodeClient,
+        BlaiseApiClient: MockBlaiseApiClient,
+        default: MockBlaiseApiClient,
+    };
+});
 const mockAuth: Auth = {
     config: {
         SessionSecret: "",
@@ -50,7 +104,7 @@ const mockAuth: Auth = {
     UserHasRole: function (): boolean {
         throw new Error("Function not implemented.");
     },
-    Middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
+    middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
         next();
     },
 };

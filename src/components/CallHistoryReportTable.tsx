@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { ONSPanel } from "blaise-design-system-react-components";
+import { Panel } from "blaise-design-system-react-components";
 import { InterviewerCallHistoryReport } from "../interfaces";
 import { formatDateAndTime } from "../utilities/DateFormatter";
 import { convertSecondsToMinutesAndSeconds } from "../utilities/Converters";
@@ -15,7 +15,7 @@ function isEmpty(reportData: any): boolean {
 
 export default function callHistoryReportTable({ reportData, messageNoData }: CallHistoryReportTableProps): ReactElement {
     if (isEmpty(reportData)) {
-        return <ONSPanel hidden={messageNoData === "" && true}>{messageNoData}</ONSPanel>;
+        return <Panel hidden={messageNoData === "" && true}>{messageNoData}</Panel>;
     }
 
     /* eslint-disable react/no-array-index-key */

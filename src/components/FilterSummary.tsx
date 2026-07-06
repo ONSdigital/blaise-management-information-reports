@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
 import { formatDate } from "../utilities/DateFormatter";
 
-interface FilterSummaryProps{
+interface FilterSummaryProps {
     interviewer: string
     startDate: Date
     endDate: Date

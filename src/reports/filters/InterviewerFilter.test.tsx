@@ -1,11 +1,8 @@
-/**
- * @jest-environment jsdom
- */
-
 import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, RenderResult, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { MemoryRouter } from "react-router-dom";
 import { screen } from "@testing-library/dom";
 import React from "react";
 import userEvent from "@testing-library/user-event";
@@ -17,7 +14,7 @@ describe("the interviewer details page renders correctly", () => {
     let view: RenderResult;
 
     beforeEach(() => {
-        submitFunction = jest.fn();
+        submitFunction = vi.fn();
 
         const history = createMemoryHistory();
 

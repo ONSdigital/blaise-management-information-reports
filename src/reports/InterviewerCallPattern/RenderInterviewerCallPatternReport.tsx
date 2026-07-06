@@ -2,7 +2,7 @@ import React, {
     ReactElement, ReactNode, useCallback, useState,
 } from "react";
 import {
-    Group, GroupedSummary, ONSPanel, SummaryGroupTable,
+    Group, GroupedSummary, Panel, SummaryGroupTable,
 } from "blaise-design-system-react-components";
 import { CSVLink } from "react-csv";
 import Breadcrumbs from "../../components/Breadcrumbs";
@@ -107,10 +107,10 @@ function InvalidCaseInfo({ invalidFields }: { invalidFields: Group }): ReactElem
     const percentage = invalidFields.records.discounted_invalid_cases / invalidFields.records.total_records * 100;
 
     return (
-        <ONSPanel>
-            <p>Information: { total } records ({ percentage.toFixed(2) }%) were discounted due to the following
-                invalid fields: { invalidFields.records.invalid_fields }</p>
-        </ONSPanel>
+        <Panel>
+            <p>Information: {total} records ({percentage.toFixed(2)}%) were discounted due to the following
+                invalid fields: {invalidFields.records.invalid_fields}</p>
+        </Panel>
     );
 }
 
@@ -137,7 +137,7 @@ function ReportData(
     { groupedSummary, summaryState }: { groupedSummary: GroupedSummary, summaryState: SummaryState },
 ): ReactElement {
     if (summaryState === "no_data") {
-        return <ONSPanel>No data found for parameters given.</ONSPanel>;
+        return <Panel>No data found for parameters given.</Panel>;
     }
 
     if (groupedSummary.groups.length === 0) {
@@ -221,7 +221,7 @@ function RenderInterviewerCallPatternReport({
                 <ReportErrorPanel error={reportFailed} />
                 <CallHistoryLastUpdatedStatus />
                 <div className="ons-u-mb-m">
-                    <ONSPanel>
+                    <Panel>
                         <p>
                             Incomplete data is removed from this report. This will impact the accuracy of the report.
                         </p>
@@ -232,14 +232,14 @@ function RenderInterviewerCallPatternReport({
                             Information will be displayed at the top of the report to advise which fields were
                             incomplete.
                         </p>
-                    </ONSPanel>
+                    </Panel>
                 </div>
                 <br />
                 <LoadData
                     dataPromise={runInterviewerCallPatternReport()}
                     onError={() => setReportFailed(true)}
                     errorMessage={false}
-                >{ displayReport }</LoadData>
+                >{displayReport}</LoadData>
                 <br />
             </main>
         </>

@@ -4,6 +4,7 @@ import {
     render, RenderResult, screen, within,
 } from "@testing-library/react";
 import { createMemoryHistory, History } from "history";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import MockAdapter from "axios-mock-adapter";
@@ -24,8 +25,8 @@ describe("RenderInterviewerCallHistoryReport", () => {
         history = createMemoryHistory();
         history.push("/interviewer-call-history");
 
-        navigateBack = jest.fn();
-        navigateBackTwoSteps = jest.fn();
+        navigateBack = vi.fn();
+        navigateBackTwoSteps = vi.fn();
 
         http.onGet("/api/reports/call-history-status")
             .reply(200, { last_updated: "Tue, 04 Oct 2022 00:00:06 GMT" });

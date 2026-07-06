@@ -11,8 +11,8 @@ import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { Config } from "./Config";
-import { newServer } from "./Server";
+import { Config } from "./Config.js";
+import { newServer } from "./Server.js";
 
 dateFormatter.extend(customParseFormat);
 dateFormatter.extend(utc);
@@ -20,7 +20,7 @@ dateFormatter.extend(timezone);
 
 const axiosMock = new MockAdapter(axios);
 
-const config : Config = {
+const config: Config = {
     ProjectID: "",
     BertUrl: "http://bert.com",
     BertClientId: "",
@@ -30,7 +30,7 @@ const config : Config = {
     Roles: [],
 };
 
-const mockAuthProvider : BlaiseIapNodeProvider = {
+const mockAuthProvider: BlaiseIapNodeProvider = {
     CLIENT_ID: undefined,
     token: undefined,
     getAuthHeader: async function (): Promise<{ Authorization: string; }> {
@@ -56,7 +56,7 @@ const mockAuth: Auth = {
     UserHasRole: function (): boolean {
         throw new Error("Function not implemented.");
     },
-    Middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
+    middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
         next();
     },
 };

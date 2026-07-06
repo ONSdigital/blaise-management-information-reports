@@ -1,17 +1,14 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from "react";
 import { render, waitFor, screen } from "@testing-library/react";
 import { Authenticate } from "blaise-login-react/blaise-login-react-client";
 import { BrowserRouter } from "react-router-dom";
+import { describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom";
 import { act } from "react-dom/test-utils";
 import App from "./App";
 import flushPromises from "./tests/utilities";
 
-jest.mock("blaise-login-react/blaise-login-react-client");
+vi.mock("blaise-login-react/blaise-login-react-client");
 const { MockAuthenticate } = jest.requireActual("blaise-login-react/blaise-login-react-client");
 Authenticate.prototype.render = MockAuthenticate.prototype.render;
 

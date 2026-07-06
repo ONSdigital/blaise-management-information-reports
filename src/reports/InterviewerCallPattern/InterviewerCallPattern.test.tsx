@@ -1,15 +1,10 @@
-/**
- * @jest-environment jsdom
- */
-
-/* eslint-disable react/jsx-props-no-spreading */
-
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import MockDate from "mockdate";
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { MemoryRouter } from "react-router-dom";
 import React, { act } from "react";
 import { screen } from "@testing-library/dom";
 import { InterviewerCallPatternReport } from "../../interfaces";
@@ -83,8 +78,8 @@ const mockProps = {
     endDate: new Date(2023, 12, 31),
     surveyTla: "foo",
     questionnaires: ["foo"],
-    navigateBack: jest.fn(),
-    navigateBackTwoSteps: jest.fn(),
+    navigateBack: vi.fn(),
+    navigateBackTwoSteps: vi.fn(),
 };
 
 const threeDaysFromTheNewMillennium = "2000-01-03";
@@ -188,7 +183,7 @@ describe("function InterviewerCallPattern() with happy data", () => {
     it("should match the snapshot", async () => {
         const wrapper = render(
             <MemoryRouter>
-                <InterviewerCallPattern {... mockProps} />
+                <InterviewerCallPattern {...mockProps} />
             </MemoryRouter>,
         );
 

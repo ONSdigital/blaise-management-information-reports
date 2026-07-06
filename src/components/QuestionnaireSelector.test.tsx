@@ -4,6 +4,7 @@
 
 import "@testing-library/jest-dom";
 import React from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, RenderResult, waitFor } from "@testing-library/react";
 import { fireEvent, screen } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
@@ -31,8 +32,8 @@ describe("QuestionnaireSelector tests", () => {
     }
 
     beforeEach(async () => {
-        setSelectedQuestionnaires = jest.fn();
-        submit = jest.fn();
+        setSelectedQuestionnaires = vi.fn();
+        submit = vi.fn();
         await act(async () => {
             view = renderComponent();
         });
