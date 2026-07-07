@@ -1,8 +1,7 @@
 import path from "path";
 import fs from "fs";
-import express, {
-    NextFunction, Request, Response, Express,
-} from "express";
+import express from "express";
+import type { NextFunction, Request, Response, Express } from "express";
 import ejs from "ejs";
 import multer from "multer";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";

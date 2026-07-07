@@ -1,5 +1,5 @@
 // Generic function to make requests to the API
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import axios, { AxiosRequestConfig } from "axios";
 import * as PinoHttp from "pino-http";
 

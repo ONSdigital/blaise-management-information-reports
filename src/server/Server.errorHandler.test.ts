@@ -3,7 +3,7 @@ import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
 import { vi } from "vitest";
 import { Auth } from "blaise-login-react/blaise-login-react-server";
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { Config } from "./Config.js";
 
 vi.mock("./SendRequest", () => ({
