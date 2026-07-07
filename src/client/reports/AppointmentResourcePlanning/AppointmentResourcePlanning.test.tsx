@@ -65,7 +65,9 @@ describe("appointment resource planning report without data", () => {
         expect(screen.queryByText("Date")).toBeVisible();
 
         userEvent.type(screen.getByLabelText(/Date/i), "2021-01-01");
-        userEvent.click(screen.getByTestId(/submit-button/i));
+        const user = userEvent.setup();
+
+        await user.click(screen.getByTestId(/submit-button/i));
 
         await act(async () => {
             await flushPromises();
