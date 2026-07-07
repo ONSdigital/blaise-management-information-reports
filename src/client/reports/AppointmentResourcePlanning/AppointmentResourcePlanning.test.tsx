@@ -2,9 +2,8 @@ import "@testing-library/jest-dom";
 import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
-import { screen } from "@testing-library/dom";
-import React from "react";
+import { fireEvent, screen } from "@testing-library/dom";
+import React, { act } from "react";
 import MockDate from "mockdate";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
@@ -43,6 +42,7 @@ describe("appointment resource planning report without data", () => {
         expect(await wrapper).toMatchSnapshot();
     });
     it("renders correctly", async () => {
+
         const history = createMemoryHistory();
         await act(async () => {
             render(
@@ -51,6 +51,9 @@ describe("appointment resource planning report without data", () => {
                 </MemoryRouter>,
             );
         });
+
+        const user = userEvent.setup();
+
         expect(screen.queryByText("Run appointment resource planning report")).toBeVisible();
         expect(screen.queryByText("Run a Daybatch first to obtain the most accurate results.")).toBeVisible();
         expect(screen.queryByText("Appointments that have already been attempted will not be displayed.")).toBeVisible();
@@ -64,15 +67,16 @@ describe("appointment resource planning report without data", () => {
 
         expect(screen.queryByText("Date")).toBeVisible();
 
-        userEvent.type(screen.getByLabelText(/Date/i), "2021-01-01");
-        const user = userEvent.setup();
+        const dateInput = screen.getByLabelText(/Date/i);
+        await user.clear(dateInput);
+        fireEvent.change(dateInput, {
+            target: {
+                value: "2021-01-01",
+            },
+        });
 
         await user.click(screen.getByTestId(/submit-button/i));
 
-        await act(async () => {
-            await flushPromises();
-        });
-
-        expect(await screen.queryByText("No questionnaires found for given parameters.")).toBeVisible();
+        expect(await screen.getByText("No questionnaires found for given parameters.")).toBeVisible();
     });
 });
