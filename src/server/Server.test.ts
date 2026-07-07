@@ -25,7 +25,7 @@ const config: Config = {
     ProjectID: "",
     BertUrl: "http://bert.com",
     BertClientId: "",
-    BlaiseApiUrl: "",
+    BlaiseApiUrl: "http://blaise-api.com",
     SessionSecret: "",
     SessionTimeout: "",
     Roles: [],

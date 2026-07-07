@@ -133,5 +133,6 @@
   "overrides": {
     "react": "$react",
     "react-dom": "$react-dom"
-  }
+  },
+  "packageManager": "yarn@4.17.0"
 }
