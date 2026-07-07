@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import dotenv from "dotenv";
-import BlaiseApiClient, { NewUser } from "blaise-api-node-client";
+import { BlaiseApiClient, NewUser } from "blaise-api-node-client";
 import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
 import { loginToMir } from "./helpers/MirHelpers";
 import axios from 'axios';
@@ -65,7 +65,7 @@ test.describe("ARPR without data", () => {
         await page.locator("#Date").type("30-06-1990");
         await page.click("button[type=submit]");
         await page.waitForSelector("text=Loading", { state: "hidden" });
-        await expect(page.locator(".ons-panel__body ").nth(1)).toContainText("No questionnaires found for given parameters.");        
+        await expect(page.locator(".ons-panel__body ").nth(1)).toContainText("No questionnaires found for given parameters.");
         console.log(`Finished running ${testInfo.title}`);
     });
 });
