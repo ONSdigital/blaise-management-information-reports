@@ -12,8 +12,8 @@ import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { Config } from "./Config";
-import { newServer } from "./Server";
+import { Config } from "./Config.js";
+import { newServer } from "./Server.js";
 
 dateFormatter.extend(customParseFormat);
 dateFormatter.extend(utc);

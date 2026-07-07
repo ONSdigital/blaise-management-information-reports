@@ -9,7 +9,7 @@ import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import BlaiseApiClient from "blaise-api-node-client";
 import { newLoginHandler, Auth } from "blaise-login-react/blaise-login-react-server";
 import type * as PinoHttp from "pino-http";
-import { Config } from "./Config";
+import { Config } from "./Config.js";
 import SendAPIRequest from "./SendRequest";
 import createLogger from "./pino";
 import { formatISODate } from "../client/utilities/DateFormatter.js";

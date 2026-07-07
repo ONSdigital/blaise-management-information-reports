@@ -1,4 +1,4 @@
-import { loadConfigFromEnv } from "./Config";
+import { loadConfigFromEnv } from "./Config.js";
 
 describe("Config setup", () => {
     it("should return the correct environment variables", () => {
