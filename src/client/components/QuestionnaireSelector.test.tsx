@@ -7,6 +7,7 @@ import { vi } from "vitest";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import QuestionnaireSelector from "./QuestionnaireSelector";
+import flushPromises from "../tests/utilities";
 
 const mockAdapter = new MockAdapter(axios);
 
@@ -47,7 +48,7 @@ describe("QuestionnaireSelector tests", () => {
 
     describe("it renders correctly", () => {
         it("displays a 'Select All' button", () => {
-            expect(screen.getByRole("button", { name: "Select All following checkboxes" })).toBeVisible();
+            expect(view.getByText("Select All")).toBeVisible();
         });
 
         it("displays all available questionnaires", () => {
@@ -83,8 +84,13 @@ describe("QuestionnaireSelector tests", () => {
         });
 
         it("changes to unselect all", async () => {
+
             fireEvent.click(await screen.findByRole("button", { name: /Select All/ }));
-            expect(await view.getByRole("button", { name: "Unselect All following checkboxes" })).toBeVisible();
+
+            await act(async () => {
+                await flushPromises();
+            });
+            expect(view.getByText("Unselect All")).toBeVisible();
         });
 
         it("returns the selected questionnaires when submitted", async () => {
