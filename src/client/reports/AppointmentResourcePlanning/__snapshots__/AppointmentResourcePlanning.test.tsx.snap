@@ -1,0 +1,466 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`appointment resource planning report without data > matches snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          class="ons-u-mt-m"
+        >
+          <div>
+            <nav
+              aria-label="Breadcrumb"
+              class="ons-breadcrumb"
+            >
+              <ol
+                class="ons-breadcrumb__items ons-u-fs-s"
+              >
+                <li
+                  class="ons-breadcrumb__item"
+                  id="breadcrumb-0"
+                >
+                  <a
+                    class="ons-breadcrumb__link"
+                    data-discover="true"
+                    href="/"
+                  >
+                    Reports
+                  </a>
+                  <svg
+                    class="ons-svg-icon"
+                    focusable="false"
+                    viewBox="0 0 8 13"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z"
+                      transform="translate(-5.02 -1.59)"
+                    />
+                  </svg>
+                </li>
+              </ol>
+            </nav>
+            <main
+              class="ons-page__main ons-u-mt-s"
+              id="main-content"
+            >
+              <h1
+                class="ons-u-mb-m"
+              >
+                Run 
+                appointment resource planning
+                 report
+              </h1>
+              <div
+                class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+              >
+                <div
+                  class="ons-panel__body "
+                >
+                  <p>
+                    Run a Daybatch first to obtain the most accurate results.
+                  </p>
+                  <p>
+                    Appointments that have already been attempted will not be displayed.
+                  </p>
+                </div>
+              </div>
+              <br />
+              <form
+                action="#"
+              >
+                <fieldset
+                  class="ons-fieldset"
+                >
+                  <legend
+                    class="ons-fieldset__legend"
+                  >
+                    Select survey
+                  </legend>
+                  <div
+                    class="ons-radios__items"
+                    id="Survey TLA"
+                  >
+                    <p
+                      class="ons-radios__item"
+                    >
+                      <span
+                        class="ons-radio"
+                      >
+                        <input
+                          checked=""
+                          class="ons-radio__input js-radio"
+                          id="all"
+                          initial_value=""
+                          name="Survey TLA"
+                          type="radio"
+                          value=""
+                        />
+                        <label
+                          class="ons-radio__label "
+                          for="all"
+                          id="all-label"
+                        >
+                          Show all surveys
+                        </label>
+                      </span>
+                    </p>
+                    <br />
+                    <p
+                      class="ons-radios__item"
+                    >
+                      <span
+                        class="ons-radio"
+                      >
+                        <input
+                          class="ons-radio__input js-radio"
+                          id="lms"
+                          initial_value=""
+                          name="Survey TLA"
+                          type="radio"
+                          value="lms"
+                        />
+                        <label
+                          class="ons-radio__label ons-label--with-description"
+                          for="lms"
+                          id="lms-label"
+                        >
+                          LMS
+                          <span
+                            class="ons-label__description ons-radio__label--with-description"
+                            id="white-label-description-hint"
+                          >
+                            Labour Market Survey
+                          </span>
+                        </label>
+                      </span>
+                    </p>
+                    <br />
+                    <p
+                      class="ons-radios__item"
+                    >
+                      <span
+                        class="ons-radio"
+                      >
+                        <input
+                          class="ons-radio__input js-radio"
+                          id="opn"
+                          initial_value=""
+                          name="Survey TLA"
+                          type="radio"
+                          value="opn"
+                        />
+                        <label
+                          class="ons-radio__label ons-label--with-description"
+                          for="opn"
+                          id="opn-label"
+                        >
+                          OPN
+                          <span
+                            class="ons-label__description ons-radio__label--with-description"
+                            id="white-label-description-hint"
+                          >
+                            Opinions and Lifestyle Survey
+                          </span>
+                        </label>
+                      </span>
+                    </p>
+                    <br />
+                  </div>
+                </fieldset>
+                <div
+                  class="ons-field"
+                >
+                  <label
+                    class="ons-label "
+                    for="Date"
+                  >
+                    Date
+                  </label>
+                  <input
+                    class="ons-input ons-input--text ons-input-type__input"
+                    form="[object Object]"
+                    id="Date"
+                    initial_value="1997-12-24"
+                    name="Date"
+                    type="date"
+                    value="1997-12-24"
+                  />
+                </div>
+                <br />
+                <button
+                  class="ons-btn "
+                  data-testid="submit-button"
+                  type="submit"
+                >
+                  <span
+                    class="ons-btn__inner"
+                  >
+                    Next
+                  </span>
+                </button>
+              </form>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="ons-u-mt-m"
+      >
+        <div>
+          <nav
+            aria-label="Breadcrumb"
+            class="ons-breadcrumb"
+          >
+            <ol
+              class="ons-breadcrumb__items ons-u-fs-s"
+            >
+              <li
+                class="ons-breadcrumb__item"
+                id="breadcrumb-0"
+              >
+                <a
+                  class="ons-breadcrumb__link"
+                  data-discover="true"
+                  href="/"
+                >
+                  Reports
+                </a>
+                <svg
+                  class="ons-svg-icon"
+                  focusable="false"
+                  viewBox="0 0 8 13"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.74,14.28l-.57-.56a.5.5,0,0,1,0-.71h0l5-5-5-5a.5.5,0,0,1,0-.71h0l.57-.56a.5.5,0,0,1,.71,0h0l5.93,5.93a.5.5,0,0,1,0,.7L6.45,14.28a.5.5,0,0,1-.71,0Z"
+                    transform="translate(-5.02 -1.59)"
+                  />
+                </svg>
+              </li>
+            </ol>
+          </nav>
+          <main
+            class="ons-page__main ons-u-mt-s"
+            id="main-content"
+          >
+            <h1
+              class="ons-u-mb-m"
+            >
+              Run 
+              appointment resource planning
+               report
+            </h1>
+            <div
+              class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+            >
+              <div
+                class="ons-panel__body "
+              >
+                <p>
+                  Run a Daybatch first to obtain the most accurate results.
+                </p>
+                <p>
+                  Appointments that have already been attempted will not be displayed.
+                </p>
+              </div>
+            </div>
+            <br />
+            <form
+              action="#"
+            >
+              <fieldset
+                class="ons-fieldset"
+              >
+                <legend
+                  class="ons-fieldset__legend"
+                >
+                  Select survey
+                </legend>
+                <div
+                  class="ons-radios__items"
+                  id="Survey TLA"
+                >
+                  <p
+                    class="ons-radios__item"
+                  >
+                    <span
+                      class="ons-radio"
+                    >
+                      <input
+                        checked=""
+                        class="ons-radio__input js-radio"
+                        id="all"
+                        initial_value=""
+                        name="Survey TLA"
+                        type="radio"
+                        value=""
+                      />
+                      <label
+                        class="ons-radio__label "
+                        for="all"
+                        id="all-label"
+                      >
+                        Show all surveys
+                      </label>
+                    </span>
+                  </p>
+                  <br />
+                  <p
+                    class="ons-radios__item"
+                  >
+                    <span
+                      class="ons-radio"
+                    >
+                      <input
+                        class="ons-radio__input js-radio"
+                        id="lms"
+                        initial_value=""
+                        name="Survey TLA"
+                        type="radio"
+                        value="lms"
+                      />
+                      <label
+                        class="ons-radio__label ons-label--with-description"
+                        for="lms"
+                        id="lms-label"
+                      >
+                        LMS
+                        <span
+                          class="ons-label__description ons-radio__label--with-description"
+                          id="white-label-description-hint"
+                        >
+                          Labour Market Survey
+                        </span>
+                      </label>
+                    </span>
+                  </p>
+                  <br />
+                  <p
+                    class="ons-radios__item"
+                  >
+                    <span
+                      class="ons-radio"
+                    >
+                      <input
+                        class="ons-radio__input js-radio"
+                        id="opn"
+                        initial_value=""
+                        name="Survey TLA"
+                        type="radio"
+                        value="opn"
+                      />
+                      <label
+                        class="ons-radio__label ons-label--with-description"
+                        for="opn"
+                        id="opn-label"
+                      >
+                        OPN
+                        <span
+                          class="ons-label__description ons-radio__label--with-description"
+                          id="white-label-description-hint"
+                        >
+                          Opinions and Lifestyle Survey
+                        </span>
+                      </label>
+                    </span>
+                  </p>
+                  <br />
+                </div>
+              </fieldset>
+              <div
+                class="ons-field"
+              >
+                <label
+                  class="ons-label "
+                  for="Date"
+                >
+                  Date
+                </label>
+                <input
+                  class="ons-input ons-input--text ons-input-type__input"
+                  form="[object Object]"
+                  id="Date"
+                  initial_value="1997-12-24"
+                  name="Date"
+                  type="date"
+                  value="1997-12-24"
+                />
+              </div>
+              <br />
+              <button
+                class="ons-btn "
+                data-testid="submit-button"
+                type="submit"
+              >
+                <span
+                  class="ons-btn__inner"
+                >
+                  Next
+                </span>
+              </button>
+            </form>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
