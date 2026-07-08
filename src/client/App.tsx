@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { type ReactElement } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
     BetaBanner, DefaultErrorBoundary, Footer, Header,
