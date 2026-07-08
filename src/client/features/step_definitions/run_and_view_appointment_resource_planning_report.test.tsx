@@ -66,15 +66,12 @@ const questionnairesReturned = ["LMS2101_AA1", "LMS2101_BB1", "LMS2101_CC1"];
 
 defineFeature(feature, (test) => {
     beforeEach(() => {
+        mockAdapter.reset();
         mockAdapter.onPost("/api/reports/appointment-resource-planning-summary").reply(200, ReportSummary);
         mockAdapter.onPost("/api/reports/appointment-resource-planning/").reply(200, reportDataReturned);
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnairesReturned);
         mockIsProduction.mockReturnValue(false);
         MockAuthenticate.OverrideReturnValues(null, true);
-    });
-
-    afterAll(() => {
-        mockAdapter.reset();
     });
 
     test("Run and view appointment resource planning report", ({

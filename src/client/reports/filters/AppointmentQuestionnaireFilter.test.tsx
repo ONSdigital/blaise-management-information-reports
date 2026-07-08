@@ -6,7 +6,7 @@ import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
 import React from "react";
 import MockAdapter from "axios-mock-adapter";
-import { vi } from "vitest";
+import { afterAll, vi } from "vitest";
 import axios from "axios";
 import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -37,6 +37,7 @@ describe("the interviewer details page renders correctly", () => {
     let submit: () => void;
 
     beforeEach(() => {
+        mockAdapter.reset();
         mockAdapter
             .onGet("/api/reports/call-history-status")
             // .reply(200, {last_updated: "Sat, 01 Jan 2000 10:00:00 GMT"});
@@ -46,9 +47,9 @@ describe("the interviewer details page renders correctly", () => {
         submit = vi.fn();
     });
 
-    afterEach(() => {
-        mockAdapter.reset();
-    });
+    // afterAll(() => {
+
+    // });
 
     function renderComponent() {
         return render(
@@ -70,9 +71,9 @@ describe("the interviewer details page renders correctly", () => {
         mockAdapter.onPost(
             "/api/appointments/questionnaires",
             {
-                asymmetricMatch: (formData: FormData) => {
-                    expect(formData.get("survey_tla")).toBe("LMS");
-                    expect(formData.get("date")).toBe("2022-01-21");
+                asymmetricMatch: (body) => {
+                    expect(body.survey_tla).toBe("LMS");
+                    expect(body.date).toBe("2022-01-21");
                     return true;
                 },
             },

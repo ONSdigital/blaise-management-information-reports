@@ -10,6 +10,7 @@ import axios from "axios";
 import userEvent from "@testing-library/user-event";
 import AppointmentResourcePlanning from "./AppointmentResourcePlanning";
 import flushPromises from "../../tests/utilities";
+import { afterEach, beforeEach, describe } from "vitest";
 
 const mockAdapter = new MockAdapter(axios);
 
