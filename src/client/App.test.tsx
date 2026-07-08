@@ -6,9 +6,9 @@ import { act } from "react-dom/test-utils";
 import App from "./App";
 import { vi } from "vitest"
 
-vi.mock("blaise-login-react/blaise-login-react-client", async () => {
+vi.mock("blaise-login-react-client", async () => {
     const actual = await vi.importActual<any>(
-        "blaise-login-react/blaise-login-react-client"
+        "blaise-login-react-client"
     );
 
     return {

@@ -4,14 +4,14 @@ import express from "express";
 import type { NextFunction, Request, Response, Express } from "express";
 import ejs from "ejs";
 import multer from "multer";
-import { BlaiseIapNodeProvider } from "blaise-iap-node-provider";
+import { type IapProvider } from "blaise-iap-node-provider";
 import { BlaiseApiClient } from "blaise-api-node-client";
-import { newLoginHandler, Auth } from "blaise-login-react/blaise-login-react-server";
+import { newLoginHandler, Auth } from "blaise-login-react-server";
 import type * as PinoHttp from "pino-http";
 import type { Config } from "./Config.js";
 import SendAPIRequest from "./SendRequest/index.js";
-import createLogger from "./pino";
-import { formatISODate } from "../client/utilities/DateFormatter.js";
+import createLogger from "./pino/index.js";
+import { formatISODate } from "../utilities/DateFormatter.js";
 
 function isSafePathSegment(value: unknown): value is string {
     return typeof value === "string" && /^[A-Za-z0-9_-]+$/.test(value);
@@ -52,7 +52,7 @@ class RequestLogger {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, auth: Auth, blaiseApiClient: BlaiseApiClient): Express {
+export function newServer(config: Config, authProvider: IapProvider, auth: Auth, blaiseApiClient: BlaiseApiClient): Express {
     const upload = multer();
     const server = express();
     const logger = createLogger();
@@ -80,7 +80,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     });
 
     // call-history-status endpoint
-    server.get("/api/reports/call-history-status", auth.Middleware, async (req: Request, res: Response) => {
+    server.get("/api/reports/call-history-status", auth.middleware, async (req: Request, res: Response) => {
         console.log("call-history-status endpoint called");
         const authHeader = await authProvider.getAuthHeader();
         const url = `${config.BertUrl}/api/reports/call-history-status`;
@@ -89,7 +89,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     });
 
     // questionnaire endpoint
-    server.post("/api/questionnaires", auth.Middleware, async (req: Request, res: Response) => {
+    server.post("/api/questionnaires", auth.middleware, async (req: Request, res: Response) => {
         console.log("questionnaire endpoint called");
         const authHeader = await authProvider.getAuthHeader();
         const {
@@ -113,7 +113,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     });
 
     // interviewer-call-history report endpoint
-    server.post("/api/reports/interviewer-call-history", auth.Middleware, async (req: Request, res: Response) => {
+    server.post("/api/reports/interviewer-call-history", auth.middleware, async (req: Request, res: Response) => {
         console.log("interviewer-call-history endpoint called");
         const authHeader = await authProvider.getAuthHeader();
         const {
@@ -142,7 +142,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     });
 
     // interviewer-call-pattern report endpoint
-    server.post("/api/reports/interviewer-call-pattern", auth.Middleware, async (req: Request, res: Response) => {
+    server.post("/api/reports/interviewer-call-pattern", auth.middleware, async (req: Request, res: Response) => {
         console.log("interviewer-call-pattern endpoint called");
         const authHeader = await authProvider.getAuthHeader();
         const {
@@ -171,7 +171,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     });
 
     // appointment-resource-planning report endpoint
-    server.post("/api/reports/appointment-resource-planning", auth.Middleware, async (req: Request, res: Response) => {
+    server.post("/api/reports/appointment-resource-planning", auth.middleware, async (req: Request, res: Response) => {
         console.log("appointment-resource-planning endpoint called");
         const authHeader = await authProvider.getAuthHeader();
         const { date, survey_tla: surveyTla, questionnaires } = req.body;
@@ -184,7 +184,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     });
 
     // appointment-resource-planning-questionnaires endpoint
-    server.post("/api/appointments/questionnaires", auth.Middleware, async (req: Request, res: Response) => {
+    server.post("/api/appointments/questionnaires", auth.middleware, async (req: Request, res: Response) => {
         console.log("appointment-resource-planning-questionnaires endpoint called");
         const authHeader = await authProvider.getAuthHeader();
         const { date, survey_tla: surveyTla } = req.body;
@@ -197,7 +197,7 @@ export function newServer(config: Config, authProvider: BlaiseIapNodeProvider, a
     });
 
     // appointment-resource-planning-summary report endpoint
-    server.post("/api/reports/appointment-resource-planning-summary", auth.Middleware, async (req: Request, res: Response) => {
+    server.post("/api/reports/appointment-resource-planning-summary", auth.middleware, async (req: Request, res: Response) => {
         console.log("appointment-resource-planning-summary endpoint called");
         const authHeader = await authProvider.getAuthHeader();
         const { date, survey_tla: surveyTla, questionnaires } = req.body;

@@ -1,10 +1,10 @@
 import React, { ReactElement, useCallback } from "react";
 import axios from "axios";
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
-import { AuthManager } from "blaise-login-react/blaise-login-react-client";
+import { AuthClient } from "blaise-login-react-client";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import AppointmentResourceDaybatchWarning from "../AppointmentResourcePlanning/AppointmentResourceDaybatchWarning";
-import { formatDate, formatISODate } from "../../utilities/DateFormatter";
+import { formatDate, formatISODate } from "../../../utilities/DateFormatter";
 import { LoadData } from "../../components/LoadData";
 import QuestionnaireSelector from "../../components/QuestionnaireSelector";
 

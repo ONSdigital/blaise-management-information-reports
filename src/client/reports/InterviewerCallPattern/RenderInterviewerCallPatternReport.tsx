@@ -9,7 +9,7 @@ import Breadcrumbs from "../../components/Breadcrumbs";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
 import { InterviewerCallPatternReport } from "../../interfaces";
-import { getInterviewerCallPatternReport } from "../../utilities/HTTP";
+import { getInterviewerCallPatternReport } from "../../../utilities/HTTP";
 import FilterSummary from "../../components/FilterSummary";
 import { LoadData } from "../../components/LoadData";
 import { InterviewerFilterQuery } from "../filters/InterviewerFilter";

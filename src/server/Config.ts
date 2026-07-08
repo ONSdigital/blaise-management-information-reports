@@ -1,5 +1,8 @@
 import crypto from "crypto";
-import type { AuthConfig } from "blaise-login-react/blaise-login-react-server";
+import { type AuthConfig } from "blaise-login-react-server";
+
+const DEFAULT_SESSION_TIMEOUT = "12h";
+const ALLOWED_ROLES = ["DST", "BDSS", "TO Manager"];
 
 export interface Config extends AuthConfig {
     ProjectID: string
@@ -24,8 +27,12 @@ function sessionSecret(secret: string | undefined): string {
 
 export function loadConfigFromEnv(): Config {
     let {
-        PROJECT_ID, BERT_URL, BERT_CLIENT_ID, BLAISE_API_URL, SESSION_TIMEOUT,
+        PROJECT_ID,
+        BERT_URL,
+        BERT_CLIENT_ID,
+        BLAISE_API_URL,
     } = process.env;
+
     const { ROLES, SESSION_SECRET } = process.env;
 
     if (PROJECT_ID === undefined) {
@@ -48,18 +55,14 @@ export function loadConfigFromEnv(): Config {
         BLAISE_API_URL = "ENV_VAR_NOT_SET";
     }
 
-    if (SESSION_TIMEOUT === undefined || SESSION_TIMEOUT === "_SESSION_TIMEOUT") {
-        console.error("SESSION_TIMEOUT environment variable has not been set");
-        SESSION_TIMEOUT = "12h";
-    }
-
     return {
         ProjectID: PROJECT_ID,
         BertUrl: BERT_URL,
         BertClientId: BERT_CLIENT_ID,
         BlaiseApiUrl: BLAISE_API_URL,
+        TokenIssuer: PROJECT_ID,
         Roles: loadRoles(ROLES),
-        SessionTimeout: SESSION_TIMEOUT,
+        SessionTimeout: DEFAULT_SESSION_TIMEOUT,
         SessionSecret: sessionSecret(SESSION_SECRET),
     };
 }

@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { fireEvent } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
-import { Authenticate } from "blaise-login-react/blaise-login-react-client";
+import { AuthClient } from "blaise-login-react-client";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { vi } from "vitest";
@@ -16,9 +16,9 @@ import "@testing-library/jest-dom";
 
 const mockAdapter = new MockAdapter(axios);
 
-vi.mock("blaise-login-react/blaise-login-react-client", async () => {
+vi.mock("blaise-login-react-client", async () => {
     const actual = await vi.importActual<any>(
-        "blaise-login-react/blaise-login-react-client"
+        "blaise-login-react-client"
     );
 
     return {

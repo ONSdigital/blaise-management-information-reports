@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import { BlaiseApiClient } from "blaise-api-node-client";
-import { Auth } from "blaise-login-react/blaise-login-react-server";
+import { Auth } from "blaise-login-react-server";
 import type { Request, Response, NextFunction } from "express";
 import axios from "axios";
 import { vi } from "vitest";

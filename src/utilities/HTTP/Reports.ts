@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
-import { AuthManager } from "blaise-login-react/blaise-login-react-client";
+import { AuthClient } from "blaise-login-react-client";
 import {
     AppointmentResourcePlanningReportData,
     AppointmentResourcePlanningSummaryReportData,

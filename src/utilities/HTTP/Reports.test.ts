@@ -1,7 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { getQuestionnaireList, getInterviewerCallHistoryReport } from ".";
-import { InterviewerCallHistoryReport } from "../../interfaces";
+import { InterviewerCallHistoryReport } from "../../client/interfaces";
 
 const mockAdapter = new MockAdapter(axios);
 

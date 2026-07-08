@@ -1,9 +1,10 @@
-import React, { type ReactElement } from "react";
+import React, { useState, type ReactElement } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
     BetaBanner, DefaultErrorBoundary, Footer, Header,
 } from "blaise-design-system-react-components";
-import { Authenticate } from "blaise-login-react/blaise-login-react-client";
+import { AuthClient } from "blaise-login-react-client";
+import { getSharedAuthOptions } from "../utilities/auth.js";
 import "./style.css";
 import InterviewerCallPattern from "./reports/InterviewerCallPattern/InterviewerCallPattern";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
@@ -64,6 +65,11 @@ function AppContent(): ReactElement {
 
 function App(): ReactElement {
     const location = useLocation();
+
+    const [authClient] = useState(() => new AuthClient(getSharedAuthOptions()));
+    const [authState, setAuthState] = useState<"checking" | "unauthenticated" | "authenticated">(
+        () => (authClient.getToken() == null ? "unauthenticated" : "checking"),
+    );
 
     return (
         <Authenticate title="Management Information Reports">

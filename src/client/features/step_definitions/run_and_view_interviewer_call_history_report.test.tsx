@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import { act } from "react-dom/test-utils";
 import userEvent from "@testing-library/user-event";
-import { Authenticate } from "blaise-login-react/blaise-login-react-client";
+import { AuthClient } from "blaise-login-react-client";
 import MockAdapter from "axios-mock-adapter";
 import { vi } from "vitest";
 import axios from "axios";
@@ -15,9 +15,9 @@ import "@testing-library/jest-dom";
 
 const mockAdapter = new MockAdapter(axios);
 
-vi.mock("blaise-login-react/blaise-login-react-client", async () => {
+vi.mock("blaise-login-react-client", async () => {
     const actual = await vi.importActual<any>(
-        "blaise-login-react/blaise-login-react-client"
+        "blaise-login-react-client"
     );
 
     return {

@@ -2,12 +2,12 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { AppointmentResourcePlanningReportData, AppointmentResourcePlanningSummaryReportData } from "../../interfaces";
-import { getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport } from "../../utilities/HTTP";
+import { getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport } from "../../../utilities/HTTP";
 import AppointmentResourceDaybatchWarning from "./AppointmentResourceDaybatchWarning";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
 import AppointmentResults from "./AppointmentResults";
 import AppointmentSummary from "./AppointmentSummary";
-import { formatDate } from "../../utilities/DateFormatter";
+import { formatDate } from "../../../utilities/DateFormatter";
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
 
