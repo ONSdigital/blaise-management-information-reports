@@ -7,7 +7,7 @@ import AppointmentResourceDaybatchWarning from "../AppointmentResourcePlanning/A
 import { formatDate, formatISODate } from "../../../utilities/DateFormatter";
 import { LoadData } from "../../components/LoadData";
 import QuestionnaireSelector from "../../components/QuestionnaireSelector";
-
+import axiosConfig from "../../../client/api/axiosConfig.js";
 interface AppointmentQuestionnaireFilterPageProps {
     reportDate: Date;
     surveyTla: string;
@@ -15,13 +15,6 @@ interface AppointmentQuestionnaireFilterPageProps {
     setQuestionnaires: (string: string[]) => void;
     submitFunction: () => void;
     navigateBack: () => void;
-}
-
-function axiosConfig(): AxiosRequestConfig {
-    const authManager = new AuthManager();
-    return {
-        headers: authManager.authHeader(),
-    };
 }
 
 function FetchQuestionnairesError() {

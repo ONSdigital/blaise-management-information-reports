@@ -8,11 +8,17 @@ import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import axiosConfig from "../../api/axiosConfig";
 import { vi } from "vitest";
 import RenderInterviewerCallHistoryReport from "./RenderInterviewerCallHistoryReport";
 import { InterviewerCallHistoryReport } from "../../interfaces";
-
+import flushPromises from "../../test-utils/flushPromises";
 const http = new MockAdapter(axios);
+// vi.mock("axios");
+
+vi.mock("axiosConfig", () => ({
+    default: vi.fn(() => ({ headers: { Authorization: "Bearer test-token" } })),
+}));
 
 describe("RenderInterviewerCallHistoryReport", () => {
     let navigateBack: () => void;

@@ -4,7 +4,6 @@ import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { fireEvent } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
-import { AuthClient } from "blaise-login-react-client";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { vi } from "vitest";
@@ -13,14 +12,18 @@ import { AppointmentResourcePlanningReportData } from "../../interfaces";
 import flushPromises from "../../tests/utilities";
 import App from "../../App";
 import "@testing-library/jest-dom";
+import { MockAuthenticate } from "../../test-utils/authenticate.mock";
 
 const mockAdapter = new MockAdapter(axios);
+const mockIsProduction = vi.fn();
 
 vi.mock("blaise-login-react-client", async () => {
-    const { mockLoginReactClientModule } = await import("./test-utils/authenticate.mock");
+    const { mockLoginReactClientModule } = await import("../../test-utils/authenticate.mock");
 
     return mockLoginReactClientModule();
 });
+vi.mock
+
 const feature = loadFeature(
     "./src/client/features/run_and_view_appointment_resource_planning_report.feature",
     { tagFilter: "not @server and not @integration" },
@@ -66,6 +69,8 @@ defineFeature(feature, (test) => {
         mockAdapter.onPost("/api/reports/appointment-resource-planning-summary").reply(200, ReportSummary);
         mockAdapter.onPost("/api/reports/appointment-resource-planning/").reply(200, reportDataReturned);
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnairesReturned);
+        mockIsProduction.mockReturnValue(false);
+        MockAuthenticate.OverrideReturnValues(null, true);
     });
 
     afterEach(() => {

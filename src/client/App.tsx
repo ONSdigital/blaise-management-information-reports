@@ -1,7 +1,7 @@
 import React, { useEffect, useEffectEvent, useState, type ReactElement } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
-    BetaBanner, DefaultErrorBoundary, Footer, Header,
+    BetaBanner, DefaultErrorBoundary, Footer, Header, NotProductionWarning
 } from "blaise-design-system-react-components";
 import { AuthClient, LoginForm } from "blaise-login-react-client";
 import { AUTH_EXPIRED_EVENT_NAME } from "./api/axiosConfig";
@@ -123,25 +123,40 @@ function App(): ReactElement {
     }, []);
 
     return (
-        <Authenticate title="Management Information Reports">
-            {(_user, loggedIn, logOutFunction) => (
-                <>
-                    <a className="ons-skip-link" href="#main-content">Skip to main content</a>
-                    <BetaBanner />
-                    <Header
-                        title="Management Information Reports"
-                        signOutButton={loggedIn}
-                        noSave
-                        signOutFunction={logOutFunction}
-                        currentLocation={location.pathname}
-                    />
-                    <div style={divStyle} className="ons-page__container ons-container">
-                        <AppContent />
-                    </div>
-                    <Footer />
-                </>
-            )}
-        </Authenticate>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+
+            <a
+                href="#main-content"
+                className="ons-skip-to-content ons-u-fs-r--b"
+            >
+                Skip to content
+            </a>
+            {!isProduction(window.location.hostname) && <NotProductionWarning />}
+            <Header
+                title="Management Information Reports"
+                signOutButton={authState === "authenticated"}
+                noSave={true}
+                signOutFunction={clearSession}
+                currentLocation={location.pathname}
+                navigationLinks={
+                    authState === "authenticated"
+                        ? [
+                            { id: "home-link", label: "Home", endpoint: "/" },
+                            {
+                                id: "management-information-link",
+                                label: "Management information",
+                                endpoint: "/",
+                            },
+                            { id: "audit-logs-link", label: "View deployment history", endpoint: "/audit" },
+                        ]
+                        : []
+                }
+            />
+            <div style={divStyle} className="ons-page__container ons-container">
+                <AppContent />
+            </div>
+            <Footer />
+        </div>
     );
 }
 
