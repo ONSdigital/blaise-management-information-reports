@@ -7,14 +7,9 @@ import App from "./App";
 import { vi } from "vitest"
 
 vi.mock("blaise-login-react-client", async () => {
-    const actual = await vi.importActual<any>(
-        "blaise-login-react-client"
-    );
+    const { mockLoginReactClientModule } = await import("./test-utils/authenticate.mock");
 
-    return {
-        ...actual,
-        Authenticate: actual.MockAuthenticate,
-    };
+    return mockLoginReactClientModule();
 });
 
 describe("management information reports homepage", () => {

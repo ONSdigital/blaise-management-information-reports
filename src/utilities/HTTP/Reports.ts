@@ -1,6 +1,5 @@
 import axios from "axios";
-import type { AxiosRequestConfig, AxiosResponse } from "axios";
-import { AuthClient } from "blaise-login-react-client";
+import type { AxiosResponse } from "axios";
 import {
     AppointmentResourcePlanningReportData,
     AppointmentResourcePlanningSummaryReportData,
@@ -10,12 +9,7 @@ import {
 } from "../../client/interfaces";
 import { formatISODate } from "../DateFormatter";
 
-function axiosConfig(): AxiosRequestConfig {
-    const authManager = new AuthManager();
-    return {
-        headers: authManager.authHeader(),
-    };
-}
+import axiosConfig from "../../client/api/axiosConfig.js"
 
 async function getQuestionnaireList(surveyTla: string, interviewer: string, startDate: Date, endDate: Date): Promise<string[]> {
     const url = "/api/questionnaires";

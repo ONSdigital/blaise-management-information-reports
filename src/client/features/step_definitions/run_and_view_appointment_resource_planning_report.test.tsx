@@ -17,16 +17,10 @@ import "@testing-library/jest-dom";
 const mockAdapter = new MockAdapter(axios);
 
 vi.mock("blaise-login-react-client", async () => {
-    const actual = await vi.importActual<any>(
-        "blaise-login-react-client"
-    );
+    const { mockLoginReactClientModule } = await import("./test-utils/authenticate.mock");
 
-    return {
-        ...actual,
-        Authenticate: actual.MockAuthenticate,
-    };
+    return mockLoginReactClientModule();
 });
-
 const feature = loadFeature(
     "./src/client/features/run_and_view_appointment_resource_planning_report.feature",
     { tagFilter: "not @server and not @integration" },

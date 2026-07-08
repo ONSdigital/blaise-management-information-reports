@@ -1,10 +1,12 @@
-import React, { useState, type ReactElement } from "react";
+import React, { useEffect, useEffectEvent, useState, type ReactElement } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import {
     BetaBanner, DefaultErrorBoundary, Footer, Header,
 } from "blaise-design-system-react-components";
-import { AuthClient } from "blaise-login-react-client";
+import { AuthClient, LoginForm } from "blaise-login-react-client";
+import { AUTH_EXPIRED_EVENT_NAME } from "./api/axiosConfig";
 import { getSharedAuthOptions } from "../utilities/auth.js";
+import { isProduction } from "../utilities/env";
 import "./style.css";
 import InterviewerCallPattern from "./reports/InterviewerCallPattern/InterviewerCallPattern";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
@@ -65,11 +67,60 @@ function AppContent(): ReactElement {
 
 function App(): ReactElement {
     const location = useLocation();
-
+    const [errored, setErrored] = useState(false);
     const [authClient] = useState(() => new AuthClient(getSharedAuthOptions()));
     const [authState, setAuthState] = useState<"checking" | "unauthenticated" | "authenticated">(
         () => (authClient.getToken() == null ? "unauthenticated" : "checking"),
     );
+
+    const updateAuthStateEffect = useEffectEvent((loggedIn: boolean) => {
+        setAuthState(loggedIn ? "authenticated" : "unauthenticated");
+    });
+
+    function clearSession(): void {
+        authClient.logOut();
+        setErrored(false);
+        setAuthState("unauthenticated");
+    }
+
+    const clearSessionEffect = useEffectEvent(clearSession);
+
+    async function handleAuthenticated(token: string): Promise<void> {
+        authClient.setToken(token);
+
+        try {
+            setAuthState((await authClient.loggedIn()) ? "authenticated" : "unauthenticated");
+        } catch {
+            clearSession();
+        }
+    }
+
+    useEffect(() => {
+        if (authClient.getToken() == null) {
+            return;
+        }
+
+        void authClient
+            .loggedIn()
+            .then((loggedIn) => {
+                updateAuthStateEffect(loggedIn);
+            })
+            .catch(() => {
+                updateAuthStateEffect(false);
+            });
+    }, [authClient]);
+
+    useEffect(() => {
+        const onAuthExpired = () => {
+            clearSessionEffect();
+        };
+
+        window.addEventListener(AUTH_EXPIRED_EVENT_NAME, onAuthExpired);
+
+        return () => {
+            window.removeEventListener(AUTH_EXPIRED_EVENT_NAME, onAuthExpired);
+        };
+    }, []);
 
     return (
         <Authenticate title="Management Information Reports">

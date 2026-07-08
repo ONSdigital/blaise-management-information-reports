@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import BlaiseIapNodeProvider from "blaise-iap-node-provider";
 import { BlaiseApiClient } from "blaise-api-node-client";
-import { Auth } from "blaise-login-react-server";
+import { Auth, newLoginHandler } from "blaise-login-react-server";
 import type { Request, Response, NextFunction } from "express";
 import axios from "axios";
 import { vi } from "vitest";
@@ -19,6 +19,12 @@ dateFormatter.extend(customParseFormat);
 dateFormatter.extend(utc);
 dateFormatter.extend(timezone);
 
+vi.mock("blaise-login-react-server", async () => {
+    const { mockLoginReactServerModule } = await import("./test-utils/loginReactServer.mock.js");
+
+    return mockLoginReactServerModule();
+});
+
 const axiosMock = new MockAdapter(axios);
 
 const config: Config = {
@@ -31,16 +37,6 @@ const config: Config = {
     Roles: [],
 };
 
-const mockAuthProvider: BlaiseIapNodeProvider = {
-    CLIENT_ID: undefined,
-    token: undefined,
-    getAuthHeader: async function (): Promise<{ Authorization: string; }> {
-        return { Authorization: "example token" };
-    },
-    isValidToken: undefined,
-} as unknown as BlaiseIapNodeProvider;
-
-const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
 const mockAuth: Auth = {
     config: {
         SessionSecret: "",
@@ -57,10 +53,22 @@ const mockAuth: Auth = {
     UserHasRole: function (): boolean {
         throw new Error("Function not implemented.");
     },
-    Middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
+    middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
         next();
     },
 };
+
+
+const mockAuthProvider: BlaiseIapNodeProvider = {
+    CLIENT_ID: undefined,
+    token: undefined,
+    getAuthHeader: async function (): Promise<{ Authorization: string; }> {
+        return { Authorization: "example token" };
+    },
+    isValidToken: undefined,
+} as unknown as BlaiseIapNodeProvider;
+
+const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
 
 const buildDir = path.resolve(process.cwd(), "build");
 const staticCssDir = path.join(buildDir, "static", "css");
