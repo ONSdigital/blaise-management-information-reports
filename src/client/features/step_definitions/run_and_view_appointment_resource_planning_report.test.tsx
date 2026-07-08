@@ -6,7 +6,7 @@ import { fireEvent } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import { vi } from "vitest";
+import { afterAll, beforeEach, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { AppointmentResourcePlanningReportData } from "../../interfaces";
 import flushPromises from "../../tests/utilities";
@@ -73,7 +73,7 @@ defineFeature(feature, (test) => {
         MockAuthenticate.OverrideReturnValues(null, true);
     });
 
-    afterEach(() => {
+    afterAll(() => {
         mockAdapter.reset();
     });
 
