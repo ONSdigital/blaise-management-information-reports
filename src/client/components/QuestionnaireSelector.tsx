@@ -1,4 +1,4 @@
-import { ONSPanel, StyledForm } from "blaise-design-system-react-components";
+import { Panel, StyledForm } from "blaise-design-system-react-components";
 import React, { ReactElement, useCallback } from "react";
 
 interface QuestionnaireSelectorProps {
@@ -24,7 +24,7 @@ function QuestionnaireSelector({
 
     function displayCheckboxes(items: string[]) {
         if (items.length === 0) {
-            return <ONSPanel>No questionnaires found for given parameters.</ONSPanel>;
+            return <Panel>No questionnaires found for given parameters.</Panel>;
         }
 
         const fields = [
@@ -51,7 +51,7 @@ function QuestionnaireSelector({
     return (
         <div className="ons-input-items">
             <div className="ons-checkboxes__items">
-                { displayCheckboxes(questionnaires) }
+                {displayCheckboxes(questionnaires)}
             </div>
         </div>
     );

@@ -5,10 +5,11 @@ const DEFAULT_SESSION_TIMEOUT = "12h";
 const ALLOWED_ROLES = ["DST", "BDSS", "TO Manager"];
 
 export interface Config extends AuthConfig {
-    ProjectID: string
-    BertUrl: string
-    BertClientId: string
-    BlaiseApiUrl: string
+    projectId: string
+    bertUrl: string
+    bertClientId: string
+    blaiseApiUrl: string,
+    serverPark: string,
 }
 
 function loadRoles(roles: string | undefined): string[] {
@@ -56,13 +57,14 @@ export function loadConfigFromEnv(): Config {
     }
 
     return {
-        ProjectID: PROJECT_ID,
-        BertUrl: BERT_URL,
-        BertClientId: BERT_CLIENT_ID,
-        BlaiseApiUrl: BLAISE_API_URL,
+        projectId: PROJECT_ID,
+        bertUrl: BERT_URL,
+        bertClientId: BERT_CLIENT_ID,
+        blaiseApiUrl: BLAISE_API_URL,
         TokenIssuer: PROJECT_ID,
         Roles: loadRoles(ROLES),
         SessionTimeout: DEFAULT_SESSION_TIMEOUT,
+        serverPark: "ENV_VAR_NOT_SET",
         SessionSecret: sessionSecret(SESSION_SECRET),
     };
 }

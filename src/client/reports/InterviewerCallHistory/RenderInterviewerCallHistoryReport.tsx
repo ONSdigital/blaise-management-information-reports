@@ -2,9 +2,9 @@ import React, { ReactElement, useState } from "react";
 import { CSVLink } from "react-csv";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { InterviewerCallHistoryReport } from "../../interfaces";
-import { getInterviewerCallHistoryReport } from "../../../utilities/HTTP";
+import { getInterviewerCallHistoryReport } from "../../utilities/HTTP";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
-import { formatDateAndTime } from "../../../utilities/DateFormatter";
+import { formatDateAndTime } from "../../utilities/DateFormatter";
 import FilterSummary from "../../components/FilterSummary";
 import CallHistoryReportTable from "../../components/CallHistoryReportTable";
 import { LoadData } from "../../components/LoadData";
@@ -53,12 +53,12 @@ function RenderInterviewerCallHistoryReport({
 
     return (
         <>
-            <Breadcrumbs BreadcrumbList={[
+            {/* <Breadcrumbs BreadcrumbList={[
                 { link: "/", title: "Reports" },
                 { link: "#", onClickFunction: navigateBackTwoSteps, title: "Interviewer details" },
                 { link: "#", onClickFunction: navigateBack, title: "Questionnaires" },
             ]}
-            />
+            /> */}
             <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1>Call History Report</h1>
                 <FilterSummary

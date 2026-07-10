@@ -1,12 +1,12 @@
 import React, { useEffect, useEffectEvent, useState, type ReactElement } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import {
-    BetaBanner, DefaultErrorBoundary, Footer, Header, NotProductionWarning
+    BetaBanner, DefaultErrorBoundary, Footer, Header, NotProductionWarning, LoadingPanel, Panel
 } from "blaise-design-system-react-components";
 import { AuthClient, LoginForm } from "blaise-login-react-client";
 import { AUTH_EXPIRED_EVENT_NAME } from "./api/axiosConfig";
-import { getSharedAuthOptions } from "../utilities/auth.js";
-import { isProduction } from "../utilities/env";
+import { getSharedAuthOptions } from "./utilities/auth.js";
+import { isProduction } from "./utilities/env";
 import "./style.css";
 import InterviewerCallPattern from "./reports/InterviewerCallPattern/InterviewerCallPattern";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
@@ -16,6 +16,18 @@ import ReportDetails from "./components/ReportDetails";
 const divStyle = {
     minHeight: "calc(72vh)",
 };
+
+function createNavLink(id: string | undefined, label: string, endpoint: string): ReactNode {
+    return (
+        <Link
+            to={endpoint}
+            id={id}
+            className="ons-navigation__link"
+        >
+            {label}
+        </Link>
+    );
+}
 
 function AppContent(): ReactElement {
     return (
@@ -151,10 +163,38 @@ function App(): ReactElement {
                         ]
                         : []
                 }
+                createNavLink={createNavLink}
             />
-            <div style={divStyle} className="ons-page__container ons-container">
+            {/* <div style={divStyle} className="ons-page__container ons-container">
                 <AppContent />
+            </div> */}
+
+            <div
+                style={{ flexGrow: 1 }}
+                className="ons-page__container ons-container"
+            >
+                {authState === "checking" && (
+                    <main
+                        id="main-content"
+                        className="ons-page__main ons-u-mt-l"
+                    >
+                        <LoadingPanel />
+                    </main>
+                )}
+                {authState === "unauthenticated" && (
+                    <main
+                        id="main-content"
+                        className="ons-page__main ons-u-mt-l"
+                    >
+                        <Panel status="info">Enter your Blaise username and password</Panel>
+                        <LoginForm onAuthenticated={handleAuthenticated} />
+                    </main>
+                )}
+                {authState === "authenticated" && (
+                    <AppContent />
+                )}
             </div>
+
             <Footer />
         </div>
     );

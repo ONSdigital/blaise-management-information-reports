@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from "react";
-import { ONSPanel } from "blaise-design-system-react-components";
+import { Panel } from "blaise-design-system-react-components";
 
 interface Props {
     error: boolean;
@@ -15,12 +15,12 @@ function ReportErrorPanel({ error }: Props): ReactElement {
     if (error) {
         return (
             <div role="alert" ref={(input) => { errorFocus = input; }} tabIndex={-1}>
-                <ONSPanel status="error">
+                <Panel status="error">
                     <h2>Failed to run the report</h2>
                     <p>Try again later.</p>
                     <p>If you are still experiencing problems <a href="https://ons.service-now.com/">report this
                         issue</a> to Service Desk</p>
-                </ONSPanel>
+                </Panel>
             </div>
         );
     }

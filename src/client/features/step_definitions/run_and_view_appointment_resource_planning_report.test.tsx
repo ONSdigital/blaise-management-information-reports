@@ -80,21 +80,21 @@ defineFeature(feature, (test) => {
         given("A survey tla and date has been specified", async () => {
             render(<App />, { wrapper: BrowserRouter });
 
-            // await act(async () => {
-            //     await flushPromises();
-            // });
+            await act(async () => {
+                await flushPromises();
+            });
 
             await userEvent.click(screen.getByText("Appointment resource planning"));
 
-            // await act(async () => {
-            //     await flushPromises();
-            // });
+            await act(async () => {
+                await flushPromises();
+            });
 
             await userEvent.click(screen.getByText("LMS"));
 
-            // await act(async () => {
-            //     await flushPromises();
-            // });
+            await act(async () => {
+                await flushPromises();
+            });
 
             fireEvent.input(screen.getByLabelText(/Date/i), {
                 target: {
@@ -106,9 +106,9 @@ defineFeature(feature, (test) => {
         when("I click next to retrieve a list of questionnaires", async () => {
             await userEvent.click(screen.getByTestId(/submit-button/i));
 
-            // await act(async () => {
-            //     await flushPromises();
-            // });
+            await act(async () => {
+                await flushPromises();
+            });
         });
 
         when("I select a questionnaire and click on run report", async () => {

@@ -1,7 +1,7 @@
 import supertest from "supertest";
-import BlaiseIapNodeProvider from "blaise-iap-node-provider";
+import { IapProvider } from "blaise-iap-node-provider";
 import { BlaiseApiClient } from "blaise-api-node-client";
-import { vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { Auth } from "blaise-login-react-server";
 import type { Request, Response, NextFunction } from "express";
 import { Config } from "./Config.js";
@@ -16,42 +16,42 @@ vi.mock("./SendRequest", () => ({
 import { newServer } from "./Server";
 
 const config: Config = {
-    ProjectID: "",
-    BertUrl: "http://bert.com",
-    BertClientId: "",
-    BlaiseApiUrl: "http://blaise-api.com",
+    projectId: "",
+    bertUrl: "http://bert.com",
+    bertClientId: "",
+    blaiseApiUrl: "http://blaise-api.com",
     SessionSecret: "",
-    SessionTimeout: "",
+    sessionTimeout: "",
     Roles: [],
 };
 
-const mockAuthProvider: BlaiseIapNodeProvider = {
+const mockAuthProvider: IapProvider = {
     CLIENT_ID: undefined,
     token: undefined,
     getAuthHeader: async function (): Promise<{ Authorization: string; }> {
         return { Authorization: "example token" };
     },
     isValidToken: undefined,
-} as unknown as BlaiseIapNodeProvider;
+} as unknown as IapProvider;
 
-const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
+const blaiseApiClient = new BlaiseApiClient(config.blaiseApiUrl);
 const mockAuth: Auth = {
     config: {
         SessionSecret: "",
         SessionTimeout: "",
         Roles: [],
-        BlaiseApiUrl: "",
+        blaiseApiUrl: "",
     },
-    SignToken: function (): string {
+    signToken: function (): string {
         throw new Error("Function not implemented.");
     },
-    ValidateToken: function (): boolean {
+    validateToken: function (): boolean {
         throw new Error("Function not implemented.");
     },
-    UserHasRole: function (): boolean {
+    userHasRole: function (): boolean {
         throw new Error("Function not implemented.");
     },
-    Middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
+    middleware: async function (request: Request, response: Response, next: NextFunction): Promise<void | Response> {
         next();
     },
 };
@@ -62,7 +62,8 @@ describe("Server error handler", () => {
         const request = supertest(app);
 
         const response: supertest.Response = await request.get("/api/reports/call-history-status");
-
+        console.log("sisdra");
+        console.log(response.body);
         expect(response.status).toEqual(500);
         expect(response.body).toStrictEqual({
             error: "Internal server error",

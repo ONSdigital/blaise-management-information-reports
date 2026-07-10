@@ -2,12 +2,12 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import { AppointmentResourcePlanningReportData, AppointmentResourcePlanningSummaryReportData } from "../../interfaces";
-import { getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport } from "../../../utilities/HTTP";
+import { getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport } from "../../utilities/HTTP";
 import AppointmentResourceDaybatchWarning from "./AppointmentResourceDaybatchWarning";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
 import AppointmentResults from "./AppointmentResults";
 import AppointmentSummary from "./AppointmentSummary";
-import { formatDate } from "../../../utilities/DateFormatter";
+import { formatDate } from "../../utilities/DateFormatter";
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
 
@@ -96,12 +96,12 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
 
     return (
         <>
-            <Breadcrumbs BreadcrumbList={[{ link: "/", title: "Reports" }, {
+            {/* <Breadcrumbs BreadcrumbList={[{ link: "/", title: "Reports" }, {
                 link: "#",
                 onClickFunction: navigateBackTwoSteps,
                 title: "Appointment details",
             }, { link: "#", onClickFunction: navigateBack, title: "Questionnaires" }]}
-            />
+            /> */}
             <main id="main-content" className="ons-page__main ons-u-mt-s">
 
                 <h1 className="ons-u-mb-m">

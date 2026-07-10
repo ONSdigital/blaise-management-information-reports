@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-classes-per-file
-import { ONSLoadingPanel, ONSPanel } from "blaise-design-system-react-components";
+import { LoadingPanel, Panel } from "blaise-design-system-react-components";
 import React, {
     ReactElement, ReactNode, useEffect, useMemo, useState,
 } from "react";
@@ -13,14 +13,14 @@ interface LoaderProps<T> {
     children: DataRenderer<T>;
 }
 
-class LoadingState {}
+class LoadingState { }
 
 class LoadedState<T> {
-    constructor(public readonly data: T) {}
+    constructor(public readonly data: T) { }
 }
 
 class ErroredState {
-    constructor(public readonly error: Error) {}
+    constructor(public readonly error: Error) { }
 }
 
 type LoadState<T> = LoadingState | LoadedState<T> | ErroredState;
@@ -76,7 +76,7 @@ export function LoadData<T>({
         }
 
         if (!(loadState instanceof ErroredState)) {
-            return <ONSLoadingPanel />;
+            return <LoadingPanel />;
         }
 
         if (errorMessage === false) {
@@ -84,11 +84,11 @@ export function LoadData<T>({
         }
 
         return (
-            <ONSPanel status="error">
-                { getErrorMessage(loadState.error) }
-            </ONSPanel>
+            <Panel status="error">
+                {getErrorMessage(loadState.error)}
+            </Panel>
         );
     }
 
-    return <>{ content() }</>;
+    return <>{content()}</>;
 }

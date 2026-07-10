@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { ONSPanel } from "blaise-design-system-react-components";
+import { Panel } from "blaise-design-system-react-components";
 import { AppointmentResourcePlanningSummaryReportData } from "../../interfaces";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 function AppointmentSummary({ data, failed }: Props): ReactElement {
     if (failed) {
-        return <ONSPanel status="error"><p>Failed to get appointment language summary</p></ONSPanel>;
+        return <Panel status="error"><p>Failed to get appointment language summary</p></Panel>;
     }
 
     if (data.length === 0) {

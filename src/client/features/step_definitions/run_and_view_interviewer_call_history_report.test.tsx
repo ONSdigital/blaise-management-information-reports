@@ -16,7 +16,7 @@ import "@testing-library/jest-dom";
 const mockAdapter = new MockAdapter(axios);
 
 vi.mock("blaise-login-react-client", async () => {
-    const { mockLoginReactClientModule } = await import("./test-utils/authenticate.mock");
+    const { mockLoginReactClientModule } = await import("../../test-utils/authenticate.mock");
 
     return mockLoginReactClientModule();
 });

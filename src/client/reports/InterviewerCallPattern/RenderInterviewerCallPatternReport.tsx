@@ -2,14 +2,14 @@ import React, {
     ReactElement, ReactNode, useCallback, useState,
 } from "react";
 import {
-    Group, GroupedSummary, ONSPanel, SummaryGroupTable,
+    GroupedSummary, Panel, SummaryGroupTable,
 } from "blaise-design-system-react-components";
 import { CSVLink } from "react-csv";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
 import { InterviewerCallPatternReport } from "../../interfaces";
-import { getInterviewerCallPatternReport } from "../../../utilities/HTTP";
+import { getInterviewerCallPatternReport } from "../../utilities/HTTP";
 import FilterSummary from "../../components/FilterSummary";
 import { LoadData } from "../../components/LoadData";
 import { InterviewerFilterQuery } from "../filters/InterviewerFilter";
@@ -35,7 +35,7 @@ function formatToFractionAndPercentage(numerator: number | undefined, denominato
     return `${numerator}/${denominator}, ${(numerator / denominator * 100).toFixed(2)}%`;
 }
 
-function callTimeSection(callPatternReport: InterviewerCallPatternReport): Group {
+function callTimeSection(callPatternReport: InterviewerCallPatternReport): any { //TODO
     return {
         title: "Call times",
         records: {
@@ -47,7 +47,7 @@ function callTimeSection(callPatternReport: InterviewerCallPatternReport): Group
     };
 }
 
-function callStatusSection(callPatternReport: InterviewerCallPatternReport): Group {
+function callStatusSection(callPatternReport: InterviewerCallPatternReport): any { //TODO
     return {
         title: "Call status",
         records: {
@@ -61,7 +61,7 @@ function callStatusSection(callPatternReport: InterviewerCallPatternReport): Gro
     };
 }
 
-function noContactBreakdownSection(callPatternReport: InterviewerCallPatternReport): Group {
+function noContactBreakdownSection(callPatternReport: InterviewerCallPatternReport): any { //TODO
     return {
         title: "Breakdown of No Contact calls",
         records: {
@@ -75,7 +75,7 @@ function noContactBreakdownSection(callPatternReport: InterviewerCallPatternRepo
     };
 }
 
-function invalidFieldsGroup(callPatternReport: InterviewerCallPatternReport): Group {
+function invalidFieldsGroup(callPatternReport: InterviewerCallPatternReport): any { //TODO
     return {
         title: "Invalid Fields",
         records: {
@@ -97,7 +97,7 @@ function groupData(callPatternReport: InterviewerCallPatternReport) {
     return new GroupedSummary([callTimes, callStatus, noContactBreakdown]);
 }
 
-function InvalidCaseInfo({ invalidFields }: { invalidFields: Group }): ReactElement {
+function InvalidCaseInfo({ invalidFields }: { invalidFields: any }): ReactElement { //TODO
     console.log(invalidFields);
     if (!invalidFields.records.discounted_invalid_cases) {
         // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -107,10 +107,10 @@ function InvalidCaseInfo({ invalidFields }: { invalidFields: Group }): ReactElem
     const percentage = invalidFields.records.discounted_invalid_cases / invalidFields.records.total_records * 100;
 
     return (
-        <ONSPanel>
+        <Panel>
             <p>Information: {total} records ({percentage.toFixed(2)}%) were discounted due to the following
                 invalid fields: {invalidFields.records.invalid_fields}</p>
-        </ONSPanel>
+        </Panel>
     );
 }
 
@@ -137,7 +137,7 @@ function ReportData(
     { groupedSummary, summaryState }: { groupedSummary: GroupedSummary, summaryState: SummaryState },
 ): ReactElement {
     if (summaryState === "no_data") {
-        return <ONSPanel>No data found for parameters given.</ONSPanel>;
+        return <Panel>No data found for parameters given.</Panel>;
     }
 
     if (groupedSummary.groups.length === 0) {
@@ -204,12 +204,12 @@ function RenderInterviewerCallPatternReport({
 
     return (
         <>
-            <Breadcrumbs BreadcrumbList={[
+            {/* <Breadcrumbs BreadcrumbList={[
                 { link: "/", title: "Reports" },
                 { link: "#", onClickFunction: navigateBackTwoSteps, title: "Interviewer details" },
                 { link: "#", onClickFunction: navigateBack, title: "Questionnaires" },
             ]}
-            />
+            /> */}
             <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1>Call Pattern Report</h1>
                 <FilterSummary
@@ -221,7 +221,7 @@ function RenderInterviewerCallPatternReport({
                 <ReportErrorPanel error={reportFailed} />
                 <CallHistoryLastUpdatedStatus />
                 <div className="ons-u-mb-m">
-                    <ONSPanel>
+                    <Panel>
                         <p>
                             Incomplete data is removed from this report. This will impact the accuracy of the report.
                         </p>
@@ -232,7 +232,7 @@ function RenderInterviewerCallPatternReport({
                             Information will be displayed at the top of the report to advise which fields were
                             incomplete.
                         </p>
-                    </ONSPanel>
+                    </Panel>
                 </div>
                 <br />
                 <LoadData

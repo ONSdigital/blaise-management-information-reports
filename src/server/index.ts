@@ -6,16 +6,16 @@ import { newServer } from "./Server.js";
 import { loadConfigFromEnv } from "./Config.js";
 
 if (process.env.NODE_ENV !== "production") {
-    dotenv.config({ path: `${__dirname}/../../.env` });
+    dotenv.config();
 }
 
 const config = loadConfigFromEnv();
 
-const authProvider = new IapProvider(config.BertClientId);
-const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
+const authProvider = new IapProvider(config.bertClientId);
+const blaiseApiClient = new BlaiseApiClient(config.blaiseApiUrl);
 const auth = new Auth(config);
 
-const app = newServer(config, authProvider, auth, blaiseApiClient);
+const app = newServer(config);
 
 const port: string = process.env.PORT || "5000";
 

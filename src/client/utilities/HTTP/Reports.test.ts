@@ -1,7 +1,8 @@
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { getQuestionnaireList, getInterviewerCallHistoryReport } from ".";
-import { InterviewerCallHistoryReport } from "../../client/interfaces";
+import { InterviewerCallHistoryReport } from "../../../client/interfaces";
+import { afterEach, describe, expect, it } from "vitest";
 
 const mockAdapter = new MockAdapter(axios);
 
@@ -15,11 +16,11 @@ describe("getQuestionnaireList", () => {
         mockAdapter.onPost(
             "/api/questionnaires",
             {
-                asymmetricMatch: (formData: FormData) => {
-                    expect(formData.get("survey_tla")).toBe("DST");
-                    expect(formData.get("interviewer")).toBe("James");
-                    expect(formData.get("start_date")).toBe("2022-01-02");
-                    expect(formData.get("end_date")).toBe("2022-02-05");
+                asymmetricMatch: (body: any) => {
+                    expect(body.survey_tla).toBe("DST");
+                    expect(body.interviewer).toBe("James");
+                    expect(body.start_date).toBe("2022-01-02");
+                    expect(body.end_date).toBe("2022-02-05");
                     return true;
                 },
             },
@@ -95,12 +96,12 @@ describe("getInterviewerCallHistoryReport", () => {
         mockAdapter.onPost(
             "/api/reports/interviewer-call-history",
             {
-                asymmetricMatch: (formData: FormData) => {
-                    expect(formData.get("survey_tla")).toBe("DST");
-                    expect(formData.get("interviewer")).toBe("James");
-                    expect(formData.get("start_date")).toBe("2022-01-02");
-                    expect(formData.get("end_date")).toBe("2022-02-05");
-                    expect(formData.get("questionnaires")).toBe("INST1,INST2");
+                asymmetricMatch: (body: any) => {
+                    expect(body.survey_tla).toBe("DST");
+                    expect(body.interviewer).toBe("James");
+                    expect(body.start_date).toBe("2022-01-02");
+                    expect(body.end_date).toBe("2022-02-05");
+                    expect(body.questionnaires).toBe("INST1,INST2");
                     return true;
                 },
             },
@@ -116,12 +117,12 @@ describe("getInterviewerCallHistoryReport", () => {
         mockAdapter.onPost(
             "/api/reports/interviewer-call-history",
             {
-                asymmetricMatch: (formData: FormData) => {
-                    expect(formData.get("survey_tla")).toBe("undefined");
-                    expect(formData.get("interviewer")).toBe("undefined");
-                    expect(formData.get("start_date")).toBe("undefined");
-                    expect(formData.get("end_date")).toBe("undefined");
-                    expect(formData.get("questionnaires")).toBe("undefined");
+                asymmetricMatch: (body: any) => {
+                    expect(body.survey_tla).toBe("undefined");
+                    expect(body.interviewer).toBe("undefined");
+                    expect(body.start_date).toBe("undefined");
+                    expect(body.end_date).toBe("undefined");
+                    expect(body.questionnaires).toBe("undefined");
                     return true;
                 },
             },

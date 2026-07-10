@@ -60,12 +60,12 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
     it("posts the search parameters to the backend", async () => {
         expect.assertions(5);
-        let formData = new FormData();
+        let formData;
         http.onPost(
             "/api/reports/interviewer-call-history",
             {
-                asymmetricMatch: (fd: FormData) => {
-                    formData = fd;
+                asymmetricMatch: (body: any) => {
+                    formData = body;
                     return true;
                 },
             },
@@ -74,11 +74,11 @@ describe("RenderInterviewerCallHistoryReport", () => {
         await screen.findByText(/No data found for parameters given/);
         await screen.findByText(/Data in this report was last updated/);
 
-        expect(formData.get("survey_tla")).toBe("LMS");
-        expect(formData.get("interviewer")).toBe("rich");
-        expect(new Date(formData.get("start_date") as string)).toEqual(new Date("September 18, 2022 01:23:00"));
-        expect(new Date(formData.get("end_date") as string)).toEqual(new Date("October 17, 2022 04:56:00"));
-        expect(formData.get("questionnaires")).toBe("LMS1111,LMS2222");
+        expect(formData.survey_tla).toBe("LMS");
+        expect(formData.interviewer).toBe("rich");
+        expect(new Date(formData.start_date as string)).toEqual(new Date("September 18, 2022 01:23:00"));
+        expect(new Date(formData.end_date as string)).toEqual(new Date("October 17, 2022 04:56:00"));
+        expect(formData.questionnaires).toBe("LMS1111,LMS2222");
     });
 
     it("displays spinners while the status and report are loading", async () => {

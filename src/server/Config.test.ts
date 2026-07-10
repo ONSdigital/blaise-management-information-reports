@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { loadConfigFromEnv } from "./Config.js";
 
 describe("Config setup", () => {
@@ -12,10 +13,10 @@ describe("Config setup", () => {
 
         const config = loadConfigFromEnv();
 
-        expect(config.ProjectID).toBe("mock-project-id");
-        expect(config.BertUrl).toBe("mock-bert-url");
-        expect(config.BertClientId).toBe("mock-bert-client-id");
-        expect(config.BlaiseApiUrl).toBe("mock-blaise-api-url");
+        expect(config.projectId).toBe("mock-project-id");
+        expect(config.bertUrl).toBe("mock-bert-url");
+        expect(config.bertClientId).toBe("mock-bert-client-id");
+        expect(config.blaiseApiUrl).toBe("mock-blaise-api-url");
         expect(config.Roles).toEqual(["foo", "bar", "fwibble"]);
     });
 
@@ -30,10 +31,10 @@ describe("Config setup", () => {
 
         const config = loadConfigFromEnv();
 
-        expect(config.ProjectID).toBe("ENV_VAR_NOT_SET");
-        expect(config.BertUrl).toBe("ENV_VAR_NOT_SET");
-        expect(config.BertClientId).toBe("ENV_VAR_NOT_SET");
-        expect(config.BlaiseApiUrl).toBe("ENV_VAR_NOT_SET");
+        expect(config.projectId).toBe("ENV_VAR_NOT_SET");
+        expect(config.bertUrl).toBe("ENV_VAR_NOT_SET");
+        expect(config.bertClientId).toBe("ENV_VAR_NOT_SET");
+        expect(config.blaiseApiUrl).toBe("ENV_VAR_NOT_SET");
         expect(config.Roles).toEqual(["DST", "BDSS", "TO Manager"]);
     });
 });

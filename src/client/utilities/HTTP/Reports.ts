@@ -9,7 +9,7 @@ import {
 } from "../../client/interfaces";
 import { formatISODate } from "../DateFormatter";
 
-import axiosConfig from "../../client/api/axiosConfig.js"
+import axiosConfig from "../../api/axiosConfig.js"
 
 async function getQuestionnaireList(surveyTla: string, interviewer: string, startDate: Date, endDate: Date): Promise<string[]> {
     const url = "/api/questionnaires";

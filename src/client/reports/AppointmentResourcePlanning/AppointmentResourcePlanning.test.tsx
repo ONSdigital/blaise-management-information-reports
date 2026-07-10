@@ -10,10 +10,10 @@ import axios from "axios";
 import userEvent from "@testing-library/user-event";
 import AppointmentResourcePlanning from "./AppointmentResourcePlanning";
 import flushPromises from "../../tests/utilities";
-import { afterEach, beforeEach, describe } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi } from "vitest";
 
 const mockAdapter = new MockAdapter(axios);
-
+const mockIsProduction = vi.fn();
 const christmasEve97 = "1997-12-24";
 
 describe("appointment resource planning report without data", () => {
@@ -78,6 +78,9 @@ describe("appointment resource planning report without data", () => {
 
         await user.click(screen.getByTestId(/submit-button/i));
 
+        await act(async () => {
+            await flushPromises();
+        });
         expect(await screen.getByText("No questionnaires found for given parameters.")).toBeVisible();
     });
 });

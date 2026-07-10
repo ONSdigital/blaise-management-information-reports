@@ -8,7 +8,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import timezone from "dayjs/plugin/timezone";
 import timekeeper from "timekeeper";
 import subtractYears from "../../utilities/DateFormatter";
@@ -78,11 +78,11 @@ describe("the interviewer details page renders correctly", () => {
         mockAdapter.onPost(
             "/api/questionnaires",
             {
-                asymmetricMatch: (formData: FormData) => {
-                    expect(formData.get("survey_tla")).toBe("LMS");
-                    expect(formData.get("interviewer")).toBe("James");
-                    expect(formData.get("start_date")).toBe("2022-01-01");
-                    expect(formData.get("end_date")).toBe("2022-01-05");
+                asymmetricMatch: (body: any) => {
+                    expect(body.survey_tla).toBe("LMS");
+                    expect(body.interviewer).toBe("James");
+                    expect(body.start_date).toBe("2022-01-01");
+                    expect(body.end_date).toBe("2022-01-05");
                     return true;
                 },
             },
