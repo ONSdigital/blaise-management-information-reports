@@ -1,7 +1,7 @@
 import axios, { type AxiosRequestConfig } from "axios";
 import { AuthManager } from "blaise-login-react-client";
 
-import { getSharedAuthOptions } from "../utilities/auth";
+import { getSharedAuthOptions } from "../utilities/auth.js";
 
 export const AUTH_EXPIRED_EVENT_NAME = "dqs-auth-expired";
 
