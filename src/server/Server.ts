@@ -60,7 +60,6 @@ function parseRateLimit(envName: string, fallback: number): number {
     return parsed;
 }
 
-
 function toCsvQueryValue(value: unknown): string {
     if (Array.isArray(value)) {
         return value
@@ -138,7 +137,9 @@ export function newServer(config: Config): Express {
     const errorPageContent = loadErrorPageContent(buildRoot);
 
     configureClientRendering(server, clientBuildFolder);
-
+    registerRouteHandlers(server, [
+        handlers.bertHandler,
+    ]);
     // health_check endpoint
 
 
@@ -151,17 +152,12 @@ export function newServer(config: Config): Express {
     //         res.status(status).json(result);
     //     });
 
-    // questionnaire endpoint
+    // DONE questionnaire endpoint
     // server.post("/api/questionnaires", dependencies.auth.middleware, async (req: Request, res: Response) => {
     //     console.log("questionnaire endpoint called");
-    //     const authHeader = await authProvider.getAuthHeader();
     //     const {
     //         interviewer, start_date: startDate, end_date: endDate, survey_tla: surveyTla,
     //     } = req.body;
-    //     if (!isSafePathSegment(interviewer)) {
-    //         res.status(400).json({ error: "Invalid interviewer" });
-    //         return;
-    //     }
     //     const startDateFormatted = formatISODate(startDate);
     //     const endDateFormatted = formatISODate(endDate);
     //     const query = new URLSearchParams({
@@ -171,7 +167,7 @@ export function newServer(config: Config): Express {
     //     });
     //     const url = `${config.bertUrl}/api/${encodeURIComponent(interviewer)}/questionnaires?${query.toString()}`;
     //     console.log(url);
-    //     const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null, authHeader);
+    //     const [status, result] = await SendAPIRequest(logger, req, res, url, "GET", null);
     //     res.status(status).json(result);
     // });
 
@@ -273,21 +269,18 @@ export function newServer(config: Config): Express {
     // });
 
 
-    server.get(/.*/, (req: Request, res: Response) => {
-        res.render("index.html");
+    server.use("/api", function (_req: Request, res: Response) {
+        res.status(404).json({ message: "Not found" });
+    });
+
+    server.get(/.*/, pageRateLimiter, function (req: Request, res: Response) {
+        res.render("index.html", {
+            appConfigJson: getRuntimeConfigJson(config),
+        });
     });
 
     server.use(function (err: Error, req: Request, res: Response, _next: NextFunction) {
         req.log.error(err, err.message);
-
-        if (req.path.startsWith("/api/")) {
-            res.status(500).json({
-                error: "Internal server error",
-                message: err.message,
-            });
-
-            return;
-        }
 
         if (errorPageContent != null) {
             res.status(500).type("text/html").send(errorPageContent);
@@ -295,9 +288,7 @@ export function newServer(config: Config): Express {
             return;
         }
 
-        res.status(500)
-            .type("text/plain")
-            .send("Sorry, there is a problem with the service.");
+        res.status(500).type("text/plain").send("Sorry, there is a problem with the service.");
     });
 
     return server;
@@ -443,4 +434,26 @@ function createApiRateLimiter(auth: Auth) {
         keyGenerator: (req: Request) => keyGeneratorFromAuthenticatedUser(auth, req),
         message: { error: "Too many requests, please try again later" },
     });
+}
+
+const pageRateLimiter = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    limit: parseRateLimit("DQS_PAGE_RATE_LIMIT", DEFAULT_PAGE_RATE_LIMIT),
+    standardHeaders: "draft-8",
+    legacyHeaders: false,
+    keyGenerator: keyGeneratorFromForwardedHeader,
+    message: { error: "Too many requests, please try again later" },
+});
+
+function registerRouteHandlers(server: Express, handlers: Router[]): void {
+    handlers.forEach((handler) => {
+        server.use("/", handler);
+    });
+}
+
+function getRuntimeConfigJson(config: Config): string {
+    return JSON.stringify({
+        projectId: config.projectId,
+        urlDomain: config.urlDomain,
+    }).replace(/</g, "\\u003c");
 }

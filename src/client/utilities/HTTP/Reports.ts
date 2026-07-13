@@ -6,29 +6,43 @@ import {
     CallHistoryStatus,
     InterviewerCallHistoryReport,
     InterviewerCallPatternReport,
-} from "../../client/interfaces";
-import { formatISODate } from "../DateFormatter";
+} from "../../../client/interfaces";
+import { formatISODate } from "../DateFormatter.js";
 
 import axiosConfig from "../../api/axiosConfig.js"
 
 async function getQuestionnaireList(surveyTla: string, interviewer: string, startDate: Date, endDate: Date): Promise<string[]> {
+
     const url = "/api/questionnaires";
 
-    const formData = new FormData();
-    formData.append("survey_tla", surveyTla);
-    formData.append("interviewer", interviewer);
-    formData.append("start_date", formatISODate(startDate));
-    formData.append("end_date", formatISODate(endDate));
+    // const formData = new FormData();
+    // formData.append("survey_tla", surveyTla);
+    // formData.append("interviewer", interviewer);
+    // formData.append("start_date", formatISODate(startDate));
+    // formData.append("end_date", formatISODate(endDate));
 
-    const response = await axios.post(url, formData, axiosConfig());
+    // console.log("FormData:");
 
-    console.log(`Response: Status ${response.status}, data ${response.data}`);
+    try {
+        const response = await axios.post(url, {
+            survey_tla: surveyTla,
+            interviewer: interviewer,
+            start_date: formatISODate(startDate),
+            end_date: formatISODate(endDate),
+        }, axiosConfig());
 
-    if (response.status !== 200) {
-        throw new Error("Response was not 200");
+        console.log(`Response: Status ${response.status}, data ${response.data}`);
+
+        if (response.status !== 200) {
+            throw new Error("Response was not 200");
+        }
+
+        return response.data;
+    } catch (error: unknown) {
+        throw error;
     }
 
-    return response.data;
+
 }
 
 async function getInterviewerCallHistoryStatus(): Promise<CallHistoryStatus | undefined> {
@@ -47,6 +61,7 @@ async function getInterviewerCallHistoryStatus(): Promise<CallHistoryStatus | un
 }
 
 async function getInterviewerCallHistoryReport(form: Record<string, any>): Promise<InterviewerCallHistoryReport[]> {
+    console.log("sidra 3-reports.ts");
     const url = "/api/reports/interviewer-call-history";
     const formData = new FormData();
     formData.append("survey_tla", form.survey_tla);

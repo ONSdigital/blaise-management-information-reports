@@ -2,6 +2,7 @@ import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse 
 import { IapProvider } from "blaise-iap-node-provider";
 import { type CallHistoryStatus } from "../client/interfaces/index.js";
 
+type PromiseResponse = [number, any, string];
 
 
 export class BertClient {
@@ -16,7 +17,7 @@ export class BertClient {
     }
 
     async getCallHistoryStatus(): Promise<CallHistoryStatus | undefined> {
-        const url = "/reports/call-history-status";
+        const url = "/api/reports/call-history-status";
 
         const response = await this.get(url);
 
@@ -33,12 +34,12 @@ export class BertClient {
         return response.data;
     }
 
-    async getQuestionnaires(url: string): Promise<[string] | undefined> {
-
-        const response = await this.post(url, {});
+    async getQuestionnaires(url: string): Promise<[string]> {
+        console.log("sidra 4-client");
+        const response = await this.post(url);
 
         if (response.status === 404 || response.status === 204) {
-            return undefined;
+            return [""];
         }
 
         if (response.status !== 200) {
@@ -50,6 +51,22 @@ export class BertClient {
         return response.data;
     }
 
+    async getInterviewerCallHistoryReport(url: string): Promise<PromiseResponse> {
+
+        const response = await this.post(url, {});
+
+        if (response.status === 404 || response.status === 204) {
+            return [0, null, ""];
+        }
+
+        if (response.status !== 200) {
+            throw new Error(
+                `Error getting questionnaires from BERT. Status code: ${response.status}`,
+            );
+        }
+
+        return response.data;
+    }
 
     private url(url: string): string {
         if (!url.startsWith("/")) {
@@ -71,10 +88,14 @@ export class BertClient {
         return response;
     }
 
-    protected async post(url: string, data: unknown): Promise<AxiosResponse> {
-        const config = await this.axiosConfig();
-        const response = await this.httpClient.post(`${this.bertUrl}${this.url(url)}`, data, config);
+    protected async post(url: string, data?: any): Promise<AxiosResponse> {
 
+        console.log("sidra 5-going to rest api");
+        const config = await this.axiosConfig();
+        const finalURL = `${this.bertUrl}${this.url(url)}`;
+        console.log(`Making POST request to: ${finalURL}`);
+        const response = await this.httpClient.post(finalURL, data ? data : null, config);
+        console.log(`Response: Status ${response.status}, data ${JSON.stringify(response.data)}`);
         return response;
     }
 

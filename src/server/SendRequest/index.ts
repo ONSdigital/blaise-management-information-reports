@@ -3,18 +3,19 @@ import type { Request, Response } from "express";
 import axios from "axios";
 import type { AxiosRequestConfig } from "axios";
 import * as PinoHttp from "pino-http";
+import axiosConfig from "../../client/api/axiosConfig.js";
 
 type PromiseResponse = [number, any, string];
 
-export default function SendAPIRequest(logger: PinoHttp.HttpLogger, req: Request, res: Response, url: string, method: AxiosRequestConfig["method"], data: any = null, headers: any = null): Promise<PromiseResponse> {
+export default function SendAPIRequest(logger: PinoHttp.HttpLogger, req: Request, res: Response, url: string, method: AxiosRequestConfig["method"], data: any = null): Promise<PromiseResponse> {
     logger(req, res);
-
+    const config = axiosConfig();
     return new Promise((resolve: (object: PromiseResponse) => void) => {
         axios({
             url,
             method,
             data,
-            headers,
+            headers: config.headers,
             validateStatus(status) {
                 return status >= 200;
             },

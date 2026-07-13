@@ -34,6 +34,19 @@ function QuestionnaireFilter({
     onSubmit,
 }: QuestionnaireFilterPageProps): ReactElement {
     const errorMessage = useCallback(() => <FetchQuestionnairesError />, []);
+    const questionnairePromise = getQuestionnaireList(
+        interviewerFilterQuery.surveyTla,
+        interviewerFilterQuery.interviewer,
+        interviewerFilterQuery.startDate,
+        interviewerFilterQuery.endDate,
+    );
+
+    console.log("Questionnaire props:", {
+        surveyTla: interviewerFilterQuery.surveyTla,
+        interviewer: interviewerFilterQuery.interviewer,
+        startDate: interviewerFilterQuery.startDate,
+        endDate: interviewerFilterQuery.endDate,
+    });
 
     return (
         <div>
@@ -52,13 +65,9 @@ function QuestionnaireFilter({
                     questionnaires={questionnaires}
                 />
                 <CallHistoryLastUpdatedStatus />
+
                 <LoadData
-                    dataPromise={getQuestionnaireList(
-                        interviewerFilterQuery.surveyTla,
-                        interviewerFilterQuery.interviewer,
-                        interviewerFilterQuery.startDate,
-                        interviewerFilterQuery.endDate,
-                    )}
+                    dataPromise={questionnairePromise}
                     errorMessage={errorMessage}
                 >
                     {(loadedQuestionnaires) => (

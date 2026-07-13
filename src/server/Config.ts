@@ -7,6 +7,7 @@ const ALLOWED_ROLES = ["DST", "BDSS", "TO Manager"];
 export interface Config extends AuthConfig {
     projectId: string
     bertUrl: string
+    urlDomain: string;
     bertClientId: string
     blaiseApiUrl: string,
     serverPark: string,
@@ -30,6 +31,7 @@ export function loadConfigFromEnv(): Config {
     let {
         PROJECT_ID,
         BERT_URL,
+        URL_DOMAIN,
         BERT_CLIENT_ID,
         BLAISE_API_URL,
     } = process.env;
@@ -39,6 +41,11 @@ export function loadConfigFromEnv(): Config {
     if (PROJECT_ID === undefined) {
         console.error("PROJECT_ID environment variable has not been set");
         PROJECT_ID = "ENV_VAR_NOT_SET";
+    }
+
+    if (URL_DOMAIN === undefined) {
+        console.error("URL_DOMAIN environment variable has not been set");
+        URL_DOMAIN = "ENV_VAR_NOT_SET";
     }
 
     if (BERT_URL === undefined) {
@@ -60,6 +67,7 @@ export function loadConfigFromEnv(): Config {
         projectId: PROJECT_ID,
         bertUrl: BERT_URL,
         bertClientId: BERT_CLIENT_ID,
+        urlDomain: URL_DOMAIN,
         blaiseApiUrl: BLAISE_API_URL,
         TokenIssuer: PROJECT_ID,
         Roles: loadRoles(ROLES),
