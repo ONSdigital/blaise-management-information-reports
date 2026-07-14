@@ -15,21 +15,14 @@ async function getQuestionnaireList(surveyTla: string, interviewer: string, star
 
     const url = "/api/questionnaires";
 
-    // const formData = new FormData();
-    // formData.append("survey_tla", surveyTla);
-    // formData.append("interviewer", interviewer);
-    // formData.append("start_date", formatISODate(startDate));
-    // formData.append("end_date", formatISODate(endDate));
-
-    // console.log("FormData:");
+    const formData = new FormData();
+    formData.append("survey_tla", surveyTla);
+    formData.append("interviewer", interviewer);
+    formData.append("start_date", formatISODate(startDate));
+    formData.append("end_date", formatISODate(endDate));
 
     try {
-        const response = await axios.post(url, {
-            survey_tla: surveyTla,
-            interviewer: interviewer,
-            start_date: formatISODate(startDate),
-            end_date: formatISODate(endDate),
-        }, axiosConfig());
+        const response = await axios.post(url, formData, axiosConfig());
 
         console.log(`Response: Status ${response.status}, data ${response.data}`);
 
@@ -47,21 +40,24 @@ async function getQuestionnaireList(surveyTla: string, interviewer: string, star
 
 async function getInterviewerCallHistoryStatus(): Promise<CallHistoryStatus | undefined> {
     const url = "/api/reports/call-history-status";
+    console.log("Status call 1- Reports.ts");
+    try {
+        const response = await axios.get(url, axiosConfig());
 
-    return axios.get(url, axiosConfig()).then((response: AxiosResponse) => {
         console.log(`Response: Status ${response.status}, data ${JSON.stringify(response.data)}`);
+
         if (response.status === 200) {
             return response.data;
         }
-        return undefined;
-    }).catch((error: Error) => {
+
+        return response.data;
+    } catch (error: any) {
         console.error(`Response: Error ${error}`);
         return undefined;
-    });
+    };
 }
 
 async function getInterviewerCallHistoryReport(form: Record<string, any>): Promise<InterviewerCallHistoryReport[]> {
-    console.log("sidra 3-reports.ts");
     const url = "/api/reports/interviewer-call-history";
     const formData = new FormData();
     formData.append("survey_tla", form.survey_tla);
@@ -71,6 +67,7 @@ async function getInterviewerCallHistoryReport(form: Record<string, any>): Promi
     formData.append("questionnaires", form.questionnaires);
 
     function toReport(questionnaire: Record<string, unknown>): InterviewerCallHistoryReport {
+        console.log("successful response atleast");
         const report = { ...questionnaire };
         if (!("dial_secs" in report) || report.dial_secs === "") {
             report.dial_secs = 0;
@@ -80,8 +77,6 @@ async function getInterviewerCallHistoryReport(form: Record<string, any>): Promi
 
     try {
         const response: AxiosResponse = await axios.post(url, formData, axiosConfig());
-
-        console.log(`Response: Status ${response.status}, data ${response.data}`);
         if (response.status === 200) {
             return response.data.map(toReport);
         }

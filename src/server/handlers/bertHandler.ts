@@ -76,7 +76,6 @@ class BertHandler {
     }
 
     getCallHistoryStatus = async (req: Request, res: Response): Promise<Response> => {
-
         try {
             const historyStatus = await this.bertClient.getCallHistoryStatus();
 
@@ -91,9 +90,7 @@ class BertHandler {
     };
 
     getQuestionnaires = async (req: Request, res: Response): Promise<Response> => {
-        console.log("sidra 1-handler");
         const { interviewer, start_date: startDate, end_date: endDate, survey_tla: surveyTla } = req.body;
-        console.log(interviewer, startDate, endDate, surveyTla);
         if (!isSafePathSegment(interviewer)) {
             return res.status(400).json({ error: "Invalid interviewer" });
         }
@@ -135,9 +132,8 @@ class BertHandler {
             query.set("questionnaires", questionnairesValue);
         }
         const url = `/api/reports/call-history/${encodeURIComponent(interviewer)}?${query.toString()}`;
-        console.log(url);
-        const [status, result] = await this.bertClient.getInterviewerCallHistoryReport(url);
-        return res.status(status).json(result);
+        const response = await this.bertClient.getInterviewerCallHistoryReport(url);
+        return res.status(response.status).json(response.data);
 
     };
 
