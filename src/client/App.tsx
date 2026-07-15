@@ -17,17 +17,23 @@ const divStyle = {
     minHeight: "calc(72vh)",
 };
 
-function createNavLink(id: string | undefined, label: string, endpoint: string): ReactNode {
+function NotFound(): ReactElement {
     return (
-        <Link
-            to={endpoint}
-            id={id}
-            className="ons-navigation__link"
+        <main
+            id="main-content"
+            className="ons-page__main ons-u-mt-l"
         >
-            {label}
-        </Link>
+            <div className="ons-grid">
+                <div className="ons-grid__col ons-col-8@m">
+                    <h1>Page not found</h1>
+                    <p>The page you're looking for doesn't exist.</p>
+                    <Link to="/">Return home</Link>
+                </div>
+            </div>
+        </main>
     );
 }
+
 
 function AppContent(): ReactElement {
     return (
@@ -71,6 +77,10 @@ function AppContent(): ReactElement {
                             </main>
                         )
                     }
+                />
+                <Route
+                    path="*"
+                    element={<NotFound />}
                 />
             </Routes>
         </DefaultErrorBoundary>
