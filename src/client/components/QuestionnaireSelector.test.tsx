@@ -3,7 +3,7 @@ import React from "react";
 import { render, RenderResult, waitFor } from "@testing-library/react";
 import { fireEvent, screen } from "@testing-library/dom";
 import { act } from "react-dom/test-utils";
-import { vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import QuestionnaireSelector from "./QuestionnaireSelector";
@@ -60,6 +60,7 @@ describe("QuestionnaireSelector tests", () => {
     });
 
     describe("when a questionnaire is selected", () => {
+
         it("displays a tick in the checkbox", () => {
             const checkBox = screen.getByRole("checkbox", { name: "LMS2101_BB1" }, { checked: false });
             fireEvent.click(checkBox);
@@ -67,6 +68,7 @@ describe("QuestionnaireSelector tests", () => {
         });
 
         it("returns the selected questionnaires when submitted", async () => {
+            expect(screen.getByRole("checkbox", { name: "LMS2101_AA1" })).toBeChecked();
             const checkBox = screen.getByRole("checkbox", { name: "LMS2101_BB1" }, { checked: false });
             fireEvent.click(checkBox);
             fireEvent.click(screen.getByRole("button", { name: "Run report" }));

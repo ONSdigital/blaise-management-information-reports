@@ -40,7 +40,6 @@ async function getQuestionnaireList(surveyTla: string, interviewer: string, star
 
 async function getInterviewerCallHistoryStatus(): Promise<CallHistoryStatus | undefined> {
     const url = "/api/reports/call-history-status";
-    console.log("Status call 1- Reports.ts");
     try {
         const response = await axios.get(url, axiosConfig());
 

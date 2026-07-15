@@ -9,7 +9,7 @@ import userEvent from "@testing-library/user-event";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import axiosConfig from "../../api/axiosConfig";
-import { vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import RenderInterviewerCallHistoryReport from "./RenderInterviewerCallHistoryReport";
 import { InterviewerCallHistoryReport } from "../../interfaces";
 import flushPromises from "../../test-utils/flushPromises";
@@ -84,7 +84,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
     it("displays spinners while the status and report are loading", async () => {
         http.onPost("/api/reports/interviewer-call-history").reply(200, []);
         renderComponent();
-        expect(screen.getAllByText("Loading")).toHaveLength(2);
+        expect(screen.getAllByText("Loading...")).toHaveLength(2);
 
         // Wait for the load to avoid act warnings
         await screen.findByText(/No data found for parameters given/);

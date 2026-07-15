@@ -13,11 +13,11 @@ vi.mock("blaise-login-react-client", async () => {
 });
 
 describe("management information reports homepage", () => {
-    // it("matches snapshot", async () => {
-    //     const wrapper = render(<App />, { wrapper: BrowserRouter });
+    it("matches snapshot", async () => {
+        const wrapper = render(<App />, { wrapper: BrowserRouter });
 
-    //     expect(await wrapper).toMatchSnapshot();
-    // });
+        expect(await wrapper).toMatchSnapshot();
+    });
 
     it("renders correctly", async () => {
         render(<App />, { wrapper: BrowserRouter });

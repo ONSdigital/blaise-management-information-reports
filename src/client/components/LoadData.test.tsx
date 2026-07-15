@@ -17,7 +17,7 @@ describe("LoadData", () => {
                 >{display}</LoadData>,
             );
 
-            expect(screen.getByText("Loading")).toBeInTheDocument();
+            expect(screen.getByText("Loading...")).toBeInTheDocument();
         });
     });
 
@@ -38,7 +38,7 @@ describe("LoadData", () => {
                 >{display}</LoadData>,
             );
             await screen.findByRole("heading", { name: "Hello world!" });
-            expect(screen.queryByText("Loading")).not.toBeInTheDocument();
+            expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
         });
     });
 
@@ -100,7 +100,7 @@ describe("LoadData", () => {
                 >{display}</LoadData>,
             );
             await screen.findByText("Error: There was an error");
-            expect(screen.queryByText("Loading")).not.toBeInTheDocument();
+            expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
         });
 
         it("calls onError", async () => {
@@ -127,7 +127,7 @@ describe("LoadData", () => {
             );
             rerender = view.rerender;
             expect(await screen.findByRole("heading", { name: "Old content" })).toBeVisible();
-            expect(screen.queryByText("Loading")).not.toBeInTheDocument();
+            expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
         });
 
         it("displays the loading spinner when the dataPromise prop changes", async () => {
@@ -138,7 +138,7 @@ describe("LoadData", () => {
                 >{display}</LoadData>,
             );
 
-            expect(await screen.findByText("Loading")).toBeInTheDocument();
+            expect(await screen.findByText("Loading...")).toBeInTheDocument();
         });
 
         it("displays the new data when the dataPromise prop changes", async () => {
