@@ -13,14 +13,14 @@ interface Props {
 
 function Breadcrumbs({ BreadcrumbList }: Props): ReactElement {
     return (
-        <nav className="ons-breadcrumb" aria-label="Breadcrumb">
-            <ol className="ons-breadcrumb__items ons-u-fs-s">
+        <nav className="ons-breadcrumbs" aria-label="Breadcrumbs">
+            <ol className="ons-breadcrumbs__items ons-u-fs-s">
                 {
                     BreadcrumbList.map(({ link, title, onClickFunction }: BreadcrumbItem, index) => (
-                        <li className="ons-breadcrumb__item" id={`breadcrumb-${index}`} key={title}>
-                            <Link className="ons-breadcrumb__link" to={link} onClick={onClickFunction}>{title}</Link>
+                        <li className="ons-breadcrumbs__item" id={`breadcrumb-${index}`} key={title}>
+                            <Link className="ons-breadcrumbs__link" to={link} onClick={onClickFunction}>{title}</Link>
                             <svg
-                                className="ons-svg-icon"
+                                className="ons-icon"
                                 viewBox="0 0 8 13"
                                 xmlns="http://www.w3.org/2000/svg"
                                 focusable="false"

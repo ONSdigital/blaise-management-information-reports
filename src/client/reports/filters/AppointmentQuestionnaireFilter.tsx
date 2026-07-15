@@ -69,13 +69,13 @@ function AppointmentQuestionnaireFilter({
 
     return (
         <div>
-            {/* <Breadcrumbs
+            <Breadcrumbs
                 BreadcrumbList={[{ link: "/", title: "Reports" }, {
                     link: "#",
                     onClickFunction: navigateBack,
                     title: "Appointment Details",
                 }]}
-            /> */}
+            />
 
             <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1 className="ons-u-mb-m">Select questionnaires for </h1>

@@ -39,12 +39,12 @@ function AppointmentFilter(props: AppointmentFilterPageProps): ReactElement {
 
     return (
         <div>
-            {/* <Breadcrumbs
+            <Breadcrumbs
                 BreadcrumbList={[{
                     link: "/",
                     title: "Reports",
                 }]}
-            /> */}
+            />
             <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1 className="ons-u-mb-m">Run {title} report</h1>
                 <AppointmentResourceDaybatchWarning />

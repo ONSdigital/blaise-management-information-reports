@@ -96,12 +96,12 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
 
     return (
         <>
-            {/* <Breadcrumbs BreadcrumbList={[{ link: "/", title: "Reports" }, {
+            <Breadcrumbs BreadcrumbList={[{ link: "/", title: "Reports" }, {
                 link: "#",
                 onClickFunction: navigateBackTwoSteps,
                 title: "Appointment details",
             }, { link: "#", onClickFunction: navigateBack, title: "Questionnaires" }]}
-            /> */}
+            />
             <main id="main-content" className="ons-page__main ons-u-mt-s">
 
                 <h1 className="ons-u-mb-m">

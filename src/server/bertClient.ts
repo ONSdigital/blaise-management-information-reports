@@ -61,7 +61,72 @@ export class BertClient {
 
         if (response.status !== 200) {
             throw new Error(
-                `Error getting questionnaires from BERT. Status code: ${response.status}`,
+                `Error getting interviewer call history report from BERT. Status code: ${response.status}`,
+            );
+        }
+        return response;
+    }
+
+    async getInterviewerCallPattern(url: string): Promise<AxiosResponse> {
+
+        const response = await this.get(url);
+
+        if (response.status === 404 || response.status === 204) {
+            console.log("No data found for parameters given.");
+            return response;
+        }
+
+        if (response.status !== 200) {
+            throw new Error(
+                `Error getting interviewer call pattern from BERT. Status code: ${response.status}`,
+            );
+        }
+        return response;
+    }
+
+    async getAppointmentResourcePlanningReport(url: string): Promise<AxiosResponse> {
+        const response = await this.get(url);
+
+        if (response.status === 404 || response.status === 204) {
+            console.log("No data found for parameters given.");
+            return response;
+        }
+
+        if (response.status !== 200) {
+            throw new Error(
+                `Error getting appointment resource planning report from BERT. Status code: ${response.status}`,
+            );
+        }
+        return response;
+    }
+
+    async getAppointmentQuestionnaires(url: string): Promise<AxiosResponse> {
+        const response = await this.get(url);
+
+        if (response.status === 404 || response.status === 204) {
+            console.log("No data found for parameters given.");
+            return response;
+        }
+
+        if (response.status !== 200) {
+            throw new Error(
+                `Error getting appointment questionnaires from BERT. Status code: ${response.status}`,
+            );
+        }
+        return response;
+    }
+
+    async getAppointmentResourcePlanningSummaryReport(url: string): Promise<AxiosResponse> {
+        const response = await this.get(url);
+
+        if (response.status === 404 || response.status === 204) {
+            console.log("No data found for parameters given.");
+            return response;
+        }
+
+        if (response.status !== 200) {
+            throw new Error(
+                `Error getting appointment resource planning summary report from BERT. Status code: ${response.status}`,
             );
         }
         return response;

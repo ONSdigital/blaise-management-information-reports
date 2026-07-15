@@ -50,12 +50,12 @@ function QuestionnaireFilter({
 
     return (
         <div>
-            {/* <Breadcrumbs
+            <Breadcrumbs
                 BreadcrumbList={[
                     { link: "/", title: "Reports" },
                     { link: "#", onClickFunction: navigateBack, title: "Interviewer details" },
                 ]}
-            /> */}
+            />
             <main id="main-content" className="ons-page__main ons-u-mt-s">
                 <h1>Select questionnaires for</h1>
                 <FilterSummary

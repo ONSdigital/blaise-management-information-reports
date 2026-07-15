@@ -150,20 +150,6 @@ function App(): ReactElement {
                 noSave={true}
                 signOutFunction={clearSession}
                 currentLocation={location.pathname}
-                navigationLinks={
-                    authState === "authenticated"
-                        ? [
-                            { id: "home-link", label: "Home", endpoint: "/" },
-                            {
-                                id: "management-information-link",
-                                label: "Management information",
-                                endpoint: "/",
-                            },
-                            { id: "audit-logs-link", label: "View deployment history", endpoint: "/audit" },
-                        ]
-                        : []
-                }
-                createNavLink={createNavLink}
             />
             {/* <div style={divStyle} className="ons-page__container ons-container">
                 <AppContent />

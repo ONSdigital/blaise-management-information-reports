@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type AppointmentResourcePlanningReportData = {
     questionnaire_name: string
     appointment_time: string
@@ -57,3 +59,28 @@ export type InterviewerCallHistoryReport = {
     serial_number: string,
     call_start_time: string
 };
+
+export type SummaryCsvValue =
+    | string
+    | number
+    | boolean
+    | null
+    | undefined;
+
+export interface SummaryRenderableRecord {
+    display: ReactNode;
+    csv?: SummaryCsvValue;
+}
+
+export interface InvalidCaseRecords {
+    discounted_invalid_cases: number;
+    total_records: number;
+    invalid_fields: string | SummaryRenderableRecord;
+}
+
+export interface InvalidCaseSummaryGroup {
+    title: string;
+    records?: InvalidCaseRecords;
+    preamble?: ReactNode;
+    rowsId?: string;
+}
