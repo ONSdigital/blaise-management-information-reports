@@ -6,25 +6,25 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
   "baseElement": <body>
     <div>
       <nav
-        aria-label="Breadcrumb"
-        class="ons-breadcrumb"
+        aria-label="Breadcrumbs"
+        class="ons-breadcrumbs"
       >
         <ol
-          class="ons-breadcrumb__items ons-u-fs-s"
+          class="ons-breadcrumbs__items ons-u-fs-s"
         >
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-0"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Reports
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -36,18 +36,18 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-1"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Interviewer details
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -59,18 +59,18 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-2"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Questionnaires
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -129,8 +129,15 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
           class="ons-u-mb-m"
         >
           <div
-            class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+            class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+            id="panel-_r_4_"
           >
+            <span
+              class="ons-panel__assistive-text ons-u-vh"
+            >
+              Important information:
+               
+            </span>
             <div
               class="ons-panel__body "
             >
@@ -159,8 +166,15 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
           Export report as Comma-Separated Values (CSV) file
         </a>
         <div
-          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+          id="panel-_r_6_"
         >
+          <span
+            class="ons-panel__assistive-text ons-u-vh"
+          >
+            Important information:
+             
+          </span>
           <div
             class="ons-panel__body "
           >
@@ -181,401 +195,401 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
             class="ons-summary__group"
             id="report-table"
           >
-            <h3
-              class="ons-summary__group-title"
+            <div
+              class="ons-summary"
             >
-              Call times
-            </h3>
-            <table
-              class="ons-summary__items"
-            >
-              <tbody
-                class="ons-summary__item"
+              <div
+                class="ons-summary__group"
               >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                <h2
+                  class="ons-summary__group-title"
                 >
-                  <td
-                    class="ons-summary__item-title"
+                  Call times
+                </h2>
+                <dl
+                  class="ons-summary__items"
+                >
+                  <div
+                    class="ons-summary__item"
                   >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Hours worked
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Hours worked
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        26:58:07
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    26:58:07
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Call time
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        01:31:32
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Hours on calls percentage
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        5.66%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Average calls per hour
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        3.86
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+              <div
+                class="ons-summary__group"
               >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                <h2
+                  class="ons-summary__group-title"
                 >
-                  <td
-                    class="ons-summary__item-title"
+                  Call status
+                </h2>
+                <dl
+                  class="ons-summary__items"
+                >
+                  <div
+                    class="ons-summary__item"
                   >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Call time
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Refusals
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        4/133, 3.01%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    01:31:32
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Completed successfully
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        0/133, 0.00%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Appointments for contacts
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        81/133, 60.90%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Web nudge
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        5/133, 3.76%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        No contacts
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        11/133, 8.27%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Discounted invalid cases
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        29/162, 17.90%
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+              <div
+                class="ons-summary__group"
               >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                <h2
+                  class="ons-summary__group-title"
                 >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
-                    >
-                      Hours on calls percentage
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    5.66%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                  Breakdown of No Contact calls
+                </h2>
+                <dl
+                  class="ons-summary__items"
                 >
-                  <td
-                    class="ons-summary__item-title"
+                  <div
+                    class="ons-summary__item"
                   >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Average calls per hour
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    3.86
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <h3
-              class="ons-summary__group-title"
-            >
-              Call status
-            </h3>
-            <table
-              class="ons-summary__items"
-            >
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Answer service
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Refusals
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        4/11, 36.36%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    4/133, 3.01%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Completed successfully
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    0/133, 0.00%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Busy
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Appointments for contacts
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        1/11, 9.09%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    81/133, 60.90%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Web nudge
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    5/133, 3.76%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Disconnect
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      No contacts
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        2/11, 18.18%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    11/133, 8.27%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Discounted invalid cases
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    29/162, 17.90%
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <h3
-              class="ons-summary__group-title"
-            >
-              Breakdown of No Contact calls
-            </h3>
-            <table
-              class="ons-summary__items"
-            >
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        No answer
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Answer service
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        3/11, 27.27%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    4/11, 36.36%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Busy
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    1/11, 9.09%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Invalid telephone number
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Disconnect
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        5/11, 45.45%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    2/11, 18.18%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      No answer
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    3/11, 27.27%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Other
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Invalid telephone number
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    5/11, 45.45%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
-                    >
-                      Other
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    4/11, 36.36%
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                      <span
+                        class="ons-summary__text"
+                      >
+                        4/11, 36.36%
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
           </div>
         </div>
         <br />
@@ -584,25 +598,25 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
   </body>,
   "container": <div>
     <nav
-      aria-label="Breadcrumb"
-      class="ons-breadcrumb"
+      aria-label="Breadcrumbs"
+      class="ons-breadcrumbs"
     >
       <ol
-        class="ons-breadcrumb__items ons-u-fs-s"
+        class="ons-breadcrumbs__items ons-u-fs-s"
       >
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-0"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Reports
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -614,18 +628,18 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-1"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Interviewer details
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -637,18 +651,18 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-2"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Questionnaires
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -707,8 +721,15 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
         class="ons-u-mb-m"
       >
         <div
-          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+          id="panel-_r_4_"
         >
+          <span
+            class="ons-panel__assistive-text ons-u-vh"
+          >
+            Important information:
+             
+          </span>
           <div
             class="ons-panel__body "
           >
@@ -737,8 +758,15 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
         Export report as Comma-Separated Values (CSV) file
       </a>
       <div
-        class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+        class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+        id="panel-_r_6_"
       >
+        <span
+          class="ons-panel__assistive-text ons-u-vh"
+        >
+          Important information:
+           
+        </span>
         <div
           class="ons-panel__body "
         >
@@ -759,401 +787,401 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
           class="ons-summary__group"
           id="report-table"
         >
-          <h3
-            class="ons-summary__group-title"
+          <div
+            class="ons-summary"
           >
-            Call times
-          </h3>
-          <table
-            class="ons-summary__items"
-          >
-            <tbody
-              class="ons-summary__item"
+            <div
+              class="ons-summary__group"
             >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+              <h2
+                class="ons-summary__group-title"
               >
-                <td
-                  class="ons-summary__item-title"
+                Call times
+              </h2>
+              <dl
+                class="ons-summary__items"
+              >
+                <div
+                  class="ons-summary__item"
                 >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Hours worked
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Hours worked
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      26:58:07
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  26:58:07
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Call time
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      01:31:32
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Hours on calls percentage
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      5.66%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Average calls per hour
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      3.86
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div
+              class="ons-summary__group"
             >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+              <h2
+                class="ons-summary__group-title"
               >
-                <td
-                  class="ons-summary__item-title"
+                Call status
+              </h2>
+              <dl
+                class="ons-summary__items"
+              >
+                <div
+                  class="ons-summary__item"
                 >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Call time
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Refusals
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      4/133, 3.01%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  01:31:32
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Completed successfully
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      0/133, 0.00%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Appointments for contacts
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      81/133, 60.90%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Web nudge
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      5/133, 3.76%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      No contacts
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      11/133, 8.27%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Discounted invalid cases
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      29/162, 17.90%
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div
+              class="ons-summary__group"
             >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+              <h2
+                class="ons-summary__group-title"
               >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
-                  >
-                    Hours on calls percentage
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  5.66%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+                Breakdown of No Contact calls
+              </h2>
+              <dl
+                class="ons-summary__items"
               >
-                <td
-                  class="ons-summary__item-title"
+                <div
+                  class="ons-summary__item"
                 >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Average calls per hour
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  3.86
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h3
-            class="ons-summary__group-title"
-          >
-            Call status
-          </h3>
-          <table
-            class="ons-summary__items"
-          >
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Answer service
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Refusals
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      4/11, 36.36%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  4/133, 3.01%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Completed successfully
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  0/133, 0.00%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Busy
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Appointments for contacts
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      1/11, 9.09%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  81/133, 60.90%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Web nudge
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  5/133, 3.76%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Disconnect
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    No contacts
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      2/11, 18.18%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  11/133, 8.27%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Discounted invalid cases
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  29/162, 17.90%
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h3
-            class="ons-summary__group-title"
-          >
-            Breakdown of No Contact calls
-          </h3>
-          <table
-            class="ons-summary__items"
-          >
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      No answer
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Answer service
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      3/11, 27.27%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  4/11, 36.36%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Busy
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  1/11, 9.09%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Invalid telephone number
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Disconnect
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      5/11, 45.45%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  2/11, 18.18%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    No answer
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  3/11, 27.27%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Other
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Invalid telephone number
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  5/11, 45.45%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
-                  >
-                    Other
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  4/11, 36.36%
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    <span
+                      class="ons-summary__text"
+                    >
+                      4/11, 36.36%
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
         </div>
       </div>
       <br />
@@ -1219,25 +1247,25 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
   "baseElement": <body>
     <div>
       <nav
-        aria-label="Breadcrumb"
-        class="ons-breadcrumb"
+        aria-label="Breadcrumbs"
+        class="ons-breadcrumbs"
       >
         <ol
-          class="ons-breadcrumb__items ons-u-fs-s"
+          class="ons-breadcrumbs__items ons-u-fs-s"
         >
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-0"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Reports
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -1249,18 +1277,18 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-1"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Interviewer details
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -1272,18 +1300,18 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-2"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Questionnaires
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -1342,8 +1370,15 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
           class="ons-u-mb-m"
         >
           <div
-            class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+            class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+            id="panel-_r_0_"
           >
+            <span
+              class="ons-panel__assistive-text ons-u-vh"
+            >
+              Important information:
+               
+            </span>
             <div
               class="ons-panel__body "
             >
@@ -1378,401 +1413,401 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
             class="ons-summary__group"
             id="report-table"
           >
-            <h3
-              class="ons-summary__group-title"
+            <div
+              class="ons-summary"
             >
-              Call times
-            </h3>
-            <table
-              class="ons-summary__items"
-            >
-              <tbody
-                class="ons-summary__item"
+              <div
+                class="ons-summary__group"
               >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                <h2
+                  class="ons-summary__group-title"
                 >
-                  <td
-                    class="ons-summary__item-title"
+                  Call times
+                </h2>
+                <dl
+                  class="ons-summary__items"
+                >
+                  <div
+                    class="ons-summary__item"
                   >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Hours worked
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Hours worked
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        26:58:07
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    26:58:07
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Call time
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        01:31:32
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Hours on calls percentage
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        5.66%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Average calls per hour
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        3.86
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+              <div
+                class="ons-summary__group"
               >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                <h2
+                  class="ons-summary__group-title"
                 >
-                  <td
-                    class="ons-summary__item-title"
+                  Call status
+                </h2>
+                <dl
+                  class="ons-summary__items"
+                >
+                  <div
+                    class="ons-summary__item"
                   >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Call time
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Refusals
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        4/133, 3.01%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    01:31:32
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Completed successfully
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        0/133, 0.00%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Appointments for contacts
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        81/133, 60.90%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Web nudge
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        5/133, 3.76%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        No contacts
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        11/133, 8.27%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
+                  >
+                    <dt
+                      class="ons-summary__item-title"
+                    >
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Discounted invalid cases
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
+                    >
+                      <span
+                        class="ons-summary__text"
+                      >
+                        0/133, 0.00%
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+              <div
+                class="ons-summary__group"
               >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                <h2
+                  class="ons-summary__group-title"
                 >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
-                    >
-                      Hours on calls percentage
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    5.66%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
+                  Breakdown of No Contact calls
+                </h2>
+                <dl
+                  class="ons-summary__items"
                 >
-                  <td
-                    class="ons-summary__item-title"
+                  <div
+                    class="ons-summary__item"
                   >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Average calls per hour
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    3.86
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <h3
-              class="ons-summary__group-title"
-            >
-              Call status
-            </h3>
-            <table
-              class="ons-summary__items"
-            >
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Answer service
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Refusals
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        4/11, 36.36%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    4/133, 3.01%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Completed successfully
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    0/133, 0.00%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Busy
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Appointments for contacts
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        1/11, 9.09%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    81/133, 60.90%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Web nudge
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    5/133, 3.76%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Disconnect
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      No contacts
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        2/11, 18.18%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    11/133, 8.27%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Discounted invalid cases
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    0/133, 0.00%
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <h3
-              class="ons-summary__group-title"
-            >
-              Breakdown of No Contact calls
-            </h3>
-            <table
-              class="ons-summary__items"
-            >
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        No answer
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Answer service
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        3/11, 27.27%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    4/11, 36.36%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      Busy
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    1/11, 9.09%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Invalid telephone number
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Disconnect
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
+                      <span
+                        class="ons-summary__text"
+                      >
+                        5/11, 45.45%
+                      </span>
+                    </dd>
+                  </div>
+                  <div
+                    class="ons-summary__item"
                   >
-                    2/11, 18.18%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                    <dt
+                      class="ons-summary__item-title"
                     >
-                      No answer
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    3/11, 27.27%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
+                      <div
+                        class="ons-summary__item--text"
+                      >
+                        Other
+                      </div>
+                    </dt>
+                    <dd
+                      class="ons-summary__values"
                     >
-                      Invalid telephone number
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    5/11, 45.45%
-                  </td>
-                </tr>
-              </tbody>
-              <tbody
-                class="ons-summary__item"
-              >
-                <tr
-                  class="ons-summary__row ons-summary__row--has-values"
-                >
-                  <td
-                    class="ons-summary__item-title"
-                  >
-                    <div
-                      class="ons-summary__item--text"
-                    >
-                      Other
-                    </div>
-                  </td>
-                  <td
-                    class="ons-summary__values"
-                    colspan="2"
-                  >
-                    4/11, 36.36%
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                      <span
+                        class="ons-summary__text"
+                      >
+                        4/11, 36.36%
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
           </div>
         </div>
         <br />
@@ -1781,25 +1816,25 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
   </body>,
   "container": <div>
     <nav
-      aria-label="Breadcrumb"
-      class="ons-breadcrumb"
+      aria-label="Breadcrumbs"
+      class="ons-breadcrumbs"
     >
       <ol
-        class="ons-breadcrumb__items ons-u-fs-s"
+        class="ons-breadcrumbs__items ons-u-fs-s"
       >
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-0"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Reports
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -1811,18 +1846,18 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-1"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Interviewer details
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -1834,18 +1869,18 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-2"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Questionnaires
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -1904,8 +1939,15 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
         class="ons-u-mb-m"
       >
         <div
-          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+          id="panel-_r_0_"
         >
+          <span
+            class="ons-panel__assistive-text ons-u-vh"
+          >
+            Important information:
+             
+          </span>
           <div
             class="ons-panel__body "
           >
@@ -1940,401 +1982,401 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
           class="ons-summary__group"
           id="report-table"
         >
-          <h3
-            class="ons-summary__group-title"
+          <div
+            class="ons-summary"
           >
-            Call times
-          </h3>
-          <table
-            class="ons-summary__items"
-          >
-            <tbody
-              class="ons-summary__item"
+            <div
+              class="ons-summary__group"
             >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+              <h2
+                class="ons-summary__group-title"
               >
-                <td
-                  class="ons-summary__item-title"
+                Call times
+              </h2>
+              <dl
+                class="ons-summary__items"
+              >
+                <div
+                  class="ons-summary__item"
                 >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Hours worked
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Hours worked
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      26:58:07
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  26:58:07
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Call time
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      01:31:32
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Hours on calls percentage
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      5.66%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Average calls per hour
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      3.86
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div
+              class="ons-summary__group"
             >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+              <h2
+                class="ons-summary__group-title"
               >
-                <td
-                  class="ons-summary__item-title"
+                Call status
+              </h2>
+              <dl
+                class="ons-summary__items"
+              >
+                <div
+                  class="ons-summary__item"
                 >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Call time
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Refusals
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      4/133, 3.01%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  01:31:32
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Completed successfully
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      0/133, 0.00%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Appointments for contacts
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      81/133, 60.90%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Web nudge
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      5/133, 3.76%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      No contacts
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      11/133, 8.27%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
+                >
+                  <dt
+                    class="ons-summary__item-title"
+                  >
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Discounted invalid cases
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
+                  >
+                    <span
+                      class="ons-summary__text"
+                    >
+                      0/133, 0.00%
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div
+              class="ons-summary__group"
             >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+              <h2
+                class="ons-summary__group-title"
               >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
-                  >
-                    Hours on calls percentage
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  5.66%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
+                Breakdown of No Contact calls
+              </h2>
+              <dl
+                class="ons-summary__items"
               >
-                <td
-                  class="ons-summary__item-title"
+                <div
+                  class="ons-summary__item"
                 >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Average calls per hour
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  3.86
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h3
-            class="ons-summary__group-title"
-          >
-            Call status
-          </h3>
-          <table
-            class="ons-summary__items"
-          >
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Answer service
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Refusals
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      4/11, 36.36%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  4/133, 3.01%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Completed successfully
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  0/133, 0.00%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Busy
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Appointments for contacts
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      1/11, 9.09%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  81/133, 60.90%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Web nudge
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  5/133, 3.76%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Disconnect
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    No contacts
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      2/11, 18.18%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  11/133, 8.27%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Discounted invalid cases
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  0/133, 0.00%
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h3
-            class="ons-summary__group-title"
-          >
-            Breakdown of No Contact calls
-          </h3>
-          <table
-            class="ons-summary__items"
-          >
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      No answer
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Answer service
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      3/11, 27.27%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  4/11, 36.36%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    Busy
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  1/11, 9.09%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Invalid telephone number
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Disconnect
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
+                    <span
+                      class="ons-summary__text"
+                    >
+                      5/11, 45.45%
+                    </span>
+                  </dd>
+                </div>
+                <div
+                  class="ons-summary__item"
                 >
-                  2/11, 18.18%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                  <dt
+                    class="ons-summary__item-title"
                   >
-                    No answer
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  3/11, 27.27%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
+                    <div
+                      class="ons-summary__item--text"
+                    >
+                      Other
+                    </div>
+                  </dt>
+                  <dd
+                    class="ons-summary__values"
                   >
-                    Invalid telephone number
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  5/11, 45.45%
-                </td>
-              </tr>
-            </tbody>
-            <tbody
-              class="ons-summary__item"
-            >
-              <tr
-                class="ons-summary__row ons-summary__row--has-values"
-              >
-                <td
-                  class="ons-summary__item-title"
-                >
-                  <div
-                    class="ons-summary__item--text"
-                  >
-                    Other
-                  </div>
-                </td>
-                <td
-                  class="ons-summary__values"
-                  colspan="2"
-                >
-                  4/11, 36.36%
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    <span
+                      class="ons-summary__text"
+                    >
+                      4/11, 36.36%
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
         </div>
       </div>
       <br />
@@ -2400,25 +2442,25 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
   "baseElement": <body>
     <div>
       <nav
-        aria-label="Breadcrumb"
-        class="ons-breadcrumb"
+        aria-label="Breadcrumbs"
+        class="ons-breadcrumbs"
       >
         <ol
-          class="ons-breadcrumb__items ons-u-fs-s"
+          class="ons-breadcrumbs__items ons-u-fs-s"
         >
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-0"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Reports
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -2430,18 +2472,18 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-1"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Interviewer details
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -2453,18 +2495,18 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-2"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Questionnaires
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -2523,8 +2565,15 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
           class="ons-u-mb-m"
         >
           <div
-            class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+            class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+            id="panel-_r_g_"
           >
+            <span
+              class="ons-panel__assistive-text ons-u-vh"
+            >
+              Important information:
+               
+            </span>
             <div
               class="ons-panel__body "
             >
@@ -2546,8 +2595,15 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
         </div>
         <br />
         <div
-          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+          id="panel-_r_i_"
         >
+          <span
+            class="ons-panel__assistive-text ons-u-vh"
+          >
+            Important information:
+             
+          </span>
           <div
             class="ons-panel__body "
           >
@@ -2567,25 +2623,25 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
   </body>,
   "container": <div>
     <nav
-      aria-label="Breadcrumb"
-      class="ons-breadcrumb"
+      aria-label="Breadcrumbs"
+      class="ons-breadcrumbs"
     >
       <ol
-        class="ons-breadcrumb__items ons-u-fs-s"
+        class="ons-breadcrumbs__items ons-u-fs-s"
       >
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-0"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Reports
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -2597,18 +2653,18 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-1"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Interviewer details
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -2620,18 +2676,18 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-2"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Questionnaires
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -2690,8 +2746,15 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
         class="ons-u-mb-m"
       >
         <div
-          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+          id="panel-_r_g_"
         >
+          <span
+            class="ons-panel__assistive-text ons-u-vh"
+          >
+            Important information:
+             
+          </span>
           <div
             class="ons-panel__body "
           >
@@ -2713,8 +2776,15 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
       </div>
       <br />
       <div
-        class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+        class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+        id="panel-_r_i_"
       >
+        <span
+          class="ons-panel__assistive-text ons-u-vh"
+        >
+          Important information:
+           
+        </span>
         <div
           class="ons-panel__body "
         >
@@ -2793,25 +2863,25 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
   "baseElement": <body>
     <div>
       <nav
-        aria-label="Breadcrumb"
-        class="ons-breadcrumb"
+        aria-label="Breadcrumbs"
+        class="ons-breadcrumbs"
       >
         <ol
-          class="ons-breadcrumb__items ons-u-fs-s"
+          class="ons-breadcrumbs__items ons-u-fs-s"
         >
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-0"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Reports
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -2823,18 +2893,18 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-1"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Interviewer details
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -2846,18 +2916,18 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
             </svg>
           </li>
           <li
-            class="ons-breadcrumb__item"
+            class="ons-breadcrumbs__item"
             id="breadcrumb-2"
           >
             <a
-              class="ons-breadcrumb__link"
+              class="ons-breadcrumbs__link"
               data-discover="true"
               href="/"
             >
               Questionnaires
             </a>
             <svg
-              class="ons-svg-icon"
+              class="ons-icon"
               focusable="false"
               viewBox="0 0 8 13"
               xmlns="http://www.w3.org/2000/svg"
@@ -2910,8 +2980,15 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
           class="ons-u-mb-m"
         >
           <div
-            class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+            class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+            id="panel-_r_a_"
           >
+            <span
+              class="ons-panel__assistive-text ons-u-vh"
+            >
+              Important information:
+               
+            </span>
             <div
               class="ons-panel__body "
             >
@@ -2933,8 +3010,15 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
         </div>
         <br />
         <div
-          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+          id="panel-_r_c_"
         >
+          <span
+            class="ons-panel__assistive-text ons-u-vh"
+          >
+            Important information:
+             
+          </span>
           <div
             class="ons-panel__body "
           >
@@ -2947,25 +3031,25 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
   </body>,
   "container": <div>
     <nav
-      aria-label="Breadcrumb"
-      class="ons-breadcrumb"
+      aria-label="Breadcrumbs"
+      class="ons-breadcrumbs"
     >
       <ol
-        class="ons-breadcrumb__items ons-u-fs-s"
+        class="ons-breadcrumbs__items ons-u-fs-s"
       >
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-0"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Reports
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -2977,18 +3061,18 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-1"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Interviewer details
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -3000,18 +3084,18 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
           </svg>
         </li>
         <li
-          class="ons-breadcrumb__item"
+          class="ons-breadcrumbs__item"
           id="breadcrumb-2"
         >
           <a
-            class="ons-breadcrumb__link"
+            class="ons-breadcrumbs__link"
             data-discover="true"
             href="/"
           >
             Questionnaires
           </a>
           <svg
-            class="ons-svg-icon"
+            class="ons-icon"
             focusable="false"
             viewBox="0 0 8 13"
             xmlns="http://www.w3.org/2000/svg"
@@ -3064,8 +3148,15 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
         class="ons-u-mb-m"
       >
         <div
-          class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+          class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+          id="panel-_r_a_"
         >
+          <span
+            class="ons-panel__assistive-text ons-u-vh"
+          >
+            Important information:
+             
+          </span>
           <div
             class="ons-panel__body "
           >
@@ -3087,8 +3178,15 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
       </div>
       <br />
       <div
-        class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+        class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+        id="panel-_r_c_"
       >
+        <span
+          class="ons-panel__assistive-text ons-u-vh"
+        >
+          Important information:
+           
+        </span>
         <div
           class="ons-panel__body "
         >

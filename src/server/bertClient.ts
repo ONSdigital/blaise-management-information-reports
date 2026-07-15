@@ -16,7 +16,6 @@ export class BertClient {
     }
 
     async getCallHistoryStatus(): Promise<CallHistoryStatus | undefined> {
-        console.log("Status call 3- Client.ts");
         const url = "/api/reports/call-history-status";
 
         const response = await this.get(url);

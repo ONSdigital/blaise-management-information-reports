@@ -84,7 +84,8 @@ describe("RenderInterviewerCallHistoryReport", () => {
     it("displays spinners while the status and report are loading", async () => {
         http.onPost("/api/reports/interviewer-call-history").reply(200, []);
         renderComponent();
-        expect(screen.getAllByText("Loading...")).toHaveLength(2);
+        expect(screen.getAllByText("Loading")).toHaveLength(1);
+        expect(screen.getAllByText("Loading...")).toHaveLength(1);
 
         // Wait for the load to avoid act warnings
         await screen.findByText(/No data found for parameters given/);

@@ -5,7 +5,7 @@ import { MemoryRouter } from "react-router-dom";
 import { screen } from "@testing-library/dom";
 import React from "react";
 import { act } from "react-dom/test-utils";
-import { vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import InterviewerFilter, { InterviewerFilterQuery } from "./InterviewerFilter";
 import flushPromises from "../../tests/utilities";
@@ -60,43 +60,10 @@ describe("the interviewer details page renders correctly", () => {
     });
 
     it("updates the values", async () => {
-        // const interviewer = screen.getByRole("textbox", { name: "Interviewer ID" });
-        // await userEvent.clear(interviewer);
-        // await userEvent.type(interviewer, "rich");
-
-        // const startDate = screen.getByLabelText("Start date");
-        // await userEvent.clear(startDate);
-        // await userEvent.type(startDate, "2022-10-10");
-
-        // const endDate = screen.getByLabelText("End date");
-        // await userEvent.clear(endDate);
-        // await userEvent.type(endDate, "2022-10-11");
-
-        // await act(async () => {
-        //     await flushPromises();
-        // });
-
-        // //const survey = screen.getByRole("radio", { name: "LMS Labour Market Survey" });
-        // const survey = screen.getByLabelText(/LMS Labour Market Survey/i);
-        // await userEvent.click(survey);
-
-        // await userEvent.click(screen.getByRole("button", { name: "Next" }));
-
-        // await waitFor(() => {
-        //     expect(submitFunction).toHaveBeenCalledWith({
-        //         interviewer: "rich",
-        //         startDate: new Date("2022-10-10"),
-        //         endDate: new Date("2022-10-11"),
-        //         surveyTla: "lms",
-        //     });
-        // });
-
 
         const user = userEvent.setup();
 
-        const interviewer = screen.getByRole("textbox", {
-            name: /Interviewer ID/i,
-        });
+        const interviewer = screen.getByRole("textbox", { name: /Interviewer ID/i, });
 
         await user.clear(interviewer);
         await user.type(interviewer, "rich");

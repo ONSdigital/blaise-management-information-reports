@@ -11,25 +11,25 @@ exports[`appointment resource planning report without data > matches snapshot 1`
         >
           <div>
             <nav
-              aria-label="Breadcrumb"
-              class="ons-breadcrumb"
+              aria-label="Breadcrumbs"
+              class="ons-breadcrumbs"
             >
               <ol
-                class="ons-breadcrumb__items ons-u-fs-s"
+                class="ons-breadcrumbs__items ons-u-fs-s"
               >
                 <li
-                  class="ons-breadcrumb__item"
+                  class="ons-breadcrumbs__item"
                   id="breadcrumb-0"
                 >
                   <a
-                    class="ons-breadcrumb__link"
+                    class="ons-breadcrumbs__link"
                     data-discover="true"
                     href="/"
                   >
                     Reports
                   </a>
                   <svg
-                    class="ons-svg-icon"
+                    class="ons-icon"
                     focusable="false"
                     viewBox="0 0 8 13"
                     xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +54,15 @@ exports[`appointment resource planning report without data > matches snapshot 1`
                  report
               </h1>
               <div
-                class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+                class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+                id="panel-_r_0_"
               >
+                <span
+                  class="ons-panel__assistive-text ons-u-vh"
+                >
+                  Important information:
+                   
+                </span>
                 <div
                   class="ons-panel__body "
                 >
@@ -70,135 +77,152 @@ exports[`appointment resource planning report without data > matches snapshot 1`
               <br />
               <form
                 action="#"
+                id="form-_r_1_"
+                novalidate=""
               >
-                <fieldset
-                  class="ons-fieldset"
-                >
-                  <legend
-                    class="ons-fieldset__legend"
-                  >
-                    Select survey
-                  </legend>
-                  <div
-                    class="ons-radios__items"
-                    id="Survey TLA"
-                  >
-                    <p
-                      class="ons-radios__item"
-                    >
-                      <span
-                        class="ons-radio"
-                      >
-                        <input
-                          checked=""
-                          class="ons-radio__input js-radio"
-                          id="all"
-                          initial_value=""
-                          name="Survey TLA"
-                          type="radio"
-                          value=""
-                        />
-                        <label
-                          class="ons-radio__label "
-                          for="all"
-                          id="all-label"
-                        >
-                          Show all surveys
-                        </label>
-                      </span>
-                    </p>
-                    <br />
-                    <p
-                      class="ons-radios__item"
-                    >
-                      <span
-                        class="ons-radio"
-                      >
-                        <input
-                          class="ons-radio__input js-radio"
-                          id="lms"
-                          initial_value=""
-                          name="Survey TLA"
-                          type="radio"
-                          value="lms"
-                        />
-                        <label
-                          class="ons-radio__label ons-label--with-description"
-                          for="lms"
-                          id="lms-label"
-                        >
-                          LMS
-                          <span
-                            class="ons-label__description ons-radio__label--with-description"
-                            id="white-label-description-hint"
-                          >
-                            Labour Market Survey
-                          </span>
-                        </label>
-                      </span>
-                    </p>
-                    <br />
-                    <p
-                      class="ons-radios__item"
-                    >
-                      <span
-                        class="ons-radio"
-                      >
-                        <input
-                          class="ons-radio__input js-radio"
-                          id="opn"
-                          initial_value=""
-                          name="Survey TLA"
-                          type="radio"
-                          value="opn"
-                        />
-                        <label
-                          class="ons-radio__label ons-label--with-description"
-                          for="opn"
-                          id="opn-label"
-                        >
-                          OPN
-                          <span
-                            class="ons-label__description ons-radio__label--with-description"
-                            id="white-label-description-hint"
-                          >
-                            Opinions and Lifestyle Survey
-                          </span>
-                        </label>
-                      </span>
-                    </p>
-                    <br />
-                  </div>
-                </fieldset>
                 <div
-                  class="ons-field"
+                  class="ons-field ons-u-mb-m"
+                  id="form-_r_1_-Survey TLA"
                 >
-                  <label
-                    class="ons-label "
-                    for="Date"
+                  <fieldset
+                    class="ons-fieldset"
                   >
-                    Date
-                  </label>
-                  <input
-                    class="ons-input ons-input--text ons-input-type__input"
-                    form="[object Object]"
-                    id="Date"
-                    initial_value="1997-12-24"
-                    name="Date"
-                    type="date"
-                    value="1997-12-24"
-                  />
+                    <legend
+                      class="ons-fieldset__legend ons-u-fs-r--b"
+                    >
+                      Select survey
+                    </legend>
+                    <div
+                      class="ons-grid"
+                    >
+                      <div
+                        class="ons-grid__col ons-col-8@m ons-col-6@l"
+                      >
+                        <div
+                          class="ons-input-items"
+                        >
+                          <div
+                            class="ons-radios__items"
+                          >
+                            <div
+                              class="ons-radios__item"
+                            >
+                              <span
+                                class="ons-radio"
+                              >
+                                <input
+                                  checked=""
+                                  class="ons-radio__input"
+                                  id="all"
+                                  name="Survey TLA"
+                                  type="radio"
+                                  value=""
+                                />
+                                <label
+                                  class="ons-radio__label "
+                                  for="all"
+                                >
+                                  Show all surveys
+                                </label>
+                              </span>
+                            </div>
+                            <div
+                              class="ons-radios__item"
+                            >
+                              <span
+                                class="ons-radio"
+                              >
+                                <input
+                                  class="ons-radio__input"
+                                  id="lms"
+                                  name="Survey TLA"
+                                  type="radio"
+                                  value="lms"
+                                />
+                                <label
+                                  class="ons-radio__label ons-label--with-description"
+                                  for="lms"
+                                >
+                                  LMS
+                                  <span
+                                    class="ons-label__description ons-radio__label--with-description"
+                                  >
+                                    Labour Market Survey
+                                  </span>
+                                </label>
+                              </span>
+                            </div>
+                            <div
+                              class="ons-radios__item"
+                            >
+                              <span
+                                class="ons-radio"
+                              >
+                                <input
+                                  class="ons-radio__input"
+                                  id="opn"
+                                  name="Survey TLA"
+                                  type="radio"
+                                  value="opn"
+                                />
+                                <label
+                                  class="ons-radio__label ons-label--with-description"
+                                  for="opn"
+                                >
+                                  OPN
+                                  <span
+                                    class="ons-label__description ons-radio__label--with-description"
+                                  >
+                                    Opinions and Lifestyle Survey
+                                  </span>
+                                </label>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
                 </div>
-                <br />
+                <div
+                  class="ons-field ons-u-mb-m"
+                >
+                  <div
+                    class="ons-grid"
+                  >
+                    <div
+                      class="ons-grid__col ons-col-8@m ons-col-6@l"
+                    >
+                      <label
+                        class="ons-label "
+                        for="form-_r_1_-Date"
+                      >
+                        Date
+                      </label>
+                      <input
+                        class="ons-input ons-input--text ons-input-type__input"
+                        id="form-_r_1_-Date"
+                        name="Date"
+                        type="date"
+                        value="1997-12-24"
+                      />
+                    </div>
+                  </div>
+                </div>
                 <button
-                  class="ons-btn "
-                  data-testid="submit-button"
+                  class="ons-btn"
+                  data-testid="form-_r_1_-submit-button"
+                  id="form-_r_1_-submit"
                   type="submit"
                 >
                   <span
                     class="ons-btn__inner"
                   >
-                    Next
+                    <span
+                      class="ons-btn__text"
+                    >
+                      Next
+                    </span>
                   </span>
                 </button>
               </form>
@@ -215,25 +239,25 @@ exports[`appointment resource planning report without data > matches snapshot 1`
       >
         <div>
           <nav
-            aria-label="Breadcrumb"
-            class="ons-breadcrumb"
+            aria-label="Breadcrumbs"
+            class="ons-breadcrumbs"
           >
             <ol
-              class="ons-breadcrumb__items ons-u-fs-s"
+              class="ons-breadcrumbs__items ons-u-fs-s"
             >
               <li
-                class="ons-breadcrumb__item"
+                class="ons-breadcrumbs__item"
                 id="breadcrumb-0"
               >
                 <a
-                  class="ons-breadcrumb__link"
+                  class="ons-breadcrumbs__link"
                   data-discover="true"
                   href="/"
                 >
                   Reports
                 </a>
                 <svg
-                  class="ons-svg-icon"
+                  class="ons-icon"
                   focusable="false"
                   viewBox="0 0 8 13"
                   xmlns="http://www.w3.org/2000/svg"
@@ -258,8 +282,15 @@ exports[`appointment resource planning report without data > matches snapshot 1`
                report
             </h1>
             <div
-              class="ons-panel ons-panel--info ons-panel--no-title  ons-u-mt-m"
+              class="ons-panel ons-panel--info ons-panel--no-title ons-u-mt-m"
+              id="panel-_r_0_"
             >
+              <span
+                class="ons-panel__assistive-text ons-u-vh"
+              >
+                Important information:
+                 
+              </span>
               <div
                 class="ons-panel__body "
               >
@@ -274,135 +305,152 @@ exports[`appointment resource planning report without data > matches snapshot 1`
             <br />
             <form
               action="#"
+              id="form-_r_1_"
+              novalidate=""
             >
-              <fieldset
-                class="ons-fieldset"
-              >
-                <legend
-                  class="ons-fieldset__legend"
-                >
-                  Select survey
-                </legend>
-                <div
-                  class="ons-radios__items"
-                  id="Survey TLA"
-                >
-                  <p
-                    class="ons-radios__item"
-                  >
-                    <span
-                      class="ons-radio"
-                    >
-                      <input
-                        checked=""
-                        class="ons-radio__input js-radio"
-                        id="all"
-                        initial_value=""
-                        name="Survey TLA"
-                        type="radio"
-                        value=""
-                      />
-                      <label
-                        class="ons-radio__label "
-                        for="all"
-                        id="all-label"
-                      >
-                        Show all surveys
-                      </label>
-                    </span>
-                  </p>
-                  <br />
-                  <p
-                    class="ons-radios__item"
-                  >
-                    <span
-                      class="ons-radio"
-                    >
-                      <input
-                        class="ons-radio__input js-radio"
-                        id="lms"
-                        initial_value=""
-                        name="Survey TLA"
-                        type="radio"
-                        value="lms"
-                      />
-                      <label
-                        class="ons-radio__label ons-label--with-description"
-                        for="lms"
-                        id="lms-label"
-                      >
-                        LMS
-                        <span
-                          class="ons-label__description ons-radio__label--with-description"
-                          id="white-label-description-hint"
-                        >
-                          Labour Market Survey
-                        </span>
-                      </label>
-                    </span>
-                  </p>
-                  <br />
-                  <p
-                    class="ons-radios__item"
-                  >
-                    <span
-                      class="ons-radio"
-                    >
-                      <input
-                        class="ons-radio__input js-radio"
-                        id="opn"
-                        initial_value=""
-                        name="Survey TLA"
-                        type="radio"
-                        value="opn"
-                      />
-                      <label
-                        class="ons-radio__label ons-label--with-description"
-                        for="opn"
-                        id="opn-label"
-                      >
-                        OPN
-                        <span
-                          class="ons-label__description ons-radio__label--with-description"
-                          id="white-label-description-hint"
-                        >
-                          Opinions and Lifestyle Survey
-                        </span>
-                      </label>
-                    </span>
-                  </p>
-                  <br />
-                </div>
-              </fieldset>
               <div
-                class="ons-field"
+                class="ons-field ons-u-mb-m"
+                id="form-_r_1_-Survey TLA"
               >
-                <label
-                  class="ons-label "
-                  for="Date"
+                <fieldset
+                  class="ons-fieldset"
                 >
-                  Date
-                </label>
-                <input
-                  class="ons-input ons-input--text ons-input-type__input"
-                  form="[object Object]"
-                  id="Date"
-                  initial_value="1997-12-24"
-                  name="Date"
-                  type="date"
-                  value="1997-12-24"
-                />
+                  <legend
+                    class="ons-fieldset__legend ons-u-fs-r--b"
+                  >
+                    Select survey
+                  </legend>
+                  <div
+                    class="ons-grid"
+                  >
+                    <div
+                      class="ons-grid__col ons-col-8@m ons-col-6@l"
+                    >
+                      <div
+                        class="ons-input-items"
+                      >
+                        <div
+                          class="ons-radios__items"
+                        >
+                          <div
+                            class="ons-radios__item"
+                          >
+                            <span
+                              class="ons-radio"
+                            >
+                              <input
+                                checked=""
+                                class="ons-radio__input"
+                                id="all"
+                                name="Survey TLA"
+                                type="radio"
+                                value=""
+                              />
+                              <label
+                                class="ons-radio__label "
+                                for="all"
+                              >
+                                Show all surveys
+                              </label>
+                            </span>
+                          </div>
+                          <div
+                            class="ons-radios__item"
+                          >
+                            <span
+                              class="ons-radio"
+                            >
+                              <input
+                                class="ons-radio__input"
+                                id="lms"
+                                name="Survey TLA"
+                                type="radio"
+                                value="lms"
+                              />
+                              <label
+                                class="ons-radio__label ons-label--with-description"
+                                for="lms"
+                              >
+                                LMS
+                                <span
+                                  class="ons-label__description ons-radio__label--with-description"
+                                >
+                                  Labour Market Survey
+                                </span>
+                              </label>
+                            </span>
+                          </div>
+                          <div
+                            class="ons-radios__item"
+                          >
+                            <span
+                              class="ons-radio"
+                            >
+                              <input
+                                class="ons-radio__input"
+                                id="opn"
+                                name="Survey TLA"
+                                type="radio"
+                                value="opn"
+                              />
+                              <label
+                                class="ons-radio__label ons-label--with-description"
+                                for="opn"
+                              >
+                                OPN
+                                <span
+                                  class="ons-label__description ons-radio__label--with-description"
+                                >
+                                  Opinions and Lifestyle Survey
+                                </span>
+                              </label>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
               </div>
-              <br />
+              <div
+                class="ons-field ons-u-mb-m"
+              >
+                <div
+                  class="ons-grid"
+                >
+                  <div
+                    class="ons-grid__col ons-col-8@m ons-col-6@l"
+                  >
+                    <label
+                      class="ons-label "
+                      for="form-_r_1_-Date"
+                    >
+                      Date
+                    </label>
+                    <input
+                      class="ons-input ons-input--text ons-input-type__input"
+                      id="form-_r_1_-Date"
+                      name="Date"
+                      type="date"
+                      value="1997-12-24"
+                    />
+                  </div>
+                </div>
+              </div>
               <button
-                class="ons-btn "
-                data-testid="submit-button"
+                class="ons-btn"
+                data-testid="form-_r_1_-submit-button"
+                id="form-_r_1_-submit"
                 type="submit"
               >
                 <span
                   class="ons-btn__inner"
                 >
-                  Next
+                  <span
+                    class="ons-btn__text"
+                  >
+                    Next
+                  </span>
                 </span>
               </button>
             </form>

@@ -151,9 +151,6 @@ function App(): ReactElement {
                 signOutFunction={clearSession}
                 currentLocation={location.pathname}
             />
-            {/* <div style={divStyle} className="ons-page__container ons-container">
-                <AppContent />
-            </div> */}
 
             <div
                 style={{ flexGrow: 1 }}

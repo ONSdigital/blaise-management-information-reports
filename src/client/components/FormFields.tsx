@@ -26,7 +26,7 @@ function SurveyField(surveyTLA: string | undefined): any {
         name: "Survey TLA",
         description: "Select survey",
         type: "radio",
-        initial_value: surveyTLA,
+        initialValue: surveyTLA,
         radioOptions: [
             { id: "all", value: "", label: "Show all surveys" },
             {
@@ -43,7 +43,7 @@ function InterviewerField(interviewer: string | undefined): any {
     return {
         name: "Interviewer ID",
         type: "text",
-        initial_value: interviewer,
+        initialValue: interviewer,
         validate: validateInterviewer,
     };
 }
@@ -52,7 +52,7 @@ function StartDateField(startDate: string | Date): any {
     return {
         name: "Start date",
         type: "date",
-        initial_value: formatISODate(startDate),
+        initialValue: formatISODate(startDate),
         validate: validateDate,
     };
 }
@@ -61,7 +61,7 @@ function EndDateField(endDate: string | Date): any {
     return {
         name: "End date",
         type: "date",
-        initial_value: formatISODate(endDate),
+        initialValue: formatISODate(endDate),
         validate: validateDate,
     };
 }
@@ -70,7 +70,7 @@ function DateField(): any {
     return {
         name: "Date",
         type: "date",
-        initial_value: formatISODate(new Date()),
+        initialValue: formatISODate(new Date()),
         validate: validateDate,
     };
 }

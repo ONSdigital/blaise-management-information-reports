@@ -933,6 +933,7 @@ exports[`the interviewer details page renders correctly > matches snapshot 1`] =
                                 class="ons-checkbox"
                               >
                                 <input
+                                  checked=""
                                   class="ons-checkbox__input"
                                   id="LMS2101_AA1"
                                   name="questionnaires"
@@ -1155,6 +1156,7 @@ exports[`the interviewer details page renders correctly > matches snapshot 1`] =
                               class="ons-checkbox"
                             >
                               <input
+                                checked=""
                                 class="ons-checkbox__input"
                                 id="LMS2101_AA1"
                                 name="questionnaires"

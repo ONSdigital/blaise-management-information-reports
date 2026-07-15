@@ -6,7 +6,7 @@ import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
 import React from "react";
 import MockAdapter from "axios-mock-adapter";
-import { afterAll, vi } from "vitest";
+import { afterAll, beforeEach, describe, vi } from "vitest";
 import axios from "axios";
 import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
@@ -46,10 +46,6 @@ describe("the interviewer details page renders correctly", () => {
         setQuestionnaires = vi.fn();
         submit = vi.fn();
     });
-
-    // afterAll(() => {
-
-    // });
 
     function renderComponent() {
         return render(
