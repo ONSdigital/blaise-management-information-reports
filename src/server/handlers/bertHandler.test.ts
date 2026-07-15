@@ -7,7 +7,7 @@ import supertest, { type Response } from "supertest";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { loadConfigFromEnv } from "../Config.js";
-import { newServer } from "../server.js";
+import { newServer } from "../Server.js";
 
 vi.mock("blaise-login-react-server", async () => {
     const { mockLoginReactServerModule } = await import("../test-utils/loginReactServer.mock.js");
