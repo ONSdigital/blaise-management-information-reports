@@ -6,7 +6,7 @@ import { type HttpLogger, pinoHttp } from "pino-http";
 import supertest, { type Response } from "supertest";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { loadConfigFromEnv } from "../config.js";
+import { loadConfigFromEnv } from "../Config.js";
 import { newServer } from "../server.js";
 
 vi.mock("blaise-login-react-server", async () => {
