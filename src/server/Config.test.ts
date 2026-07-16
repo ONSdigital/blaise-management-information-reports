@@ -1,40 +1,67 @@
 import { describe, expect, it } from "vitest";
-import { loadConfigFromEnv } from "./Config.js";
+
+import { assertResolvedRequiredEnv, loadConfigFromEnv } from "./config.js";
 
 describe("Config setup", () => {
     it("should return the correct environment variables", () => {
         process.env = Object.assign({
             PROJECT_ID: "mock-project-id",
-            BERT_URL: "mock-bert-url",
+            BERT_URL: "http://mock-bert-url",
+            URL_DOMAIN: "surveys.test",
             BERT_CLIENT_ID: "mock-bert-client-id",
-            BLAISE_API_URL: "mock-blaise-api-url",
-            ROLES: "foo,bar,fwibble",
+            BLAISE_API_URL: "http://mock-blaise-api-url",
+            SERVER_PARK: "gusty",
         });
 
         const config = loadConfigFromEnv();
 
+        expect(config.port).toBe(5000);
         expect(config.projectId).toBe("mock-project-id");
-        expect(config.bertUrl).toBe("mock-bert-url");
+        expect(config.bertUrl).toBe("http://mock-bert-url");
         expect(config.bertClientId).toBe("mock-bert-client-id");
-        expect(config.blaiseApiUrl).toBe("mock-blaise-api-url");
-        expect(config.Roles).toEqual(["foo", "bar", "fwibble"]);
+        expect(config.blaiseApiUrl).toBe("http://mock-blaise-api-url");
+        expect(config.urlDomain).toBe("surveys.test");
+        expect(config.serverPark).toBe("gusty");
+        expect(config.Roles).toEqual(["DST", "BDSS", "TO Manager"]);
     });
 
-    it("should return variables with default string if variables are not defined", () => {
+    it("throws when required environment variables are missing", () => {
+        expect(() =>
+            assertResolvedRequiredEnv({
+                PROJECT_ID: "mock-project-id",
+                BERT_URL: "http://mock-bert-url",
+                URL_DOMAIN: undefined,
+                BERT_CLIENT_ID: "mock-bert-client-id",
+                BLAISE_API_URL: "http://mock-blaise-api-url",
+                SERVER_PARK: "gusty",
+            }),
+        ).toThrow("Missing required environment variables: URL_DOMAIN");
+    });
+
+    it("throws when URL_DOMAIN is malformed", () => {
+        expect(() =>
+            assertResolvedRequiredEnv({
+                PROJECT_ID: "mock-project-id",
+                BERT_URL: "http://mock-bert-url",
+                URL_DOMAIN: "https://surveys.test/path",
+                BERT_CLIENT_ID: "mock-bert-client-id",
+                BLAISE_API_URL: "http://mock-blaise-api-url",
+                SERVER_PARK: "gusty",
+            }),
+        ).toThrow("Malformed environment variables: URL_DOMAIN");
+    });
+
+    it("throws when PORT is invalid", () => {
         process.env = Object.assign({
-            PROJECT_ID: undefined,
-            BERT_URL: undefined,
-            BERT_CLIENT_ID: undefined,
-            BLAISE_API_URL: undefined,
-            ROLES: undefined,
+            PROJECT_ID: "mock-project-id",
+            BERT_URL: "http://mock-bert-url",
+            URL_DOMAIN: "surveys.test",
+            BERT_CLIENT_ID: "mock-bert-client-id",
+            BLAISE_API_URL: "http://mock-blaise-api-url",
+            SERVER_PARK: "gusty",
+            PORT: "nope",
         });
 
-        const config = loadConfigFromEnv();
-
-        expect(config.projectId).toBe("ENV_VAR_NOT_SET");
-        expect(config.bertUrl).toBe("ENV_VAR_NOT_SET");
-        expect(config.bertClientId).toBe("ENV_VAR_NOT_SET");
-        expect(config.blaiseApiUrl).toBe("ENV_VAR_NOT_SET");
-        expect(config.Roles).toEqual(["DST", "BDSS", "TO Manager"]);
+        expect(() => loadConfigFromEnv()).toThrow("Invalid PORT value: nope");
     });
 });

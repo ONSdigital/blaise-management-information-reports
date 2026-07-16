@@ -1,24 +1,23 @@
 import dotenv from "dotenv";
-import { IapProvider } from "blaise-iap-node-provider";
-import { BlaiseApiClient } from "blaise-api-node-client";
-import { Auth } from "blaise-login-react-server";
-import { newServer } from "./Server.js";
+
 import { loadConfigFromEnv } from "./Config.js";
+import { newServer } from "./Server.js";
+import createLogger from "./pino/index.js";
 
 if (process.env.NODE_ENV !== "production") {
     dotenv.config();
 }
 
 const config = loadConfigFromEnv();
+const httpLogger = createLogger();
 
-const authProvider = new IapProvider(config.bertClientId);
-const blaiseApiClient = new BlaiseApiClient(config.blaiseApiUrl);
-const auth = new Auth(config);
+const app = newServer(config, httpLogger);
 
-const app = newServer(config);
-
-const port: string = process.env.PORT || "5000";
-
-app.listen(port);
-
-console.log(`App is listening on port ${port}`);
+app
+    .listen(config.port, () => {
+        httpLogger.logger.info(`App is listening on port ${config.port}`);
+    })
+    .on("error", (err: Error) => {
+        httpLogger.logger.error(err, "Failed to start server");
+        process.exit(1);
+    });
