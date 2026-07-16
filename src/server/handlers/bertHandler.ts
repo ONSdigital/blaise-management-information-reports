@@ -1,6 +1,6 @@
 import { type Auth } from "blaise-login-react-server";
 import express, { type Request, type Response, type Router } from "express";
-import { formatISODate } from "../../client/utilities/DateFormatter.js";
+import { formatISODate } from "../../client/utils/DateFormatter.js";
 
 import { type BertClient } from "../bertClient.js";
 
