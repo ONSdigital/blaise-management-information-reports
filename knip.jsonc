@@ -1,0 +1,9 @@
+{
+  "entry": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "src/server/helpers/sendRequest/index.ts",
+    "src/server/test-utils/blaiseHandler.mock.ts"
+  ],
+  "project": ["src/**/*.{ts,tsx}", "*.config.ts"]
+}

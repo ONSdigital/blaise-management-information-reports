@@ -4,39 +4,39 @@ import axios, { type AxiosAdapter, AxiosHeaders } from "axios";
 import { vi } from "vitest";
 
 const globalWithActEnvironment = globalThis as typeof globalThis & {
-    IS_REACT_ACT_ENVIRONMENT?: boolean;
+  IS_REACT_ACT_ENVIRONMENT?: boolean;
 };
 
 globalWithActEnvironment.IS_REACT_ACT_ENVIRONMENT = true;
 
 document.head.innerHTML +=
-    '<script id="app-config" type="application/json">{"projectId":"test-project","urlDomain":"surveys.test"}</script>';
+  '<script id="app-config" type="application/json">{"projectId":"test-project","urlDomain":"surveys.test"}</script>';
 
 configure({ asyncUtilTimeout: 5000 });
 
 Object.defineProperty(URL, "createObjectURL", {
-    writable: true,
-    value: vi.fn(() => "blob:mocked-url"),
+  writable: true,
+  value: vi.fn(() => "blob:mocked-url"),
 });
 
 const testAdapter: AxiosAdapter = async (config) => {
-    const method = (config.method ?? "GET").toUpperCase();
-    const url = config.url ?? "<unknown-url>";
+  const method = (config.method ?? "GET").toUpperCase();
+  const url = config.url ?? "<unknown-url>";
 
-    if (method === "POST" && url === "/api/client-log") {
-        return {
-            data: {},
-            status: 200,
-            statusText: "OK",
-            headers: new AxiosHeaders(),
-            config,
-        };
-    }
+  if (method === "POST" && url === "/api/client-log") {
+    return {
+      data: {},
+      status: 200,
+      statusText: "OK",
+      headers: new AxiosHeaders(),
+      config,
+    };
+  }
 
-    const message = `Unmocked HTTP request in tests: ${method} ${url}. Add a test mock for this request.`;
+  const message = `Unmocked HTTP request in tests: ${method} ${url}. Add a test mock for this request.`;
 
-    console.error(message);
-    throw new Error(message);
+  console.error(message);
+  throw new Error(message);
 };
 
 axios.defaults.adapter = testAdapter;
