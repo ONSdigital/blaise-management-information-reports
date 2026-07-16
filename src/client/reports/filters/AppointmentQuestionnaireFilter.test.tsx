@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom";
-import { createMemoryHistory, History } from "history";
 import { render, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
@@ -32,7 +31,6 @@ function DateHelper() {
 }
 
 describe("the interviewer details page renders correctly", () => {
-    let history: History;
     let setQuestionnaires: (questionnaires: string[]) => void;
     let submit: () => void;
 
@@ -42,14 +40,13 @@ describe("the interviewer details page renders correctly", () => {
             .onGet("/api/reports/call-history-status")
             // .reply(200, {last_updated: "Sat, 01 Jan 2000 10:00:00 GMT"});
             .reply(200, { last_updated: subtractYears(1) });
-        history = createMemoryHistory();
         setQuestionnaires = vi.fn();
         submit = vi.fn();
     });
 
     function renderComponent() {
         return render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <AppointmentQuestionnaireFilter
                     reportDate={new Date("2022-01-21")}
                     surveyTla="LMS"

@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom";
-import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
@@ -21,9 +20,8 @@ describe("form - survey, interviewer, start date, end date", () => {
     });
 
     it("matches snapshot", async () => {
-        const history = createMemoryHistory();
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <SurveyInterviewerStartDateEndDateForm
                     interviewer=""
                     surveyTLA=""
@@ -42,10 +40,9 @@ describe("form - survey, interviewer, start date, end date", () => {
     });
 
     it("renders correctly", async () => {
-        const history = createMemoryHistory();
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <SurveyInterviewerStartDateEndDateForm
                         interviewer=""
                         surveyTLA=""

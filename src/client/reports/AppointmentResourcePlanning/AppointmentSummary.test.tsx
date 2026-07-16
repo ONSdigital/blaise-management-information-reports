@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { createMemoryHistory } from "history";
 import { MemoryRouter } from "react-router-dom";
 import AppointmentSummary from "./AppointmentSummary";
 
@@ -12,9 +11,8 @@ describe("Appointment Summary Section", () => {
     ];
 
     it("displays appointment summary", async () => {
-        const history = createMemoryHistory();
         render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <AppointmentSummary data={languageSummary} failed={false} />
             </MemoryRouter>,
         );
@@ -49,9 +47,8 @@ describe("Appointment Summary Section", () => {
     });
 
     it("displays error message on failure", async () => {
-        const history = createMemoryHistory();
         render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <AppointmentSummary data={[]} failed />
             </MemoryRouter>,
         );

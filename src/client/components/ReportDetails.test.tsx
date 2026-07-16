@@ -1,6 +1,5 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
@@ -10,9 +9,8 @@ import flushPromises from "../tests/utilities";
 
 describe("ReportDetails", () => {
     it("matches snapshot", async () => {
-        const history = createMemoryHistory();
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <ReportDetails link="" title="" description="" />
             </MemoryRouter>,
         );
@@ -23,10 +21,9 @@ describe("ReportDetails", () => {
         expect(await wrapper).toMatchSnapshot();
     });
     it("renders correctly", async () => {
-        const history = createMemoryHistory();
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <ReportDetails link="blah-link" title="blah-title" description="blah-description" />
                 </MemoryRouter>,
             );

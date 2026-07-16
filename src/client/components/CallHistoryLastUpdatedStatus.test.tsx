@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom";
-import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
@@ -27,9 +26,8 @@ describe("CallHistoryLastUpdatedStatus component", () => {
             .onGet("/api/reports/call-history-status")
             .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
 
-        const history = createMemoryHistory();
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <CallHistoryLastUpdatedStatus />
             </MemoryRouter>,
         );
@@ -45,11 +43,9 @@ describe("CallHistoryLastUpdatedStatus component", () => {
             .onGet("/api/reports/call-history-status")
             .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
 
-        const history = createMemoryHistory();
-
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <CallHistoryLastUpdatedStatus />
                 </MemoryRouter>,
             );
@@ -76,9 +72,8 @@ describe("call history last updated status with invalid data", () => {
     });
 
     it("matches snapshot", async () => {
-        const history = createMemoryHistory();
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <CallHistoryLastUpdatedStatus />
             </MemoryRouter>,
         );
@@ -90,10 +85,9 @@ describe("call history last updated status with invalid data", () => {
     });
 
     it("renders correctly", async () => {
-        const history = createMemoryHistory();
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <CallHistoryLastUpdatedStatus />
                 </MemoryRouter>,
             );

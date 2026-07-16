@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom";
-import { createMemoryHistory } from "history";
 import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { fireEvent, screen } from "@testing-library/dom";
@@ -30,9 +29,8 @@ describe("appointment resource planning report without data", () => {
     });
 
     it("matches snapshot", async () => {
-        const history = createMemoryHistory();
         const wrapper = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <AppointmentResourcePlanning />
             </MemoryRouter>,
         );
@@ -44,10 +42,9 @@ describe("appointment resource planning report without data", () => {
     });
     it("renders correctly", async () => {
 
-        const history = createMemoryHistory();
         await act(async () => {
             render(
-                <MemoryRouter history={history}>
+                <MemoryRouter>
                     <AppointmentResourcePlanning />
                 </MemoryRouter>,
             );

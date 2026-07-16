@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom";
-import { createMemoryHistory } from "history";
 import { render, RenderResult, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { screen } from "@testing-library/dom";
@@ -18,8 +17,6 @@ describe("the interviewer details page renders correctly", () => {
     beforeEach(() => {
         submitFunction = vi.fn();
 
-        const history = createMemoryHistory();
-
         const initialQuery: InterviewerFilterQuery = {
             interviewer: "James",
             startDate: new Date("2021-01-01"),
@@ -28,7 +25,7 @@ describe("the interviewer details page renders correctly", () => {
         };
 
         view = render(
-            <MemoryRouter history={history}>
+            <MemoryRouter>
                 <InterviewerFilter
                     title=""
                     query={initialQuery}

@@ -3,7 +3,6 @@ import React, { act } from "react";
 import {
     render, RenderResult, screen, within,
 } from "@testing-library/react";
-import { createMemoryHistory, History } from "history";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import MockAdapter from "axios-mock-adapter";
@@ -23,13 +22,9 @@ vi.mock("axiosConfig", () => ({
 describe("RenderInterviewerCallHistoryReport", () => {
     let navigateBack: () => void;
     let navigateBackTwoSteps: () => void;
-    let history: History;
 
     beforeEach(async () => {
         http.reset();
-
-        history = createMemoryHistory();
-        history.push("/interviewer-call-history");
 
         navigateBack = vi.fn();
         navigateBackTwoSteps = vi.fn();
@@ -47,7 +42,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
         };
 
         return render(
-            <MemoryRouter history={history}>
+            <MemoryRouter initialEntries={["/interviewer-call-history"]}>
                 <RenderInterviewerCallHistoryReport
                     interviewerFilterQuery={interviewerFilterQuery}
                     questionnaires={["LMS1111", "LMS2222"]}
