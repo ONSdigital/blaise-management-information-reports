@@ -68,27 +68,6 @@ function toCsvQueryValue(value: unknown): string {
     return "";
 }
 
-class RequestLogger {
-    logger: PinoHttp.HttpLogger;
-
-    constructor(logger: PinoHttp.HttpLogger) {
-        this.logger = logger;
-        this.logRequest = this.logRequest.bind(this);
-    }
-
-    async logRequest(request: Request, response: Response, next: NextFunction): Promise<void> {
-        this.logger(request, response);
-        if (request.method === "POST") {
-            const requestBody = { ...request.body };
-            if (requestBody?.password) {
-                requestBody.password = "********";
-            }
-            console.log(requestBody);
-        }
-        next();
-    }
-}
-
 // eslint-disable-next-line import/prefer-default-export
 export function newServer(config: Config, logger: HttpLogger = createLogger()): Express {
 
