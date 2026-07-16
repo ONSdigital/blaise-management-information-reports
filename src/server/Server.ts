@@ -6,7 +6,7 @@ import ejs from "ejs";
 import { BlaiseApiClient } from "blaise-api-node-client";
 import { newLoginHandler, Auth } from "blaise-login-react-server";
 import rateLimit, { ipKeyGenerator } from "express-rate-limit";
-import type * as PinoHttp from "pino-http";
+import { type HttpLogger } from "pino-http";
 import type { Config } from "./Config.js";
 import createLogger from "./pino/index.js";
 import helmet from "helmet";
@@ -90,7 +90,7 @@ class RequestLogger {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export function newServer(config: Config): Express {
+export function newServer(config: Config, logger: HttpLogger = createLogger()): Express {
 
     const dependencies = createServerDependencies(config);
     const handlers = createServerHandlers(config, dependencies);
@@ -99,7 +99,6 @@ export function newServer(config: Config): Express {
     // const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
     // const auth = new Auth(config);
     const server = express();
-    const logger = createLogger();
     server.use(logger);
     server.set("trust proxy", 1);
     server.disable("x-powered-by");
