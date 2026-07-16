@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
-import { formatDate } from "../utilities/DateFormatter";
+import { formatDate } from "../utils/DateFormatter";
 
 interface FilterSummaryProps {
     interviewer: string

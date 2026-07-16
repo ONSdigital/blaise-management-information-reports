@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import TimeAgo from "react-timeago";
-import { getInterviewerCallHistoryStatus } from "../utilities/HTTP";
+import { getInterviewerCallHistoryStatus } from "../utils/HTTP";
 import { CallHistoryStatus } from "../interfaces";
-import { formatDateAndTime } from "../utilities/DateFormatter";
+import { formatDateAndTime } from "../utils/DateFormatter";
 
 function displayResult(reportLastUpdatedDate: Date | "") {
     const date = formatDateAndTime(reportLastUpdatedDate);

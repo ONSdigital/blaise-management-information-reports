@@ -1,21 +1,22 @@
-import React, { useEffect, useEffectEvent, useState, type ReactElement } from "react";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
 import {
-    BetaBanner, DefaultErrorBoundary, Footer, Header, NotProductionWarning, LoadingPanel, Panel
+    DefaultErrorBoundary,
+    Footer,
+    Header,
+    LoadingPanel,
+    NotProductionWarning,
+    Panel,
 } from "blaise-design-system-react-components";
 import { AuthClient, LoginForm } from "blaise-login-react-client";
+import React, { type ReactElement, useEffect, useEffectEvent, useState } from "react";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
+
 import { AUTH_EXPIRED_EVENT_NAME } from "./api/axiosConfig";
-import { getSharedAuthOptions } from "./utilities/auth.js";
-import { isProduction } from "./utilities/env";
-import "./style.css";
-import InterviewerCallPattern from "./reports/InterviewerCallPattern/InterviewerCallPattern";
+import ReportDetails from "./components/ReportDetails";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
 import InterviewerCallHistory from "./reports/InterviewerCallHistory/InterviewerCallHistory";
-import ReportDetails from "./components/ReportDetails";
-
-const divStyle = {
-    minHeight: "calc(72vh)",
-};
+import InterviewerCallPattern from "./reports/InterviewerCallPattern/InterviewerCallPattern";
+import { getSharedAuthOptions } from "./utils/auth.js";
+import { isProduction } from "./utils/env";
 
 function NotFound(): ReactElement {
     return (
@@ -33,7 +34,6 @@ function NotFound(): ReactElement {
         </main>
     );
 }
-
 
 function AppContent(): ReactElement {
     return (
@@ -54,28 +54,29 @@ function AppContent(): ReactElement {
                 <Route
                     path="/"
                     element={
-                        (
-                            <main id="main-content" className="ons-page__main ons-u-mt-no">
-                                <h1 className="ons-u-mt-m">Reports</h1>
-                                <div className="ons-grid ons-grid--column@xxs@s ons-u-mt-m">
-                                    <ReportDetails
-                                        link="/interviewer-call-history"
-                                        title="Interviewer call history"
-                                        description="Generate report to see an interviewers call history over a given date range."
-                                    />
-                                    <ReportDetails
-                                        link="/interviewer-call-pattern"
-                                        title="Interviewer call pattern"
-                                        description="Generate report to analyse productivity of an interviewer over a given date range."
-                                    />
-                                    <ReportDetails
-                                        link="/appointment-resource-planning"
-                                        title="Appointment resource planning"
-                                        description="Generate report to view the number of interview appointments scheduled for a given date."
-                                    />
-                                </div>
-                            </main>
-                        )
+                        <main
+                            id="main-content"
+                            className="ons-page__main ons-u-mt-no"
+                        >
+                            <h1 className="ons-u-mt-m">Reports</h1>
+                            <div className="ons-grid ons-grid--column@xxs@s ons-u-mt-m">
+                                <ReportDetails
+                                    link="/interviewer-call-history"
+                                    title="Interviewer call history"
+                                    description="Generate report to see an interviewers call history over a given date range."
+                                />
+                                <ReportDetails
+                                    link="/interviewer-call-pattern"
+                                    title="Interviewer call pattern"
+                                    description="Generate report to analyse productivity of an interviewer over a given date range."
+                                />
+                                <ReportDetails
+                                    link="/appointment-resource-planning"
+                                    title="Appointment resource planning"
+                                    description="Generate report to view the number of interview appointments scheduled for a given date."
+                                />
+                            </div>
+                        </main>
                     }
                 />
                 <Route
@@ -89,7 +90,6 @@ function AppContent(): ReactElement {
 
 function App(): ReactElement {
     const location = useLocation();
-    const [errored, setErrored] = useState(false);
     const [authClient] = useState(() => new AuthClient(getSharedAuthOptions()));
     const [authState, setAuthState] = useState<"checking" | "unauthenticated" | "authenticated">(
         () => (authClient.getToken() == null ? "unauthenticated" : "checking"),
@@ -101,7 +101,6 @@ function App(): ReactElement {
 
     function clearSession(): void {
         authClient.logOut();
-        setErrored(false);
         setAuthState("unauthenticated");
     }
 
@@ -146,7 +145,6 @@ function App(): ReactElement {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-
             <a
                 href="#main-content"
                 className="ons-skip-to-content ons-u-fs-r--b"
@@ -183,9 +181,7 @@ function App(): ReactElement {
                         <LoginForm onAuthenticated={handleAuthenticated} />
                     </main>
                 )}
-                {authState === "authenticated" && (
-                    <AppContent />
-                )}
+                {authState === "authenticated" && <AppContent />}
             </div>
 
             <Footer />

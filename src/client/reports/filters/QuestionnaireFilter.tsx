@@ -5,7 +5,7 @@ import FilterSummary from "../../components/FilterSummary";
 import QuestionnaireSelector from "../../components/QuestionnaireSelector";
 import { InterviewerFilterQuery } from "./InterviewerFilter";
 import { LoadData } from "../../components/LoadData";
-import { getQuestionnaireList } from "../../utilities/HTTP";
+import { getQuestionnaireList } from "../../utils/HTTP";
 
 interface QuestionnaireFilterPageProps {
     interviewerFilterQuery: InterviewerFilterQuery,

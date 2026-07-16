@@ -11,7 +11,7 @@ import dateFormatter from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import userEvent from "@testing-library/user-event";
-import subtractYears from "../../utilities/DateFormatter";
+import subtractYears from "../../utils/DateFormatter";
 import AppointmentQuestionnaireFilter from "./AppointmentQuestionnaireFilter";
 
 const mockAdapter = new MockAdapter(axios);

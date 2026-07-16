@@ -10,7 +10,7 @@ import utc from "dayjs/plugin/utc";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import timezone from "dayjs/plugin/timezone";
 import timekeeper from "timekeeper";
-import subtractYears from "../../utilities/DateFormatter";
+import subtractYears from "../../utils/DateFormatter";
 import { InterviewerFilterQuery } from "./InterviewerFilter";
 import QuestionnaireFilter from "./QuestionnaireFilter";
 
