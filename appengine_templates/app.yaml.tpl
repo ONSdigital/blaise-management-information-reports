@@ -1,8 +1,6 @@
 service: mir-ui
 runtime: nodejs24
 
-entrypoint: node ./build/server/index.js
-
 vpc_access_connector:
   name: _VPC_CONNECTOR
 
