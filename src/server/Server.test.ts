@@ -1,24 +1,22 @@
-import supertest from "supertest";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
 import { Auth } from "blaise-login-react-server";
-import type { Request, Response, NextFunction } from "express";
-import axios from "axios";
-import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import MockAdapter from "axios-mock-adapter";
 import dateFormatter from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { Config, loadConfigFromEnv } from "./Config.js";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import supertest from "supertest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+import { BertClient } from "./bertClient.js";
+import { loadConfigFromEnv } from "./Config.js";
 import {
     keyGeneratorFromAuthenticatedUser,
-    keyGeneratorFromForwardedHeader,
+    type keyGeneratorFromForwardedHeader,
     newServer,
 } from "./Server.js";
-import { BertClient } from "./bertClient.js";
 
 
 Auth.prototype.validateToken = vi.fn().mockReturnValue(true);
@@ -47,23 +45,15 @@ vi.mock("blaise-login-react-server", async () => {
     return mockLoginReactServerModule();
 });
 
-const axiosMock = new MockAdapter(axios);
-
 
 const {
-    mockHttpGet,
-    mockHttpPost,
     mockGetAuthHeader,
     mockIapProviderCtor,
 } = vi.hoisted(() => {
-    const hoistedMockHttpGet = vi.fn();
-    const hoistedMockHttpPost = vi.fn();
     const hoistedMockGetAuthHeader = vi.fn();
     const hoistedMockIapProviderCtor = vi.fn();
 
     return {
-        mockHttpGet: hoistedMockHttpGet,
-        mockHttpPost: hoistedMockHttpPost,
         mockGetAuthHeader: hoistedMockGetAuthHeader,
         mockIapProviderCtor: hoistedMockIapProviderCtor,
     };
@@ -84,11 +74,14 @@ vi.mock("blaise-iap-node-provider", () => ({
 
 const buildDir = path.resolve(process.cwd(), "build");
 const staticCssDir = path.join(buildDir, "static", "css");
+
 fs.mkdirSync(staticCssDir, { recursive: true });
 if (!fs.existsSync(path.join(buildDir, "index.html"))) {
     fs.writeFileSync(path.join(buildDir, "index.html"), '<!doctype html><html><body><div id="root"></div></body></html>');
 }
+
 const testCssPath = path.join(staticCssDir, "__jest_test__.css");
+
 if (!fs.existsSync(testCssPath)) {
     fs.writeFileSync(testCssPath, ".elementToFadeIn{animation:fadein .3s}\n");
 }
@@ -96,6 +89,7 @@ if (!fs.existsSync(testCssPath)) {
 describe("Test Endpoint health", () => {
     it("should return a 200 status and json message", async () => {
         const response: supertest.Response = await request.get("/mir-ui/version/health");
+
         expect(response.status).toEqual(200);
         expect(response.body).toStrictEqual({ healthy: true });
     });

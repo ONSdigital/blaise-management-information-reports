@@ -1,4 +1,4 @@
-import { BlaiseApiClient, NewUser } from "blaise-api-node-client";
+import { type BlaiseApiClient, type NewUser } from "blaise-api-node-client";
 import { v4 as uuidv4 } from "uuid";
 
 export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark: string): Promise<NewUser> {
@@ -14,10 +14,13 @@ export async function setupTestUser(blaiseApiClient: BlaiseApiClient, serverPark
         ],
         defaultServerPark: serverPark,
     };
+
     try {
         console.log(`Attempting to create test user ${user.name} on server park ${serverPark}`);
         const newUser = await blaiseApiClient.createUser(user);
+
         console.log(`Created test user ${user.name}`);
+
         return newUser;
     } catch (error) {
         console.error(`Failed to create user: ${error}`);
@@ -39,6 +42,7 @@ export async function deleteTestUser(blaiseApiClient: BlaiseApiClient, serverPar
 export async function setupQuestionnaire(blaiseApiClient: BlaiseApiClient, questionnaireName: string, serverPark: string): Promise<void> {
     const today = new Date();
     const tomorrow = new Date();
+
     tomorrow.setDate(today.getDate() + 1);
     console.log(`Attempting to install and configure questionnaire ${questionnaireName} on server park ${serverPark}`);
     await connectToRestApi(blaiseApiClient);
@@ -62,9 +66,11 @@ async function installQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark
         const installQuestionnaireObject = {
             questionnaireFile: `${questionnaireName}.bpkg`,
         };
+
         await blaiseApiClient.installQuestionnaire(serverPark, installQuestionnaireObject);
         for (let attempts = 0; attempts <= 12; attempts++) {
             const questionnaireDetails = await blaiseApiClient.getQuestionnaire(serverPark, `${questionnaireName}`);
+
             if (questionnaireDetails.status == "Active") {
                 break;
             } else {
@@ -72,6 +78,7 @@ async function installQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark
                 await new Promise((f) => setTimeout(f, 20000));
             }
         }
+
         for (let caseID = 1; caseID <= 10; caseID++) {
             const caseFields = {
                 "qdatabag.telno": "07000 000 000",
@@ -81,6 +88,7 @@ async function installQuestionnaire(blaiseApiClient: BlaiseApiClient, serverPark
                 "qdatabag.sampsname": "sname",
                 "qdatabag.name": "name",
             };
+
             await blaiseApiClient.addCase(serverPark, `${questionnaireName}`, caseID.toString(), caseFields);
         }
     } catch (error) {

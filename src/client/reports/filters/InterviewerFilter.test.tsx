@@ -1,13 +1,15 @@
 import "@testing-library/jest-dom";
-import { render, RenderResult, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import { screen } from "@testing-library/dom";
+import { render, type RenderResult, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import React from "react";
 import { act } from "react-dom/test-utils";
+import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import userEvent from "@testing-library/user-event";
-import InterviewerFilter, { InterviewerFilterQuery } from "./InterviewerFilter";
+
 import flushPromises from "../../tests/utilities";
+
+import InterviewerFilter, { type InterviewerFilterQuery } from "./InterviewerFilter";
 
 describe("the interviewer details page renders correctly", () => {
     let submitFunction: () => void;
@@ -66,15 +68,18 @@ describe("the interviewer details page renders correctly", () => {
         await user.type(interviewer, "rich");
 
         const startDate = screen.getByLabelText(/Start date/i);
+
         await user.clear(startDate);
         await user.type(startDate, "2022-10-10");
 
         const endDate = screen.getByLabelText(/End date/i);
+
         await user.clear(endDate);
         await user.type(endDate, "2022-10-11");
 
         expect(screen.getByText("Labour Market Survey")).toBeInTheDocument();
         const survey = screen.getByLabelText(/LMS/i);
+
         await user.click(survey);
 
         const nextButton = screen.getByRole("button", {

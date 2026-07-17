@@ -1,8 +1,9 @@
-import React, { ReactElement } from "react";
 import { Panel } from "blaise-design-system-react-components";
-import { InterviewerCallHistoryReport } from "../interfaces";
-import { formatDateAndTime } from "../utils/DateFormatter.js";
+import React, { type ReactElement } from "react";
+
+import { type InterviewerCallHistoryReport } from "../interfaces";
 import { convertSecondsToMinutesAndSeconds } from "../utils/Converters.js";
+import { formatDateAndTime } from "../utils/DateFormatter.js";
 
 interface CallHistoryReportTableProps {
     reportData: any

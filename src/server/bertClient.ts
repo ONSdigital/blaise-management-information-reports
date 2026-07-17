@@ -1,5 +1,6 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { IapProvider } from "blaise-iap-node-provider";
+
 import { type CallHistoryStatus } from "../client/interfaces/index.js";
 
 
@@ -55,6 +56,7 @@ export class BertClient {
 
         if (response.status === 404 || response.status === 204) {
             console.log("No data found for parameters given.");
+
             return response;
         }
 
@@ -63,6 +65,7 @@ export class BertClient {
                 `Error getting interviewer call history report from BERT. Status code: ${response.status}`,
             );
         }
+
         return response;
     }
 
@@ -72,6 +75,7 @@ export class BertClient {
 
         if (response.status === 404 || response.status === 204) {
             console.log("No data found for parameters given.");
+
             return response;
         }
 
@@ -80,6 +84,7 @@ export class BertClient {
                 `Error getting interviewer call pattern from BERT. Status code: ${response.status}`,
             );
         }
+
         return response;
     }
 
@@ -88,6 +93,7 @@ export class BertClient {
 
         if (response.status === 404 || response.status === 204) {
             console.log("No data found for parameters given.");
+
             return response;
         }
 
@@ -96,6 +102,7 @@ export class BertClient {
                 `Error getting appointment resource planning report from BERT. Status code: ${response.status}`,
             );
         }
+
         return response;
     }
 
@@ -104,6 +111,7 @@ export class BertClient {
 
         if (response.status === 404 || response.status === 204) {
             console.log("No data found for parameters given.");
+
             return response;
         }
 
@@ -112,6 +120,7 @@ export class BertClient {
                 `Error getting appointment questionnaires from BERT. Status code: ${response.status}`,
             );
         }
+
         return response;
     }
 
@@ -120,6 +129,7 @@ export class BertClient {
 
         if (response.status === 404 || response.status === 204) {
             console.log("No data found for parameters given.");
+
             return response;
         }
 
@@ -128,6 +138,7 @@ export class BertClient {
                 `Error getting appointment resource planning summary report from BERT. Status code: ${response.status}`,
             );
         }
+
         return response;
     }
 
@@ -145,8 +156,10 @@ export class BertClient {
         config.validateStatus = (statusCode: number) => {
             return [200, 204, 404].includes(statusCode);
         };
+
         console.log(`Making GET request to: ${this.bertUrl}${this.url(url)}`);
         const response = await this.httpClient.get(`${this.bertUrl}${this.url(url)}`, config);
+
         return response;
     }
 
@@ -154,9 +167,12 @@ export class BertClient {
 
         const config = await this.axiosConfig();
         const finalURL = `${this.bertUrl}${this.url(url)}`;
+
         console.log(`Making POST request to: ${finalURL}`);
         const response = await this.httpClient.post(finalURL, data ? data : null, config);
+
         console.log(`Response: Status ${response.status}, data ${JSON.stringify(response.data)}`);
+
         return response;
     }
 

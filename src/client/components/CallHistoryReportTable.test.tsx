@@ -1,9 +1,12 @@
 import "@testing-library/jest-dom";
+import { screen } from "@testing-library/dom";
 import { render } from "@testing-library/react";
 import React from "react";
-import { screen } from "@testing-library/dom";
+
+import { type InterviewerCallHistoryReport } from "../interfaces";
+
 import CallHistoryReportTable from "./CallHistoryReportTable";
-import { InterviewerCallHistoryReport } from "../interfaces";
+
 
 const reportData: InterviewerCallHistoryReport = {
     call_result: "Appointment",
@@ -20,6 +23,7 @@ describe("CallHistoryReportTable", () => {
         const wrapper = render(
             <CallHistoryReportTable messageNoData={messageNoData} reportData={[reportData]} />,
         );
+
         expect(await wrapper).toMatchSnapshot();
     });
 

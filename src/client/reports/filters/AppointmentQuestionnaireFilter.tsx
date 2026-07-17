@@ -1,12 +1,15 @@
-import { ReactElement, useCallback } from "react";
 import axios from "axios";
-import type { AxiosResponse } from "axios";
+import { type ReactElement, useCallback } from "react";
+
+import axiosConfig from "../../../client/api/axiosConfig.js";
 import Breadcrumbs from "../../components/Breadcrumbs";
-import AppointmentResourceDaybatchWarning from "../AppointmentResourcePlanning/AppointmentResourceDaybatchWarning";
-import { formatDate, formatISODate } from "../../utils/DateFormatter.js";
 import { LoadData } from "../../components/LoadData";
 import QuestionnaireSelector from "../../components/QuestionnaireSelector";
-import axiosConfig from "../../../client/api/axiosConfig.js";
+import { formatDate, formatISODate } from "../../utils/DateFormatter.js";
+import AppointmentResourceDaybatchWarning from "../AppointmentResourcePlanning/AppointmentResourceDaybatchWarning";
+
+import type { AxiosResponse } from "axios";
+
 interface AppointmentQuestionnaireFilterPageProps {
     reportDate: Date;
     surveyTla: string;
@@ -31,6 +34,7 @@ async function getQuestionnaireList(surveyTla: string, reportDate: Date): Promis
     const url = "/api/appointments/questionnaires";
 
     const formData = new FormData();
+
     formData.append("survey_tla", surveyTla);
     formData.append("date", formatISODate(reportDate));
 

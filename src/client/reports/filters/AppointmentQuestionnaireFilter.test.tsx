@@ -1,17 +1,19 @@
 import "@testing-library/jest-dom";
-import { render, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
-import React from "react";
-import MockAdapter from "axios-mock-adapter";
-import { afterAll, beforeEach, describe, vi } from "vitest";
-import axios from "axios";
-import dateFormatter from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
+import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import dateFormatter from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import React from "react";
+import { act } from "react-dom/test-utils";
+import { MemoryRouter } from "react-router-dom";
+import { afterAll, beforeEach, describe, vi } from "vitest";
+
 import subtractYears from "../../utils/DateFormatter";
+
 import AppointmentQuestionnaireFilter from "./AppointmentQuestionnaireFilter";
 
 const mockAdapter = new MockAdapter(axios);
@@ -27,6 +29,7 @@ dateFormatter.extend(timezone);
 function DateHelper() {
     const today = new Date();
     const lastYear = new Date(today);
+
     lastYear.setFullYear(today.getFullYear() - 1);
 }
 
@@ -67,6 +70,7 @@ describe("the interviewer details page renders correctly", () => {
                 asymmetricMatch: (body) => {
                     expect(body.survey_tla).toBe("LMS");
                     expect(body.date).toBe("2022-01-21");
+
                     return true;
                 },
             },
@@ -80,6 +84,7 @@ describe("the interviewer details page renders correctly", () => {
     it("matches loading snapshot", async () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
+
         expect(wrapper).toMatchSnapshot();
 
         // Wait for loading to finish (avoid warnings)
@@ -92,6 +97,7 @@ describe("the interviewer details page renders correctly", () => {
             .onGet("/api/reports/call-history-status")
             .reply(200, { last_updated: DateHelper() });
         const wrapper = renderComponent();
+
         await screen.findByText("LMS2101_AA1");
         expect(wrapper).toMatchSnapshot();
     });
@@ -127,6 +133,7 @@ describe("the interviewer details page renders correctly", () => {
     it("checks current value questionnaires by default", async () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
+
         await waitFor(() => {
             expect(wrapper.findAllByText(/Run report/));
         });
@@ -140,6 +147,7 @@ describe("the interviewer details page renders correctly", () => {
     it("returns the questionnaires when a checkbox is ticket", async () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
+
         await waitFor(() => {
             expect(wrapper.findAllByText(/LMS2101_AA1/));
         });
@@ -155,6 +163,7 @@ describe("the interviewer details page renders correctly", () => {
     it("displays an error when submitting with no checkboxes selected", async () => {
         mockAdapter.onPost("/api/appointments/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
+
         await waitFor(() => {
             expect(wrapper.findAllByText(/LMS2101_AA1/));
         });
@@ -163,6 +172,7 @@ describe("the interviewer details page renders correctly", () => {
             userEvent.click(await screen.findByText(/Run report/));
         });
         const elements = await screen.findAllByText("At least one questionnaire must be selected");
+
         expect(elements[0]).toBeVisible();
         expect(elements[1]).toBeVisible();
         expect(setQuestionnaires).not.toHaveBeenCalled();

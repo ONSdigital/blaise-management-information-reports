@@ -1,17 +1,19 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import React from "react";
 import { screen } from "@testing-library/dom";
-import MockAdapter from "axios-mock-adapter";
+import { render } from "@testing-library/react";
 import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
 import dateFormatter from "dayjs";
-import utc from "dayjs/plugin/utc";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import React from "react";
+import { MemoryRouter } from "react-router-dom";
 import timekeeper from "timekeeper";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
 import subtractYears from "../../utils/DateFormatter";
-import { InterviewerFilterQuery } from "./InterviewerFilter";
+
+import { type InterviewerFilterQuery } from "./InterviewerFilter";
 import QuestionnaireFilter from "./QuestionnaireFilter";
 
 const mockAdapter = new MockAdapter(axios);
@@ -27,6 +29,7 @@ dateFormatter.extend(timezone);
 function DateHelper() {
     const today = new Date();
     const lastYear = new Date(today);
+
     lastYear.setFullYear(today.getFullYear() - 1);
 
     return lastYear.toUTCString();
@@ -80,6 +83,7 @@ describe("the interviewer details page renders correctly", () => {
                     expect(body.interviewer).toBe("James");
                     expect(body.start_date).toBe("2022-01-01");
                     expect(body.end_date).toBe("2022-01-05");
+
                     return true;
                 },
             },
@@ -93,6 +97,7 @@ describe("the interviewer details page renders correctly", () => {
     it("matches loading snapshot", async () => {
         mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
         const wrapper = renderComponent();
+
         expect(wrapper).toMatchSnapshot();
 
         // Wait for loading to finish (avoid warnings)
@@ -108,6 +113,7 @@ describe("the interviewer details page renders correctly", () => {
             .reply(200, { last_updated: DateHelper() });
 
         const wrapper = renderComponent();
+
         await screen.findByText("LMS2101_AA1");
 
         expect(wrapper).toMatchSnapshot();

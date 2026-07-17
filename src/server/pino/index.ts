@@ -1,4 +1,4 @@
-import { type HttpLogger, pinoHttp } from "pino-http";
+import { type HttpLogger, type Options, pinoHttp } from "pino-http";
 
 // https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#logseverity
 const PinoLevelToSeverityLookup = {
@@ -26,18 +26,28 @@ const defaultPinoConf = {
         },
     },
     serializers: {
-        req: (req: any) => ({
-            method: req.method,
-            url: req.url,
-            user: req.raw.user,
-        }),
+        req: (req: unknown) => {
+            const request = req as {
+                method?: string;
+                url?: string;
+                raw?: { user?: unknown };
+            };
+
+            return {
+                method: request.method,
+                url: request.url,
+                user: request.raw?.user,
+            };
+        },
     },
 };
 
-export default function createLogger(options: any = { autoLogging: false }): HttpLogger {
+export default function createLogger(options: Options = { autoLogging: false }): HttpLogger {
     let pinoConfig = {};
+
     if (process.env.NODE_ENV === "production") {
         pinoConfig = defaultPinoConf;
     }
+
     return pinoHttp({ ...options, ...pinoConfig });
 }

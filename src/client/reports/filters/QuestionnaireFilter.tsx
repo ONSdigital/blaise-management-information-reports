@@ -1,11 +1,13 @@
-import React, { ReactElement, useCallback } from "react";
+import React, { type ReactElement, useCallback } from "react";
+
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
 import FilterSummary from "../../components/FilterSummary";
-import QuestionnaireSelector from "../../components/QuestionnaireSelector";
-import { InterviewerFilterQuery } from "./InterviewerFilter";
 import { LoadData } from "../../components/LoadData";
+import QuestionnaireSelector from "../../components/QuestionnaireSelector";
 import { getQuestionnaireList } from "../../utils/HTTP";
+
+import { type InterviewerFilterQuery } from "./InterviewerFilter";
 
 interface QuestionnaireFilterPageProps {
     interviewerFilterQuery: InterviewerFilterQuery,

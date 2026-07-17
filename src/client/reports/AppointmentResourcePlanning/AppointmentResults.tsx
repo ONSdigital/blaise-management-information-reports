@@ -1,6 +1,7 @@
 import { ErrorBoundary, Panel } from "blaise-design-system-react-components";
-import React, { ReactElement } from "react";
-import { AppointmentResourcePlanningReportData } from "../../interfaces";
+import React, { type ReactElement } from "react";
+
+import { type AppointmentResourcePlanningReportData } from "../../interfaces";
 
 interface Props {
     reportData: AppointmentResourcePlanningReportData[],

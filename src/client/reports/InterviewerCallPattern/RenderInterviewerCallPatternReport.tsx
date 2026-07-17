@@ -1,20 +1,34 @@
-import React, {
-    ReactElement, ReactNode, useCallback, useState,
-} from "react";
 import {
-    GroupedSummary, Panel, SummaryGroup, SummaryGroupTable,
+    GroupedSummary,
+    Panel,
+    type SummaryGroup,
+    SummaryGroupTable,
 } from "blaise-design-system-react-components";
+import React, { type ReactElement, type ReactNode, useCallback, useState } from "react";
 import { CSVLink } from "react-csv";
+
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
-import ReportErrorPanel from "../../components/ReportErrorPanel";
-import { InterviewerCallPatternReport, InvalidCaseSummaryGroup, SummaryRenderableRecord } from "../../interfaces";
-import { getInterviewerCallPatternReport } from "../../utils/HTTP";
 import FilterSummary from "../../components/FilterSummary";
 import { LoadData } from "../../components/LoadData";
-import { InterviewerFilterQuery } from "../filters/InterviewerFilter";
+import ReportErrorPanel from "../../components/ReportErrorPanel";
+import {
+    type InterviewerCallPatternReport,
+    type InvalidCaseSummaryGroup,
+    type SummaryRenderableRecord,
+} from "../../interfaces/index.js";
+import { getInterviewerCallPatternReport } from "../../utils/http/Reports.js";
+import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 
-const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
+const CSVLinkComponent = CSVLink as unknown as React.ComponentType<Record<string, unknown>>;
+
+interface CallPatternReportFormValues {
+    survey_tla: string;
+    interviewer: string;
+    start_date: Date;
+    end_date: Date;
+    questionnaires: string[];
+}
 
 interface RenderInterviewerCallPatternReportPageProps {
     interviewerFilterQuery: InterviewerFilterQuery;
@@ -23,16 +37,21 @@ interface RenderInterviewerCallPatternReportPageProps {
     navigateBackTwoSteps: () => void;
 }
 
-function formatToFractionAndPercentage(numerator: number | undefined, denominator: number | undefined): string {
+function formatToFractionAndPercentage(
+    numerator: number | undefined,
+    denominator: number | undefined,
+): string {
     if (!numerator) {
-        // eslint-disable-next-line no-param-reassign
         numerator = 0;
     }
+
     if (denominator === 0 || denominator === undefined) {
         console.warn("Cannot divide by 0");
+
         return "0/0, 0%";
     }
-    return `${numerator}/${denominator}, ${(numerator / denominator * 100).toFixed(2)}%`;
+
+    return `${numerator}/${denominator}, ${((numerator / denominator) * 100).toFixed(2)}%`;
 }
 
 function callTimeSection(callPatternReport: InterviewerCallPatternReport): SummaryGroup {
@@ -51,12 +70,30 @@ function callStatusSection(callPatternReport: InterviewerCallPatternReport): Sum
     return {
         title: "Call status",
         records: {
-            refusals: formatToFractionAndPercentage(callPatternReport.refusals, callPatternReport.total_valid_cases),
-            completed_successfully: formatToFractionAndPercentage(callPatternReport.completed_successfully, callPatternReport.total_valid_cases),
-            appointments_for_contacts: formatToFractionAndPercentage(callPatternReport.appointments_for_contacts, callPatternReport.total_valid_cases),
-            web_nudge: formatToFractionAndPercentage(callPatternReport.web_nudge, callPatternReport.total_valid_cases),
-            no_contacts: formatToFractionAndPercentage(callPatternReport.no_contacts, callPatternReport.total_valid_cases),
-            discounted_invalid_cases: formatToFractionAndPercentage(callPatternReport.discounted_invalid_cases, callPatternReport.total_records),
+            refusals: formatToFractionAndPercentage(
+                callPatternReport.refusals,
+                callPatternReport.total_valid_cases,
+            ),
+            completed_successfully: formatToFractionAndPercentage(
+                callPatternReport.completed_successfully,
+                callPatternReport.total_valid_cases,
+            ),
+            appointments_for_contacts: formatToFractionAndPercentage(
+                callPatternReport.appointments_for_contacts,
+                callPatternReport.total_valid_cases,
+            ),
+            web_nudge: formatToFractionAndPercentage(
+                callPatternReport.web_nudge,
+                callPatternReport.total_valid_cases,
+            ),
+            no_contacts: formatToFractionAndPercentage(
+                callPatternReport.no_contacts,
+                callPatternReport.total_valid_cases,
+            ),
+            discounted_invalid_cases: formatToFractionAndPercentage(
+                callPatternReport.discounted_invalid_cases,
+                callPatternReport.total_records,
+            ),
         },
     };
 }
@@ -65,23 +102,43 @@ function noContactBreakdownSection(callPatternReport: InterviewerCallPatternRepo
     return {
         title: "Breakdown of No Contact calls",
         records: {
-            answer_service: formatToFractionAndPercentage(callPatternReport.no_contact_answer_service, callPatternReport.no_contacts),
-            busy: formatToFractionAndPercentage(callPatternReport.no_contact_busy, callPatternReport.no_contacts),
-            disconnect: formatToFractionAndPercentage(callPatternReport.no_contact_disconnect, callPatternReport.no_contacts),
-            no_answer: formatToFractionAndPercentage(callPatternReport.no_contact_no_answer, callPatternReport.no_contacts),
-            invalid_telephone_number: formatToFractionAndPercentage(callPatternReport.no_contact_invalid_telephone_number, callPatternReport.no_contacts),
-            other: formatToFractionAndPercentage(callPatternReport.no_contact_other, callPatternReport.no_contacts),
+            answer_service: formatToFractionAndPercentage(
+                callPatternReport.no_contact_answer_service,
+                callPatternReport.no_contacts,
+            ),
+            busy: formatToFractionAndPercentage(
+                callPatternReport.no_contact_busy,
+                callPatternReport.no_contacts,
+            ),
+            disconnect: formatToFractionAndPercentage(
+                callPatternReport.no_contact_disconnect,
+                callPatternReport.no_contacts,
+            ),
+            no_answer: formatToFractionAndPercentage(
+                callPatternReport.no_contact_no_answer,
+                callPatternReport.no_contacts,
+            ),
+            invalid_telephone_number: formatToFractionAndPercentage(
+                callPatternReport.no_contact_invalid_telephone_number,
+                callPatternReport.no_contacts,
+            ),
+            other: formatToFractionAndPercentage(
+                callPatternReport.no_contact_other,
+                callPatternReport.no_contacts,
+            ),
         },
     };
 }
 
-function invalidFieldsGroup(callPatternReport: InterviewerCallPatternReport): SummaryGroup {
+function invalidFieldsGroup(
+    callPatternReport: InterviewerCallPatternReport,
+): InvalidCaseSummaryGroup {
     return {
         title: "Invalid Fields",
         records: {
             invalid_fields: callPatternReport.invalid_fields,
             discounted_invalid_cases: callPatternReport.discounted_invalid_cases,
-            total_records: callPatternReport.total_records,
+            total_records: callPatternReport.total_records ?? 0,
         },
     };
 }
@@ -94,6 +151,7 @@ function groupData(callPatternReport: InterviewerCallPatternReport) {
     const callTimes: SummaryGroup = callTimeSection(callPatternReport);
     const callStatus: SummaryGroup = callStatusSection(callPatternReport);
     const noContactBreakdown: SummaryGroup = noContactBreakdownSection(callPatternReport);
+
     return new GroupedSummary([callTimes, callStatus, noContactBreakdown]);
 }
 
@@ -105,30 +163,38 @@ function getDisplayValue(value: string | SummaryRenderableRecord): ReactNode {
     return value;
 }
 
-function InvalidCaseInfo({ invalidFields }: { invalidFields: InvalidCaseSummaryGroup }): ReactElement {
+function InvalidCaseInfo({
+    invalidFields,
+}: {
+    invalidFields: InvalidCaseSummaryGroup;
+}): ReactElement {
     console.log(invalidFields);
     if (!invalidFields.records || !invalidFields.records.discounted_invalid_cases) {
-        // eslint-disable-next-line react/jsx-no-useless-fragment
         return <></>;
     }
+
     const total = `${invalidFields.records.discounted_invalid_cases}/${invalidFields.records.total_records}`;
-    const percentage = (invalidFields.records.discounted_invalid_cases / invalidFields.records.total_records) * 100;
+    const percentage =
+        (invalidFields.records.discounted_invalid_cases / invalidFields.records.total_records) * 100;
 
     return (
         <Panel>
-            <p>Information: {total} records ({percentage.toFixed(2)}%) were discounted due to the following
-                invalid fields: {getDisplayValue(invalidFields.records.invalid_fields)}</p>
+            <p>
+                Information: {total} records ({percentage.toFixed(2)}%) were discounted due to the following
+                invalid fields: {getDisplayValue(invalidFields.records.invalid_fields)}
+            </p>
         </Panel>
     );
-
-
 }
 
-function DownloadCSVLink(
-    { groupedSummary, filename }: { groupedSummary: GroupedSummary, filename: string },
-): ReactElement {
+function DownloadCSVLink({
+    groupedSummary,
+    filename,
+}: {
+    groupedSummary: GroupedSummary;
+    filename: string;
+}): ReactElement {
     if (groupedSummary.groups.length === 0) {
-        // eslint-disable-next-line react/jsx-no-useless-fragment
         return <></>;
     }
 
@@ -143,21 +209,27 @@ function DownloadCSVLink(
     );
 }
 
-function ReportData(
-    { groupedSummary, summaryState }: { groupedSummary: GroupedSummary, summaryState: SummaryState },
-): ReactElement {
+function ReportData({
+    groupedSummary,
+    summaryState,
+}: {
+    groupedSummary: GroupedSummary;
+    summaryState: SummaryState;
+}): ReactElement {
     if (summaryState === "no_data") {
         return <Panel>No data found for parameters given.</Panel>;
     }
 
     if (groupedSummary.groups.length === 0) {
-        // eslint-disable-next-line react/jsx-no-useless-fragment
         return <></>;
     }
 
     return (
         <div className="ons-summary ons-u-mt-m">
-            <div className="ons-summary__group" id="report-table">
+            <div
+                className="ons-summary__group"
+                id="report-table"
+            >
                 <SummaryGroupTable groupedSummary={groupedSummary} />
             </div>
         </div>
@@ -174,22 +246,33 @@ function RenderInterviewerCallPatternReport({
 }: RenderInterviewerCallPatternReportPageProps): ReactElement {
     const [reportFailed, setReportFailed] = useState<boolean>(false);
 
-    async function runInterviewerCallPatternReport(): Promise<[SummaryState, GroupedSummary, SummaryGroup]> {
-        const formValues: Record<string, any> = {};
-        formValues.survey_tla = interviewerFilterQuery.surveyTla;
-        formValues.interviewer = interviewerFilterQuery.interviewer;
-        formValues.start_date = interviewerFilterQuery.startDate;
-        formValues.end_date = interviewerFilterQuery.endDate;
-        formValues.questionnaires = questionnaires;
+    async function runInterviewerCallPatternReport(): Promise<
+        [SummaryState, GroupedSummary, InvalidCaseSummaryGroup]
+    > {
+        const formValues: CallPatternReportFormValues = {
+            survey_tla: interviewerFilterQuery.surveyTla,
+            interviewer: interviewerFilterQuery.interviewer,
+            start_date: interviewerFilterQuery.startDate,
+            end_date: interviewerFilterQuery.endDate,
+            questionnaires,
+        };
 
-        const callHistory: InterviewerCallPatternReport | undefined = await getInterviewerCallPatternReport(formValues);
+        let callHistory: InterviewerCallPatternReport | undefined;
 
-        if (callHistory === undefined) {
-            return ["no_data", new GroupedSummary([]), { title: "", records: {} }];
+        try {
+            callHistory = await getInterviewerCallPatternReport(formValues);
+        } catch {
+            setReportFailed(true);
+
+            return ["no_data", new GroupedSummary([]), { title: "" }];
         }
 
-        callHistory.total_records = callHistory.discounted_invalid_cases
-            + (callHistory.total_valid_cases || 0);
+        if (callHistory === undefined) {
+            return ["no_data", new GroupedSummary([]), { title: "" }];
+        }
+
+        callHistory.total_records =
+            callHistory.discounted_invalid_cases + (callHistory.total_valid_cases || 0);
 
         if (isAllInvalid(callHistory)) {
             return ["all_invalid_fields", new GroupedSummary([]), invalidFieldsGroup(callHistory)];
@@ -199,14 +282,21 @@ function RenderInterviewerCallPatternReport({
     }
 
     const displayReport = useCallback(
-        ([state, groupedSummary, invalidFields]: [SummaryState, GroupedSummary, InvalidCaseSummaryGroup]): ReactNode => (
+        ([state, groupedSummary, invalidFields]: [
+            SummaryState,
+            GroupedSummary,
+            InvalidCaseSummaryGroup,
+        ]): ReactNode => (
             <>
                 <DownloadCSVLink
                     groupedSummary={groupedSummary}
                     filename={`interviewer-call-pattern-${interviewerFilterQuery.interviewer}.csv`}
                 />
                 <InvalidCaseInfo invalidFields={invalidFields} />
-                <ReportData groupedSummary={groupedSummary} summaryState={state} />
+                <ReportData
+                    groupedSummary={groupedSummary}
+                    summaryState={state}
+                />
             </>
         ),
         [interviewerFilterQuery.interviewer],
@@ -214,13 +304,17 @@ function RenderInterviewerCallPatternReport({
 
     return (
         <>
-            <Breadcrumbs BreadcrumbList={[
-                { link: "/", title: "Reports" },
-                { link: "#", onClickFunction: navigateBackTwoSteps, title: "Interviewer details" },
-                { link: "#", onClickFunction: navigateBack, title: "Questionnaires" },
-            ]}
+            <Breadcrumbs
+                BreadcrumbList={[
+                    { link: "/", title: "Reports" },
+                    { link: "#", onClickFunction: navigateBackTwoSteps, title: "Interviewer details" },
+                    { link: "#", onClickFunction: navigateBack, title: "Questionnaires" },
+                ]}
             />
-            <main id="main-content" className="ons-page__main ons-u-mt-s">
+            <main
+                id="main-content"
+                className="ons-page__main ons-u-mt-s"
+            >
                 <h1>Call Pattern Report</h1>
                 <FilterSummary
                     interviewer={interviewerFilterQuery.interviewer}
@@ -233,10 +327,12 @@ function RenderInterviewerCallPatternReport({
                 <div className="ons-u-mb-m">
                     <Panel>
                         <p>
-                            Incomplete data is removed from this report. This will impact the accuracy of the report.
+                            Incomplete data is removed from this report. This will impact the accuracy of the
+                            report.
                         </p>
                         <p>
-                            The <b>Discounted invalid records</b> entry will advise how many records have been removed.
+                            The <b>Discounted invalid records</b> entry will advise how many records have been
+                            removed.
                         </p>
                         <p>
                             Information will be displayed at the top of the report to advise which fields were
@@ -249,7 +345,9 @@ function RenderInterviewerCallPatternReport({
                     dataPromise={runInterviewerCallPatternReport()}
                     onError={() => setReportFailed(true)}
                     errorMessage={false}
-                >{displayReport}</LoadData>
+                >
+                    {displayReport}
+                </LoadData>
                 <br />
             </main>
         </>
@@ -263,4 +361,5 @@ export {
     invalidFieldsGroup,
     isAllInvalid,
 };
+
 export default RenderInterviewerCallPatternReport;

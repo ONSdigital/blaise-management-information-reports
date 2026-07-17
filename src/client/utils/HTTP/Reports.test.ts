@@ -1,8 +1,12 @@
-import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import { getQuestionnaireList, getInterviewerCallHistoryReport } from ".";
-import { InterviewerCallHistoryReport } from "../../../client/interfaces";
+import MockAdapter from "axios-mock-adapter";
 import { afterEach, describe, expect, it } from "vitest";
+
+import { type InterviewerCallHistoryReport } from "../../../client/interfaces";
+
+import { getInterviewerCallHistoryReport, getQuestionnaireList } from ".";
+
+
 
 const mockAdapter = new MockAdapter(axios);
 
@@ -21,6 +25,7 @@ describe("getQuestionnaireList", () => {
                     expect(body.interviewer).toBe("James");
                     expect(body.start_date).toBe("2022-01-02");
                     expect(body.end_date).toBe("2022-02-05");
+
                     return true;
                 },
             },
@@ -50,7 +55,7 @@ describe("getQuestionnaireList", () => {
                 new Date("2022-02-05"),
             );
         } catch (e) {
-            expect(e.message).toBe("Request failed with status code 500");
+            expect((e as Error).message).toBe("Request failed with status code 500");
         }
     });
 
@@ -65,7 +70,7 @@ describe("getQuestionnaireList", () => {
                 new Date("2022-02-05"),
             );
         } catch (e) {
-            expect(e.message).toBe("Response was not 200");
+            expect((e as Error).message).toBe("Response was not 200");
         }
     });
 });
@@ -102,6 +107,7 @@ describe("getInterviewerCallHistoryReport", () => {
                     expect(body.start_date).toBe("2022-01-02");
                     expect(body.end_date).toBe("2022-02-05");
                     expect(body.questionnaires).toBe("INST1,INST2");
+
                     return true;
                 },
             },
@@ -123,6 +129,7 @@ describe("getInterviewerCallHistoryReport", () => {
                     expect(body.start_date).toBe("undefined");
                     expect(body.end_date).toBe("undefined");
                     expect(body.questionnaires).toBe("undefined");
+
                     return true;
                 },
             },
@@ -138,6 +145,7 @@ describe("getInterviewerCallHistoryReport", () => {
 
     it("defaults dial_secs to 0 if not in the response", async () => {
         const response: Record<string, unknown> = { ...testQuestionnaireResponse };
+
         delete response.dial_secs;
         mockAdapter.onPost("/api/reports/interviewer-call-history").reply(200, [response]);
         expect(await getInterviewerCallHistoryReport(testFormParameters)).toEqual([{ ...response, dial_secs: 0 }]);
@@ -145,6 +153,7 @@ describe("getInterviewerCallHistoryReport", () => {
 
     it("defaults dial_secs to 0 if it is an empty string", async () => {
         const response: Record<string, unknown> = { ...testQuestionnaireResponse };
+
         mockAdapter.onPost("/api/reports/interviewer-call-history")
             .reply(200, [{ ...response, dial_secs: "" }]);
         expect(await getInterviewerCallHistoryReport(testFormParameters))
@@ -157,7 +166,7 @@ describe("getInterviewerCallHistoryReport", () => {
         try {
             await getInterviewerCallHistoryReport(testFormParameters);
         } catch (e) {
-            expect(e.message).toBe("Request failed with status code 500");
+            expect((e as Error).message).toBe("Request failed with status code 500");
         }
     });
 
@@ -167,7 +176,7 @@ describe("getInterviewerCallHistoryReport", () => {
         try {
             await getInterviewerCallHistoryReport(testFormParameters);
         } catch (e) {
-            expect(e.message).toBe("Response was not 200");
+            expect((e as Error).message).toBe("Response was not 200");
         }
     });
 });

@@ -1,10 +1,11 @@
+import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
-import { render, waitFor, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 import { act } from "react-dom/test-utils";
-import App from "./App";
 import { vi } from "vitest"
+
+import App from "./App";
 
 vi.mock("blaise-login-react-client", async () => {
     const { mockLoginReactClientModule } = await import("./test-utils/authenticate.mock");

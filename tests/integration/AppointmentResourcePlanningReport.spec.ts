@@ -1,9 +1,11 @@
 import { expect, test } from "@playwright/test";
+import axios from 'axios';
+import { BlaiseApiClient, type NewUser } from "blaise-api-node-client";
 import dotenv from "dotenv";
-import { BlaiseApiClient, NewUser } from "blaise-api-node-client";
+
 import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
 import { loginToMir } from "./helpers/MirHelpers";
-import axios from 'axios';
+
 
 if (process.env.NODE_ENV !== "production") {
     dotenv.config({ path: `${__dirname}/../../.env` });
@@ -20,6 +22,7 @@ if (iapToken) {
     console.log('Using pre-generated IAP token from environment');
     httpClient.interceptors.request.use((config) => {
         config.headers['Authorization'] = `Bearer ${iapToken}`;
+
         return config;
     });
 } else {
@@ -27,6 +30,7 @@ if (iapToken) {
 }
 
 const blaiseApiClient = new BlaiseApiClient(restApiUrl);
+
 blaiseApiClient.httpClient = httpClient;
 
 let userCredentials: NewUser;
@@ -57,6 +61,7 @@ test.describe("ARPR without data", () => {
         console.log(`Started running ${testInfo.title}`);
         await loginToMir(page, userCredentials);
         const appointmentResourcePlanningLink = page.getByRole("link", { name: "Appointment resource planning" });
+
         await expect(appointmentResourcePlanningLink).toBeVisible({ timeout: 30000 });
         await appointmentResourcePlanningLink.click();
         await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");

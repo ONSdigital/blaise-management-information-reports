@@ -12,6 +12,7 @@ export default function newHealthCheckHandler(): Router {
 
 async function healthCheck(req: Request, res: Response): Promise<Response> {
     console.log("health_check endpoint called");
+
     return res.status(200).json({ healthy: true });
 }
 

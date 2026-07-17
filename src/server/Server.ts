@@ -1,20 +1,23 @@
-import path from "path";
 import fs from "fs";
-import express, { type Router } from "express";
-import type { NextFunction, Request, Response, Express } from "express";
-import ejs from "ejs";
-import { BlaiseApiClient } from "blaise-api-node-client";
-import { newLoginHandler, Auth } from "blaise-login-react-server";
-import rateLimit, { ipKeyGenerator } from "express-rate-limit";
-import { type HttpLogger } from "pino-http";
-import type { Config } from "./Config.js";
-import createLogger from "./pino/index.js";
-import helmet from "helmet";
-import newHealthCheckHandler from "./handlers/healthCheckHandler.js";
+import path from "path";
 import { fileURLToPath } from "url";
+
+import { BlaiseApiClient } from "blaise-api-node-client";
+import { Auth, newLoginHandler } from "blaise-login-react-server";
+import ejs from "ejs";
+import express, { type Router } from "express";
+import rateLimit, { ipKeyGenerator } from "express-rate-limit";
+import helmet from "helmet";
+import { type HttpLogger } from "pino-http";
+
+import AuditLogger from "./auditLogger.js";
 import { BertClient } from "./bertClient.js";
 import newBertHandler from "./handlers/bertHandler.js";
-import AuditLogger from "./auditLogger.js";
+import newHealthCheckHandler from "./handlers/healthCheckHandler.js";
+import createLogger from "./pino/index.js";
+
+import type { Config } from "./Config.js";
+import type { Express, NextFunction, Request, Response } from "express";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,20 +58,6 @@ function parseRateLimit(envName: string, fallback: number): number {
     return parsed;
 }
 
-function toCsvQueryValue(value: unknown): string {
-    if (Array.isArray(value)) {
-        return value
-            .map((item) => String(item))
-            .filter((item) => item.length > 0)
-            .join(",");
-    }
-    if (typeof value === "string") {
-        return value;
-    }
-    return "";
-}
-
-// eslint-disable-next-line import/prefer-default-export
 export function newServer(config: Config, logger: HttpLogger = createLogger()): Express {
 
     const dependencies = createServerDependencies(config);
@@ -78,6 +67,7 @@ export function newServer(config: Config, logger: HttpLogger = createLogger()): 
     // const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
     // const auth = new Auth(config);
     const server = express();
+
     server.use(logger);
     server.set("trust proxy", 1);
     server.disable("x-powered-by");

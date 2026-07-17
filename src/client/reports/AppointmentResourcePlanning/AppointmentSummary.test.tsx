@@ -1,7 +1,8 @@
-import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
+import React from "react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
+
 import AppointmentSummary from "./AppointmentSummary";
 
 describe("Appointment Summary Section", () => {
@@ -21,20 +22,26 @@ describe("Appointment Summary Section", () => {
             const list = screen.queryAllByTestId(/summary-table-row/i);
             const listItemOne = list[0];
             const firstRowLanguage = listItemOne.firstChild;
+
             if (firstRowLanguage !== null) {
                 expect(firstRowLanguage.textContent).toEqual("English");
             }
+
             const firstRowTotal = listItemOne.lastChild;
+
             if (firstRowTotal !== null) {
                 expect(firstRowTotal.textContent).toEqual("12");
             }
 
             const listItemTwo = list[1];
             const secondRowLanguage = listItemTwo.firstChild;
+
             if (secondRowLanguage !== null) {
                 expect(secondRowLanguage.textContent).toEqual("Welsh");
             }
+
             const secondRowTotal = listItemTwo.lastChild;
+
             if (secondRowTotal !== null) {
                 expect(secondRowTotal.textContent).toEqual("56");
             }

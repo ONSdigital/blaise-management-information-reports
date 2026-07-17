@@ -1,5 +1,5 @@
 import { Panel } from "blaise-design-system-react-components";
-import React, { ReactElement } from "react";
+import React, { type ReactElement } from "react";
 
 function AppointmentResourceDaybatchWarning(): ReactElement {
     return (

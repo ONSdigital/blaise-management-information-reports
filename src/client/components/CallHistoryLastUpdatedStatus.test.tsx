@@ -1,14 +1,16 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
 import { screen } from "@testing-library/dom";
-import React from "react";
-import MockAdapter from "axios-mock-adapter";
+import { render } from "@testing-library/react";
 import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import React from "react";
+import { act } from "react-dom/test-utils";
+import { MemoryRouter } from "react-router-dom";
 import timekeeper from "timekeeper";
-import CallHistoryLastUpdatedStatus from "./CallHistoryLastUpdatedStatus";
+
 import flushPromises from "../tests/utilities";
+
+import CallHistoryLastUpdatedStatus from "./CallHistoryLastUpdatedStatus";
 
 const mockAdapter = new MockAdapter(axios);
 
@@ -77,6 +79,7 @@ describe("call history last updated status with invalid data", () => {
                 <CallHistoryLastUpdatedStatus />
             </MemoryRouter>,
         );
+
         await act(async () => {
             await flushPromises();
         });

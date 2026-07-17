@@ -1,5 +1,5 @@
-import { Page } from "@playwright/test";
-import { NewUser } from "blaise-api-node-client";
+import { type Page } from "@playwright/test";
+import { type NewUser } from "blaise-api-node-client";
 
 const CATI_URL = process.env.CATI_URL;
 
@@ -13,6 +13,7 @@ export async function setupAppointment(page: Page, questionnaireName: string, us
         page.waitForEvent("popup"),
         await page.click(".glyphicon-calendar >> nth=0"),
     ]);
+
     await casePage.check("input:left-of(.CategoryButtonComponent:has-text('Appointment agreed'))");
     await casePage.click(".ButtonComponent:has-text('Save and continue')");
     await casePage.waitForSelector("img[alt='loading gif']", { state: 'hidden' });
@@ -59,6 +60,7 @@ export async function clearCatiData(page: Page, questionnaireName: string, userC
 async function loginToCati(page: Page, userCredentials: NewUser) {
     await page.goto(`${CATI_URL}/blaise`);
     const loginHeader = page.locator("h1:has-text('Login')");
+
     if (await loginHeader.isVisible({ timeout: 20000 })) {
         await page.locator("#Username").type(`${userCredentials.name}`);
         await page.locator("#Password").type(`${userCredentials.password}`);
@@ -76,6 +78,8 @@ async function filterQuestionnaire(page: Page, questionnaireName: string) {
 
 function createDateForTomorrowAt1000(): number {
     const tomorrow = new Date();
+
     tomorrow.setDate(tomorrow.getDate() + 1);
+
     return tomorrow.setHours(10, 0, 0, 0);
 }

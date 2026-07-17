@@ -1,12 +1,14 @@
 import React, {
-    ReactElement, useCallback, useMemo, useState,
+    type ReactElement, useCallback, useMemo, useState,
 } from "react";
+
 import AppointmentFilter from "../filters/AppointmentFilter";
 import AppointmentQuestionnaireFilter from "../filters/AppointmentQuestionnaireFilter";
+
 import RenderAppointmentResourcePlanningReport from "./RenderAppointmentResourcePlanningReport";
 
 enum Step {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
+     
     AppointmentFilter,
     QuestionnaireFilter,
     RenderReport,
@@ -39,9 +41,9 @@ function AppointmentResourcePlanning(): ReactElement {
         setActiveStep((current) => current - 2);
     }, [setActiveStep]);
 
-    // eslint-disable-next-line consistent-return
+     
     const currentStep = useMemo(() => {
-        // eslint-disable-next-line default-case
+         
         switch (activeStep) {
             case Step.AppointmentFilter:
                 return (
@@ -67,6 +69,7 @@ function AppointmentResourcePlanning(): ReactElement {
                 );
             case Step.RenderReport:
                 console.log(`Steps questionnaires ${questionnaires}`);
+
                 return (
                     <RenderAppointmentResourcePlanningReport
                         reportDate={reportDate}

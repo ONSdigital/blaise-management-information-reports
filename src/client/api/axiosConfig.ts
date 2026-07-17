@@ -43,10 +43,6 @@ function ensureAuthExpiryInterceptor(): void {
 
 ensureAuthExpiryInterceptor();
 
-export function hasAuthToken(): boolean {
-    return authManager.getToken() != null;
-}
-
 export default function axiosConfig(): AxiosRequestConfig {
     return {
         headers: {

@@ -1,7 +1,11 @@
-// eslint-disable-next-line max-classes-per-file
 import { LoadingPanel, Panel } from "blaise-design-system-react-components";
 import React, {
-    ReactElement, ReactNode, useEffect, useMemo, useState,
+    type ReactElement,
+    type ReactNode,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
 } from "react";
 
 export type DataRenderer<T> = (data: T) => ReactNode;
@@ -26,36 +30,63 @@ class ErroredState {
 type LoadState<T> = LoadingState | LoadedState<T> | ErroredState;
 
 export function LoadData<T>({
-    children, dataPromise, errorMessage = undefined, onError = undefined,
+    children,
+    dataPromise,
+    errorMessage = undefined,
+    onError = undefined,
 }: LoaderProps<T>): ReactElement {
-    const [loadState, setLoadState] = useState<LoadState<T>>(new LoadingState());
+    type PromiseOutcome = { data: T; error?: never } | { data?: never; error: Error };
+
+    const [loadState, setLoadState] = useState<LoadState<T>>(() => new LoadingState());
+    const settledPromiseRef = useRef<Promise<PromiseOutcome> | null>(null);
 
     const handledDataPromise = useMemo(
-        () => dataPromise.catch((error: Error) => {
-            throw error;
-        }),
+        () =>
+            dataPromise.then(
+                (data): PromiseOutcome => ({ data }),
+                (error: Error): PromiseOutcome => ({ error }),
+            ),
         [dataPromise],
     );
 
     useEffect(() => {
-        async function loadData() {
-            setLoadState(new LoadedState(await handledDataPromise));
-        }
+        let isSubscribed = true;
 
         function setErroredState(error: Error): void {
+            if (!isSubscribed) {
+                return;
+            }
+
             if (onError) {
                 onError(error);
             }
+
+            settledPromiseRef.current = handledDataPromise;
             setLoadState(new ErroredState(error));
         }
 
-        setLoadState(new LoadingState());
+        handledDataPromise.then((outcome) => {
+            if (outcome.error) {
+                setErroredState(outcome.error);
 
-        loadData().catch(setErroredState);
+                return;
+            }
+
+            if (!isSubscribed) {
+                return;
+            }
+
+            settledPromiseRef.current = handledDataPromise;
+            setLoadState(new LoadedState(outcome.data));
+        });
+
+        return () => {
+            isSubscribed = false;
+        };
     }, [handledDataPromise, onError]);
 
     function getErrorMessage(error: Error): ReactNode {
-        if (typeof (errorMessage) === "string") {
+        if (typeof errorMessage === "string") {
             return <p>{errorMessage}</p>;
         }
 
@@ -71,6 +102,10 @@ export function LoadData<T>({
     }
 
     function content(): ReactNode {
+        if (settledPromiseRef.current !== handledDataPromise) {
+            return <LoadingPanel />;
+        }
+
         if (loadState instanceof LoadedState) {
             return children(loadState.data);
         }
@@ -83,11 +118,7 @@ export function LoadData<T>({
             return null;
         }
 
-        return (
-            <Panel status="error">
-                {getErrorMessage(loadState.error)}
-            </Panel>
-        );
+        return <Panel status="error">{getErrorMessage(loadState.error)}</Panel>;
     }
 
     return <>{content()}</>;

@@ -1,13 +1,15 @@
 import "@testing-library/jest-dom";
-import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
-import MockDate from "mockdate";
-import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import React, { act } from "react";
-import { vi } from "vitest";
 import { screen } from "@testing-library/dom";
-import { InterviewerCallPatternReport } from "../../interfaces";
+import { render } from "@testing-library/react";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import MockDate from "mockdate";
+import React, { act } from "react";
+import { MemoryRouter } from "react-router-dom";
+import { vi } from "vitest";
+
+import { type InterviewerCallPatternReport } from "../../interfaces";
+
 import InterviewerCallPattern, {
     callStatusSection,
     formatToFractionAndPercentage,
@@ -87,6 +89,7 @@ const threeDaysFromTheNewMillennium = "2000-01-03";
 describe("function formatToFractionAndPercentage()", () => {
     it("should return a string demonstrating the total and percentage", () => {
         const actual = formatToFractionAndPercentage(1, 2);
+
         expect(actual).toEqual("1/2, 50.00%");
     });
 });
@@ -94,6 +97,7 @@ describe("function formatToFractionAndPercentage()", () => {
 describe("function callStatusSection()", () => {
     it("should return the relevant section from data", () => {
         const callSection = callStatusSection(mockDataWithInvalidCases);
+
         expect(callSection).toEqual({
             records: {
                 refusals: "4/133, 3.01%",
@@ -111,6 +115,7 @@ describe("function callStatusSection()", () => {
 describe("function callStatusSection()", () => {
     it("should return the relevant section from data", () => {
         const callSection = callStatusSection(mockDataWithInvalidCases);
+
         expect(callSection).toEqual({
             records: {
                 refusals: "4/133, 3.01%",
@@ -128,6 +133,7 @@ describe("function callStatusSection()", () => {
 describe("function noContactBreakdownSection()", () => {
     it("should return the relevant section from data", () => {
         const callSection = noContactBreakdownSection(mockDataWithInvalidCases);
+
         expect(callSection).toEqual({
             records: {
                 answer_service: "4/11, 36.36%",
@@ -145,6 +151,7 @@ describe("function noContactBreakdownSection()", () => {
 describe("function invalidFieldsGroup()", () => {
     it("should return the required information to display in an information panel", () => {
         const invalidPanel = invalidFieldsGroup(mockDataWithInvalidCases);
+
         expect(invalidPanel).toEqual({
             records: {
                 invalid_fields: "'status' column had timed out call status,'call_end_time' column had missing data",
@@ -159,11 +166,13 @@ describe("function invalidFieldsGroup()", () => {
 describe("function isAllInvalid()", () => {
     it("should return true if data does not have total_valid_cases", () => {
         const expectTrue = isAllInvalid(mockDataWithOnlyInvalidCases);
+
         expect(expectTrue).toEqual(true);
     });
 
     it("should return false if data has total_valid_cases", () => {
         const expectFalse = isAllInvalid(mockData);
+
         expect(expectFalse).toEqual(false);
     });
 });

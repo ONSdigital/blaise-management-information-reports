@@ -1,11 +1,13 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
+import { MemoryRouter } from "react-router-dom";
 import { screen } from "@testing-library/dom";
-import ReportDetails from "./ReportDetails";
+
 import flushPromises from "../tests/utilities";
+
+import ReportDetails from "./ReportDetails";
 
 describe("ReportDetails", () => {
     it("matches snapshot", async () => {
@@ -14,6 +16,7 @@ describe("ReportDetails", () => {
                 <ReportDetails link="" title="" description="" />
             </MemoryRouter>,
         );
+
         await act(async () => {
             await flushPromises();
         });

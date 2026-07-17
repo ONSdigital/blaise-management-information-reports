@@ -1,15 +1,16 @@
-import React, { ReactElement, useState } from "react";
+import React, { type ReactElement, useState } from "react";
 import { CSVLink } from "react-csv";
+
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { InterviewerCallHistoryReport } from "../../interfaces";
-import { getInterviewerCallHistoryReport } from "../../utils/HTTP";
 import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
-import { formatDateAndTime } from "../../utils/DateFormatter";
-import FilterSummary from "../../components/FilterSummary";
 import CallHistoryReportTable from "../../components/CallHistoryReportTable";
+import FilterSummary from "../../components/FilterSummary";
 import { LoadData } from "../../components/LoadData";
-import { InterviewerFilterQuery } from "../filters/InterviewerFilter";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
+import { type InterviewerCallHistoryReport } from "../../interfaces";
+import { formatDateAndTime } from "../../utils/DateFormatter";
+import { getInterviewerCallHistoryReport } from "../../utils/HTTP";
+import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
 
@@ -39,6 +40,7 @@ function RenderInterviewerCallHistoryReport({
 
     async function runInterviewerCallHistoryReport(): Promise<InterviewerCallHistoryReport[]> {
         const formValues: Record<string, any> = {};
+
         formValues.survey_tla = interviewerFilterQuery.surveyTla;
         formValues.interviewer = interviewerFilterQuery.interviewer;
         formValues.start_date = interviewerFilterQuery.startDate;
@@ -46,6 +48,7 @@ function RenderInterviewerCallHistoryReport({
         formValues.questionnaires = questionnaires;
 
         const callHistory = await getInterviewerCallHistoryReport(formValues);
+
         console.log(callHistory);
 
         return callHistory;

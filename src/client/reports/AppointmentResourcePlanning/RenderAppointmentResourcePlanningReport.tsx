@@ -1,13 +1,16 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { type ReactElement, useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
+
 import Breadcrumbs from "../../components/Breadcrumbs";
-import { AppointmentResourcePlanningReportData, AppointmentResourcePlanningSummaryReportData } from "../../interfaces";
-import { getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport } from "../../utils/HTTP/index.js";
-import AppointmentResourceDaybatchWarning from "./AppointmentResourceDaybatchWarning";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
+import { type AppointmentResourcePlanningReportData, type AppointmentResourcePlanningSummaryReportData } from "../../interfaces";
+import { formatDate } from "../../utils/DateFormatter.js";
+import { getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport } from "../../utils/HTTP/index.js";
+
+import AppointmentResourceDaybatchWarning from "./AppointmentResourceDaybatchWarning";
 import AppointmentResults from "./AppointmentResults";
 import AppointmentSummary from "./AppointmentSummary";
-import { formatDate } from "../../utils/DateFormatter.js";
+
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
 
@@ -23,6 +26,7 @@ function formatList(listOfQuestionnaires: string[]): string {
     if (listOfQuestionnaires.length === 1) return listOfQuestionnaires[0];
     const firsts = listOfQuestionnaires.slice(0, listOfQuestionnaires.length - 1);
     const last = listOfQuestionnaires[listOfQuestionnaires.length - 1];
+
     return `${firsts.join(", ")} and ${last}`;
 }
 
@@ -57,10 +61,12 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
             setReportData([]);
 
             let planningReport: AppointmentResourcePlanningReportData[];
+
             try {
                 planningReport = await getAppointmentResourcePlanningReport(reportDate, surveyTla, questionnaires);
             } catch {
                 setReportFailed(true);
+
                 return;
             } finally {
                 // setSubmitting(false);
@@ -68,6 +74,7 @@ function RenderAppointmentResourcePlanningReport(props: RenderAppointmentResourc
 
             if (planningReport.length === 0) {
                 setMessageNoData("No data found for parameters given.");
+
                 return;
             }
 

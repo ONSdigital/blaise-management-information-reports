@@ -1,15 +1,17 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import { fireEvent, screen } from "@testing-library/dom";
-import React, { act } from "react";
-import MockDate from "mockdate";
-import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
+import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import AppointmentResourcePlanning from "./AppointmentResourcePlanning";
-import flushPromises from "../../tests/utilities";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import MockDate from "mockdate";
+import React, { act } from "react";
+import { MemoryRouter } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, vi } from "vitest";
+
+import flushPromises from "../../tests/utilities";
+
+import AppointmentResourcePlanning from "./AppointmentResourcePlanning";
 
 const mockAdapter = new MockAdapter(axios);
 const mockIsProduction = vi.fn();
@@ -34,6 +36,7 @@ describe("appointment resource planning report without data", () => {
                 <AppointmentResourcePlanning />
             </MemoryRouter>,
         );
+
         await act(async () => {
             await flushPromises();
         });
@@ -66,6 +69,7 @@ describe("appointment resource planning report without data", () => {
         expect(screen.queryByText("Date")).toBeVisible();
 
         const dateInput = screen.getByLabelText(/Date/i);
+
         await user.clear(dateInput);
         fireEvent.change(dateInput, {
             target: {

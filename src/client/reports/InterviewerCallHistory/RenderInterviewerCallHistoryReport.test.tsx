@@ -1,17 +1,20 @@
 import "@testing-library/jest-dom";
-import React, { act } from "react";
 import {
-    render, RenderResult, screen, within,
+    render, type RenderResult, screen, within,
 } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
-import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import axiosConfig from "../../api/axiosConfig";
+import MockAdapter from "axios-mock-adapter";
+import React, { act } from "react";
+import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import RenderInterviewerCallHistoryReport from "./RenderInterviewerCallHistoryReport";
-import { InterviewerCallHistoryReport } from "../../interfaces";
+
+import axiosConfig from "../../api/axiosConfig";
+import { type InterviewerCallHistoryReport } from "../../interfaces";
 import flushPromises from "../../test-utils/flushPromises";
+
+import RenderInterviewerCallHistoryReport from "./RenderInterviewerCallHistoryReport";
+
 const http = new MockAdapter(axios);
 // vi.mock("axios");
 
@@ -56,11 +59,13 @@ describe("RenderInterviewerCallHistoryReport", () => {
     it("posts the search parameters to the backend", async () => {
         expect.assertions(5);
         let formData;
+
         http.onPost(
             "/api/reports/interviewer-call-history",
             {
                 asymmetricMatch: (body: any) => {
                     formData = body;
+
                     return true;
                 },
             },
@@ -175,6 +180,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
                     outcome_code: "",
                 },
             ];
+
             http.onPost("/api/reports/interviewer-call-history").reply(200, results);
             renderComponent();
             await screen.findByRole("columnheader", { name: "Questionnaire" });
@@ -186,6 +192,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
 
         it("displays table headings", () => {
             const cells = screen.getAllByRole("columnheader");
+
             expect(cells[0]).toHaveTextContent("Questionnaire");
             expect(cells[1]).toHaveTextContent("Serial Number");
             expect(cells[2]).toHaveTextContent("Call Start Time");
@@ -198,6 +205,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
             const rows = screen.getAllByRole("row");
 
             const row1 = within(rows[1]).getAllByRole("cell");
+
             expect(row1[0]).toHaveTextContent("LMS2202_TX9");
             expect(row1[1]).toHaveTextContent("101010");
             expect(row1[2]).toHaveTextContent("01/08/2022 02:02:03"); // BST adds an hour
@@ -206,6 +214,7 @@ describe("RenderInterviewerCallHistoryReport", () => {
             expect(row1[5]).toHaveTextContent("320");
 
             const row2 = within(rows[2]).getAllByRole("cell");
+
             expect(row2[0]).toHaveTextContent("DST2111Z");
             expect(row2[1]).toHaveTextContent("202020");
             expect(row2[2]).toHaveTextContent("06/01/2022 04:05:06");

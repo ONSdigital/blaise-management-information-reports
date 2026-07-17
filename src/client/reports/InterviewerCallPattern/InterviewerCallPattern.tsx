@@ -1,14 +1,16 @@
 import React, {
-    ReactElement, useCallback, useMemo, useState,
+    type ReactElement, useCallback, useMemo, useState,
 } from "react";
-import InterviewerFilter, { InterviewerFilterQuery } from "../filters/InterviewerFilter";
+
+import InterviewerFilter, { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 import QuestionnaireFilter from "../filters/QuestionnaireFilter";
+
 import RenderInterviewerCallPatternReport from "./RenderInterviewerCallPatternReport";
 
 enum Step {
-    // eslint-disable-next-line @typescript-eslint/no-shadow
+     
     InterviewerFilter,
-    // eslint-disable-next-line @typescript-eslint/no-shadow
+     
     QuestionnaireFilter,
     RenderReport,
 }
@@ -40,9 +42,9 @@ function InterviewerCallPattern(): ReactElement {
         setActiveStep((current) => current - 2);
     }, [setActiveStep]);
 
-    // eslint-disable-next-line consistent-return
+     
     const currentStep = useMemo(() => {
-        // eslint-disable-next-line default-case
+         
         switch (activeStep) {
             case Step.InterviewerFilter:
                 return (
@@ -64,6 +66,7 @@ function InterviewerCallPattern(): ReactElement {
                 );
             case Step.RenderReport:
                 console.log(`Steps questionnaires ${questionnaires}`);
+
                 return (
                     <RenderInterviewerCallPatternReport
                         interviewerFilterQuery={interviewerFilterQuery}

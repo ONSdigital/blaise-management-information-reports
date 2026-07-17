@@ -1,16 +1,17 @@
-import { defineFeature, loadFeature } from "jest-cucumber";
 import { render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { AuthClient } from "blaise-login-react-client";
+import { defineFeature, loadFeature } from "jest-cucumber";
 import React from "react";
 import { act } from "react-dom/test-utils";
-import userEvent from "@testing-library/user-event";
-import { AuthClient } from "blaise-login-react-client";
-import MockAdapter from "axios-mock-adapter";
+import { BrowserRouter } from "react-router-dom";
 import { vi } from "vitest";
-import axios from "axios";
-import { InterviewerCallHistoryReport } from "../../interfaces";
-import flushPromises from "../../tests/utilities";
+
 import App from "../../App";
+import { type InterviewerCallHistoryReport } from "../../interfaces";
+import flushPromises from "../../tests/utilities";
 import "@testing-library/jest-dom";
 
 const mockAdapter = new MockAdapter(axios);

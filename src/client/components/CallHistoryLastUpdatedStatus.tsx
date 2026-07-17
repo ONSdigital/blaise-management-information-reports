@@ -1,8 +1,9 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { type ReactElement, useEffect, useState } from "react";
 import TimeAgo from "react-timeago";
-import { getInterviewerCallHistoryStatus } from "../utils/HTTP";
-import { CallHistoryStatus } from "../interfaces";
+
+import { type CallHistoryStatus } from "../interfaces";
 import { formatDateAndTime } from "../utils/DateFormatter";
+import { getInterviewerCallHistoryStatus } from "../utils/HTTP";
 
 function displayResult(reportLastUpdatedDate: Date | "") {
     const date = formatDateAndTime(reportLastUpdatedDate);
@@ -38,8 +39,10 @@ function CallHistoryLastUpdatedStatus(): ReactElement {
         getInterviewerCallHistoryStatus().then((callHistoryStatus: CallHistoryStatus | undefined) => {
             if (!callHistoryStatus) {
                 setReportStatusFailed(true);
+
                 return;
             }
+
             setReportLastUpdatedDate(new Date(callHistoryStatus.last_updated));
         });
     }, []);

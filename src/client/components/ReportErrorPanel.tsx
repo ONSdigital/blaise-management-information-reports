@@ -1,5 +1,5 @@
-import React, { ReactElement, useEffect } from "react";
 import { Panel } from "blaise-design-system-react-components";
+import React, { type ReactElement, useEffect } from "react";
 
 interface Props {
     error: boolean;

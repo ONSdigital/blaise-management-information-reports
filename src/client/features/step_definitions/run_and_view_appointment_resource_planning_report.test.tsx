@@ -1,16 +1,17 @@
-import { defineFeature, loadFeature } from "jest-cucumber";
-import { BrowserRouter } from "react-router-dom";
-import { render, screen, waitFor } from "@testing-library/react";
-import React from "react";
 import { fireEvent } from "@testing-library/dom";
-import { act } from "react-dom/test-utils";
-import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
-import { afterAll, beforeEach, vi } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { AppointmentResourcePlanningReportData } from "../../interfaces";
-import flushPromises from "../../tests/utilities";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { defineFeature, loadFeature } from "jest-cucumber";
+import React from "react";
+import { act } from "react-dom/test-utils";
+import { BrowserRouter } from "react-router-dom";
+import { afterAll, beforeEach, vi } from "vitest";
+
 import App from "../../App";
+import { type AppointmentResourcePlanningReportData } from "../../interfaces";
+import flushPromises from "../../tests/utilities";
 import "@testing-library/jest-dom";
 import { MockAuthenticate } from "../../test-utils/authenticate.mock";
 
@@ -130,6 +131,7 @@ defineFeature(feature, (test) => {
                 expect(screen.getByText("Respondent Name")).toBeInTheDocument();
                 const list = screen.queryAllByTestId(/report-table-row/i);
                 const listItemOne = list[0].textContent;
+
                 expect(listItemOne).toEqual("LMS2101_AA110:00English123456012345666666Jake Peralta");
             });
         });
@@ -205,6 +207,7 @@ defineFeature(feature, (test) => {
                 expect(screen.getByText("Respondent Name")).toBeInTheDocument();
                 const list = screen.queryAllByTestId(/report-table-row/i);
                 const listItemOne = list[0].textContent;
+
                 expect(listItemOne).toEqual("LMS2101_AA110:00English123456");
             });
         });

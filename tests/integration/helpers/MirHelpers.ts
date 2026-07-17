@@ -1,6 +1,6 @@
-import { Page } from "@playwright/test";
+import { type Page } from "@playwright/test";
+import { type NewUser } from "blaise-api-node-client";
 import moment from "moment";
-import { NewUser } from "blaise-api-node-client";
 
 const REPORTS_URL = process.env.REPORTS_URL;
 
@@ -23,6 +23,8 @@ export async function loginToMir(page: Page, userCredentials: NewUser): Promise<
 
 export function createDateForTomorrow(): string {
     const tomorrow = new Date();
+
     tomorrow.setDate(tomorrow.getDate() + 1);
+
     return moment(tomorrow).format("DD/MM/YYYY");
 }

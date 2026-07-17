@@ -1,17 +1,20 @@
 import "@testing-library/jest-dom";
-import React from "react";
-import { render, RenderResult, waitFor } from "@testing-library/react";
 import { fireEvent, screen } from "@testing-library/dom";
+import { render, type RenderResult, waitFor } from "@testing-library/react";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import React from "react";
 import { act } from "react-dom/test-utils";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
-import QuestionnaireSelector from "./QuestionnaireSelector";
+
 import flushPromises from "../tests/utilities";
+
+import QuestionnaireSelector from "./QuestionnaireSelector";
 
 const mockAdapter = new MockAdapter(axios);
 
 const questionnairesReturned = ["LMS2101_AA1", "LMS2101_BB1", "LMS2101_CC1"];
+
 describe("QuestionnaireSelector tests", () => {
     let setSelectedQuestionnaires: (questionnaires: string[]) => void;
     let submit: () => void;
@@ -63,6 +66,7 @@ describe("QuestionnaireSelector tests", () => {
 
         it("displays a tick in the checkbox", () => {
             const checkBox = screen.getByRole("checkbox", { name: "LMS2101_BB1" }, { checked: false });
+
             fireEvent.click(checkBox);
             expect(screen.getByRole("checkbox", { name: "LMS2101_BB1" }, { checked: true }));
         });
@@ -70,6 +74,7 @@ describe("QuestionnaireSelector tests", () => {
         it("returns the selected questionnaires when submitted", async () => {
             expect(screen.getByRole("checkbox", { name: "LMS2101_AA1" })).toBeChecked();
             const checkBox = screen.getByRole("checkbox", { name: "LMS2101_BB1" }, { checked: false });
+
             fireEvent.click(checkBox);
             fireEvent.click(screen.getByRole("button", { name: "Run report" }));
             await waitFor(() => expect(submit).toHaveBeenCalled());

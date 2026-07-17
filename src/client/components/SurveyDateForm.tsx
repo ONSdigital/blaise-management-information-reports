@@ -1,5 +1,6 @@
-import React, { ReactElement } from "react";
 import { StyledForm } from "blaise-design-system-react-components";
+import React, { type ReactElement } from "react";
+
 import { DateField, SurveyField } from "./FormFields";
 
 interface Props {

@@ -1,9 +1,10 @@
-import React, { ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import "@testing-library/jest-dom";
 import { render, waitFor } from "@testing-library/react";
 import { screen } from "@testing-library/dom";
 import { vi } from "vitest";
-import { DataRenderer, LoadData } from "./LoadData";
+
+import { type DataRenderer, LoadData } from "./LoadData";
 
 describe("LoadData", () => {
     const display: DataRenderer<ReactNode> = (data) => <h3>{data}</h3>;
@@ -105,6 +106,7 @@ describe("LoadData", () => {
 
         it("calls onError", async () => {
             const onError = vi.fn();
+
             render(
                 <LoadData
                     dataPromise={Promise.reject(new Error("There was an error"))}
@@ -125,6 +127,7 @@ describe("LoadData", () => {
                     dataPromise={Promise.resolve("Old content")}
                 >{display}</LoadData>,
             );
+
             rerender = view.rerender;
             expect(await screen.findByRole("heading", { name: "Old content" })).toBeVisible();
             expect(screen.queryByText("Loading...")).not.toBeInTheDocument();

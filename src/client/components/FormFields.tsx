@@ -2,22 +2,27 @@ import { formatISODate } from "../utils/DateFormatter";
 
 const validateInterviewer = (value: string) => {
     let error;
+
     if (value === "" || value === undefined) {
         error = "Enter a interviewer ID";
     }
+
     return error;
 };
 
 const validateDate = (value: string) => {
     let error;
+
     if (value === "" || value === undefined) {
         error = "Enter a date";
+
         return error;
     }
 
     if (value.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/) === null) {
         error = "Enter a valid date";
     }
+
     return error;
 };
 
