@@ -8,6 +8,9 @@ import { type BertClient } from "../bertClient.js";
 
 import type AuditLogger from "../auditLogger.js";
 
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 function isSafePathSegment(value: unknown): value is string {
     return typeof value === "string" && /^[A-Za-z0-9_-]+$/.test(value);
 }
