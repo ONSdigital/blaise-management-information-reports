@@ -17,7 +17,7 @@ import {
     type InvalidCaseSummaryGroup,
     type SummaryRenderableRecord,
 } from "../../interfaces/index.js";
-import { getInterviewerCallPatternReport } from "../../utils/http/Reports.js";
+import { getInterviewerCallPatternReport } from "../../utils/HTTP/Reports.js";
 import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<Record<string, unknown>>;
