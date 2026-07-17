@@ -3,7 +3,7 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "outDir": "build/server",
-    "rootDir": "src",
+    "rootDir": "src/server",
     "types": [
       "node",
       "vitest/globals"
