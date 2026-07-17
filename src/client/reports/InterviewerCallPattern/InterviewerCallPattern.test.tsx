@@ -8,7 +8,7 @@ import React, { act } from "react";
 import { MemoryRouter } from "react-router-dom";
 import { vi } from "vitest";
 
-import { type InterviewerCallPatternReport } from "../../interfaces";
+import { type InterviewerCallPatternReport } from "../../types/interfaces";
 
 import InterviewerCallPattern, {
     callStatusSection,

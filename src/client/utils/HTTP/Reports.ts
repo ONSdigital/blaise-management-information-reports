@@ -6,7 +6,7 @@ import {
     type CallHistoryStatus,
     type InterviewerCallHistoryReport,
     type InterviewerCallPatternReport,
-} from "../../../client/interfaces";
+} from "../../types/interfaces";
 import axiosConfig from "../../api/axiosConfig.js"
 import { formatISODate } from "../DateFormatter.js";
 

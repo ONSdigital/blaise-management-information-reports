@@ -1,7 +1,7 @@
 import React, { type ReactElement, useEffect, useState } from "react";
 import TimeAgo from "react-timeago";
 
-import { type CallHistoryStatus } from "../interfaces";
+import { type CallHistoryStatus } from "../types/interfaces";
 import { formatDateAndTime } from "../utils/DateFormatter";
 import { getInterviewerCallHistoryStatus } from "../utils/HTTP";
 

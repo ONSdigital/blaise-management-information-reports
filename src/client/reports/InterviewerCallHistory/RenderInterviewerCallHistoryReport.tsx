@@ -7,7 +7,7 @@ import CallHistoryReportTable from "../../components/CallHistoryReportTable";
 import FilterSummary from "../../components/FilterSummary";
 import { LoadData } from "../../components/LoadData";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
-import { type InterviewerCallHistoryReport } from "../../interfaces";
+import { type InterviewerCallHistoryReport } from "../../types/interfaces";
 import { formatDateAndTime } from "../../utils/DateFormatter";
 import { getInterviewerCallHistoryReport } from "../../utils/HTTP";
 import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";

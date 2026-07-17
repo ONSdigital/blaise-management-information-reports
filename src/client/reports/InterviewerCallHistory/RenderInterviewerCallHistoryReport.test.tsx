@@ -10,7 +10,7 @@ import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import axiosConfig from "../../api/axiosConfig";
-import { type InterviewerCallHistoryReport } from "../../interfaces";
+import { type InterviewerCallHistoryReport } from "../../types/interfaces";
 import flushPromises from "../../test-utils/flushPromises";
 
 import RenderInterviewerCallHistoryReport from "./RenderInterviewerCallHistoryReport";

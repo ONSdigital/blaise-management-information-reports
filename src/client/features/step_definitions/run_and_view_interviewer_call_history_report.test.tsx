@@ -10,7 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import { vi } from "vitest";
 
 import App from "../../App";
-import { type InterviewerCallHistoryReport } from "../../interfaces";
+import { type InterviewerCallHistoryReport } from "../../types/interfaces";
 import flushPromises from "../../tests/utilities";
 import "@testing-library/jest-dom";
 

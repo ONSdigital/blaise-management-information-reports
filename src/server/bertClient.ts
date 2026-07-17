@@ -1,7 +1,7 @@
 import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { IapProvider } from "blaise-iap-node-provider";
 
-import { type CallHistoryStatus } from "../client/interfaces/index.js";
+import { type CallHistoryStatus } from "../client/types/interfaces.js";
 
 
 

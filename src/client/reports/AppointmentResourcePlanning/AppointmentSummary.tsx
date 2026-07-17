@@ -1,7 +1,7 @@
 import { Panel } from "blaise-design-system-react-components";
 import React, { type ReactElement } from "react";
 
-import { type AppointmentResourcePlanningSummaryReportData } from "../../interfaces";
+import { type AppointmentResourcePlanningSummaryReportData } from "../../types/interfaces";
 
 interface Props {
     data: AppointmentResourcePlanningSummaryReportData[];

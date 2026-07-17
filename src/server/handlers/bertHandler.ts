@@ -1,13 +1,19 @@
 import { type Auth } from "blaise-login-react-server";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone.js";
+import utc from "dayjs/plugin/utc.js";
 import express, { type Request, type Response, type Router } from "express";
 
-import { formatISODate } from "../../client/utils/DateFormatter.js";
 import { type BertClient } from "../bertClient.js";
 
 import type AuditLogger from "../auditLogger.js";
 
 function isSafePathSegment(value: unknown): value is string {
     return typeof value === "string" && /^[A-Za-z0-9_-]+$/.test(value);
+}
+
+function formatISODate(date: Date | string): string {
+    return dayjs(date).tz("Europe/London").format("YYYY-MM-DD");
 }
 
 function toCsvQueryValue(value: unknown): string {

@@ -2,7 +2,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { type InterviewerCallHistoryReport } from "../../../client/interfaces";
+import { type InterviewerCallHistoryReport } from "../../types/interfaces";
 
 import { getInterviewerCallHistoryReport, getQuestionnaireList } from ".";
 

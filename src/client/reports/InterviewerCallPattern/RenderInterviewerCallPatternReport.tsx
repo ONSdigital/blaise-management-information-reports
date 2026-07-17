@@ -16,7 +16,7 @@ import {
     type InterviewerCallPatternReport,
     type InvalidCaseSummaryGroup,
     type SummaryRenderableRecord,
-} from "../../interfaces/index.js";
+} from "../../types/interfaces/index.js";
 import { getInterviewerCallPatternReport } from "../../utils/HTTP/Reports.js";
 import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 

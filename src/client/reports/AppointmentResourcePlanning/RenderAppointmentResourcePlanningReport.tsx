@@ -3,7 +3,7 @@ import { CSVLink } from "react-csv";
 
 import Breadcrumbs from "../../components/Breadcrumbs";
 import ReportErrorPanel from "../../components/ReportErrorPanel";
-import { type AppointmentResourcePlanningReportData, type AppointmentResourcePlanningSummaryReportData } from "../../interfaces";
+import { type AppointmentResourcePlanningReportData, type AppointmentResourcePlanningSummaryReportData } from "../../types/interfaces";
 import { formatDate } from "../../utils/DateFormatter.js";
 import { getAppointmentResourcePlanningReport, getAppointmentResourcePlanningSummaryReport } from "../../utils/HTTP/index.js";
 

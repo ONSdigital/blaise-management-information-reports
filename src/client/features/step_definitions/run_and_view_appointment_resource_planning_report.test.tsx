@@ -10,7 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import { afterAll, beforeEach, vi } from "vitest";
 
 import App from "../../App";
-import { type AppointmentResourcePlanningReportData } from "../../interfaces";
+import { type AppointmentResourcePlanningReportData } from "../../types/interfaces";
 import flushPromises from "../../tests/utilities";
 import "@testing-library/jest-dom";
 import { MockAuthenticate } from "../../test-utils/authenticate.mock";

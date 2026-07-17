@@ -1,7 +1,7 @@
 import { Panel } from "blaise-design-system-react-components";
 import React, { type ReactElement } from "react";
 
-import { type InterviewerCallHistoryReport } from "../interfaces";
+import { type InterviewerCallHistoryReport } from "../types/interfaces";
 import { convertSecondsToMinutesAndSeconds } from "../utils/Converters.js";
 import { formatDateAndTime } from "../utils/DateFormatter.js";
 
