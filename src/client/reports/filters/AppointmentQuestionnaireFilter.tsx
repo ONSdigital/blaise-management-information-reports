@@ -2,9 +2,9 @@ import axios from "axios";
 import { type ReactElement, useCallback } from "react";
 
 import axiosConfig from "../../../client/api/axiosConfig.js";
-import Breadcrumbs from "../../components/Breadcrumbs";
-import { LoadData } from "../../components/LoadData";
-import QuestionnaireSelector from "../../components/QuestionnaireSelector";
+import Breadcrumbs from "../../pages/components/Breadcrumbs.js";
+import { LoadData } from "../../pages/components/LoadData.js";
+import QuestionnaireSelector from "../../pages/components/QuestionnaireSelector.js";
 import { formatDate, formatISODate } from "../../utils/DateFormatter.js";
 import AppointmentResourceDaybatchWarning from "../AppointmentResourcePlanning/AppointmentResourceDaybatchWarning";
 

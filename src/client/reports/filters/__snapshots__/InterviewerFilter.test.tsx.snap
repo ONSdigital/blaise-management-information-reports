@@ -52,7 +52,8 @@ exports[`the interviewer details page renders correctly > matches snapshot 1`] =
             aria-live="polite"
             class="ons-u-fs-s u-mt-s"
           >
-            Data in this report was last updated: 
+            Data in this report was last updated:
+             
             <b>
               Loading
             </b>
@@ -314,7 +315,8 @@ exports[`the interviewer details page renders correctly > matches snapshot 1`] =
           aria-live="polite"
           class="ons-u-fs-s u-mt-s"
         >
-          Data in this report was last updated: 
+          Data in this report was last updated:
+           
           <b>
             Loading
           </b>

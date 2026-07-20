@@ -1,8 +1,8 @@
 import React, { type ReactElement, useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
-import ReportErrorPanel from "../../components/ReportErrorPanel";
+import Breadcrumbs from "../../pages/components/Breadcrumbs";
+import ReportErrorPanel from "../../pages/components/ReportErrorPanel";
 import {
   type AppointmentResourcePlanningReportData,
   type AppointmentResourcePlanningSummaryReportData,
@@ -11,7 +11,7 @@ import { formatDate } from "../../utils/DateFormatter.js";
 import {
   getAppointmentResourcePlanningReport,
   getAppointmentResourcePlanningSummaryReport,
-} from "../../utils/HTTP/index.js";
+} from "../../query/http/index.js";
 
 import AppointmentResourceDaybatchWarning from "./AppointmentResourceDaybatchWarning";
 import AppointmentResults from "./AppointmentResults";

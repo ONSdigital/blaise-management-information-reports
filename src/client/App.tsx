@@ -11,7 +11,7 @@ import React, { type ReactElement, useEffect, useEffectEvent, useState } from "r
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 
 import { AUTH_EXPIRED_EVENT_NAME } from "./api/axiosConfig";
-import ReportDetails from "./components/ReportDetails";
+import ReportDetails from "./pages/components/ReportDetails";
 import AppointmentResourcePlanning from "./reports/AppointmentResourcePlanning/AppointmentResourcePlanning";
 import InterviewerCallHistory from "./reports/InterviewerCallHistory/InterviewerCallHistory";
 import InterviewerCallPattern from "./reports/InterviewerCallPattern/InterviewerCallPattern";

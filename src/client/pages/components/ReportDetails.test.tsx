@@ -5,7 +5,7 @@ import "@testing-library/jest-dom";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 
-import flushPromises from "../tests/utilities";
+import flushPromises from "../../tests/utilities";
 
 import ReportDetails from "./ReportDetails";
 

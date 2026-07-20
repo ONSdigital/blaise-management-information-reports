@@ -7,7 +7,7 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import flushPromises from "../tests/utilities";
+import flushPromises from "../../tests/utilities";
 
 import QuestionnaireSelector from "./QuestionnaireSelector";
 

@@ -9,7 +9,8 @@ exports[`CallHistoryLastUpdatedStatus component > matches snapshot 1`] = `
         aria-live="polite"
         class="ons-u-fs-s u-mt-s"
       >
-        Data in this report was last updated: 
+        Data in this report was last updated:
+         
         <b>
           <time
             datetime="2000-01-01T10:00:00.000Z"
@@ -32,7 +33,8 @@ exports[`CallHistoryLastUpdatedStatus component > matches snapshot 1`] = `
       aria-live="polite"
       class="ons-u-fs-s u-mt-s"
     >
-      Data in this report was last updated: 
+      Data in this report was last updated:
+       
       <b>
         <time
           datetime="2000-01-01T10:00:00.000Z"
@@ -112,7 +114,8 @@ exports[`call history last updated status with invalid data > matches snapshot 1
         aria-live="polite"
         class="ons-u-fs-s u-mt-s"
       >
-        Data in this report was last updated: 
+        Data in this report was last updated:
+         
         <b>
           Invalid Date
         </b>
@@ -129,7 +132,8 @@ exports[`call history last updated status with invalid data > matches snapshot 1
       aria-live="polite"
       class="ons-u-fs-s u-mt-s"
     >
-      Data in this report was last updated: 
+      Data in this report was last updated:
+       
       <b>
         Invalid Date
       </b>

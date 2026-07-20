@@ -1,8 +1,8 @@
 import React, { type ReactElement, useCallback } from "react";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
-import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
-import SurveyInterviewerStartDateEndDateForm from "../../components/SurveyInterviewerStartDateEndDateForm";
+import Breadcrumbs from "../../pages/components/Breadcrumbs";
+import CallHistoryLastUpdatedStatus from "../../pages/components/CallHistoryLastUpdatedStatus";
+import SurveyInterviewerStartDateEndDateForm from "../../pages/components/SurveyInterviewerStartDateEndDateForm";
 
 export interface InterviewerFilterQuery {
   interviewer: string;

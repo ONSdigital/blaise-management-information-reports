@@ -6,13 +6,13 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 
-import flushPromises from "../tests/utilities";
+import flushPromises from "../../tests/utilities";
 
-import SurveyInterviewerStartDateEndDateForm from "./SurveyInterviewerStartDateEndDateForm";
+import SurveyDateForm from "./SurveyDateForm";
 
 const christmasEve97 = "1997-12-24";
 
-describe("form - survey, interviewer, start date, end date", () => {
+describe("form - survey, date", () => {
   beforeEach(() => {
     MockDate.set(new Date(christmasEve97));
   });
@@ -24,13 +24,7 @@ describe("form - survey, interviewer, start date, end date", () => {
   it("matches snapshot", async () => {
     const wrapper = render(
       <MemoryRouter>
-        <SurveyInterviewerStartDateEndDateForm
-          interviewer=""
-          surveyTLA=""
-          startDate={new Date()}
-          endDate={new Date()}
-          onSubmit={() => true}
-        />
+        <SurveyDateForm onSubmitFunction={() => true} />
       </MemoryRouter>,
     );
 
@@ -45,13 +39,7 @@ describe("form - survey, interviewer, start date, end date", () => {
     await act(async () => {
       render(
         <MemoryRouter>
-          <SurveyInterviewerStartDateEndDateForm
-            interviewer=""
-            surveyTLA=""
-            startDate={new Date()}
-            endDate={new Date()}
-            onSubmit={() => true}
-          />
+          <SurveyDateForm onSubmitFunction={() => true} />
         </MemoryRouter>,
       );
     });
@@ -61,9 +49,7 @@ describe("form - survey, interviewer, start date, end date", () => {
     expect(screen.queryByText("Labour Market Survey")).toBeVisible();
     expect(screen.queryByText("OPN")).toBeVisible();
     expect(screen.queryByText("Opinions and Lifestyle Survey")).toBeVisible();
-    expect(screen.queryByText("Interviewer ID")).toBeVisible();
-    expect(screen.queryByText("Start date")).toBeVisible();
-    expect(screen.queryByText("End date")).toBeVisible();
-    expect(screen.queryByText("Next")).toBeVisible();
+    expect(screen.queryByText("Date")).toBeVisible();
+    expect(screen.queryByText("Run")).toBeVisible();
   });
 });

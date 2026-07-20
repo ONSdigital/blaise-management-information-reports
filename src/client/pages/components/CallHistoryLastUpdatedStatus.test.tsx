@@ -8,7 +8,7 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import timekeeper from "timekeeper";
 
-import flushPromises from "../tests/utilities";
+import flushPromises from "../../tests/utilities";
 
 import CallHistoryLastUpdatedStatus from "./CallHistoryLastUpdatedStatus";
 

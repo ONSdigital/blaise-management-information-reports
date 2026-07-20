@@ -1,15 +1,15 @@
 import React, { type ReactElement, useState } from "react";
 import { CSVLink } from "react-csv";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
-import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
-import CallHistoryReportTable from "../../components/CallHistoryReportTable";
-import FilterSummary from "../../components/FilterSummary";
-import { LoadData } from "../../components/LoadData";
-import ReportErrorPanel from "../../components/ReportErrorPanel";
+import Breadcrumbs from "../../pages/components/Breadcrumbs";
+import CallHistoryLastUpdatedStatus from "../../pages/components/CallHistoryLastUpdatedStatus";
+import CallHistoryReportTable from "../../pages/components/CallHistoryReportTable";
+import FilterSummary from "../../pages/components/FilterSummary";
+import { LoadData } from "../../pages/components/LoadData";
+import ReportErrorPanel from "../../pages/components/ReportErrorPanel";
 import { type InterviewerCallHistoryReport } from "../../types/interfaces";
 import { formatDateAndTime } from "../../utils/DateFormatter";
-import { getInterviewerCallHistoryReport } from "../../utils/HTTP";
+import { getInterviewerCallHistoryReport } from "../../query/http";
 import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<Record<string, unknown>>;

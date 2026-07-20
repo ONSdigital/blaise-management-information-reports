@@ -109,7 +109,8 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
           aria-live="polite"
           class="ons-u-fs-s u-mt-s"
         >
-          Data in this report was last updated: 
+          Data in this report was last updated:
+           
           <b>
             <time
               datetime="2000-01-01T10:00:00.000Z"
@@ -701,7 +702,8 @@ exports[`function InterviewerCallPattern() with data and invalid data > should m
         aria-live="polite"
         class="ons-u-fs-s u-mt-s"
       >
-        Data in this report was last updated: 
+        Data in this report was last updated:
+         
         <b>
           <time
             datetime="2000-01-01T10:00:00.000Z"
@@ -1350,7 +1352,8 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
           aria-live="polite"
           class="ons-u-fs-s u-mt-s"
         >
-          Data in this report was last updated: 
+          Data in this report was last updated:
+           
           <b>
             <time
               datetime="2000-01-01T10:00:00.000Z"
@@ -1919,7 +1922,8 @@ exports[`function InterviewerCallPattern() with happy data > should match the sn
         aria-live="polite"
         class="ons-u-fs-s u-mt-s"
       >
-        Data in this report was last updated: 
+        Data in this report was last updated:
+         
         <b>
           <time
             datetime="2000-01-01T10:00:00.000Z"
@@ -2545,7 +2549,8 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
           aria-live="polite"
           class="ons-u-fs-s u-mt-s"
         >
-          Data in this report was last updated: 
+          Data in this report was last updated:
+           
           <b>
             <time
               datetime="2000-01-01T10:00:00.000Z"
@@ -2726,7 +2731,8 @@ exports[`function InterviewerCallPattern() with only invalid data > should match
         aria-live="polite"
         class="ons-u-fs-s u-mt-s"
       >
-        Data in this report was last updated: 
+        Data in this report was last updated:
+         
         <b>
           <time
             datetime="2000-01-01T10:00:00.000Z"
@@ -2966,7 +2972,8 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
           aria-live="polite"
           class="ons-u-fs-s u-mt-s"
         >
-          Data in this report was last updated: 
+          Data in this report was last updated:
+           
           <b>
             Invalid Date
           </b>
@@ -3134,7 +3141,8 @@ exports[`function InterviewerCallPattern() without data > should match the snaps
         aria-live="polite"
         class="ons-u-fs-s u-mt-s"
       >
-        Data in this report was last updated: 
+        Data in this report was last updated:
+         
         <b>
           Invalid Date
         </b>

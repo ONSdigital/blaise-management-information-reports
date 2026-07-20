@@ -1,8 +1,8 @@
 import { StyledForm } from "blaise-design-system-react-components";
 import React, { type ReactElement, useCallback } from "react";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
-import { DateField, SurveyField } from "../../components/FormFields";
+import Breadcrumbs from "../../pages/components/Breadcrumbs";
+import { DateField, SurveyField } from "../../pages/components/FormFields";
 import AppointmentResourceDaybatchWarning from "../AppointmentResourcePlanning/AppointmentResourceDaybatchWarning";
 
 interface AppointmentFilterPageProps {

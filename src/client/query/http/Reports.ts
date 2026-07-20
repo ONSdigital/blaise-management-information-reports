@@ -7,8 +7,8 @@ import {
   type CallHistoryStatus,
   type InterviewerCallHistoryReport,
   type InterviewerCallPatternReport,
-} from "../../types/interfaces";
-import { formatISODate } from "../DateFormatter.js";
+} from "../../types/interfaces/index.js";
+import { formatISODate } from "../../utils/DateFormatter.js";
 
 import type { AxiosResponse } from "axios";
 

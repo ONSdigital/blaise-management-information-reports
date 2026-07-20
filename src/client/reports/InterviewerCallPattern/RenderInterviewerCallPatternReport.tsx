@@ -7,17 +7,17 @@ import {
 import React, { type ReactElement, type ReactNode, useCallback, useState } from "react";
 import { CSVLink } from "react-csv";
 
-import Breadcrumbs from "../../components/Breadcrumbs";
-import CallHistoryLastUpdatedStatus from "../../components/CallHistoryLastUpdatedStatus";
-import FilterSummary from "../../components/FilterSummary";
-import { LoadData } from "../../components/LoadData";
-import ReportErrorPanel from "../../components/ReportErrorPanel";
+import Breadcrumbs from "../../pages/components/Breadcrumbs";
+import CallHistoryLastUpdatedStatus from "../../pages/components/CallHistoryLastUpdatedStatus";
+import FilterSummary from "../../pages/components/FilterSummary";
+import { LoadData } from "../../pages/components/LoadData";
+import ReportErrorPanel from "../../pages/components/ReportErrorPanel";
 import {
   type InterviewerCallPatternReport,
   type InvalidCaseSummaryGroup,
   type SummaryRenderableRecord,
 } from "../../types/interfaces/index.js";
-import { getInterviewerCallPatternReport } from "../../utils/HTTP/Reports.js";
+import { getInterviewerCallPatternReport } from "../../query/http/Reports.js";
 import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<Record<string, unknown>>;
