@@ -18,143 +18,141 @@ import QuestionnaireFilter from "./QuestionnaireFilter";
 
 const mockAdapter = new MockAdapter(axios);
 
-const questionnaireDataReturned: string[] = [
-    "LMS2101_AA1",
-    "LMS2101_AA2",
-];
+const questionnaireDataReturned: string[] = ["LMS2101_AA1", "LMS2101_AA2"];
 
 dateFormatter.extend(utc);
 dateFormatter.extend(timezone);
 
 function DateHelper() {
-    const today = new Date();
-    const lastYear = new Date(today);
+  const today = new Date();
+  const lastYear = new Date(today);
 
-    lastYear.setFullYear(today.getFullYear() - 1);
+  lastYear.setFullYear(today.getFullYear() - 1);
 
-    return lastYear.toUTCString();
+  return lastYear.toUTCString();
 }
 
 describe("the interviewer details page renders correctly", () => {
-    let setQuestionnaires: (questionnaires: string[]) => void;
-    let submit: () => void;
+  let setQuestionnaires: (questionnaires: string[]) => void;
+  let submit: () => void;
 
-    beforeEach(() => {
-        mockAdapter
-            .onGet("/api/reports/call-history-status")
-            // .reply(200, {last_updated: "Sat, 01 Jan 2000 10:00:00 GMT"});
-            .reply(200, { last_updated: subtractYears(1) });
-        setQuestionnaires = vi.fn();
-        submit = vi.fn();
-    });
+  beforeEach(() => {
+    mockAdapter
+      .onGet("/api/reports/call-history-status")
+      // .reply(200, {last_updated: "Sat, 01 Jan 2000 10:00:00 GMT"});
+      .reply(200, { last_updated: subtractYears(1) });
+    setQuestionnaires = vi.fn();
+    submit = vi.fn();
+  });
 
-    afterEach(() => {
-        mockAdapter.reset();
-    });
+  afterEach(() => {
+    mockAdapter.reset();
+  });
 
-    function renderComponent() {
-        const interviewerFilterQuery: InterviewerFilterQuery = {
-            interviewer: "James",
-            startDate: new Date("2022-01-01"),
-            endDate: new Date("2022-01-05"),
-            surveyTla: "LMS",
-        };
+  function renderComponent() {
+    const interviewerFilterQuery: InterviewerFilterQuery = {
+      interviewer: "James",
+      startDate: new Date("2022-01-01"),
+      endDate: new Date("2022-01-05"),
+      surveyTla: "LMS",
+    };
 
-        return render(
-            <MemoryRouter>
-                <QuestionnaireFilter
-                    interviewerFilterQuery={interviewerFilterQuery}
-                    questionnaires={["LMS2101_AA1"]}
-                    setQuestionnaires={setQuestionnaires}
-                    onSubmit={submit}
-                    navigateBack={() => { }}
-                />
-            </MemoryRouter>,
-        );
-    }
+    return render(
+      <MemoryRouter>
+        <QuestionnaireFilter
+          interviewerFilterQuery={interviewerFilterQuery}
+          questionnaires={["LMS2101_AA1"]}
+          setQuestionnaires={setQuestionnaires}
+          onSubmit={submit}
+          navigateBack={() => {}}
+        />
+      </MemoryRouter>,
+    );
+  }
 
-    it("posts the query params", async () => {
-        expect.assertions(4);
-        mockAdapter.onPost(
-            "/api/questionnaires",
-            {
-                asymmetricMatch: (body: any) => {
-                    expect(body.survey_tla).toBe("LMS");
-                    expect(body.interviewer).toBe("James");
-                    expect(body.start_date).toBe("2022-01-01");
-                    expect(body.end_date).toBe("2022-01-05");
+  it("posts the query params", async () => {
+    expect.assertions(4);
+    mockAdapter
+      .onPost("/api/questionnaires", {
+        asymmetricMatch: (body: unknown) => {
+          const requestBody = body as Record<string, string>;
 
-                    return true;
-                },
-            },
-        ).reply(200, questionnaireDataReturned);
-        renderComponent();
+          expect(requestBody.survey_tla).toBe("LMS");
+          expect(requestBody.interviewer).toBe("James");
+          expect(requestBody.start_date).toBe("2022-01-01");
+          expect(requestBody.end_date).toBe("2022-01-05");
 
-        // Wait for loading to finish (avoid warnings)
-        await screen.findByText("LMS2101_AA1");
-    });
+          return true;
+        },
+      })
+      .reply(200, questionnaireDataReturned);
+    renderComponent();
 
-    it("matches loading snapshot", async () => {
-        mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
-        const wrapper = renderComponent();
+    // Wait for loading to finish (avoid warnings)
+    await screen.findByText("LMS2101_AA1");
+  });
 
-        expect(wrapper).toMatchSnapshot();
+  it("matches loading snapshot", async () => {
+    mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
+    const wrapper = renderComponent();
 
-        // Wait for loading to finish (avoid warnings)
-        await screen.findByText("LMS2101_AA1");
-    });
+    expect(wrapper).toMatchSnapshot();
 
-    it("matches snapshot", async () => {
-        mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
-        timekeeper.freeze(new Date("2014-01-01"));
+    // Wait for loading to finish (avoid warnings)
+    await screen.findByText("LMS2101_AA1");
+  });
 
-        mockAdapter
-            .onGet("/api/reports/call-history-status")
-            .reply(200, { last_updated: DateHelper() });
+  it("matches snapshot", async () => {
+    mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
+    timekeeper.freeze(new Date("2014-01-01"));
 
-        const wrapper = renderComponent();
+    mockAdapter
+      .onGet("/api/reports/call-history-status")
+      .reply(200, { last_updated: DateHelper() });
 
-        await screen.findByText("LMS2101_AA1");
+    const wrapper = renderComponent();
 
-        expect(wrapper).toMatchSnapshot();
-        timekeeper.reset();
-    });
+    await screen.findByText("LMS2101_AA1");
 
-    it("renders correctly", async () => {
-        mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
+    expect(wrapper).toMatchSnapshot();
+    timekeeper.reset();
+  });
 
-        renderComponent();
+  it("renders correctly", async () => {
+    mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
 
-        expect(await screen.findByText(/Select questionnaire/i)).toBeVisible();
-        expect(await screen.findByText(/Data in this report was last updated:/i)).toBeVisible();
+    renderComponent();
 
-        expect(screen.getByText(/1 year ago/i)).toBeVisible();
+    expect(await screen.findByText(/Select questionnaire/i)).toBeVisible();
+    expect(await screen.findByText(/Data in this report was last updated:/i)).toBeVisible();
 
-        expect(screen.getByText(/Interviewer: James/i)).toBeVisible();
-        expect(screen.getByText(/Period: 01\/01\/2022–05\/01\/2022/i)).toBeVisible();
+    expect(screen.getByText(/1 year ago/i)).toBeVisible();
 
-        expect(screen.getByText(/Questionnaire: LMS2101_AA1/i)).toBeVisible();
-        expect(screen.getByText(/Run report/i)).toBeVisible();
-    });
+    expect(screen.getByText(/Interviewer: James/i)).toBeVisible();
+    expect(screen.getByText(/Period: 01\/01\/2022–05\/01\/2022/i)).toBeVisible();
 
-    it("displays a message when no questionnaires are returned", async () => {
-        mockAdapter.onPost("/api/questionnaires").reply(200, []);
-        renderComponent();
-        await screen.findByText("No questionnaires found for given parameters.");
-    });
+    expect(screen.getByText(/Questionnaire: LMS2101_AA1/i)).toBeVisible();
+    expect(screen.getByText(/Run report/i)).toBeVisible();
+  });
 
-    it("displays an error when an error HTTP status is returned", async () => {
-        mockAdapter.onPost("/api/questionnaires").reply(500, []);
-        renderComponent();
-        await screen.findByText("An error occurred while fetching the list of questionnaires");
-    });
+  it("displays a message when no questionnaires are returned", async () => {
+    mockAdapter.onPost("/api/questionnaires").reply(200, []);
+    renderComponent();
+    await screen.findByText("No questionnaires found for given parameters.");
+  });
 
-    it("displays an error when a non-200 success HTTP status is returned", async () => {
-        mockAdapter.onPost("/api/questionnaires").reply(201, questionnaireDataReturned);
-        renderComponent();
-        await screen.findByText("An error occurred while fetching the list of questionnaires");
-    });
-    /*
+  it("displays an error when an error HTTP status is returned", async () => {
+    mockAdapter.onPost("/api/questionnaires").reply(500, []);
+    renderComponent();
+    await screen.findByText("An error occurred while fetching the list of questionnaires");
+  });
+
+  it("displays an error when a non-200 success HTTP status is returned", async () => {
+    mockAdapter.onPost("/api/questionnaires").reply(201, questionnaireDataReturned);
+    renderComponent();
+    await screen.findByText("An error occurred while fetching the list of questionnaires");
+  });
+  /*
     it("checks current value questionnaires by default", async () => {
         mockAdapter.onPost("/api/questionnaires").reply(200, questionnaireDataReturned);
         renderComponent();

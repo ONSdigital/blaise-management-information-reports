@@ -1,14 +1,13 @@
 import { expect, test } from "@playwright/test";
-import axios from 'axios';
+import axios from "axios";
 import { BlaiseApiClient, type NewUser } from "blaise-api-node-client";
 import dotenv from "dotenv";
 
 import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
 import { loginToMir } from "./helpers/MirHelpers";
 
-
 if (process.env.NODE_ENV !== "production") {
-    dotenv.config({ path: `${__dirname}/../../.env` });
+  dotenv.config({ path: `${__dirname}/../../.env` });
 }
 
 const restApiUrl = process.env.REST_API_URL || "http://localhost:1337";
@@ -19,14 +18,14 @@ const httpClient = axios.create();
 const iapToken = process.env.IAP_TOKEN;
 
 if (iapToken) {
-    console.log('Using pre-generated IAP token from environment');
-    httpClient.interceptors.request.use((config) => {
-        config.headers['Authorization'] = `Bearer ${iapToken}`;
+  console.log("Using pre-generated IAP token from environment");
+  httpClient.interceptors.request.use((config) => {
+    config.headers["Authorization"] = `Bearer ${iapToken}`;
 
-        return config;
-    });
+    return config;
+  });
 } else {
-    console.warn('No IAP_TOKEN found in environment - requests may fail');
+  console.warn("No IAP_TOKEN found in environment - requests may fail");
 }
 
 const blaiseApiClient = new BlaiseApiClient(restApiUrl);
@@ -36,43 +35,51 @@ blaiseApiClient.httpClient = httpClient;
 let userCredentials: NewUser;
 
 if (!questionnaireName) {
-    console.error("Questionnaire name is undefined");
-    process.exit(1);
+  console.error("Questionnaire name is undefined");
+  process.exit(1);
 }
 
 if (!serverPark) {
-    console.error("Server park is undefined");
-    process.exit(1);
+  console.error("Server park is undefined");
+  process.exit(1);
 }
 
 test.describe("ARPR without data", () => {
-    test.beforeEach(async ({ page }, testInfo) => {
-        console.log(`Started running before each hook for test ${testInfo.title}`);
-        testInfo.setTimeout(60000);
-        userCredentials = await setupTestUser(blaiseApiClient, serverPark);
-        console.log(`Finished running before each hook for test ${testInfo.title}`);
+  test.beforeEach(async ({ _page }, testInfo) => {
+    console.log(`Started running before each hook for test ${testInfo.title}`);
+    testInfo.setTimeout(60000);
+    userCredentials = await setupTestUser(blaiseApiClient, serverPark);
+    console.log(`Finished running before each hook for test ${testInfo.title}`);
+  });
+  test.afterEach(async ({ _page }, testInfo) => {
+    console.log(`Started running after each hook for test ${testInfo.title}`);
+    await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
+    console.log(`Finished running after each hook for test ${testInfo.title}`);
+  });
+  test("ARPR without data", async ({ page }, testInfo) => {
+    console.log(`Started running ${testInfo.title}`);
+    await loginToMir(page, userCredentials);
+    const appointmentResourcePlanningLink = page.getByRole("link", {
+      name: "Appointment resource planning",
     });
-    test.afterEach(async ({ page }, testInfo) => {
-        console.log(`Started running after each hook for test ${testInfo.title}`);
-        await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
-        console.log(`Finished running after each hook for test ${testInfo.title}`);
-    });
-    test("ARPR without data", async ({ page }, testInfo) => {
-        console.log(`Started running ${testInfo.title}`);
-        await loginToMir(page, userCredentials);
-        const appointmentResourcePlanningLink = page.getByRole("link", { name: "Appointment resource planning" });
 
-        await expect(appointmentResourcePlanningLink).toBeVisible({ timeout: 30000 });
-        await appointmentResourcePlanningLink.click();
-        await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
-        await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Run a Daybatch first to obtain the most accurate results.");
-        await expect(page.locator(".ons-panel__body ").nth(0)).toContainText("Appointments that have already been attempted will not be displayed.");
-        await page.locator("#Date").type("30-06-1990");
-        await page.click("button[type=submit]");
-        await page.waitForSelector("text=Loading", { state: "hidden" });
-        await expect(page.locator(".ons-panel__body ").nth(1)).toContainText("No questionnaires found for given parameters.");
-        console.log(`Finished running ${testInfo.title}`);
-    });
+    await expect(appointmentResourcePlanningLink).toBeVisible({ timeout: 30000 });
+    await appointmentResourcePlanningLink.click();
+    await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
+    await expect(page.locator(".ons-panel__body ").nth(0)).toContainText(
+      "Run a Daybatch first to obtain the most accurate results.",
+    );
+    await expect(page.locator(".ons-panel__body ").nth(0)).toContainText(
+      "Appointments that have already been attempted will not be displayed.",
+    );
+    await page.locator("#Date").type("30-06-1990");
+    await page.click("button[type=submit]");
+    await page.waitForSelector("text=Loading", { state: "hidden" });
+    await expect(page.locator(".ons-panel__body ").nth(1)).toContainText(
+      "No questionnaires found for given parameters.",
+    );
+    console.log(`Finished running ${testInfo.title}`);
+  });
 });
 
 /*

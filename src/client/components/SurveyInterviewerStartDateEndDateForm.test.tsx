@@ -13,57 +13,57 @@ import SurveyInterviewerStartDateEndDateForm from "./SurveyInterviewerStartDateE
 const christmasEve97 = "1997-12-24";
 
 describe("form - survey, interviewer, start date, end date", () => {
-    beforeEach(() => {
-        MockDate.set(new Date(christmasEve97));
+  beforeEach(() => {
+    MockDate.set(new Date(christmasEve97));
+  });
+
+  afterEach(() => {
+    MockDate.reset();
+  });
+
+  it("matches snapshot", async () => {
+    const wrapper = render(
+      <MemoryRouter>
+        <SurveyInterviewerStartDateEndDateForm
+          interviewer=""
+          surveyTLA=""
+          startDate={new Date()}
+          endDate={new Date()}
+          onSubmit={() => true}
+        />
+      </MemoryRouter>,
+    );
+
+    await act(async () => {
+      await flushPromises();
     });
 
-    afterEach(() => {
-        MockDate.reset();
+    expect(await wrapper).toMatchSnapshot();
+  });
+
+  it("renders correctly", async () => {
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <SurveyInterviewerStartDateEndDateForm
+            interviewer=""
+            surveyTLA=""
+            startDate={new Date()}
+            endDate={new Date()}
+            onSubmit={() => true}
+          />
+        </MemoryRouter>,
+      );
     });
-
-    it("matches snapshot", async () => {
-        const wrapper = render(
-            <MemoryRouter>
-                <SurveyInterviewerStartDateEndDateForm
-                    interviewer=""
-                    surveyTLA=""
-                    startDate={new Date()}
-                    endDate={new Date()}
-                    onSubmit={() => true}
-                />
-            </MemoryRouter>,
-        );
-
-        await act(async () => {
-            await flushPromises();
-        });
-
-        expect(await wrapper).toMatchSnapshot();
-    });
-
-    it("renders correctly", async () => {
-        await act(async () => {
-            render(
-                <MemoryRouter>
-                    <SurveyInterviewerStartDateEndDateForm
-                        interviewer=""
-                        surveyTLA=""
-                        startDate={new Date()}
-                        endDate={new Date()}
-                        onSubmit={() => true}
-                    />
-                </MemoryRouter>,
-            );
-        });
-        expect(screen.queryByText("Select survey")).toBeVisible();
-        expect(screen.queryByText("Show all surveys")).toBeVisible();
-        expect(screen.queryByText("LMS")).toBeVisible();
-        expect(screen.queryByText("Labour Market Survey")).toBeVisible();
-        expect(screen.queryByText("OPN")).toBeVisible();
-        expect(screen.queryByText("Opinions and Lifestyle Survey")).toBeVisible();
-        expect(screen.queryByText("Interviewer ID")).toBeVisible();
-        expect(screen.queryByText("Start date")).toBeVisible();
-        expect(screen.queryByText("End date")).toBeVisible();
-        expect(screen.queryByText("Next")).toBeVisible();
-    });
+    expect(screen.queryByText("Select survey")).toBeVisible();
+    expect(screen.queryByText("Show all surveys")).toBeVisible();
+    expect(screen.queryByText("LMS")).toBeVisible();
+    expect(screen.queryByText("Labour Market Survey")).toBeVisible();
+    expect(screen.queryByText("OPN")).toBeVisible();
+    expect(screen.queryByText("Opinions and Lifestyle Survey")).toBeVisible();
+    expect(screen.queryByText("Interviewer ID")).toBeVisible();
+    expect(screen.queryByText("Start date")).toBeVisible();
+    expect(screen.queryByText("End date")).toBeVisible();
+    expect(screen.queryByText("Next")).toBeVisible();
+  });
 });

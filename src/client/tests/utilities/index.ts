@@ -3,5 +3,5 @@
 const flushPromises = (): Promise<void> => new Promise(setTimeout);
 
 export default function flushPromisesAndTimers(): Promise<void> {
-    return flushPromises().then(flushPromises);
+  return flushPromises().then(flushPromises);
 }

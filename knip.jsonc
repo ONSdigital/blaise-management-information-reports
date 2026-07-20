@@ -1,11 +1,8 @@
 {
-    "entry": [
-        "**/*.test.ts",
-        "**/*.test.tsx", //TODO
-        "src/server/test-utils/blaiseHandler.mock.ts"
-    ],
-    "project": [
-        "src/**/*.{ts,tsx}",
-        "*.config.ts"
-    ]
+  "entry": [
+    "**/*.test.ts",
+    "**/*.test.tsx", //TODO
+    "src/server/test-utils/blaiseHandler.mock.ts"
+  ],
+  "project": ["src/**/*.{ts,tsx}", "*.config.ts"]
 }

@@ -15,92 +15,96 @@ import CallHistoryLastUpdatedStatus from "./CallHistoryLastUpdatedStatus";
 const mockAdapter = new MockAdapter(axios);
 
 describe("CallHistoryLastUpdatedStatus component", () => {
-    beforeAll(() => {
-        timekeeper.freeze(new Date("2014-01-01"));
+  beforeAll(() => {
+    timekeeper.freeze(new Date("2014-01-01"));
+  });
+
+  afterAll(() => {
+    timekeeper.reset();
+  });
+
+  it("matches snapshot", async () => {
+    mockAdapter
+      .onGet("/api/reports/call-history-status")
+      .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
+
+    const wrapper = render(
+      <MemoryRouter>
+        <CallHistoryLastUpdatedStatus />
+      </MemoryRouter>,
+    );
+
+    await act(async () => {
+      await flushPromises();
     });
 
-    afterAll(() => {
-        timekeeper.reset();
+    expect(await wrapper).toMatchSnapshot();
+  });
+  it("renders correctly", async () => {
+    mockAdapter
+      .onGet("/api/reports/call-history-status")
+      .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
+
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <CallHistoryLastUpdatedStatus />
+        </MemoryRouter>,
+      );
     });
 
-    it("matches snapshot", async () => {
-        mockAdapter
-            .onGet("/api/reports/call-history-status")
-            .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
+    expect(screen.queryByText("Data in this report was last updated:")).toBeVisible();
+    expect(
+      screen.queryByText("Data in this report only goes back to the last 12 months."),
+    ).toBeVisible();
 
-        const wrapper = render(
-            <MemoryRouter>
-                <CallHistoryLastUpdatedStatus />
-            </MemoryRouter>,
-        );
-
-        await act(async () => {
-            await flushPromises();
-        });
-
-        expect(await wrapper).toMatchSnapshot();
+    await act(async () => {
+      await flushPromises();
     });
-    it("renders correctly", async () => {
-        mockAdapter
-            .onGet("/api/reports/call-history-status")
-            .reply(200, { last_updated: "Sat, 01 Jan 2000 10:00:00 GMT" });
 
-        await act(async () => {
-            render(
-                <MemoryRouter>
-                    <CallHistoryLastUpdatedStatus />
-                </MemoryRouter>,
-            );
-        });
-
-        expect(screen.queryByText("Data in this report was last updated:")).toBeVisible();
-        expect(screen.queryByText("Data in this report only goes back to the last 12 months.")).toBeVisible();
-
-        await act(async () => {
-            await flushPromises();
-        });
-
-        expect(await screen.findByText("14 years ago")).toBeVisible();
-    });
+    expect(await screen.findByText("14 years ago")).toBeVisible();
+  });
 });
 
 describe("call history last updated status with invalid data", () => {
-    beforeEach(() => {
-        mockAdapter.onGet("/api/reports/call-history-status").reply(200, "blah");
+  beforeEach(() => {
+    mockAdapter.onGet("/api/reports/call-history-status").reply(200, "blah");
+  });
+
+  afterEach(() => {
+    mockAdapter.reset();
+  });
+
+  it("matches snapshot", async () => {
+    const wrapper = render(
+      <MemoryRouter>
+        <CallHistoryLastUpdatedStatus />
+      </MemoryRouter>,
+    );
+
+    await act(async () => {
+      await flushPromises();
     });
 
-    afterEach(() => {
-        mockAdapter.reset();
+    expect(await wrapper).toMatchSnapshot();
+  });
+
+  it("renders correctly", async () => {
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <CallHistoryLastUpdatedStatus />
+        </MemoryRouter>,
+      );
+    });
+    expect(screen.queryByText("Data in this report was last updated:")).toBeVisible();
+    expect(
+      screen.queryByText("Data in this report only goes back to the last 12 months."),
+    ).toBeVisible();
+    await act(async () => {
+      await flushPromises();
     });
 
-    it("matches snapshot", async () => {
-        const wrapper = render(
-            <MemoryRouter>
-                <CallHistoryLastUpdatedStatus />
-            </MemoryRouter>,
-        );
-
-        await act(async () => {
-            await flushPromises();
-        });
-
-        expect(await wrapper).toMatchSnapshot();
-    });
-
-    it("renders correctly", async () => {
-        await act(async () => {
-            render(
-                <MemoryRouter>
-                    <CallHistoryLastUpdatedStatus />
-                </MemoryRouter>,
-            );
-        });
-        expect(screen.queryByText("Data in this report was last updated:")).toBeVisible();
-        expect(screen.queryByText("Data in this report only goes back to the last 12 months.")).toBeVisible();
-        await act(async () => {
-            await flushPromises();
-        });
-
-        expect(await screen.findByText("Invalid Date")).toBeVisible();
-    });
+    expect(await screen.findByText("Invalid Date")).toBeVisible();
+  });
 });

@@ -4,13 +4,8 @@
     "moduleResolution": "NodeNext",
     "outDir": "build/server",
     "rootDir": "src/server",
-    "types": [
-      "node",
-      "vitest/globals"
-    ]
+    "types": ["node", "vitest/globals"]
   },
   "extends": "./tsconfig.base.json",
-  "include": [
-    "src/server"
-  ]
+  "include": ["src/server"]
 }
