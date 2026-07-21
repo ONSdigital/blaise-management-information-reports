@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { assertResolvedRequiredEnv, loadConfigFromEnv } from "./Config.js";
+import { assertResolvedRequiredEnv, loadConfigFromEnv } from "./config.js";
 
 describe("Config setup", () => {
   it("should return the correct environment variables", () => {

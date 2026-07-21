@@ -8,7 +8,7 @@ import FilterSummary from "../../pages/components/FilterSummary";
 import { LoadData } from "../../pages/components/LoadData";
 import ReportErrorPanel from "../../pages/components/ReportErrorPanel";
 import { type InterviewerCallHistoryReport } from "../../types/interfaces";
-import { formatDateAndTime } from "../../utils/DateFormatter";
+import { formatDateAndTime } from "../../utils/dateFormatter";
 import { getInterviewerCallHistoryReport } from "../../query/http";
 import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 

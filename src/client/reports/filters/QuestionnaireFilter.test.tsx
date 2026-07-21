@@ -11,7 +11,7 @@ import { MemoryRouter } from "react-router-dom";
 import timekeeper from "timekeeper";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import subtractYears from "../../utils/DateFormatter";
+import subtractYears from "../../utils/dateFormatter";
 
 import { type InterviewerFilterQuery } from "./InterviewerFilter";
 import QuestionnaireFilter from "./QuestionnaireFilter";
@@ -64,7 +64,7 @@ describe("the interviewer details page renders correctly", () => {
           questionnaires={["LMS2101_AA1"]}
           setQuestionnaires={setQuestionnaires}
           onSubmit={submit}
-          navigateBack={() => {}}
+          navigateBack={() => { }}
         />
       </MemoryRouter>,
     );

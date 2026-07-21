@@ -2,7 +2,7 @@ import React, { type ReactElement, useEffect, useState } from "react";
 import TimeAgo from "react-timeago";
 
 import { type CallHistoryStatus } from "../../types/interfaces";
-import { formatDateAndTime } from "../../utils/DateFormatter";
+import { formatDateAndTime } from "../../utils/dateFormatter";
 import { getInterviewerCallHistoryStatus } from "../../query/http";
 
 function displayResult(reportLastUpdatedDate: Date | "") {

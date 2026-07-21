@@ -7,7 +7,7 @@ import {
   type AppointmentResourcePlanningReportData,
   type AppointmentResourcePlanningSummaryReportData,
 } from "../../types/interfaces";
-import { formatDate } from "../../utils/DateFormatter.js";
+import { formatDate } from "../../utils/dateFormatter.js";
 import {
   getAppointmentResourcePlanningReport,
   getAppointmentResourcePlanningSummaryReport,

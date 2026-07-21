@@ -1,4 +1,6 @@
-import { formatISODate } from "../../utils/DateFormatter";
+import { formatISODate } from "../../utils/dateFormatter";
+
+import type { FormField } from "blaise-design-system-react-components";
 
 const validateInterviewer = (value: string) => {
   let error;
@@ -26,7 +28,7 @@ const validateDate = (value: string) => {
   return error;
 };
 
-function SurveyField(surveyTLA: string | undefined): any {
+function SurveyField(surveyTLA: string | undefined): FormField {
   return {
     name: "Survey TLA",
     description: "Select survey",
@@ -50,7 +52,7 @@ function SurveyField(surveyTLA: string | undefined): any {
   };
 }
 
-function InterviewerField(interviewer: string | undefined): any {
+function InterviewerField(interviewer: string | undefined): FormField {
   return {
     name: "Interviewer ID",
     type: "text",
@@ -59,7 +61,7 @@ function InterviewerField(interviewer: string | undefined): any {
   };
 }
 
-function StartDateField(startDate: string | Date): any {
+function StartDateField(startDate: string | Date): FormField {
   return {
     name: "Start date",
     type: "date",
@@ -68,7 +70,7 @@ function StartDateField(startDate: string | Date): any {
   };
 }
 
-function EndDateField(endDate: string | Date): any {
+function EndDateField(endDate: string | Date): FormField {
   return {
     name: "End date",
     type: "date",
@@ -77,7 +79,7 @@ function EndDateField(endDate: string | Date): any {
   };
 }
 
-function DateField(): any {
+function DateField(): FormField {
   return {
     name: "Date",
     type: "date",

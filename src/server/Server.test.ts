@@ -10,13 +10,13 @@ import utc from "dayjs/plugin/utc.js";
 import supertest from "supertest";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { BertClient } from "./bertClient.js";
-import { loadConfigFromEnv } from "./Config.js";
+import { BertClient } from "./helpers/bertClient.js";
+import { loadConfigFromEnv } from "./helpers/config.js";
 import {
   keyGeneratorFromAuthenticatedUser,
   type keyGeneratorFromForwardedHeader,
   newServer,
-} from "./Server.js";
+} from "./server.js";
 
 Auth.prototype.validateToken = vi.fn().mockReturnValue(true);
 
@@ -29,7 +29,7 @@ dateFormatter.extend(timezone);
 
 vi.mock("@google-cloud/logging", () => ({
   Logging: class MockLogging {
-    constructor(_options?: unknown) {}
+    constructor(_options?: unknown) { }
 
     public log(_logName: string) {
       return {

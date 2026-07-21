@@ -10,13 +10,13 @@ import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import helmet from "helmet";
 import { type HttpLogger } from "pino-http";
 
-import AuditLogger from "./auditLogger.js";
-import { BertClient } from "./bertClient.js";
+import AuditLogger from "./utils/auditLogger.js";
+import { BertClient } from "./helpers/bertClient.js";
 import newBertHandler from "./handlers/bertHandler.js";
 import newHealthCheckHandler from "./handlers/healthCheckHandler.js";
-import createLogger from "./pino/index.js";
+import createLogger from "./utils/pino/index.js";
 
-import type { Config } from "./Config.js";
+import type { Config } from "./helpers/config.js";
 import type { Express, NextFunction, Request, Response } from "express";
 
 const __filename = fileURLToPath(import.meta.url);

@@ -4,9 +4,9 @@ import timezone from "dayjs/plugin/timezone.js";
 import utc from "dayjs/plugin/utc.js";
 import express, { type Request, type Response, type Router } from "express";
 
-import { type BertClient } from "../bertClient.js";
+import { type BertClient } from "../helpers/bertClient.js";
 
-import type AuditLogger from "../auditLogger.js";
+import type AuditLogger from "../utils/auditLogger.js";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);

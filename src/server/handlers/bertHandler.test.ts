@@ -6,8 +6,8 @@ import { type HttpLogger, pinoHttp } from "pino-http";
 import supertest from "supertest";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { loadConfigFromEnv } from "../Config.js";
-import { newServer } from "../Server.js";
+import { loadConfigFromEnv } from "../helpers/config.js";
+import { newServer } from "../server.js";
 
 vi.mock("blaise-login-react-server", async () => {
   const { mockLoginReactServerModule } = await import("../test-utils/loginReactServer.mock.js");
@@ -17,10 +17,10 @@ vi.mock("blaise-login-react-server", async () => {
 vi.mock("blaise-api-node-client", () => ({
   __esModule: true,
   BlaiseApiClient: class MockBlaiseApiClient {
-    constructor(_url?: string) {}
+    constructor(_url?: string) { }
   },
   default: class MockBlaiseApiClient {
-    constructor(_url?: string) {}
+    constructor(_url?: string) { }
   },
 }));
 

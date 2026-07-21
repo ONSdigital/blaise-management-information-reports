@@ -1,4 +1,4 @@
-import { convertSecondsToMinutesAndSeconds } from "./Converters";
+import { convertSecondsToMinutesAndSeconds } from "./converters";
 
 test("test 60 seconds is converted to 01:00", () => {
   expect(convertSecondsToMinutesAndSeconds(60)).toBe("01:00");

@@ -3,8 +3,8 @@ import axios from "axios";
 import { BlaiseApiClient, type NewUser } from "blaise-api-node-client";
 import dotenv from "dotenv";
 
-import { deleteTestUser, setupTestUser } from "./helpers/BlaiseHelpers";
-import { loginToMir } from "./helpers/MirHelpers";
+import { deleteTestUser, setupTestUser } from "./helpers/blaiseHelpers";
+import { loginToMir } from "./helpers/mirHelpers";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config({ path: `${__dirname}/../../.env` });

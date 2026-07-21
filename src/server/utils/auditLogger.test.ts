@@ -7,7 +7,7 @@ const mockLog = vi.fn().mockReturnValue({ getEntries: mockGetEntries });
 
 vi.mock("@google-cloud/logging", () => ({
   Logging: class MockLogging {
-    constructor(_options?: unknown) {}
+    constructor(_options?: unknown) { }
     log = mockLog;
   },
 }));
@@ -31,21 +31,21 @@ function makeEntry(overrides: {
     },
     data:
       overrides.dataMessage !== undefined ||
-      overrides.dataMsg !== undefined ||
-      overrides.auditMessage !== undefined ||
-      overrides.infoAuditMessage !== undefined ||
-      overrides.infoMessage !== undefined ||
-      overrides.infoMsg !== undefined
+        overrides.dataMsg !== undefined ||
+        overrides.auditMessage !== undefined ||
+        overrides.infoAuditMessage !== undefined ||
+        overrides.infoMessage !== undefined ||
+        overrides.infoMsg !== undefined
         ? {
-            message: overrides.dataMessage,
-            msg: overrides.dataMsg,
-            auditMessage: overrides.auditMessage,
-            info: {
-              auditMessage: overrides.infoAuditMessage,
-              message: overrides.infoMessage,
-              msg: overrides.infoMsg,
-            },
-          }
+          message: overrides.dataMessage,
+          msg: overrides.dataMsg,
+          auditMessage: overrides.auditMessage,
+          info: {
+            auditMessage: overrides.infoAuditMessage,
+            message: overrides.infoMessage,
+            msg: overrides.infoMsg,
+          },
+        }
         : undefined,
   };
 }

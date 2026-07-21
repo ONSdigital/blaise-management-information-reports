@@ -11,7 +11,7 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, vi } from "vitest";
 
-import subtractYears from "../../utils/DateFormatter";
+import subtractYears from "../../utils/dateFormatter";
 
 import AppointmentQuestionnaireFilter from "./AppointmentQuestionnaireFilter";
 
@@ -52,7 +52,7 @@ describe("the interviewer details page renders correctly", () => {
           questionnaires={["LMS2101_AA1"]}
           setQuestionnaires={setQuestionnaires}
           submitFunction={submit}
-          navigateBack={() => {}}
+          navigateBack={() => { }}
         />
       </MemoryRouter>,
     );
