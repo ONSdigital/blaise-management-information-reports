@@ -10,7 +10,12 @@ if (process.env.NODE_ENV !== "production") {
   dotenv.config();
 }
 
-const restApiUrl = process.env.REST_API_URL || "http://localhost:1337";
+console.log("Environment variable names:");
+Object.keys(process.env).sort().forEach((key) => {
+  console.log(key);
+});
+
+const restApiUrl = process.env.BLAISE_API_URL || "http://localhost:1337";
 const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
 
