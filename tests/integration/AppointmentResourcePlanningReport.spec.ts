@@ -7,7 +7,7 @@ import { deleteTestUser, setupTestUser } from "./helpers/blaiseHelpers";
 import { loginToMir } from "./helpers/mirHelpers";
 
 if (process.env.NODE_ENV !== "production") {
-  dotenv.config({ path: `${__dirname}/../../.env` });
+  dotenv.config();
 }
 
 const restApiUrl = process.env.REST_API_URL || "http://localhost:1337";
