@@ -45,13 +45,13 @@ if (!serverPark) {
 }
 
 test.describe("ARPR without data", () => {
-  test.beforeEach(async ({ _page }, testInfo) => {
+  test.beforeEach(async ({ page: _page }, testInfo) => {
     console.log(`Started running before each hook for test ${testInfo.title}`);
     testInfo.setTimeout(60000);
     userCredentials = await setupTestUser(blaiseApiClient, serverPark);
     console.log(`Finished running before each hook for test ${testInfo.title}`);
   });
-  test.afterEach(async ({ _page }, testInfo) => {
+  test.afterEach(async ({ page: _page }, testInfo) => {
     console.log(`Started running after each hook for test ${testInfo.title}`);
     await deleteTestUser(blaiseApiClient, serverPark, userCredentials.name);
     console.log(`Finished running after each hook for test ${testInfo.title}`);
