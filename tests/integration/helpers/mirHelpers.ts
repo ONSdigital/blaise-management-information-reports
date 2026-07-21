@@ -38,7 +38,7 @@ export async function loginToMir(page: Page, userCredentials: NewUser): Promise<
       console.log("Sign in page is visible");
       return true;
     })
-    .catch((error) => {
+    .catch(async (error) => {
       console.warn(`Sign in page not visible within timeout: ${error.message}`);
       console.log(`Page content: ${await page.content()}`);
       return false;
