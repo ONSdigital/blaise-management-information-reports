@@ -99,7 +99,7 @@ test.describe("ARPR without data", () => {
     await expect(page.locator(".ons-panel__body ").nth(1)).toContainText(
       "Appointments that have already been attempted will not be displayed.",
     );
-    await page.locator("#Date").type("30-06-1990");
+    await page.getByLabel("Date").fill("1990-06-30");
     await page.click("button[type=submit]");
     await page.waitForSelector("text=Loading", { state: "hidden" });
     await expect(page.locator(".ons-panel__body ").nth(2)).toContainText(
