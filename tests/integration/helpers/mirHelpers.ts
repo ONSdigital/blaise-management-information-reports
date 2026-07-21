@@ -46,9 +46,9 @@ export async function loginToMir(page: Page, userCredentials: NewUser): Promise<
 
   if (signInPageIsVisible) {
     console.log(`Logging in with user: ${userCredentials.name}`);
-    await page.locator("#username").fill(`${userCredentials.name}`);
-    await page.locator("#Password").fill(`${userCredentials.password}`);
-    await page.click("button[type=submit]");
+    await page.getByLabel("Username").fill(`${userCredentials.name}`);
+    await page.getByLabel("Password").fill(`${userCredentials.password}`);
+    await page.getByRole("button", { name: "Sign in" }).click();
   } else {
     console.warn("Sign in page not found, skipping login");
   }
