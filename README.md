@@ -109,24 +109,24 @@ The UI should now be accessible via:
 
 http://localhost:3000/
 
-## Running Jest Tests
+## Running Vitest Tests
 
-Jest tests can be run via the following package.json script:
+Vitest tests can be run via the following package.json script:
 
 ```shell
 yarn test
 ```
 
-Tests can be run without sending all messages to the console by adding the following flag:
+Tests can be run in watch mode by running:
 
 ```shell
-yarn test --silent
+yarn test-watch
 ```
 
-Test snapshots can be updated by adding the following flag:
+Test coverage is included by default when running `yarn test`. To update test snapshots:
 
 ```shell
-yarn test -u
+yarn vitest run -u
 ```
 
 ## Running Playwright Tests
