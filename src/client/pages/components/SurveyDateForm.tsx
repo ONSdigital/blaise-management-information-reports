@@ -4,7 +4,10 @@ import React, { type ReactElement } from "react";
 import { DateField, SurveyField } from "./FormFields";
 
 interface Props {
-  onSubmitFunction: (values: any, setSubmitting: (isSubmitting: boolean) => void) => void;
+  onSubmitFunction: (
+    values: Record<string, string | string[]>,
+    setSubmitting: (isSubmitting: boolean) => void,
+  ) => void;
 }
 
 function SurveyDateForm({ onSubmitFunction }: Props): ReactElement {

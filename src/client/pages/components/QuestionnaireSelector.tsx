@@ -15,8 +15,10 @@ function QuestionnaireSelector({
   onSubmit,
 }: QuestionnaireSelectorProps): ReactElement {
   const handleSubmit = useCallback(
-    (values: any) => {
-      setSelectedQuestionnaires(values.questionnaires);
+    (values: Record<string, string | string[]>) => {
+      const selected = values.questionnaires;
+
+      setSelectedQuestionnaires(Array.isArray(selected) ? selected : []);
       onSubmit();
     },
     [setSelectedQuestionnaires, onSubmit],

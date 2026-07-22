@@ -8,7 +8,10 @@ interface Props {
   surveyTLA: string | undefined;
   startDate: Date;
   endDate: Date;
-  onSubmit: (values: any, setSubmitting: (isSubmitting: boolean) => void) => void;
+  onSubmit: (
+    values: Record<string, string | string[]>,
+    setSubmitting: (isSubmitting: boolean) => void,
+  ) => void;
 }
 
 function SurveyInterviewerStartDateEndDateForm({
