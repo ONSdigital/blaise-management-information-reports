@@ -45,7 +45,6 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/express": "^5.0.6",
-    "@types/uuid": "^11.0.0",
     "axios": "^1.18.1",
     "blaise-api-node-client": "git+https://github.com/ONSdigital/blaise-api-node-client#v3.0.0",
     "blaise-design-system-react-components": "git+https://github.com/ONSdigital/blaise-design-system-react-components#v2.0.0",

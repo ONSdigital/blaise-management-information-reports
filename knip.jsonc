@@ -5,5 +5,7 @@
     "tests/integration/**/*.spec.ts",
     "src/server/test-utils/blaiseHandler.mock.ts"
   ],
+  // Required indirectly by react-csv in unit tests; do not remove.
+  "ignoreDependencies": ["prop-types", "@types/prop-types"],
   "project": ["src/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}", "*.config.ts"]
 }
