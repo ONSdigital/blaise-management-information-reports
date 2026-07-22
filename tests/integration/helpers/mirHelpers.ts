@@ -1,29 +1,9 @@
 import { type Page } from "@playwright/test";
 import { type NewUser } from "blaise-api-node-client";
 import moment from "moment";
+import { normalizeUrl } from "./urlHelpers";
 
-function getReportsUrl(): string {
-  const rawValue = process.env.REPORTS_URL?.trim();
-
-  if (!rawValue) {
-    throw new Error(
-      'REPORTS_URL environment variable is required and must not be empty',
-    );
-  }
-
-  // Some environments provide host:port without a scheme.
-  const normalized = /^https?:\/\//i.test(rawValue) ? rawValue : `https://${rawValue}`;
-
-  try {
-    return new URL(normalized).toString();
-  } catch {
-    throw new Error(
-      `REPORTS_URL is invalid. Received "${rawValue}". Provide a full URL, for example "https://localhost".`,
-    );
-  }
-}
-
-const REPORTS_URL = getReportsUrl();
+const REPORTS_URL = normalizeUrl('REPORTS_URL');
 
 export async function loginToMir(page: Page, userCredentials: NewUser): Promise<void> {
   console.log(`Navigating to REPORTS_URL: ${REPORTS_URL}`);

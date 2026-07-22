@@ -1,28 +1,8 @@
 import { type Page } from "@playwright/test";
 import { type NewUser } from "blaise-api-node-client";
+import { normalizeUrl } from "./urlHelpers";
 
-function getCatiUrl(): string {
-  const rawValue = process.env.CATI_URL?.trim();
-
-  if (!rawValue) {
-    throw new Error(
-      'CATI_URL environment variable is required and must not be empty',
-    );
-  }
-
-  // Some environments provide host:port without a scheme.
-  const normalized = /^https?:\/\//i.test(rawValue) ? rawValue : `https://${rawValue}`;
-
-  try {
-    return new URL(normalized).toString();
-  } catch {
-    throw new Error(
-      `CATI_URL is invalid. Received "${rawValue}". Provide a full URL, for example "https://localhost".`,
-    );
-  }
-}
-
-const CATI_URL = getCatiUrl();
+const CATI_URL = normalizeUrl('CATI_URL');
 
 export async function setupAppointment(
   page: Page,

@@ -5,37 +5,14 @@ import dotenv from "dotenv";
 
 import { deleteTestUser, setupTestUser } from "./helpers/blaiseHelpers";
 import { loginToMir } from "./helpers/mirHelpers";
+import { normalizeUrl } from "./helpers/urlHelpers";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
 }
 
-function getRestApiUrl(): string {
-  const rawValue = process.env.REST_API_URL?.trim();
+const restApiUrl = normalizeUrl('REST_API_URL', 'http://localhost:1337', 'http');
 
-  if (!rawValue) {
-    return "http://localhost:1337";
-  }
-
-  // Some environments provide host:port without a scheme.
-  const normalized = /^https?:\/\//i.test(rawValue) ? rawValue : `http://${rawValue}`;
-
-  try {
-    return new URL(normalized).toString();
-  } catch {
-    throw new Error(
-      `REST_API_URL is invalid. Received \"${rawValue}\". Provide a full URL, for example \"http://localhost:1337\".`,
-    );
-  }
-}
-
-console.log("Environment variable names:");
-Object.keys(process.env).sort().forEach((key) => {
-  console.log(key);
-});
-
-const restApiUrl = getRestApiUrl();
-console.log(`Using REST API URL: ${restApiUrl}`);
 const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;
 
