@@ -1,5 +1,6 @@
 import { type Page } from "@playwright/test";
 import { type NewUser } from "blaise-api-node-client";
+
 import { normalizeUrl } from "./urlHelpers";
 
 const CATI_URL = normalizeUrl('CATI_URL');

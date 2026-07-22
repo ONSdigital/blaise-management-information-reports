@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
 
 import { loadConfigFromEnv } from "./helpers/config.js";
-import createLogger from "./utils/pino/index.js";
 import { newServer } from "./server.js";
+import createLogger from "./utils/pino/index.js";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();

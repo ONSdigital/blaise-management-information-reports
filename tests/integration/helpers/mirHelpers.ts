@@ -1,6 +1,7 @@
 import { type Page } from "@playwright/test";
 import { type NewUser } from "blaise-api-node-client";
 import moment from "moment";
+
 import { normalizeUrl } from "./urlHelpers";
 
 const REPORTS_URL = normalizeUrl('REPORTS_URL');
@@ -16,11 +17,13 @@ export async function loginToMir(page: Page, userCredentials: NewUser): Promise<
     .waitFor({ state: "visible", timeout: 10000 })
     .then(() => {
       console.log("Sign in page is visible");
+
       return true;
     })
     .catch(async (error) => {
       console.warn(`Sign in page not visible within timeout: ${error.message}`);
       console.log(`Page content: ${await page.content()}`);
+
       return false;
     });
 

@@ -4,14 +4,14 @@ import { CSVLink } from "react-csv";
 import Breadcrumbs from "../../pages/components/Breadcrumbs";
 import ReportErrorPanel from "../../pages/components/ReportErrorPanel";
 import {
+  getAppointmentResourcePlanningReport,
+  getAppointmentResourcePlanningSummaryReport,
+} from "../../query/http/index.js";
+import {
   type AppointmentResourcePlanningReportData,
   type AppointmentResourcePlanningSummaryReportData,
 } from "../../types/interfaces";
 import { formatDate } from "../../utils/dateFormatter.js";
-import {
-  getAppointmentResourcePlanningReport,
-  getAppointmentResourcePlanningSummaryReport,
-} from "../../query/http/index.js";
 
 import AppointmentResourceDaybatchWarning from "./AppointmentResourceDaybatchWarning";
 import AppointmentResults from "./AppointmentResults";

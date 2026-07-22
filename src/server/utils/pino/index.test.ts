@@ -1,4 +1,5 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
 import createLogger from "./index.js";
 
 describe("createLogger", () => {
@@ -61,6 +62,7 @@ describe("createLogger", () => {
         for (const env of envs) {
             process.env.NODE_ENV = env;
             const logger = createLogger();
+
             expect(logger).toBeDefined();
         }
     });

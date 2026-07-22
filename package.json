@@ -45,6 +45,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/express": "^5.0.6",
+    "@types/uuid": "^11.0.0",
     "axios": "^1.18.1",
     "blaise-api-node-client": "git+https://github.com/ONSdigital/blaise-api-node-client#v3.0.0",
     "blaise-design-system-react-components": "git+https://github.com/ONSdigital/blaise-design-system-react-components#v2.0.0",
@@ -66,7 +67,8 @@
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1",
     "react-timeago": "^8.3.0",
-    "timekeeper": "^2.3.1"
+    "timekeeper": "^2.3.1",
+    "uuid": "^14.0.1"
   },
   "devDependencies": {
     "@eslint-react/eslint-plugin": "^5.16.1",

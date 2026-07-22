@@ -2,9 +2,9 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { afterEach, describe, expect, it } from "vitest";
 
+import { getInterviewerCallHistoryReport, getQuestionnaireList } from "../../query/http";
 import { type InterviewerCallHistoryReport } from "../../types/interfaces";
 
-import { getInterviewerCallHistoryReport, getQuestionnaireList } from "../../query/http";
 
 const mockAdapter = new MockAdapter(axios);
 

@@ -12,12 +12,12 @@ import CallHistoryLastUpdatedStatus from "../../pages/components/CallHistoryLast
 import FilterSummary from "../../pages/components/FilterSummary";
 import { LoadData } from "../../pages/components/LoadData";
 import ReportErrorPanel from "../../pages/components/ReportErrorPanel";
+import { getInterviewerCallPatternReport } from "../../query/http/Reports.js";
 import {
   type InterviewerCallPatternReport,
   type InvalidCaseSummaryGroup,
   type SummaryRenderableRecord,
 } from "../../types/interfaces/index.js";
-import { getInterviewerCallPatternReport } from "../../query/http/Reports.js";
 import { type InterviewerFilterQuery } from "../filters/InterviewerFilter";
 
 const CSVLinkComponent = CSVLink as unknown as React.ComponentType<Record<string, unknown>>;
