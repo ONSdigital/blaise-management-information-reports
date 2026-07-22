@@ -7,7 +7,7 @@ test("test date returned is 1 year less than date given", () => {
 });
 
 describe("formatDate", () => {
-  afterEach(() => { });
+  afterEach(() => {});
 
   it("returns a date string when given a date object", async () => {
     const dateObject = new Date("2022-12-31");
@@ -29,7 +29,7 @@ describe("formatDate", () => {
 });
 
 describe("formatDateAndTime", () => {
-  afterEach(() => { });
+  afterEach(() => {});
 
   it("returns a date and time string when given a date object", async () => {
     const dateObject = new Date("2022-12-31 15:45:59.000");
@@ -51,7 +51,7 @@ describe("formatDateAndTime", () => {
 });
 
 describe("formatISODate", () => {
-  afterEach(() => { });
+  afterEach(() => {});
 
   it("returns a date string when given a date object", async () => {
     const dateObject = new Date("2022-12-31");

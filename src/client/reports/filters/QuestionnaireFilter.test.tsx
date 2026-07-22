@@ -64,7 +64,7 @@ describe("the interviewer details page renders correctly", () => {
           questionnaires={["LMS2101_AA1"]}
           setQuestionnaires={setQuestionnaires}
           onSubmit={submit}
-          navigateBack={() => { }}
+          navigateBack={() => {}}
         />
       </MemoryRouter>,
     );

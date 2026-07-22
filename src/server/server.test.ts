@@ -29,7 +29,7 @@ dateFormatter.extend(timezone);
 
 vi.mock("@google-cloud/logging", () => ({
   Logging: class MockLogging {
-    constructor(_options?: unknown) { }
+    constructor(_options?: unknown) {}
 
     public log(_logName: string) {
       return {

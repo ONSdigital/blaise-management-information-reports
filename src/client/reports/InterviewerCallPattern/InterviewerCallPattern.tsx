@@ -14,12 +14,14 @@ enum Step {
 
 function InterviewerCallPattern(): ReactElement {
   const [activeStep, setActiveStep] = useState<Step>(Step.InterviewerFilter);
-  const [interviewerFilterQuery, setInterviewerFilterQuery] = useState<InterviewerFilterQuery>({
-    interviewer: "",
-    startDate: new Date(),
-    endDate: new Date(),
-    surveyTla: "",
-  });
+  const [interviewerFilterQuery, setInterviewerFilterQuery] = useState<InterviewerFilterQuery>(
+    () => ({
+      interviewer: "",
+      startDate: new Date(),
+      endDate: new Date(),
+      surveyTla: "",
+    }),
+  );
   const [questionnaires, setQuestionnaires] = useState<string[]>([]);
 
   const handleInterviewerFilterSubmit = useCallback(

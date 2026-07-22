@@ -13,7 +13,7 @@ enum Step {
 
 function AppointmentResourcePlanning(): ReactElement {
   const [activeStep, setActiveStep] = useState<Step>(Step.AppointmentFilter);
-  const [reportDate, setReportDate] = useState<Date>(new Date());
+  const [reportDate, setReportDate] = useState<Date>(() => new Date());
   const [surveyTla, setSurveyTla] = useState<string>("");
   const [questionnaires, setQuestionnaires] = useState<string[]>([]);
 

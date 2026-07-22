@@ -7,26 +7,24 @@
  * @throws Error if the URL is invalid or required env var is missing
  */
 export function normalizeUrl(
-    envVarName: string,
-    defaultValue?: string,
-    defaultProtocol: 'http' | 'https' = 'https',
+  envVarName: string,
+  defaultValue?: string,
+  defaultProtocol: "http" | "https" = "https",
 ): string {
-    const rawValue = (process.env[envVarName] ?? defaultValue)?.trim();
+  const rawValue = (process.env[envVarName] ?? defaultValue)?.trim();
 
-    if (!rawValue) {
-        throw new Error(
-            `${envVarName} environment variable is required and must not be empty`,
-        );
-    }
+  if (!rawValue) {
+    throw new Error(`${envVarName} environment variable is required and must not be empty`);
+  }
 
-    const protocol = `${defaultProtocol}://`;
-    const normalized = /^https?:\/\//i.test(rawValue) ? rawValue : `${protocol}${rawValue}`;
+  const protocol = `${defaultProtocol}://`;
+  const normalized = /^https?:\/\//i.test(rawValue) ? rawValue : `${protocol}${rawValue}`;
 
-    try {
-        return new URL(normalized).toString();
-    } catch {
-        throw new Error(
-            `${envVarName} is invalid. Received "${rawValue}". Provide a full URL, for example "${protocol}localhost".`,
-        );
-    }
+  try {
+    return new URL(normalized).toString();
+  } catch {
+    throw new Error(
+      `${envVarName} is invalid. Received "${rawValue}". Provide a full URL, for example "${protocol}localhost".`,
+    );
+  }
 }

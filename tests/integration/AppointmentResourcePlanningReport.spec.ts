@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== "production") {
   dotenv.config();
 }
 
-const restApiUrl = normalizeUrl('REST_API_URL', 'http://localhost:1337', 'http');
+const restApiUrl = normalizeUrl("REST_API_URL", "http://localhost:1337", "http");
 
 const questionnaireName = process.env.TEST_QUESTIONNAIRE;
 const serverPark = process.env.SERVER_PARK;

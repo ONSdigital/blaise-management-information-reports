@@ -43,7 +43,7 @@ export async function deleteTestUser(
   }
 }
 
-export async function setupQuestionnaire(
+async function setupQuestionnaire(
   blaiseApiClient: BlaiseApiClient,
   questionnaireName: string,
   serverPark: string,
@@ -121,7 +121,7 @@ async function installQuestionnaire(
   }
 }
 
-export async function uninstallQuestionnaire(
+async function uninstallQuestionnaire(
   blaiseApiClient: BlaiseApiClient,
   serverPark: string,
   questionnaireName: string,

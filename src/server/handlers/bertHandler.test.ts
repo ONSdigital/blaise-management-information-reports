@@ -17,10 +17,10 @@ vi.mock("blaise-login-react-server", async () => {
 vi.mock("blaise-api-node-client", () => ({
   __esModule: true,
   BlaiseApiClient: class MockBlaiseApiClient {
-    constructor(_url?: string) { }
+    constructor(_url?: string) {}
   },
   default: class MockBlaiseApiClient {
-    constructor(_url?: string) { }
+    constructor(_url?: string) {}
   },
 }));
 

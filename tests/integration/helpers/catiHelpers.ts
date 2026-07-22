@@ -3,7 +3,7 @@ import { type NewUser } from "blaise-api-node-client";
 
 import { normalizeUrl } from "./urlHelpers";
 
-const CATI_URL = normalizeUrl('CATI_URL');
+const CATI_URL = normalizeUrl("CATI_URL");
 
 export async function setupAppointment(
   page: Page,

@@ -4,7 +4,7 @@ import moment from "moment";
 
 import { normalizeUrl } from "./urlHelpers";
 
-const REPORTS_URL = normalizeUrl('REPORTS_URL');
+const REPORTS_URL = normalizeUrl("REPORTS_URL");
 
 export async function loginToMir(page: Page, userCredentials: NewUser): Promise<void> {
   console.log(`Navigating to REPORTS_URL: ${REPORTS_URL}`);
@@ -42,7 +42,7 @@ export async function loginToMir(page: Page, userCredentials: NewUser): Promise<
     .waitFor({ state: "visible", timeout: 30000 });
 }
 
-export function createDateForTomorrow(): string {
+function createDateForTomorrow(): string {
   const tomorrow = new Date();
 
   tomorrow.setDate(tomorrow.getDate() + 1);

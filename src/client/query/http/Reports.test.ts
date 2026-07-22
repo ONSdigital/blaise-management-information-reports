@@ -5,7 +5,6 @@ import { afterEach, describe, expect, it } from "vitest";
 import { getInterviewerCallHistoryReport, getQuestionnaireList } from "../../query/http";
 import { type InterviewerCallHistoryReport } from "../../types/interfaces";
 
-
 const mockAdapter = new MockAdapter(axios);
 
 describe("getQuestionnaireList", () => {

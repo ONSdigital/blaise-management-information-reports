@@ -17,7 +17,7 @@ import AppointmentResourceDaybatchWarning from "./AppointmentResourceDaybatchWar
 import AppointmentResults from "./AppointmentResults";
 import AppointmentSummary from "./AppointmentSummary";
 
-const CSVLinkComponent = CSVLink as unknown as React.ComponentType<any>;
+const CSVLinkComponent = CSVLink as React.ComponentType<React.ComponentProps<typeof CSVLink>>;
 
 interface RenderAppointmentResourcePlanningReportPageProps {
   reportDate: Date;
