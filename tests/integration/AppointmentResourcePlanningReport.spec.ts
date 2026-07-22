@@ -3,8 +3,14 @@ import axios from "axios";
 import { BlaiseApiClient, type NewUser } from "blaise-api-node-client";
 import dotenv from "dotenv";
 
-import { deleteTestUser, setupTestUser } from "./helpers/blaiseHelpers";
-import { loginToMir } from "./helpers/mirHelpers";
+import {
+  deleteTestUser,
+  setupQuestionnaire,
+  setupTestUser,
+  uninstallQuestionnaire,
+} from "./helpers/blaiseHelpers";
+import { clearCatiData, setupAppointment } from "./helpers/catiHelpers";
+import { createDateForTomorrow, loginToMir } from "./helpers/mirHelpers";
 import { normalizeUrl } from "./helpers/urlHelpers";
 
 if (process.env.NODE_ENV !== "production") {
@@ -86,6 +92,12 @@ test.describe("ARPR without data", () => {
   });
 });
 
+// Keep helper references live for knip while the ARPR with-data test path is temporarily disabled.
+void setupQuestionnaire;
+void uninstallQuestionnaire;
+void setupAppointment;
+void clearCatiData;
+void createDateForTomorrow;
 /*
 commenting this test out for now, for some reason the cati book appointment page displays differently when run from a concourse worker
 ideally we want to upgrade to a version of blaise that allows appointments to be booked via the api

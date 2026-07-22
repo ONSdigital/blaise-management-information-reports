@@ -42,7 +42,7 @@ export async function loginToMir(page: Page, userCredentials: NewUser): Promise<
     .waitFor({ state: "visible", timeout: 30000 });
 }
 
-function createDateForTomorrow(): string {
+export function createDateForTomorrow(): string {
   const tomorrow = new Date();
 
   tomorrow.setDate(tomorrow.getDate() + 1);
