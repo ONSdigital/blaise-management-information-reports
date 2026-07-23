@@ -27,6 +27,7 @@ function DateHelper() {
   const lastYear = new Date(today);
 
   lastYear.setFullYear(today.getFullYear() - 1);
+
   return lastYear.toUTCString();
 }
 
@@ -53,7 +54,7 @@ describe("the interviewer details page renders correctly", () => {
           questionnaires={["LMS2101_AA1"]}
           setQuestionnaires={setQuestionnaires}
           submitFunction={submit}
-          navigateBack={() => { }}
+          navigateBack={() => {}}
         />
       </MemoryRouter>,
     );
