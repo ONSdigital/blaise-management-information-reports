@@ -20,13 +20,6 @@ import {
 
 Auth.prototype.validateToken = vi.fn().mockReturnValue(true);
 
-const config = loadConfigFromEnv();
-const request = supertest(newServer(config));
-
-dateFormatter.extend(customParseFormat);
-dateFormatter.extend(utc);
-dateFormatter.extend(timezone);
-
 vi.mock("@google-cloud/logging", () => ({
   Logging: class MockLogging {
     constructor(_options?: unknown) {}
@@ -64,22 +57,35 @@ vi.mock("blaise-iap-node-provider", () => ({
   },
 }));
 
+// Set up build directory and test files BEFORE creating the server
 const buildDir = path.resolve(process.cwd(), "build");
 const staticCssDir = path.join(buildDir, "static", "css");
 
 fs.mkdirSync(staticCssDir, { recursive: true });
-if (!fs.existsSync(path.join(buildDir, "index.html"))) {
+try {
   fs.writeFileSync(
     path.join(buildDir, "index.html"),
     '<!doctype html><html><body><div id="root"></div></body></html>',
+    { flag: "wx" },
   );
+} catch {
+  // file already exists
 }
 
 const testCssPath = path.join(staticCssDir, "__jest_test__.css");
 
-if (!fs.existsSync(testCssPath)) {
-  fs.writeFileSync(testCssPath, ".elementToFadeIn{animation:fadein .3s}\n");
+try {
+  fs.writeFileSync(testCssPath, ".elementToFadeIn{animation:fadein .3s}\n", { flag: "wx" });
+} catch {
+  // file already exists
 }
+
+const config = loadConfigFromEnv();
+const request = supertest(newServer(config));
+
+dateFormatter.extend(customParseFormat);
+dateFormatter.extend(utc);
+dateFormatter.extend(timezone);
 
 describe("Test Endpoint health", () => {
   it("should return a 200 status and json message", async () => {
@@ -90,38 +96,32 @@ describe("Test Endpoint health", () => {
   });
 });
 
-// describe("Static + catch-all routes", () => {
-//     beforeAll(() => {
-//         const buildDir = path.resolve(process.cwd(), "build");
-//         const staticCssDir = path.join(buildDir, "static", "css");
-//         fs.mkdirSync(staticCssDir, { recursive: true });
+describe("Static + catch-all routes", () => {
+  it("serves built static assets", async () => {
+    const response: supertest.Response = await request.get("/static/css/__jest_test__.css");
 
-//         const indexHtmlPath = path.join(buildDir, "index.html");
-//         if (!fs.existsSync(indexHtmlPath)) {
-//             fs.writeFileSync(indexHtmlPath, "<!doctype html><html><body><div id=\"root\"></div></body></html>");
-//         }
+    expect(response.status).toEqual(200);
+    expect(response.text).toContain(".elementToFadeIn");
+  });
 
-//         const testCssPath = path.join(staticCssDir, "__jest_test__.css");
-//         if (!fs.existsSync(testCssPath)) {
-//             fs.writeFileSync(testCssPath, ".elementToFadeIn{animation:fadein .3s}\n");
-//         }
-//     });
-//     afterEach(() => {
-//         axiosMock.reset();
-//     });
+  it("renders index.html for non-API routes", async () => {
+    const response = await request.get("/some-non-api-route");
 
-//     // it("serves built static assets", async () => {
-//     //     const response: supertest.Response = await request.get("/static/css/__jest_test__.css");
-//     //     expect(response.status).toEqual(200);
-//     //     expect(response.text).toContain(".elementToFadeIn");
-//     // });
+    expect(response.status).toEqual(200);
+    expect(response.text).toContain('<div id="root"></div>');
+  });
 
-//     it("renders index.html for non-API routes", async () => {
-//         const response = await request.qget("/some-non-api-route");
-//         expect(response.status).toEqual(500);
-//         expect(response.text).toContain("<div id=\"root\"></div>");
-//     });
-// });
+  it("returns 500 error page when rendering fails due to non-existent directory", async () => {
+    const app = newServer(config);
+
+    app.set("views", "/definitely/missing/views");
+
+    const response = await supertest(app).get("/some/client/route");
+
+    expect(response.status).toEqual(500);
+    expect(response.text).toContain("Sorry, there is a problem with the service");
+  });
+});
 
 describe("Unknown API endpoint", () => {
   it("should return a 404 status and not-found message", async () => {

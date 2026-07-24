@@ -178,7 +178,6 @@ class BertHandler {
     const startDateFormatted = formatISODate(startDate);
     const endDateFormatted = formatISODate(endDate);
 
-    console.log(`questionnaires ${questionnaires}`);
     const query = new URLSearchParams({
       "start-date": startDateFormatted,
       "end-date": endDateFormatted,
@@ -192,7 +191,6 @@ class BertHandler {
 
     const url = `/api/reports/call-pattern/${encodeURIComponent(interviewer)}?${query.toString()}`;
 
-    console.log(url);
     const response = await this.bertClient.getInterviewerCallPattern(url);
 
     return res.status(response.status).json(response.data);

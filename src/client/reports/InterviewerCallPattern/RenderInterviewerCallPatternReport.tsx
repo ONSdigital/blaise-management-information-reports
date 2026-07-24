@@ -168,7 +168,6 @@ function InvalidCaseInfo({
 }: {
   invalidFields: InvalidCaseSummaryGroup;
 }): ReactElement {
-  console.log(invalidFields);
   if (!invalidFields.records || !invalidFields.records.discounted_invalid_cases) {
     return <></>;
   }

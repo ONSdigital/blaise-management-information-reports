@@ -45,13 +45,6 @@ function QuestionnaireFilter({
     interviewerFilterQuery.endDate,
   );
 
-  console.log("Questionnaire props:", {
-    surveyTla: interviewerFilterQuery.surveyTla,
-    interviewer: interviewerFilterQuery.interviewer,
-    startDate: interviewerFilterQuery.startDate,
-    endDate: interviewerFilterQuery.endDate,
-  });
-
   return (
     <div>
       <Breadcrumbs
