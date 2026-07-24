@@ -130,6 +130,16 @@ describe("Static + catch-all routes", () => {
     expect(response.status).toEqual(200);
     expect(response.text).toContain("<div id=\"root\"></div>");
   });
+
+  it("returns 500 error page when rendering fails due to non-existent directory", async () => {
+    const app = newServer(config);
+    app.set("views", "/definitely/missing/views");
+
+    const response = await supertest(app).get("/some/client/route");
+
+    expect(response.status).toEqual(500);
+    expect(response.text).toContain("Sorry, there is a problem with the service");
+  });
 });
 
 describe("Unknown API endpoint", () => {
