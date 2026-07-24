@@ -12,9 +12,10 @@ import { type HttpLogger } from "pino-http";
 
 import newBertHandler from "./handlers/bertHandler.js";
 import newHealthCheckHandler from "./handlers/healthCheckHandler.js";
-import { BertClient } from "./helpers/bertClient.js";
 import AuditLogger from "./utils/auditLogger.js";
 import createLogger from "./utils/pino/index.js";
+
+import { BertClient } from "./helpers/bertClient.js";
 
 import type { Config } from "./helpers/config.js";
 import type { Express, NextFunction, Request, Response } from "express";
@@ -63,8 +64,6 @@ export function newServer(config: Config, logger: HttpLogger = createLogger()): 
   const handlers = createServerHandlers(config, dependencies);
   const apiRateLimiter = createApiRateLimiter(dependencies.auth);
 
-  // const blaiseApiClient = new BlaiseApiClient(config.BlaiseApiUrl);
-  // const auth = new Auth(config);
   const server = express();
 
   server.use(logger);
@@ -76,7 +75,9 @@ export function newServer(config: Config, logger: HttpLogger = createLogger()): 
         directives: {
           ...helmet.contentSecurityPolicy.getDefaultDirectives(),
           "connect-src": ["'self'", "https://storage.googleapis.com"],
+          "font-src": ["'self'", "data:", "https://cdn.ons.gov.uk"],
           "img-src": ["'self'", "data:", "https://cdn.ons.gov.uk"],
+          "style-src": ["'self'", "'unsafe-inline'", "https://cdn.ons.gov.uk"],
         },
       },
       crossOriginEmbedderPolicy: false,
@@ -92,7 +93,7 @@ export function newServer(config: Config, logger: HttpLogger = createLogger()): 
   const { buildRoot, clientBuildFolder } = resolveClientBuildPaths();
   const errorPageContent = loadErrorPageContent(buildRoot);
 
-  configureClientRendering(server, clientBuildFolder);
+  configureClientRendering(server, buildRoot, clientBuildFolder);
   registerRouteHandlers(server, [handlers.bertHandler]);
 
   server.use("/api", function (_req: Request, res: Response) {
@@ -136,11 +137,11 @@ function resolveClientBuildPaths(): ClientBuildPaths {
   return { buildRoot, clientBuildFolder };
 }
 
-function configureClientRendering(server: Express, clientBuildFolder: string): void {
+function configureClientRendering(server: Express, buildRoot: string, clientBuildFolder: string): void {
   server.set("views", clientBuildFolder);
   server.engine("html", ejs.renderFile);
   server.use("/assets", express.static(path.join(clientBuildFolder, "assets")));
-  server.use("/static", express.static(path.join(clientBuildFolder, "static")));
+  server.use("/static", express.static(path.join(buildRoot, "static")));
 }
 
 function loadErrorPageContent(buildRoot: string): string | undefined {
