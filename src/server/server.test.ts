@@ -20,13 +20,6 @@ import {
 
 Auth.prototype.validateToken = vi.fn().mockReturnValue(true);
 
-const config = loadConfigFromEnv();
-const request = supertest(newServer(config));
-
-dateFormatter.extend(customParseFormat);
-dateFormatter.extend(utc);
-dateFormatter.extend(timezone);
-
 vi.mock("@google-cloud/logging", () => ({
   Logging: class MockLogging {
     constructor(_options?: unknown) { }
@@ -64,6 +57,7 @@ vi.mock("blaise-iap-node-provider", () => ({
   },
 }));
 
+// Set up build directory and test files BEFORE creating the server
 const buildDir = path.resolve(process.cwd(), "build");
 const staticCssDir = path.join(buildDir, "static", "css");
 
@@ -86,6 +80,13 @@ try {
   // file already exists
 }
 
+const config = loadConfigFromEnv();
+const request = supertest(newServer(config));
+
+dateFormatter.extend(customParseFormat);
+dateFormatter.extend(utc);
+dateFormatter.extend(timezone);
+
 describe("Test Endpoint health", () => {
   it("should return a 200 status and json message", async () => {
     const response: supertest.Response = await request.get("/mir-ui/version/health");
@@ -96,29 +97,6 @@ describe("Test Endpoint health", () => {
 });
 
 describe("Static + catch-all routes", () => {
-  beforeAll(() => {
-    const buildDir = path.resolve(process.cwd(), "build");
-    const staticCssDir = path.join(buildDir, "static", "css");
-    fs.mkdirSync(staticCssDir, { recursive: true });
-
-    try {
-      fs.writeFileSync(
-        path.join(buildDir, "index.html"),
-        "<!doctype html><html><body><div id=\"root\"></div></body></html>",
-        { flag: "wx" },
-      );
-    } catch {
-      // file already exists
-    }
-
-    const testCssPath = path.join(staticCssDir, "__jest_test__.css");
-    try {
-      fs.writeFileSync(testCssPath, ".elementToFadeIn{animation:fadein .3s}\n", { flag: "wx" });
-    } catch {
-      // file already exists
-    }
-  });
-
   it("serves built static assets", async () => {
     const response: supertest.Response = await request.get("/static/css/__jest_test__.css");
     expect(response.status).toEqual(200);
