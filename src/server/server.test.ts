@@ -22,7 +22,7 @@ Auth.prototype.validateToken = vi.fn().mockReturnValue(true);
 
 vi.mock("@google-cloud/logging", () => ({
   Logging: class MockLogging {
-    constructor(_options?: unknown) { }
+    constructor(_options?: unknown) {}
 
     public log(_logName: string) {
       return {
@@ -99,18 +99,21 @@ describe("Test Endpoint health", () => {
 describe("Static + catch-all routes", () => {
   it("serves built static assets", async () => {
     const response: supertest.Response = await request.get("/static/css/__jest_test__.css");
+
     expect(response.status).toEqual(200);
     expect(response.text).toContain(".elementToFadeIn");
   });
 
   it("renders index.html for non-API routes", async () => {
     const response = await request.get("/some-non-api-route");
+
     expect(response.status).toEqual(200);
-    expect(response.text).toContain("<div id=\"root\"></div>");
+    expect(response.text).toContain('<div id="root"></div>');
   });
 
   it("returns 500 error page when rendering fails due to non-existent directory", async () => {
     const app = newServer(config);
+
     app.set("views", "/definitely/missing/views");
 
     const response = await supertest(app).get("/some/client/route");

@@ -12,10 +12,9 @@ import { type HttpLogger } from "pino-http";
 
 import newBertHandler from "./handlers/bertHandler.js";
 import newHealthCheckHandler from "./handlers/healthCheckHandler.js";
+import { BertClient } from "./helpers/bertClient.js";
 import AuditLogger from "./utils/auditLogger.js";
 import createLogger from "./utils/pino/index.js";
-
-import { BertClient } from "./helpers/bertClient.js";
 
 import type { Config } from "./helpers/config.js";
 import type { Express, NextFunction, Request, Response } from "express";
@@ -137,7 +136,11 @@ function resolveClientBuildPaths(): ClientBuildPaths {
   return { buildRoot, clientBuildFolder };
 }
 
-function configureClientRendering(server: Express, buildRoot: string, clientBuildFolder: string): void {
+function configureClientRendering(
+  server: Express,
+  buildRoot: string,
+  clientBuildFolder: string,
+): void {
   server.set("views", clientBuildFolder);
   server.engine("html", ejs.renderFile);
   server.use("/assets", express.static(path.join(clientBuildFolder, "assets")));
