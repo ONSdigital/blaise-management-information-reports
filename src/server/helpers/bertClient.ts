@@ -146,6 +146,10 @@ export class BertClient {
     return url;
   }
 
+  private sanitizeForLog(value: string): string {
+    return value.replace(/[\r\n]/g, "");
+  }
+
   protected async get(url: string): Promise<AxiosResponse> {
     const config = await this.axiosConfig();
 
@@ -153,8 +157,9 @@ export class BertClient {
       return [200, 204, 404].includes(statusCode);
     };
 
-    console.log(`Making GET request to: ${this.bertUrl}${this.url(url)}`);
-    const response = await this.httpClient.get(`${this.bertUrl}${this.url(url)}`, config);
+    const finalURL = `${this.bertUrl}${this.url(url)}`;
+    console.log(`Making GET request to: ${this.sanitizeForLog(finalURL)}`);
+    const response = await this.httpClient.get(finalURL, config);
 
     return response;
   }
