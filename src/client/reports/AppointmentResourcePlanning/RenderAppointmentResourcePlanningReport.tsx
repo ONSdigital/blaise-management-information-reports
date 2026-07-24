@@ -85,7 +85,6 @@ function RenderAppointmentResourcePlanningReport(
         return;
       }
 
-      console.log(planningReport);
       setReportData(planningReport);
     }
 
@@ -98,7 +97,6 @@ function RenderAppointmentResourcePlanningReport(
       setSummaryFailed(false);
       getAppointmentResourcePlanningSummaryReport(reportDate, surveyTla, questionnaires)
         .then((summaryReport: AppointmentResourcePlanningSummaryReportData[]) => {
-          console.log(summaryReport);
           setSummaryData(summaryReport);
         })
         .catch(() => {

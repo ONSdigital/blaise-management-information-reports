@@ -85,7 +85,6 @@ async function getInterviewerCallHistoryReport(
   appendFormValue(formData, "questionnaires", form.questionnaires);
 
   function toReport(questionnaire: Record<string, unknown>): InterviewerCallHistoryReport {
-    console.log("successful response atleast");
     const report = { ...questionnaire };
 
     if (!("dial_secs" in report) || report.dial_secs === "") {

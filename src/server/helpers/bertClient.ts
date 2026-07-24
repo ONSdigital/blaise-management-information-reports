@@ -158,6 +158,7 @@ export class BertClient {
     };
 
     const finalURL = `${this.bertUrl}${this.url(url)}`;
+
     console.log(`Making GET request to: ${this.sanitizeForLog(finalURL)}`);
     const response = await this.httpClient.get(finalURL, config);
 
@@ -168,7 +169,7 @@ export class BertClient {
     const config = await this.axiosConfig();
     const finalURL = `${this.bertUrl}${this.url(url)}`;
 
-    console.log(`Making POST request to: ${finalURL}`);
+    console.log(`Making POST request to: ${this.sanitizeForLog(finalURL)}`);
     const response = await this.httpClient.post(finalURL, data ? data : null, config);
 
     console.log(`Response: Status ${response.status}, data ${JSON.stringify(response.data)}`);

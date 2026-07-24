@@ -57,8 +57,6 @@ function RenderInterviewerCallHistoryReport({
 
     const callHistory = await getInterviewerCallHistoryReport(formValues);
 
-    console.log(callHistory);
-
     return callHistory;
   }
 
