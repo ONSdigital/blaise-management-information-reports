@@ -76,18 +76,24 @@ test.describe("ARPR without data", () => {
     await expect(appointmentResourcePlanningLink).toBeVisible({ timeout: 30000 });
     await appointmentResourcePlanningLink.click();
     await expect(page.locator("h1")).toHaveText("Run appointment resource planning report");
-    await expect(page.locator(".ons-panel__body ").nth(1)).toContainText(
-      "Run a Daybatch first to obtain the most accurate results.",
-    );
-    await expect(page.locator(".ons-panel__body ").nth(1)).toContainText(
-      "Appointments that have already been attempted will not be displayed.",
-    );
+    await expect(
+      page.locator(".ons-panel__body").filter({
+        hasText: "Run a Daybatch first to obtain the most accurate results.",
+      }),
+    ).toBeVisible();
+    await expect(
+      page.locator(".ons-panel__body").filter({
+        hasText: "Appointments that have already been attempted will not be displayed.",
+      }),
+    ).toBeVisible();
     await page.getByLabel("Date").fill("1990-06-30");
     await page.click("button[type=submit]");
     await page.waitForSelector("text=Loading", { state: "hidden" });
-    await expect(page.locator(".ons-panel__body ").nth(2)).toContainText(
-      "No questionnaires found for given parameters.",
-    );
+    await expect(
+      page.locator(".ons-panel__body").filter({
+        hasText: "No questionnaires found for given parameters.",
+      }),
+    ).toBeVisible();
     console.log(`Finished running ${testInfo.title}`);
   });
 });
