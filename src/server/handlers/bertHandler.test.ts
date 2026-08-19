@@ -9,6 +9,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { loadConfigFromEnv } from "../helpers/config.js";
 import { newServer } from "../server.js";
 
+type MockAdapterClient = ConstructorParameters<typeof MockAdapter>[0];
+
 vi.mock("blaise-login-react-server", async () => {
   const { mockLoginReactServerModule } = await import("../test-utils/loginReactServer.mock.js");
 
@@ -46,8 +48,10 @@ logger.child = vi.fn(() => logger) as unknown as typeof logger.child;
 vi.spyOn(logger, "info");
 vi.spyOn(logger, "error");
 const httpLogger: HttpLogger = pinoHttp({ logger: logger });
+const httpClient = axios.create();
+const mockAdapterClient = httpClient as unknown as MockAdapterClient;
 
-vi.spyOn(axios, "create").mockReturnValue(axios);
+vi.spyOn(axios, "create").mockReturnValue(httpClient);
 
 const config = loadConfigFromEnv();
 const request = supertest(newServer(config, httpLogger));
@@ -64,7 +68,7 @@ describe("Test call history status endpoint", () => {
 
   it("should call BERT and return the status", async () => {
     const returned = { lastUpdated: "2022-01-01T00:00:00Z" };
-    const axiosMock = new MockAdapter(axios, { onNoMatch: "throwException" });
+    const axiosMock = new MockAdapter(mockAdapterClient, { onNoMatch: "throwException" });
 
     axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(200, returned);
     const response = await request.get("/api/reports/call-history-status");
@@ -74,7 +78,7 @@ describe("Test call history status endpoint", () => {
   });
 
   it("should return null when no call history status exists", async () => {
-    const axiosMock = new MockAdapter(axios, { onNoMatch: "throwException" });
+    const axiosMock = new MockAdapter(mockAdapterClient, { onNoMatch: "throwException" });
 
     axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(200, null);
     const response = await request.get("/api/reports/call-history-status");
@@ -84,7 +88,7 @@ describe("Test call history status endpoint", () => {
   });
 
   it("should handle error from BERT endpoint", async () => {
-    const axiosMock = new MockAdapter(axios, { onNoMatch: "throwException" });
+    const axiosMock = new MockAdapter(mockAdapterClient, { onNoMatch: "throwException" });
 
     axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(500);
     const response = await request.get("/api/reports/call-history-status");
