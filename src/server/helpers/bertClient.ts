@@ -1,7 +1,7 @@
 import axios, { type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { IapProvider } from "blaise-iap-node-provider";
 
-type BertHttpClient = Pick<typeof axios, "get" | "post">;
+type BertHttpClient = Pick<ReturnType<typeof axios.create>, "get" | "post">;
 
 type CallHistoryStatus = {
   last_updated: string;

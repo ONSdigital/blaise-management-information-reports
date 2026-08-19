@@ -70,30 +70,42 @@ describe("Test call history status endpoint", () => {
     const returned = { lastUpdated: "2022-01-01T00:00:00Z" };
     const axiosMock = new MockAdapter(mockAdapterClient, { onNoMatch: "throwException" });
 
-    axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(200, returned);
-    const response = await request.get("/api/reports/call-history-status");
+    try {
+      axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(200, returned);
+      const response = await request.get("/api/reports/call-history-status");
 
-    expect(response.status).toEqual(200);
-    expect(response.body).toStrictEqual(returned);
+      expect(response.status).toEqual(200);
+      expect(response.body).toStrictEqual(returned);
+    } finally {
+      axiosMock.restore();
+    }
   });
 
   it("should return null when no call history status exists", async () => {
     const axiosMock = new MockAdapter(mockAdapterClient, { onNoMatch: "throwException" });
 
-    axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(200, null);
-    const response = await request.get("/api/reports/call-history-status");
+    try {
+      axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(200, null);
+      const response = await request.get("/api/reports/call-history-status");
 
-    expect(response.status).toEqual(200);
-    expect(response.body).toBeNull();
+      expect(response.status).toEqual(200);
+      expect(response.body).toBeNull();
+    } finally {
+      axiosMock.restore();
+    }
   });
 
   it("should handle error from BERT endpoint", async () => {
     const axiosMock = new MockAdapter(mockAdapterClient, { onNoMatch: "throwException" });
 
-    axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(500);
-    const response = await request.get("/api/reports/call-history-status");
+    try {
+      axiosMock.onGet(`${config.bertUrl}/api/reports/call-history-status`).reply(500);
+      const response = await request.get("/api/reports/call-history-status");
 
-    expect(response.status).toEqual(500);
-    expect(response.body).toStrictEqual({});
+      expect(response.status).toEqual(500);
+      expect(response.body).toStrictEqual({});
+    } finally {
+      axiosMock.restore();
+    }
   });
 });
