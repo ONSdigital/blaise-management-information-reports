@@ -1,5 +1,7 @@
-import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from "axios";
+import axios, { type AxiosRequestConfig, type AxiosResponse } from "axios";
 import { IapProvider } from "blaise-iap-node-provider";
+
+type BertHttpClient = Pick<ReturnType<typeof axios.create>, "get" | "post">;
 
 type CallHistoryStatus = {
   last_updated: string;
@@ -8,7 +10,7 @@ type CallHistoryStatus = {
 export class BertClient {
   private readonly bertUrl: string;
   private authProvider: IapProvider;
-  private httpClient: AxiosInstance;
+  private httpClient: BertHttpClient;
 
   constructor(bertClientId: string, bertUrl: string) {
     this.bertUrl = bertUrl;
